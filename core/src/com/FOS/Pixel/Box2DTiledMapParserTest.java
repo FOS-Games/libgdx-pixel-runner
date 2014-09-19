@@ -10,7 +10,7 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
-import net.dermetfan.utils.libgdx;
+import net.dermetfan.utils.libgdx.box2d.Box2DMapObjectParser;
 
 /**
  * Created by Stefan on 19-9-2014.
