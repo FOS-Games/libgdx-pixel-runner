@@ -1,5 +1,7 @@
 package com.FOS.Pixel;
 
+import com.FOS.Pixel.screens.PixelScreen;
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
@@ -15,12 +17,16 @@ import net.dermetfan.utils.libgdx.box2d.Box2DMapObjectParser;
 /**
  * Created by Stefan on 19-9-2014.
  */
-public class Box2DTiledMapParserTest implements Screen{
+public class Box2DTiledMapParserTest extends PixelScreen{
 
     private World world;
     private Box2DDebugRenderer box2DRenderer;
     private OrthogonalTiledMapRenderer mapRenderer;
     private OrthographicCamera camera;
+
+    public Box2DTiledMapParserTest(Game game) {
+        super(game);
+    }
 
     @Override
     public void show() {

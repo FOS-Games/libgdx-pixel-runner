@@ -12,6 +12,21 @@ public class GameScreen extends PixelScreen {
     }
 
     @Override
+    public void show() {
+        super.show();
+    }
+
+    @Override
+    public void resize(int width, int height) {
+        super.resize(width, height);
+    }
+
+    @Override
+    public void dispose() {
+        super.dispose();
+    }
+
+    @Override
     public void render(float delta) {
         super.render(delta);
     }
