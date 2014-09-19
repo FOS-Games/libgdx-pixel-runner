@@ -5,7 +5,7 @@
  </tileset>
  <layer name="Tiles" width="50" height="25">
   <data encoding="base64" compression="zlib">
-   eJztzzEKgDAQRNFUFpZ2WlkEsRDvfzyTQpAQg5IlA+E/mG6L/c4BAAAAAL461Q8YiA2D+olKd4NXP1Lh2RC3NN5a+G0O25NNmbstaWi9o9Dwx9hBg7LDskHVYd3w1nEBH9kXAg==
+   eJzt0rEKgDAMRdFMDo5uOjmIOIj//3lSRCilBqUhAbkH3mSHXFAEAAAAAPDWEX2AgdTQKd83r0Ma3A1L9CEN8oa0yXmzctso13+Qb6i8W4sG7+1Kwxf9DxoiOywbojqsG546TvbZFyo=
   </data>
  </layer>
  <objectgroup name="Objectlaag 1">
@@ -18,6 +18,14 @@
   <object name="platform" type="object" x="2451.52" y="1400" width="418.182" height="66.6667"/>
   <object name="ground" type="object" x="3148.48" y="1745.45">
    <polyline points="0,0 0,-345.455 66.6667,-345.455 345.455,-624.242"/>
+  </object>
+  <object name="player" type="object" x="420.5" y="1259.75" width="70" height="70.5">
+   <properties>
+    <property name="bodyType" value="DynamicBody"/>
+    <property name="density" value="2"/>
+    <property name="linearVelocityX" value="-500"/>
+    <property name="linearVelocityY" value="500"/>
+   </properties>
   </object>
  </objectgroup>
 </map>

@@ -36,11 +36,11 @@ public class Box2DTiledMapParserTest extends PixelScreen{
 
         TiledMap map = new TmxMapLoader().load("grassmap.tmx");
 
-        Box2DMapObjectParser parser = new Box2DMapObjectParser();
+        Box2DMapObjectParser parser = new Box2DMapObjectParser(0.005f);
 
         parser.load(world, map);
 
-        mapRenderer = new OrthogonalTiledMapRenderer(map);
+        mapRenderer = new OrthogonalTiledMapRenderer(map, parser.getUnitScale());
     }
 
     @Override
