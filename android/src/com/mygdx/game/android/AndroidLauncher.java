@@ -1,16 +1,16 @@
-package com.FOS.Pixel.android;
+package com.mygdx.game.android;
 
 import android.os.Bundle;
 
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
-import com.FOS.Pixel.MainPixel;
+import com.mygdx.game.MyGdxGame;
 
 public class AndroidLauncher extends AndroidApplication {
 	@Override
 	protected void onCreate (Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
-		initialize(new MainPixel(), config);
+		initialize(new MyGdxGame(), config);
 	}
 }
