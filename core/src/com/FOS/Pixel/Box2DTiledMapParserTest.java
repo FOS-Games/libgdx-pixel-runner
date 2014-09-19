@@ -28,7 +28,7 @@ public class Box2DTiledMapParserTest implements Screen{
         box2DRenderer = new Box2DDebugRenderer();
         camera = new OrthographicCamera();
 
-        TiledMap map = new TmxMapLoader().load("maps/map1.tmx");
+        TiledMap map = new TmxMapLoader().load("maps/grassmap.tmx");
 
         Box2DMapObjectParser parser = new Box2DMapObjectParser();
 
