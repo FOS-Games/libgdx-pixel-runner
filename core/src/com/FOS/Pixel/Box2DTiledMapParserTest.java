@@ -34,7 +34,7 @@ public class Box2DTiledMapParserTest extends PixelScreen{
         box2DRenderer = new Box2DDebugRenderer();
         camera = new OrthographicCamera();
 
-        TiledMap map = new TmxMapLoader().load("maps/grassmap.tmx");
+        TiledMap map = new TmxMapLoader().load("grassmap.tmx");
 
         Box2DMapObjectParser parser = new Box2DMapObjectParser();
 
