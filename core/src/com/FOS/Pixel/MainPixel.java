@@ -11,6 +11,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class MainPixel extends Game {
 	@Override
     public  void create(){
-        setScreen(new GameScreen(this));
+        setScreen(new Box2DTiledMapParserTest(this));
     }
 }
