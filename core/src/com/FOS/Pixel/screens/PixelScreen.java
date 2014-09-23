@@ -7,7 +7,7 @@ import com.badlogic.gdx.Screen;
  * Created by Lars on 9/19/2014.
  */
 public abstract class PixelScreen implements Screen {
-    Game game;
+    public Game game;
     public PixelScreen(Game game){
        this.game=game;
     }
