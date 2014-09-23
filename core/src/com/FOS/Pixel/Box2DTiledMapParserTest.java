@@ -12,14 +12,17 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.utils.ObjectMap;
+
 import net.dermetfan.utils.libgdx.box2d.Box2DMapObjectParser;
+import net.dermetfan.utils.libgdx.graphics.Box2DSprite;
+import net.dermetfan.utils.libgdx.graphics.AnimatedBox2DSprite;
 
 /**
  * Created by Stefan on 19-9-2014.
  */
 public class Box2DTiledMapParserTest extends PixelScreen {
 
-    static  final float UnitScale = 0.005f;
+    static  final float UnitScale = 0.0625f;
 
     private World world;
     private Box2DDebugRenderer box2DRenderer;
@@ -39,10 +42,13 @@ public class Box2DTiledMapParserTest extends PixelScreen {
         box2DRenderer = new Box2DDebugRenderer();
         camera = new OrthographicCamera();
 
+        // set the height of the camera
+        camera.position.y = 3;
+
         TiledMap map = new TmxMapLoader().load("level_1_black.tmx");
 
 
-        parser = new Box2DMapObjectParser(0.005f);
+        parser = new Box2DMapObjectParser(0.05f);
 
         parser.load(world, map);
         ObjectMap<String, Body> bodies = parser.getBodies();
@@ -86,6 +92,8 @@ public class Box2DTiledMapParserTest extends PixelScreen {
         box2DRenderer.render(world, camera.combined);
         player.update();
         playerMovement();
+
+        updateCamera();
     }
 
     private void playerMovement() {
@@ -131,5 +139,10 @@ public class Box2DTiledMapParserTest extends PixelScreen {
     @Override
     public void resume() {
 
+    }
+
+    public void updateCamera() {
+        camera.position.x = player.position.x;
+        camera.update();
     }
 }

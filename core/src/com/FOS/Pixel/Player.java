@@ -12,6 +12,8 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.Gdx;
 
+import net.dermetfan.utils.libgdx.graphics.AnimatedBox2DSprite;
+
 import javax.swing.*;
 
 /**
@@ -61,7 +63,8 @@ public class Player {
 
     private void createBodyFixture() {
         PolygonShape shape =  new PolygonShape();
-        shape.setAsBox(walkFrameWidth * Box2DTiledMapParserTest.UnitScale, walkFrameHeight*Box2DTiledMapParserTest.UnitScale);
+        //shape.setAsBox(walkFrameWidth * Box2DTiledMapParserTest.UnitScale, walkFrameHeight*Box2DTiledMapParserTest.UnitScale);
+        shape.setAsBox(16 * Box2DTiledMapParserTest.UnitScale, 16 * Box2DTiledMapParserTest.UnitScale);
 
         FixtureDef fdef = new FixtureDef();
         fdef.shape = shape;
@@ -102,10 +105,18 @@ public class Player {
         stateTime += Gdx.graphics.getDeltaTime();           // #15
         currentFrame = walkAnimation.getKeyFrame(stateTime, true);  // #16
         spriteBatch.begin();
-        float x=body.getPosition().x-width/2;
-        float y=body.getPosition().y-height/2 ;
-        spriteBatch.draw(currentFrame,x ,y);
-        System.out.println("transform is at: " + body.getTransform().getPosition());
+
+        //float x=body.getPosition().x-width/2;
+        //float y=body.getPosition().y-height/2 ;
+
+        //float x = position.x * Box2DTiledMapParserTest.UnitScale + 10;
+        //float y = position.y * Box2DTiledMapParserTest.UnitScale + height / 2;
+
+        float x = position.x * Box2DTiledMapParserTest.UnitScale;
+        float y = position.y * Box2DTiledMapParserTest.UnitScale;
+
+        spriteBatch.draw(currentFrame, x, y);
+        System.out.println("transform is at: " + body.getPosition());
         System.out.println("X: "+x+" Y: "+y);
         spriteBatch.end();
     }
