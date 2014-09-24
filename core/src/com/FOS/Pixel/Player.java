@@ -36,7 +36,8 @@ public class Player {
     Vector2 velocity = new Vector2();
 
     private Vector2 size = new Vector2(16*Box2DTiledMapParserTest.UnitScale,16 * Box2DTiledMapParserTest.UnitScale);
-    Vector2 spawnpoint;
+    private Vector2 spawnpoint;
+    private Box2DSprite testsprite = new Box2DSprite(new Texture(Gdx.files.internal("DARK.png")));
 
     protected Body body;
     public Body getBody() { return body;}
@@ -54,9 +55,6 @@ public class Player {
 
     }
 
-    /**
-     * Creates Box2D body and fixture for the player
-     */
     private void InitBox2D() {
         BodyDef bdef = new BodyDef();
         bdef.fixedRotation = true;
@@ -69,8 +67,29 @@ public class Player {
         bodyFixture = body.createFixture(shape,1);
         shape.dispose();
 
+        bodyFixture.setUserData(testsprite);
+
+
+        //initSensors();
     }
 
+    private void initSensors() {
+        FixtureDef feetdef = new FixtureDef();
+        FixtureDef frontdef = new FixtureDef();
+
+        feetdef.friction = 1;
+        feetdef.density = 1;
+        feetdef.isSensor = true;
+        PolygonShape shape = new PolygonShape();
+        shape.setAsBox(size.x,0,new Vector2(0,size.y/2),0);
+
+
+
+    }
+
+    public void render(float dt){
+
+    }
 
     public void update(float dt){
 

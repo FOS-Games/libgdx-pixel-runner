@@ -23,7 +23,7 @@ import net.dermetfan.utils.libgdx.graphics.Box2DSprite;
  */
 public class Box2DTiledMapParserTest extends PixelScreen {
 
-    static  final float UnitScale = 0.05f;
+    static  final float UnitScale = 0.015f;
 
     private World world;
     private Box2DDebugRenderer box2DRenderer;
@@ -72,12 +72,9 @@ public class Box2DTiledMapParserTest extends PixelScreen {
     private void createPlayer(){
         Vector2 spawn;
         if(parser.getBodies().containsKey("spawn")) {
-            System.out.println("Spawn found");
            spawn = parser.getBodies().get("spawn").getPosition();
-
         }else{
-            spawn = new Vector2(0,0);
-        }
+            spawn = new Vector2(0,0); }
         player=new Player(this.world, spawn);
     }
 
@@ -85,7 +82,7 @@ public class Box2DTiledMapParserTest extends PixelScreen {
     public void render(float delta) {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        world.step(1 / 60f, 8, 30);
+        world.step(1 / 60f, 8, 3);
 
         mapRenderer.setView(camera);
         mapRenderer.render();
@@ -94,30 +91,13 @@ public class Box2DTiledMapParserTest extends PixelScreen {
 
         Box2DSprite.draw(spriteBatch,world);
         spriteBatch.end();
-//        playerAnim(delta);
         playerMovement();
     }
-
-//    private void playerAnim(float dt){
-//        AnimatedBox2DSprite anim = player.walkAnimation;
-//        anim.getAnimation().setPlayMode(Animation.PlayMode.LOOP);
-//        //anim.setAdjustSize(false);
-//        player.body.setUserData(anim);
-//        AnimatedBox2DSprite anim2 = new AnimatedBox2DSprite(anim.getAnimatedSprite());
-//        player.bodyFixture.setUserData(anim2);
-//
-////        Box2DSprite sprite = new Box2DSprite(player.walkAnimation.getAnimation().getKeyFrame(dt,true));
-////        spriteBatch.begin();
-////        Box2DSprite.draw(spriteBatch,world);
-////        sprite.draw(spriteBatch,player.bodyFixture);
-////
-////        spriteBatch.end();
-//
-//    }
 
     private void playerMovement() {
         if(Gdx.input.isKeyPressed(Input.Keys.LEFT)){
             player.body.setLinearVelocity(-4,player.body.getLinearVelocity().y);
+
         }
         if(Gdx.input.isKeyJustPressed(Input.Keys.UP)){
             player.body.setLinearVelocity(player.body.getLinearVelocity().x,4);
@@ -137,13 +117,15 @@ public class Box2DTiledMapParserTest extends PixelScreen {
         camera.viewportWidth = width / 25;
         camera.viewportHeight = height / 25;
         camera.update();
+        spriteBatch.setProjectionMatrix(camera.combined);
     }
 
     @Override
     public void dispose() {
+
+        spriteBatch.dispose();
         world.dispose();
         mapRenderer.dispose();
-        spriteBatch.dispose();
     }
 
     @Override
