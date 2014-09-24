@@ -6,6 +6,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
@@ -13,6 +15,8 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.utils.ObjectMap;
 import net.dermetfan.utils.libgdx.box2d.Box2DMapObjectParser;
+import net.dermetfan.utils.libgdx.graphics.AnimatedBox2DSprite;
+import net.dermetfan.utils.libgdx.graphics.Box2DSprite;
 
 /**
  * Created by Stefan on 19-9-2014.
@@ -32,6 +36,8 @@ public class Box2DTiledMapParserTest extends PixelScreen {
     }
     int levelwidth;
     int levelheight;
+    SpriteBatch spriteBatch;
+
 
     @Override
     public void show() {
@@ -54,8 +60,13 @@ public class Box2DTiledMapParserTest extends PixelScreen {
             }
         }
 
+        spriteBatch = new SpriteBatch();
         mapRenderer = new OrthogonalTiledMapRenderer(map, parser.getUnitScale());
+
+
+
         createPlayer();
+
     }
 
     private void createPlayer(){
@@ -71,12 +82,11 @@ public class Box2DTiledMapParserTest extends PixelScreen {
         bdef.fixedRotation = true;
 
         Body body = world.createBody(bdef);
-        player=new Player(body,levelwidth,levelheight);
+        player=new Player(body,this.world);
     }
 
     @Override
     public void render(float delta) {
-        System.out.println("render");
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         world.step(1 / 60f, 8, 30);
@@ -84,8 +94,29 @@ public class Box2DTiledMapParserTest extends PixelScreen {
         mapRenderer.setView(camera);
         mapRenderer.render();
         box2DRenderer.render(world, camera.combined);
-        player.update();
+        spriteBatch.begin();
+
+        Box2DSprite.draw(spriteBatch,world);
+        spriteBatch.end();
+        playerAnim(delta);
         playerMovement();
+    }
+
+    private void playerAnim(float dt){
+        AnimatedBox2DSprite anim = player.walkAnimation;
+        anim.getAnimation().setPlayMode(Animation.PlayMode.LOOP);
+        //anim.setAdjustSize(false);
+        player.body.setUserData(anim);
+        AnimatedBox2DSprite anim2 = new AnimatedBox2DSprite(anim.getAnimatedSprite());
+        player.bodyFixture.setUserData(anim2);
+
+//        Box2DSprite sprite = new Box2DSprite(player.walkAnimation.getAnimation().getKeyFrame(dt,true));
+//        spriteBatch.begin();
+//        Box2DSprite.draw(spriteBatch,world);
+//        sprite.draw(spriteBatch,player.bodyFixture);
+//
+//        spriteBatch.end();
+
     }
 
     private void playerMovement() {
@@ -116,6 +147,7 @@ public class Box2DTiledMapParserTest extends PixelScreen {
     public void dispose() {
         world.dispose();
         mapRenderer.dispose();
+        spriteBatch.dispose();
     }
 
     @Override

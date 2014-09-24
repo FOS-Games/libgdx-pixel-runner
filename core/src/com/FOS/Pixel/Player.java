@@ -6,11 +6,15 @@ import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.Gdx;
+import net.dermetfan.utils.libgdx.graphics.AnimatedBox2DSprite;
+import net.dermetfan.utils.libgdx.graphics.AnimatedSprite;
+import net.dermetfan.utils.libgdx.graphics.Box2DSprite;
 
 import javax.swing.*;
 
@@ -34,24 +38,18 @@ public class Player {
     Texture walk_sheet = new Texture(Gdx.files.internal("sprite-animation1.png"));
     float walkFrameWidth = walk_sheet.getWidth()/FRAME_COLUMNS;
     float walkFrameHeight = walk_sheet.getHeight()/FRAME_ROWS;
-    Animation walkAnimation;
+    AnimatedBox2DSprite walkAnimation;
     SpriteBatch spriteBatch;
     float stateTime;
     TextureRegion currentFrame;
     TextureRegion[] walkFrames;
-    int width;
-    int height;
+    World world;
+    Fixture bodyFixture;
 
-
-    public Player(Body body, int width, int heigth){
+    public Player(Body body, World world){
         this.body=body;
-        this.width = width;
-        this.height = heigth;
-
-        this.body.setUserData(this);
 
         createBodyFixture();
-        createFootFixture();
         createAnim();
         System.out.println(body.getPosition());
 
@@ -68,13 +66,15 @@ public class Player {
         fdef.friction = 1;
         fdef.density = 1;
 
-        body.createFixture(fdef);
+        bodyFixture = body.createFixture(shape,1);
         shape.dispose();
     }
 
+    //create player animation
     private void createAnim(){
-        TextureRegion[][] tmp = TextureRegion.split(walk_sheet, walk_sheet.getWidth()/FRAME_COLUMNS, walk_sheet.getHeight()/FRAME_ROWS);              // #10
+        TextureRegion[][] tmp = TextureRegion.split(walk_sheet, walk_sheet.getWidth() / FRAME_COLUMNS, walk_sheet.getHeight() / FRAME_ROWS);
 
+        //puts frames in TextureRegion array
         walkFrames = new TextureRegion[FRAME_COLUMNS * FRAME_ROWS];
         int index = 0;
         for (int i = 0; i < FRAME_ROWS; i++) {
@@ -82,31 +82,32 @@ public class Player {
                 walkFrames[index++] = tmp[i][j];
             }
         }
-        walkAnimation = new Animation(0.05f,walkFrames);     // #11
-        spriteBatch = new SpriteBatch();                // #12
+        //creating animatedbox2dsprite
+        Animation animation = new Animation(0.05f,walkFrames);
+        AnimatedSprite animatedSprite = new AnimatedSprite(animation);
+        walkAnimation =new AnimatedBox2DSprite( animatedSprite);
+        spriteBatch = new SpriteBatch();
         stateTime = 0f;
     }
 
-    private void createFootFixture() {
-        Fixture BodyFixture = body.getFixtureList().first();
-
-        Vector2 pointb;
-    }
-
-    public void update(){
+    public void update(float dt){
 
         velocity = body.getLinearVelocity();
         position=body.getPosition();
 
-        //Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);                        // #14
-        stateTime += Gdx.graphics.getDeltaTime();           // #15
-        currentFrame = walkAnimation.getKeyFrame(stateTime, true);  // #16
+//        //Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
+//        stateTime += Gdx.graphics.getDeltaTime();           // #15
+//        currentFrame = walkAnimation.getKeyFrame(stateTime, true);  // #16
+
+//        float x=body.getPosition().x/Box2DTiledMapParserTest.UnitScale;
+//        float y=body.getPosition().y/Box2DTiledMapParserTest.UnitScale;
+//        Box2DSprite.draw(currentFrame,body);
+//        System.out.println("transform is at: " + body.getTransform().getPosition());
+//        System.out.println("X: "+x+" Y: "+y);
+         Box2DSprite sprite = new Box2DSprite(walkAnimation.getAnimation().getKeyFrame(stateTime,true));
         spriteBatch.begin();
-        float x=body.getPosition().x-width/2;
-        float y=body.getPosition().y-height/2 ;
-        spriteBatch.draw(currentFrame,x ,y);
-        System.out.println("transform is at: " + body.getTransform().getPosition());
-        System.out.println("X: "+x+" Y: "+y);
+            Box2DSprite.draw(spriteBatch,world);
+            sprite.draw(spriteBatch,body);
         spriteBatch.end();
     }
 }
