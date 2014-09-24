@@ -23,7 +23,7 @@ import net.dermetfan.utils.libgdx.graphics.Box2DSprite;
  */
 public class Box2DTiledMapParserTest extends PixelScreen {
 
-    static  final float UnitScale = 0.005f;
+    static  final float UnitScale = 0.05f;
 
     private World world;
     private Box2DDebugRenderer box2DRenderer;
@@ -48,7 +48,7 @@ public class Box2DTiledMapParserTest extends PixelScreen {
         TiledMap map = new TmxMapLoader().load("level_1_black.tmx");
 
 
-        parser = new Box2DMapObjectParser(0.005f);
+        parser = new Box2DMapObjectParser(UnitScale);
 
         parser.load(world, map);
         ObjectMap<String, Body> bodies = parser.getBodies();
@@ -70,19 +70,15 @@ public class Box2DTiledMapParserTest extends PixelScreen {
     }
 
     private void createPlayer(){
-        BodyDef bdef= new BodyDef();
-        bdef.type = BodyDef.BodyType.DynamicBody;
+        Vector2 spawn;
         if(parser.getBodies().containsKey("spawn")) {
             System.out.println("Spawn found");
-            bdef.position.set(parser.getBodies().get("spawn").getPosition());
+           spawn = parser.getBodies().get("spawn").getPosition();
 
         }else{
-            bdef.position.set(new Vector2(0,0));
+            spawn = new Vector2(0,0);
         }
-        bdef.fixedRotation = true;
-
-        Body body = world.createBody(bdef);
-        player=new Player(body,this.world);
+        player=new Player(this.world, spawn);
     }
 
     @Override
@@ -98,26 +94,26 @@ public class Box2DTiledMapParserTest extends PixelScreen {
 
         Box2DSprite.draw(spriteBatch,world);
         spriteBatch.end();
-        playerAnim(delta);
+//        playerAnim(delta);
         playerMovement();
     }
 
-    private void playerAnim(float dt){
-        AnimatedBox2DSprite anim = player.walkAnimation;
-        anim.getAnimation().setPlayMode(Animation.PlayMode.LOOP);
-        //anim.setAdjustSize(false);
-        player.body.setUserData(anim);
-        AnimatedBox2DSprite anim2 = new AnimatedBox2DSprite(anim.getAnimatedSprite());
-        player.bodyFixture.setUserData(anim2);
-
-//        Box2DSprite sprite = new Box2DSprite(player.walkAnimation.getAnimation().getKeyFrame(dt,true));
-//        spriteBatch.begin();
-//        Box2DSprite.draw(spriteBatch,world);
-//        sprite.draw(spriteBatch,player.bodyFixture);
+//    private void playerAnim(float dt){
+//        AnimatedBox2DSprite anim = player.walkAnimation;
+//        anim.getAnimation().setPlayMode(Animation.PlayMode.LOOP);
+//        //anim.setAdjustSize(false);
+//        player.body.setUserData(anim);
+//        AnimatedBox2DSprite anim2 = new AnimatedBox2DSprite(anim.getAnimatedSprite());
+//        player.bodyFixture.setUserData(anim2);
 //
-//        spriteBatch.end();
-
-    }
+////        Box2DSprite sprite = new Box2DSprite(player.walkAnimation.getAnimation().getKeyFrame(dt,true));
+////        spriteBatch.begin();
+////        Box2DSprite.draw(spriteBatch,world);
+////        sprite.draw(spriteBatch,player.bodyFixture);
+////
+////        spriteBatch.end();
+//
+//    }
 
     private void playerMovement() {
         if(Gdx.input.isKeyPressed(Input.Keys.LEFT)){

@@ -34,80 +34,45 @@ public class Player {
 
     Vector2 position = new Vector2();
     Vector2 velocity = new Vector2();
-    Body body;
-    Texture walk_sheet = new Texture(Gdx.files.internal("sprite-animation1.png"));
-    float walkFrameWidth = walk_sheet.getWidth()/FRAME_COLUMNS;
-    float walkFrameHeight = walk_sheet.getHeight()/FRAME_ROWS;
-    AnimatedBox2DSprite walkAnimation;
-    SpriteBatch spriteBatch;
-    float stateTime;
-    TextureRegion currentFrame;
-    TextureRegion[] walkFrames;
-    World world;
+
+    private Vector2 size = new Vector2(16*Box2DTiledMapParserTest.UnitScale,16 * Box2DTiledMapParserTest.UnitScale);
+    Vector2 spawnpoint;
+
+    protected Body body;
+    public Body getBody() { return body;}
+
+
+    protected World world;
     Fixture bodyFixture;
 
-    public Player(Body body, World world){
-        this.body=body;
-
-        createBodyFixture();
-        createAnim();
-        System.out.println(body.getPosition());
+    public Player( World world,Vector2 spawn){
+        this.world = world;
+        this.spawnpoint = spawn;
+        InitBox2D();
 
 
 
     }
 
-    private void createBodyFixture() {
-        PolygonShape shape =  new PolygonShape();
-        shape.setAsBox(walkFrameWidth * Box2DTiledMapParserTest.UnitScale, walkFrameHeight*Box2DTiledMapParserTest.UnitScale);
+    /**
+     * Creates Box2D body and fixture for the player
+     */
+    private void InitBox2D() {
+        BodyDef bdef = new BodyDef();
+        bdef.fixedRotation = true;
+        bdef.position.set(spawnpoint);
+        bdef.type = BodyDef.BodyType.DynamicBody;
 
-        FixtureDef fdef = new FixtureDef();
-        fdef.shape = shape;
-        fdef.friction = 1;
-        fdef.density = 1;
-
+        body = world.createBody(bdef);
+        PolygonShape shape = new PolygonShape();
+        shape.setAsBox(size.x,size.y);
         bodyFixture = body.createFixture(shape,1);
         shape.dispose();
+
     }
 
-    //create player animation
-    private void createAnim(){
-        TextureRegion[][] tmp = TextureRegion.split(walk_sheet, walk_sheet.getWidth() / FRAME_COLUMNS, walk_sheet.getHeight() / FRAME_ROWS);
-
-        //puts frames in TextureRegion array
-        walkFrames = new TextureRegion[FRAME_COLUMNS * FRAME_ROWS];
-        int index = 0;
-        for (int i = 0; i < FRAME_ROWS; i++) {
-            for (int j = 0; j < FRAME_COLUMNS; j++) {
-                walkFrames[index++] = tmp[i][j];
-            }
-        }
-        //creating animatedbox2dsprite
-        Animation animation = new Animation(0.05f,walkFrames);
-        AnimatedSprite animatedSprite = new AnimatedSprite(animation);
-        walkAnimation =new AnimatedBox2DSprite( animatedSprite);
-        spriteBatch = new SpriteBatch();
-        stateTime = 0f;
-    }
 
     public void update(float dt){
 
-        velocity = body.getLinearVelocity();
-        position=body.getPosition();
-
-//        //Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
-//        stateTime += Gdx.graphics.getDeltaTime();           // #15
-//        currentFrame = walkAnimation.getKeyFrame(stateTime, true);  // #16
-
-//        float x=body.getPosition().x/Box2DTiledMapParserTest.UnitScale;
-//        float y=body.getPosition().y/Box2DTiledMapParserTest.UnitScale;
-//        Box2DSprite.draw(currentFrame,body);
-//        System.out.println("transform is at: " + body.getTransform().getPosition());
-//        System.out.println("X: "+x+" Y: "+y);
-         Box2DSprite sprite = new Box2DSprite(walkAnimation.getAnimation().getKeyFrame(stateTime,true));
-        spriteBatch.begin();
-            Box2DSprite.draw(spriteBatch,world);
-            sprite.draw(spriteBatch,body);
-        spriteBatch.end();
     }
 }
