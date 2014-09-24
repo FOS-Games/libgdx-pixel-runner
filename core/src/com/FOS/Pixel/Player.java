@@ -16,6 +16,8 @@ import net.dermetfan.utils.libgdx.graphics.AnimatedBox2DSprite;
 import net.dermetfan.utils.libgdx.graphics.AnimatedSprite;
 import net.dermetfan.utils.libgdx.graphics.Box2DSprite;
 
+import net.dermetfan.utils.libgdx.graphics.AnimatedBox2DSprite;
+
 import javax.swing.*;
 
 /**
@@ -46,13 +48,10 @@ public class Player {
     protected World world;
     Fixture bodyFixture;
 
-    public Player( World world,Vector2 spawn){
+    public Player( World world,Vector2 spawn) {
         this.world = world;
         this.spawnpoint = spawn;
         InitBox2D();
-
-
-
     }
 
     private void InitBox2D() {
