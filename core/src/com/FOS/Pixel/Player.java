@@ -25,8 +25,8 @@ import javax.swing.*;
  */
 public class Player {
 
-    static final float ACCELERATION = 20f;
-    static final float JUMP_VELOCITY = 10;
+    static final float ACCELERATION = 1f;
+    static final float JUMP_VELOCITY = 2;
     static final float GRAVITY = 20.0f;
     static final float MAX_VEL = 6f;
     static final float DAMP = 0.90f;
@@ -37,9 +37,9 @@ public class Player {
     Vector2 position = new Vector2();
     Vector2 velocity = new Vector2();
 
-    private Vector2 size = new Vector2(16*Box2DTiledMapParserTest.UnitScale,16 * Box2DTiledMapParserTest.UnitScale);
+    Vector2 size = new Vector2(16*Box2DTiledMapParserTest.UnitScale,16 * Box2DTiledMapParserTest.UnitScale);
     private Vector2 spawnpoint;
-    private Box2DSprite testsprite = new Box2DSprite(new Texture(Gdx.files.internal("DARK.png")));
+    Box2DSprite testsprite = new Box2DSprite(new Texture(Gdx.files.internal("DARK.png")));
 
     protected Body body;
     public Body getBody() { return body;}
@@ -91,6 +91,22 @@ public class Player {
     }
 
     public void update(float dt){
+        position = body.getPosition();
+        playerMovement();
+
+    }
+
+    private void playerMovement() {
+        if(Gdx.input.isKeyPressed(Input.Keys.LEFT)&& body.getLinearVelocity().x >=-MAX_VEL){
+            body.setLinearVelocity(body.getLinearVelocity().x-ACCELERATION,body.getLinearVelocity().y);
+
+        }
+        if(Gdx.input.isKeyJustPressed(Input.Keys.UP)){
+            body.setLinearVelocity(body.getLinearVelocity().x,JUMP_VELOCITY);
+        }
+        if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)&& body.getLinearVelocity().x <=MAX_VEL){
+            body.setLinearVelocity(body.getLinearVelocity().x+ACCELERATION,body.getLinearVelocity().y);
+        }
 
     }
 }

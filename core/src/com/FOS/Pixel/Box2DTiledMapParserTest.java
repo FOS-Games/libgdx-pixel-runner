@@ -16,6 +16,7 @@ import com.badlogic.gdx.utils.ObjectMap;
 
 import net.dermetfan.utils.libgdx.box2d.Box2DMapObjectParser;
 
+import net.dermetfan.utils.libgdx.box2d.Box2DUtils;
 import net.dermetfan.utils.libgdx.graphics.Box2DSprite;
 
 
@@ -72,6 +73,7 @@ public class Box2DTiledMapParserTest extends PixelScreen {
 
 
 
+
         createPlayer();
 
     }
@@ -96,26 +98,14 @@ public class Box2DTiledMapParserTest extends PixelScreen {
         box2DRenderer.render(world, camera.combined);
         spriteBatch.begin();
 
-        Box2DSprite.draw(spriteBatch,world);
+        Box2DSprite.draw(spriteBatch, world);
         spriteBatch.end();
-        playerMovement();
+        player.update(delta);
 
         updateCamera();
     }
 
-    private void playerMovement() {
-        if(Gdx.input.isKeyPressed(Input.Keys.LEFT)){
-            player.body.setLinearVelocity(-4,player.body.getLinearVelocity().y);
 
-        }
-        if(Gdx.input.isKeyJustPressed(Input.Keys.UP)){
-            player.body.setLinearVelocity(player.body.getLinearVelocity().x,4);
-        }
-        if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)){
-            player.body.setLinearVelocity(4,player.body.getLinearVelocity().y);
-        }
-
-    }
 
     @Override
     public void resize(int width, int height) {
@@ -153,6 +143,7 @@ public class Box2DTiledMapParserTest extends PixelScreen {
     }
 
     public void updateCamera() {
+
         camera.position.x = player.position.x;
         camera.update();
     }
