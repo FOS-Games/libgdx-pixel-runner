@@ -23,9 +23,16 @@
    <properties>
     <property name="bodyType" value="DynamicBody"/>
     <property name="density" value="2"/>
-    <property name="linearVelocityX" value="-500"/>
-    <property name="linearVelocityY" value="500"/>
+    <property name="linearVelocityX" value="-5"/>
+    <property name="linearVelocityY" value="5"/>
    </properties>
+  </object>
+  <object name="foot" type="fixture" x="420.5" y="1337">
+   <properties>
+    <property name="UserData" value="foot"/>
+    <property name="body" value="player"/>
+   </properties>
+   <polyline points="0.5,-6.5 69.5,-6.5"/>
   </object>
  </objectgroup>
 </map>
