@@ -47,6 +47,7 @@ public class Player extends PlayerAnimator {
 
     protected World world;
     Fixture bodyFixture;
+    Fixture feetFixture;
 
     public Player(World world, Vector2 spawn) {
         super();
@@ -66,9 +67,14 @@ public class Player extends PlayerAnimator {
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(size.x,size.y);
         bodyFixture = body.createFixture(shape,1);
+        feetFixture = body.createFixture(shape,1);
         shape.dispose();
 
+        // Player animatie toevoegen
         bodyFixture.setUserData(super.createAnimation());
+
+        // Voeten animatie toevoegen
+        feetFixture.setUserData(super.createFeetAnimation());
 
 
         //initSensors();

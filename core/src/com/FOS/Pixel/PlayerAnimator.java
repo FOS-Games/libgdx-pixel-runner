@@ -13,8 +13,8 @@ import net.dermetfan.utils.libgdx.graphics.Box2DSprite;
  */
 public abstract class PlayerAnimator {
 
-    private static final int COLUMNS = 6;
-    private static final int ROWS = 5;
+    private static final int COLUMNS = 4;
+    private static final int ROWS = 1;
 
     private Texture spriteSheet;
     private Animation animation;
@@ -26,7 +26,7 @@ public abstract class PlayerAnimator {
     }
 
     protected AnimatedBox2DSprite createAnimation() {
-        spriteSheet = new Texture("sprite-animation1.png");
+        spriteSheet = new Texture("WIPsheet.png");
         TextureRegion[][] tmp = TextureRegion.split(spriteSheet, spriteSheet.getWidth()/COLUMNS, spriteSheet.getHeight()/ROWS);
         frames = new TextureRegion[COLUMNS * ROWS];
 
@@ -37,7 +37,26 @@ public abstract class PlayerAnimator {
             }
         }
 
-        animation = new Animation(0.025f, frames);
+        animation = new Animation(0.125f, frames);
+        animation.setPlayMode(Animation.PlayMode.LOOP);
+
+        animatedBox2DSprite = new AnimatedBox2DSprite(new AnimatedSprite(animation));
+        return animatedBox2DSprite;
+    }
+
+    protected AnimatedBox2DSprite createFeetAnimation() {
+        spriteSheet = new Texture("WIPsheet_shoes.png");
+        TextureRegion[][] tmp = TextureRegion.split(spriteSheet, spriteSheet.getWidth()/COLUMNS, spriteSheet.getHeight()/ROWS);
+        frames = new TextureRegion[COLUMNS * ROWS];
+
+        int index = 0;
+        for (int i = 0; i < ROWS; i++) {
+            for (int j = 0; j < COLUMNS; j++) {
+                frames[index++] = tmp[i][j];
+            }
+        }
+
+        animation = new Animation(0.125f, frames);
         animation.setPlayMode(Animation.PlayMode.LOOP);
 
         animatedBox2DSprite = new AnimatedBox2DSprite(new AnimatedSprite(animation));
