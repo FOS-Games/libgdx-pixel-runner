@@ -96,7 +96,9 @@ public class Box2DTiledMapParserTest extends PixelScreen {
         mapRenderer.setView(camera);
         mapRenderer.render();
         box2DRenderer.render(world, camera.combined);
+
         spriteBatch.setProjectionMatrix(camera.combined);
+        updateCamera();
         spriteBatch.begin();
 
         Box2DSprite.draw(spriteBatch, world);
@@ -104,7 +106,7 @@ public class Box2DTiledMapParserTest extends PixelScreen {
         player.testsprite.setWidth(-(camera.position.x-player.position.x));
         player.update(delta);
 
-        updateCamera();
+
     }
 
 
@@ -118,7 +120,7 @@ public class Box2DTiledMapParserTest extends PixelScreen {
         camera.viewportWidth = width / 25;
         camera.viewportHeight = height / 25;
         camera.update();
-        spriteBatch.setProjectionMatrix(camera.combined);
+
     }
 
     @Override
