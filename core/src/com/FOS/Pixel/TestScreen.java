@@ -114,7 +114,7 @@ public class TestScreen implements Screen{
             box.createFixture(fixtureDef);
             box.setUserData(new Box2DSprite(new Texture(Gdx.files.internal("DARK.png"))));
 
-            ballShape.setPosition(new Vector2(-Box2DUtils.width(boxShape), 0));;
+            ballShape.setPosition(new Vector2(-Box2DUtils.width(boxShape), 0));
             fixtureDef.shape = ballShape;
 
             box.createFixture(fixtureDef);
