@@ -71,10 +71,16 @@ public class Player extends PlayerAnimator {
         shape.dispose();
 
         // Player animatie toevoegen
-        bodyFixture.setUserData(super.createAnimation());
+        bodyFixture.setUserData(super.createAnimation(0, 0));
 
         // Voeten animatie toevoegen
-        feetFixture.setUserData(super.createFeetAnimation());
+        feetFixture.setUserData(super.createAnimation(1, 0));
+
+        // Wings animatie toevoegen
+        feetFixture.setUserData(super.createAnimation(2, 0));
+
+        // Weapon animatie toevoegen
+        feetFixture.setUserData(super.createAnimation(2, 0));
 
 
         //initSensors();
