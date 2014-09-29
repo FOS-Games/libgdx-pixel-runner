@@ -48,7 +48,8 @@ public class Player extends PlayerAnimator {
     protected World world;
     Fixture bodyFixture;
 
-    public Player( World world,Vector2 spawn) {
+    public Player(World world, Vector2 spawn) {
+        super();
         this.world = world;
         this.spawnpoint = spawn;
         InitBox2D();
@@ -67,7 +68,7 @@ public class Player extends PlayerAnimator {
         bodyFixture = body.createFixture(shape,1);
         shape.dispose();
 
-        bodyFixture.setUserData(testsprite);
+        bodyFixture.setUserData(super.createAnimation());
 
 
         //initSensors();

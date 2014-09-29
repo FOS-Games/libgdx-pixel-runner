@@ -21,7 +21,11 @@ public abstract class PlayerAnimator {
     private TextureRegion[] frames;
     private AnimatedBox2DSprite animatedBox2DSprite;
 
-    private void create() {
+    protected PlayerAnimator(){
+        createAnimation();
+    }
+
+    protected AnimatedBox2DSprite createAnimation() {
         spriteSheet = new Texture("sprite-animation1.png");
         TextureRegion[][] tmp = TextureRegion.split(spriteSheet, spriteSheet.getWidth()/COLUMNS, spriteSheet.getHeight()/ROWS);
         frames = new TextureRegion[COLUMNS * ROWS];
@@ -37,10 +41,11 @@ public abstract class PlayerAnimator {
         animation.setPlayMode(Animation.PlayMode.LOOP);
 
         animatedBox2DSprite = new AnimatedBox2DSprite(new AnimatedSprite(animation));
+        return animatedBox2DSprite;
     }
 
 
-    public void setAbilityLevels(int spe, int agi, int str){
+    private void setAbilityLevels(int spe, int agi, int str){
 
     }
 }
