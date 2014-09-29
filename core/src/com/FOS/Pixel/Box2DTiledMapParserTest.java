@@ -96,10 +96,12 @@ public class Box2DTiledMapParserTest extends PixelScreen {
         mapRenderer.setView(camera);
         mapRenderer.render();
         box2DRenderer.render(world, camera.combined);
+        spriteBatch.setProjectionMatrix(camera.combined);
         spriteBatch.begin();
 
         Box2DSprite.draw(spriteBatch, world);
         spriteBatch.end();
+        player.testsprite.setWidth(-(camera.position.x-player.position.x));
         player.update(delta);
 
         updateCamera();

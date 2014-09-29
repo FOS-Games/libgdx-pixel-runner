@@ -44,6 +44,10 @@ public class Player {
     protected Body body;
     public Body getBody() { return body;}
 
+    private float levelIncr;
+    private float levelDecr;
+    private float levelDefault = 5;
+
 
     protected World world;
     Fixture bodyFixture;
@@ -52,6 +56,7 @@ public class Player {
         this.world = world;
         this.spawnpoint = spawn;
         InitBox2D();
+        //this.body.setLinearVelocity(5,0);
     }
 
     private void InitBox2D() {
@@ -91,22 +96,76 @@ public class Player {
     }
 
     public void update(float dt){
+        //this.body.setLinearVelocity(5,0);
         position = body.getPosition();
         playerMovement();
-
+        //this.body.setLinearVelocity(levelDefault,this.body.getLinearVelocity().y);
+        playerUpdateSpeed();
     }
 
-    private void playerMovement() {
-        if(Gdx.input.isKeyPressed(Input.Keys.LEFT)&& body.getLinearVelocity().x >=-MAX_VEL){
-            body.setLinearVelocity(body.getLinearVelocity().x-ACCELERATION,body.getLinearVelocity().y);
-
+    public void playerUpdateSpeed(){
+        velocity = this.body.getLinearVelocity();
+        if(velocity.x > MAX_VEL){
+            velocity.x =MAX_VEL;
         }
+        else if(velocity.x<levelDefault){
+            velocity.x = levelDefault;
+        }
+        this.body.setLinearVelocity(velocity.x,velocity.y);
+    }
+
+    public boolean increaseSpeed(int incr){
+        velocity = this.body.getLinearVelocity();
+        if(velocity.x +incr > MAX_VEL){
+            return false;
+        }
+        else {
+            this.body.setLinearVelocity(velocity.x+incr, velocity.y);
+            return true;
+        }
+    }
+    public  boolean increaseSpeed(){
+        velocity = this.body.getLinearVelocity();
+        if(velocity.x +levelIncr > MAX_VEL){
+            return false;
+        }
+        else {
+            this.body.setLinearVelocity(velocity.x+levelIncr, velocity.y);
+            return true;
+        }
+    }
+
+    public boolean decreaseSpeed(int decr){
+        velocity=this.body.getLinearVelocity();
+        if(velocity.x-decr<0){
+            return false;
+        }
+        else{
+            this.body.setLinearVelocity(velocity.x-decr, velocity.y);
+            return true;
+        }
+    }
+    public boolean decreaseSpeed(){
+        velocity=this.body.getLinearVelocity();
+        if(velocity.x-levelDecr<0){
+            return false;
+        }
+        else{
+            this.body.setLinearVelocity(velocity.x-levelDecr, velocity.y);
+            return true;
+        }
+    }
+    private void playerMovement() {
+//        if(Gdx.input.isKeyPressed(Input.Keys.LEFT)&& body.getLinearVelocity().x >=-MAX_VEL){
+//            body.setLinearVelocity(body.getLinearVelocity().x-ACCELERATION,body.getLinearVelocity().y);
+//
+//        }
         if(Gdx.input.isKeyJustPressed(Input.Keys.UP)){
             body.setLinearVelocity(body.getLinearVelocity().x,JUMP_VELOCITY);
         }
-        if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)&& body.getLinearVelocity().x <=MAX_VEL){
-            body.setLinearVelocity(body.getLinearVelocity().x+ACCELERATION,body.getLinearVelocity().y);
-        }
+//        if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)&& body.getLinearVelocity().x <=MAX_VEL){
+//            body.setLinearVelocity(body.getLinearVelocity().x+ACCELERATION,body.getLinearVelocity().y);
+//        }
 
     }
 }
