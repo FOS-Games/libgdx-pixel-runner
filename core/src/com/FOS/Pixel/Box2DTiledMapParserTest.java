@@ -44,7 +44,6 @@ public class Box2DTiledMapParserTest extends PixelScreen {
     int levelheight;
     SpriteBatch spriteBatch;
 
-
     @Override
     public void show() {
 
@@ -83,9 +82,6 @@ public class Box2DTiledMapParserTest extends PixelScreen {
         spriteBatch = new SpriteBatch();
         mapRenderer = new OrthogonalTiledMapRenderer(map, parser.getUnitScale());
 
-
-
-
         createPlayer();
 
     }
@@ -111,12 +107,14 @@ public class Box2DTiledMapParserTest extends PixelScreen {
 
         spriteBatch.setProjectionMatrix(camera.combined);
         updateCamera();
-        spriteBatch.begin();
 
+        spriteBatch.begin();
         Box2DSprite.draw(spriteBatch, world);
         spriteBatch.end();
+
         player.testsprite.setWidth(-(camera.position.x-player.position.x));
         player.update(delta);
+
 
 
     }
