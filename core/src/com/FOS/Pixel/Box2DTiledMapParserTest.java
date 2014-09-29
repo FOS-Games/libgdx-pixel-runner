@@ -4,6 +4,7 @@ import com.FOS.Pixel.screens.PixelScreen;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -12,6 +13,7 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
+import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.ObjectMap;
 
 import net.dermetfan.utils.libgdx.box2d.Box2DMapObjectParser;
@@ -45,6 +47,16 @@ public class Box2DTiledMapParserTest extends PixelScreen {
 
     @Override
     public void show() {
+
+        Json json= new Json();
+        LevelData test = new LevelData(1,1,1,1,1,1,1,1);
+        String testdata = json.toJson(test, LevelData.class);
+        FileHandle fileHandle = Gdx.files.local("leveldata.json");
+        fileHandle.writeString(testdata, true);
+
+
+
+
         world = new World(new Vector2(0, -9.81f), true);
         box2DRenderer = new Box2DDebugRenderer();
         camera = new OrthographicCamera();
