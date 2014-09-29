@@ -14,6 +14,53 @@
   <object name="ground" type="object" x="432" y="256">
    <polyline points="0,0 128,0 128,-32 224,-32 224,-64 320,-64 320,64 0,64 0,0"/>
   </object>
-  <object name="spawn" type="object" x="59.3333" y="215.333"/>
+  <object name="ground" type="object" x="784" y="192" width="240" height="32"/>
+  <object name="ground" type="object" x="1088" y="240" width="208" height="80"/>
+  <object name="ground" type="object" x="1328" y="240" width="96" height="32"/>
+  <object name="ground" type="object" x="1456" y="240" width="80" height="32"/>
+  <object name="ground" type="object" x="320" y="256" width="80" height="64"/>
+  <object name="ground" type="object" x="2176" y="224" width="64" height="96"/>
+  <object name="ground" type="object" x="2272" y="208" width="64" height="112"/>
+  <object name="ground" type="object" x="2368" y="192" width="64" height="128"/>
+  <object name="ground" type="object" x="2464" y="176" width="64" height="144"/>
+  <object name="ground" type="object" x="2560" y="160" width="176" height="160"/>
+  <object name="ground" type="object" x="2832" y="240" width="160" height="80"/>
+  <object name="ground" type="object" x="3024" y="240" width="32" height="32"/>
+  <object name="ground" type="object" x="3088" y="240" width="32" height="32"/>
+  <object name="ground" type="object" x="3152" y="240" width="32" height="32"/>
+  <object name="ground" type="object" x="3216" y="240" width="96" height="80"/>
+  <object name="ground" type="object" x="3344" y="240" width="32" height="32"/>
+  <object name="ground" type="object" x="3408" y="240" width="32" height="32"/>
+  <object name="ground" type="object" x="3472" y="240" width="32" height="32"/>
+  <object name="ground" type="object" x="3536" y="240" width="96" height="80"/>
+  <object name="ground" type="object" x="3664" y="224" width="32" height="32"/>
+  <object name="ground" type="object" x="3728" y="208" width="32" height="32"/>
+  <object name="ground" type="object" x="3792" y="192" width="32" height="32"/>
+  <object name="ground" type="object" x="3856" y="176" width="32" height="32"/>
+  <object name="ground" type="object" x="3920" y="176" width="32" height="32"/>
+  <object name="ground" type="object" x="3984" y="176" width="32" height="32"/>
+  <object name="ground" type="object" x="4048" y="176" width="32" height="32"/>
+  <object name="ground" type="object" x="4112" y="176" width="32" height="32"/>
+  <object name="ground" type="object" x="4176" y="192" width="32" height="32"/>
+  <object name="ground" type="object" x="4240" y="208" width="32" height="32"/>
+  <object name="ground" type="object" x="4304" y="224" width="32" height="32"/>
+  <object name="ground" type="object" x="4368" y="240" width="96" height="32"/>
+  <object name="ground" type="object" x="4496" y="240" width="96" height="32"/>
+  <object name="ground" type="object" x="4624" y="224" width="32" height="32"/>
+  <object name="ground" type="object" x="4688" y="208" width="32" height="32"/>
+  <object name="ground" type="object" x="4752" y="192" width="32" height="32"/>
+  <object name="ground" type="object" x="4816" y="176" width="32" height="32"/>
+  <object name="ground" type="object" x="4880" y="160" width="32" height="32"/>
+  <object name="ground" type="object" x="4944" y="160" width="112" height="32"/>
+  <object name="ground" type="object" x="5088" y="0">
+   <polyline points="0,0 384,0 384,160 288,160 288,128 192,128 192,144 96,144 96,128 0,128 0,0"/>
+  </object>
+  <object name="ground" type="object" x="5088" y="192">
+   <polyline points="0,0 96,0 96,16 192,16 192,0 288,0 288,32 384,32 384,128 0,128 0,0"/>
+  </object>
+  <object name="ground" type="object" x="1568" y="240">
+   <polyline points="0,0 0,80 576,80 576,0 416,0 416,-32 384,-32 384,0 192,0 192,-32 160,-32 160,0 0,0"/>
+  </object>
+  <object name="spawn" type="object" x="80" y="224"/>
  </objectgroup>
 </map>

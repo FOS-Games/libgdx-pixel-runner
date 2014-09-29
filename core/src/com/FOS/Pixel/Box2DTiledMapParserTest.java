@@ -56,12 +56,13 @@ public class Box2DTiledMapParserTest extends PixelScreen {
 
 
 
-        world = new World(new Vector2(0, -9.81f), true);
+        world = new World(new Vector2(0, -player.GRAVITY), true);
         box2DRenderer = new Box2DDebugRenderer();
         camera = new OrthographicCamera();
 
         // set the height of the camera
-        camera.position.y = 3;
+        camera.position.y = 10;
+        camera.zoom = 1.0f;
 
         TiledMap map = new TmxMapLoader().load("level_1_black.tmx");
 
@@ -112,7 +113,7 @@ public class Box2DTiledMapParserTest extends PixelScreen {
         Box2DSprite.draw(spriteBatch, world);
         spriteBatch.end();
 
-        player.testsprite.setWidth(-(camera.position.x-player.position.x));
+        //player.testsprite.setWidth(-(camera.position.x-player.position.x));
         player.update(delta);
 
 

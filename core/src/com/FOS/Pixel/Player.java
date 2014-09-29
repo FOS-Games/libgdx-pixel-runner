@@ -26,8 +26,8 @@ import javax.swing.*;
 public class Player extends PlayerAnimator {
 
     static final float ACCELERATION = 1f;
-    static final float JUMP_VELOCITY = 2;
-    static final float GRAVITY = 20.0f;
+    static final float JUMP_VELOCITY = 7.0f;
+    static final float GRAVITY = 9.81f;
     static final float MAX_VEL = 6f;
     static final float DAMP = 0.90f;
 
@@ -36,7 +36,6 @@ public class Player extends PlayerAnimator {
 
     Vector2 size = new Vector2(16*Box2DTiledMapParserTest.UnitScale,16 * Box2DTiledMapParserTest.UnitScale);
     private Vector2 spawnpoint;
-    Box2DSprite testsprite = new Box2DSprite(new Texture(Gdx.files.internal("DARK.png")));
 
     protected Body body;
     public Body getBody() { return body;}
