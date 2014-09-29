@@ -23,16 +23,13 @@ import javax.swing.*;
 /**
  * Created by Lars on 9/19/2014.
  */
-public class Player {
+public class Player extends PlayerAnimator {
 
     static final float ACCELERATION = 1f;
     static final float JUMP_VELOCITY = 2;
     static final float GRAVITY = 20.0f;
     static final float MAX_VEL = 6f;
     static final float DAMP = 0.90f;
-
-    private  static  final int FRAME_COLUMNS = 6;
-    private static final int FRAME_ROWS = 5;
 
     Vector2 position = new Vector2();
     Vector2 velocity = new Vector2();
@@ -47,7 +44,6 @@ public class Player {
     private float levelIncr;
     private float levelDecr;
     private float levelDefault = 5;
-
 
     protected World world;
     Fixture bodyFixture;

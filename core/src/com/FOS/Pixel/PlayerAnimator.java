@@ -1,0 +1,46 @@
+package com.FOS.Pixel;
+
+
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import net.dermetfan.utils.libgdx.graphics.AnimatedBox2DSprite;
+import net.dermetfan.utils.libgdx.graphics.AnimatedSprite;
+import net.dermetfan.utils.libgdx.graphics.Box2DSprite;
+
+/**
+ * Created by Stefan on 29-9-2014.
+ */
+public abstract class PlayerAnimator {
+
+    private static final int COLUMNS = 6;
+    private static final int ROWS = 5;
+
+    private Texture spriteSheet;
+    private Animation animation;
+    private TextureRegion[] frames;
+    private AnimatedBox2DSprite animatedBox2DSprite;
+
+    private void create() {
+        spriteSheet = new Texture("sprite-animation1.png");
+        TextureRegion[][] tmp = TextureRegion.split(spriteSheet, spriteSheet.getWidth()/COLUMNS, spriteSheet.getHeight()/ROWS);
+        frames = new TextureRegion[COLUMNS * ROWS];
+
+        int index = 0;
+        for (int i = 0; i < ROWS; i++) {
+            for (int j = 0; j < COLUMNS; j++) {
+                frames[index++] = tmp[i][j];
+            }
+        }
+
+        animation = new Animation(0.025f, frames);
+        animation.setPlayMode(Animation.PlayMode.LOOP);
+
+        animatedBox2DSprite = new AnimatedBox2DSprite(new AnimatedSprite(animation));
+    }
+
+
+    public void setAbilityLevels(int spe, int agi, int str){
+
+    }
+}
