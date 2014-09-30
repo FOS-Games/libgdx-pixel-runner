@@ -85,7 +85,7 @@ public class Box2DTiledMapParserTest extends PixelScreen {
 
         // set the height of the camera
         camera.position.y = player.position.y;
-        camera.zoom = 1.0f;
+        camera.zoom = 2.0f;
     }
 
     private void createPlayer(){
@@ -117,8 +117,6 @@ public class Box2DTiledMapParserTest extends PixelScreen {
         //player.testsprite.setWidth(-(camera.position.x-player.position.x));
         player.update(delta);
 
-
-
     }
 
 
@@ -127,7 +125,6 @@ public class Box2DTiledMapParserTest extends PixelScreen {
     public void resize(int width, int height) {
 
         levelwidth = width;
-
         levelheight = height;
         camera.viewportWidth = width / 25;
         camera.viewportHeight = height / 25;

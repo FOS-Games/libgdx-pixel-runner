@@ -16,8 +16,6 @@ import net.dermetfan.utils.libgdx.graphics.AnimatedBox2DSprite;
 import net.dermetfan.utils.libgdx.graphics.AnimatedSprite;
 import net.dermetfan.utils.libgdx.graphics.Box2DSprite;
 
-import net.dermetfan.utils.libgdx.graphics.AnimatedBox2DSprite;
-
 import javax.swing.*;
 
 /**
@@ -25,16 +23,17 @@ import javax.swing.*;
  */
 public class Player extends PlayerAnimator {
 
-    static final float ACCELERATION = 1f;
-    static final float JUMP_VELOCITY = 7.0f;
-    static final float GRAVITY = 9.81f;
-    static final float MAX_VEL = 6f;
-    static final float DAMP = 0.90f;
+    static final float ACCELERATION = 1f;       // acceleration in m/s of the player
+    static final float JUMP_VELOCITY = 7.0f;    // jump velocity in m/s of the player
+    static final float GRAVITY = 9.81f;         // gravity in m/s of the world (9.81 is earth like)
+    static final float MAX_VEL = 6f;            // maximum velocity in m/s of the player
+    static final int TEXTURE_W = 64;            // the width of the player sprite
+    static final int TEXTURE_H = 64;            // the height of the player sprite
 
     Vector2 position = new Vector2();
     Vector2 velocity = new Vector2();
 
-    Vector2 size = new Vector2(16*Box2DTiledMapParserTest.UnitScale,16 * Box2DTiledMapParserTest.UnitScale);
+    Vector2 size = new Vector2(TEXTURE_W * Box2DTiledMapParserTest.UnitScale, TEXTURE_H * Box2DTiledMapParserTest.UnitScale);
     private Vector2 spawnpoint;
 
     protected Body body;
@@ -64,21 +63,24 @@ public class Player extends PlayerAnimator {
 
         body = world.createBody(bdef);
         PolygonShape shape = new PolygonShape();
-        shape.setAsBox(size.x,size.y);
-        bodyFixture = body.createFixture(shape,1);
-        feetFixture = body.createFixture(shape,1);
+
+        //shape.setAsBox(size.x,size.y);
+        shape.setAsBox(32 * Box2DTiledMapParserTest.UnitScale, 64 * Box2DTiledMapParserTest.UnitScale);
+
+        bodyFixture = body.createFixture(shape, 1);
+        feetFixture = body.createFixture(shape, 1);
         shape.dispose();
 
-        // Player animatie toevoegen
+        // Add Player animation
         bodyFixture.setUserData(super.createAnimation(0, 0));
 
-        // Voeten animatie toevoegen
+        // Add Feet animation
         feetFixture.setUserData(super.createAnimation(1, 0));
 
-        // Wings animatie toevoegen
+        // Add Wings animation
         feetFixture.setUserData(super.createAnimation(2, 0));
 
-        // Weapon animatie toevoegen
+        // Add Weapon animation
         feetFixture.setUserData(super.createAnimation(2, 0));
 
 

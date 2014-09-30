@@ -18,7 +18,6 @@ public class JsonHandler {
 
     public JsonHandler(String path){
         this.JSON_PATH = path;
-
     }
 
 //    public LevelData readLevel(int levelNumber){
