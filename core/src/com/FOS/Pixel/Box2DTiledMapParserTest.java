@@ -21,10 +21,8 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.ObjectMap;
 import com.badlogic.gdx.utils.*;
-
-import net.dermetfan.utils.libgdx.box2d.Box2DMapObjectParser;
-
-import net.dermetfan.utils.libgdx.graphics.Box2DSprite;
+import net.dermetfan.gdx.graphics.g2d.Box2DSprite;
+import net.dermetfan.gdx.physics.box2d.utils.Box2DMapObjectParser;
 
 
 /**
