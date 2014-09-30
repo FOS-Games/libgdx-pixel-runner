@@ -1,0 +1,44 @@
+{
+SPEED: {
+	Level1: {
+		multiplier: 1.1,
+		texturename: jemoeder.png
+	},
+	Level2: {
+		multiplier: 1.1,
+		texturename: jemoeder.png
+	},
+	Level3: {
+		multiplier: 1.1,
+		texturename: jemoeder.png
+	}
+},
+STRENGTH: {
+	Level1: {
+		multiplier: 1.1,
+		texturename: jemoeder.png
+	},
+	Level2: {
+		multiplier: 1.1,
+		texturename: jemoeder.png
+	},
+	Level3: {
+		multiplier: 1.1,
+		texturename: jemoeder.png
+	}
+},
+JUMP: {
+	Level1: {
+		multiplier: 1.1,
+		texturename: jemoeder.png
+	},
+	Level2: {
+		multiplier: 1.1,
+		texturename: jemoeder.png
+	},
+	Level3: {
+		multiplier: 1.1,
+		texturename: jemoeder.png
+	}
+}
+}
