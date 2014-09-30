@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="20" tilewidth="69" tileheight="70">
+ <tileset firstgid="1" name="forestSheet" tilewidth="69" tileheight="70">
+  <image source="forestSheet.png" width="276" height="140"/>
+ </tileset>
+ <layer name="Tilelaag 1" width="50" height="20">
+  <data encoding="base64" compression="zlib">
+   eJzt0jEKACEMBdGIoPe/sWnSBYJRCcI8+I3IsgOKAAAA/KvphjNzep65l2nouunMnJ5n7t1q2P1WlaihuiN6m7aooboj+redVaKDjhcWQBgEYA==
+  </data>
+ </layer>
+ <objectgroup name="Objectlaag 1">
+  <object type="object" x="0" y="1050">
+   <polyline points="0,0 690,0 966,-280 1311,-280 1311,350 0,350 0,0"/>
+  </object>
+  <object type="object" x="1449" y="770" width="276" height="140"/>
+  <object type="object" x="1863" y="770" width="276" height="140"/>
+  <object type="object" x="2277" y="770" width="552" height="140"/>
+  <object type="object" x="2967" y="770" width="483" height="140"/>
+  <object name="spawn" type="object" x="207" y="910" width="69"/>
+ </objectgroup>
+</map>

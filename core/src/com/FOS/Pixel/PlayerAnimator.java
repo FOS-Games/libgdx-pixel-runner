@@ -83,7 +83,7 @@ public abstract class PlayerAnimator {
             // wings level 4
             spriteSheet = new Texture("WIPsheet.png");
         }
-        else if(body == 2 && level == 5){
+        else if(body == 2 && level == 5) {
             // wings level 5
             spriteSheet = new Texture("WIPsheet.png");
         }

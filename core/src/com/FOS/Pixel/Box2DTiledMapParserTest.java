@@ -60,11 +60,8 @@ public class Box2DTiledMapParserTest extends PixelScreen {
         box2DRenderer = new Box2DDebugRenderer();
         camera = new OrthographicCamera();
 
-        // set the height of the camera
-        camera.position.y = 10;
-        camera.zoom = 1.0f;
 
-        TiledMap map = new TmxMapLoader().load("level_1_black.tmx");
+        TiledMap map = new TmxMapLoader().load("level_2_grass.tmx");
 
 
 
@@ -85,6 +82,10 @@ public class Box2DTiledMapParserTest extends PixelScreen {
 
         createPlayer();
 
+
+        // set the height of the camera
+        camera.position.y = player.position.y;
+        camera.zoom = 1.0f;
     }
 
     private void createPlayer(){
@@ -160,6 +161,7 @@ public class Box2DTiledMapParserTest extends PixelScreen {
     public void updateCamera() {
 
         camera.position.x = player.position.x;
+        camera.position.y = player.position.y;
         camera.update();
     }
 }
