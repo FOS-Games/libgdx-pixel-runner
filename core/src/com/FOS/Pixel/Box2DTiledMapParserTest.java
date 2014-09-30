@@ -3,7 +3,6 @@ package com.FOS.Pixel;
 import com.FOS.Pixel.screens.PixelScreen;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -12,14 +11,14 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.*;
+import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
+import com.badlogic.gdx.physics.box2d.Fixture;
+import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.ObjectMap;
-
-import net.dermetfan.utils.libgdx.box2d.Box2DMapObjectParser;
-
-import net.dermetfan.utils.libgdx.box2d.Box2DUtils;
-import net.dermetfan.utils.libgdx.graphics.Box2DSprite;
+import net.dermetfan.gdx.graphics.g2d.Box2DSprite;
+import net.dermetfan.gdx.physics.box2d.utils.Box2DMapObjectParser;
 
 
 /**
@@ -28,8 +27,10 @@ import net.dermetfan.utils.libgdx.graphics.Box2DSprite;
 public class Box2DTiledMapParserTest extends PixelScreen {
 
 
-    static  final float UnitScale = 0.0625f;
+    //static  final float UnitScale = 0.0625f;
 
+    // 1 tile is roughly 2 meters
+    static final float UnitScale = 1/35f;
 
     private World world;
     private Box2DDebugRenderer box2DRenderer;
@@ -53,17 +54,11 @@ public class Box2DTiledMapParserTest extends PixelScreen {
         FileHandle fileHandle = Gdx.files.local("leveldata.json");
         fileHandle.writeString(testdata, true);
 
-
-
-
         world = new World(new Vector2(0, -player.GRAVITY), true);
         box2DRenderer = new Box2DDebugRenderer();
         camera = new OrthographicCamera();
 
-
         TiledMap map = new TmxMapLoader().load("level_2_grass.tmx");
-
-
 
         parser = new Box2DMapObjectParser(UnitScale);
 
@@ -73,7 +68,7 @@ public class Box2DTiledMapParserTest extends PixelScreen {
         if (playerBody != null) {
             System.out.println("Player body found: " + playerBody.getUserData());
             for(Fixture fixture : playerBody.getFixtureList()){
-                System.out.println("Fictures found: ");
+                System.out.println("Fixtures found: ");
             }
         }
 
@@ -82,10 +77,8 @@ public class Box2DTiledMapParserTest extends PixelScreen {
 
         createPlayer();
 
-
-        // set the height of the camera
-        camera.position.y = player.position.y;
-        camera.zoom = 2.0f;
+        // set camera zoom
+        camera.zoom = 2.5f;
     }
 
     private void createPlayer(){
@@ -157,6 +150,7 @@ public class Box2DTiledMapParserTest extends PixelScreen {
 
     public void updateCamera() {
 
+        // TODO : Edit the way the camera behaves
         camera.position.x = player.position.x;
         camera.position.y = player.position.y;
         camera.update();
