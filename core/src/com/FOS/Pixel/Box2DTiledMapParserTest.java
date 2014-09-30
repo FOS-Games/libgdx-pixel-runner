@@ -1,10 +1,11 @@
 package com.FOS.Pixel;
 
+import com.FOS.Pixel.Data.AbilityType;
+import com.FOS.Pixel.Data.LevelData;
+import com.FOS.Pixel.handlers.JsonHandler;
 import com.FOS.Pixel.screens.PixelScreen;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
-import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -13,12 +14,10 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
-import com.badlogic.gdx.utils.Json;
-import com.badlogic.gdx.utils.ObjectMap;
+import com.badlogic.gdx.utils.*;
 
 import net.dermetfan.utils.libgdx.box2d.Box2DMapObjectParser;
 
-import net.dermetfan.utils.libgdx.box2d.Box2DUtils;
 import net.dermetfan.utils.libgdx.graphics.Box2DSprite;
 
 
@@ -46,14 +45,33 @@ public class Box2DTiledMapParserTest extends PixelScreen {
 
     @Override
     public void show() {
-
+            
         Json json= new Json();
-        LevelData test = new LevelData(1,1,1,1,1,1,1,1);
-        String testdata = json.toJson(test, LevelData.class);
-        FileHandle fileHandle = Gdx.files.local("leveldata.json");
-        fileHandle.writeString(testdata, true);
+//        LevelData test = new LevelData(1,1,1,1,1,1,1,1);
+//        String testdata = json.prettyPrint(json.toJson(test, LevelData.class));
+//
+//
+        OrderedMap<String,LevelData> jsonmap = new OrderedMap<String, LevelData>();
+//        jsonmap.put("level1",test);
+//        jsonmap.put("level2",test);
+//        jsonmap.put("level3",test);
+//        jsonmap.put("level4",test);
+//        jsonmap.put("level5",test);
+//        jsonmap.put("level6",test);
+//
+//        String printdata = json.prettyPrint(jsonmap);
+//        FileHandle fileHandle = Gdx.files.local("leveldata.json");
+//        fileHandle.writeString(printdata, true);
 
+//        JsonReader reader = new JsonReader();
+//        JsonValue values = reader.parse(Gdx.files.local("leveldata.json"));
+//        jsonmap = json.fromJson(OrderedMap.class, Gdx.files.local("leveldata.json"));
+//        LevelData test = jsonmap.get("level1");
+//        String testdata = json.prettyPrint(json.toJson(test, LevelData.class));
+//        System.out.println(testdata);
 
+        //JsonHandler.test();
+        System.out.println(json.prettyPrint(JsonHandler.getAbiltydata(AbilityType.JUMP.toString(),3)));
 
 
         world = new World(new Vector2(0, -9.81f), true);

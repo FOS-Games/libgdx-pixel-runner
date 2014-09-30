@@ -1,1 +1,68 @@
-{maxSpeed:1,bronzeTime:1,goldTime:1,minDelay:1,minSpeed:1,silverTime:1,speedIncr:1,maxDelay:1}
+{
+level1: {
+	class: com.FOS.Pixel.LevelData,
+	maxSpeed: 1,
+	bronzeTime: 1,
+	goldTime: 1,
+	minDelay: 1,
+	minSpeed: 1,
+	silverTime: 1,
+	speedIncr: 1,
+	maxDelay: 1
+},
+level2: {
+	class: com.FOS.Pixel.LevelData,
+	maxSpeed: 1,
+	bronzeTime: 1,
+	goldTime: 1,
+	minDelay: 1,
+	minSpeed: 1,
+	silverTime: 1,
+	speedIncr: 1,
+	maxDelay: 1
+},
+level3: {
+	class: com.FOS.Pixel.LevelData,
+	maxSpeed: 1,
+	bronzeTime: 1,
+	goldTime: 1,
+	minDelay: 1,
+	minSpeed: 1,
+	silverTime: 1,
+	speedIncr: 1,
+	maxDelay: 1
+},
+level4: {
+	class: com.FOS.Pixel.LevelData,
+	maxSpeed: 1,
+	bronzeTime: 1,
+	goldTime: 1,
+	minDelay: 1,
+	minSpeed: 1,
+	silverTime: 1,
+	speedIncr: 1,
+	maxDelay: 1
+},
+level5: {
+	class: com.FOS.Pixel.LevelData,
+	maxSpeed: 1,
+	bronzeTime: 1,
+	goldTime: 1,
+	minDelay: 1,
+	minSpeed: 1,
+	silverTime: 1,
+	speedIncr: 1,
+	maxDelay: 1
+},
+level6: {
+	class: com.FOS.Pixel.LevelData,
+	maxSpeed: 1,
+	bronzeTime: 1,
+	goldTime: 1,
+	minDelay: 1,
+	minSpeed: 1,
+	silverTime: 1,
+	speedIncr: 1,
+	maxDelay: 1
+}
+}
