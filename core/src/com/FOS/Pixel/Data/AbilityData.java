@@ -33,8 +33,12 @@ public class AbilityData{
         this.speed = speed;
     }
 
+    /**
+     * Adds two AbilityData's together
+     * @param x AbilityData to be added to this one
+     * @return New Ability Data with both previous values
+     */
     public AbilityData add(AbilityData x){
-
         ArrayList<AbilityType> collection = new ArrayList<AbilityType>();
         collection.addAll(Arrays.asList(this.data));
         collection.addAll(Arrays.asList(x.data));

@@ -24,11 +24,19 @@ public class JsonHandler {
     public JsonHandler(String path) {
     }
 
+    /**
+     * Gets leveldata from Json file
+     * @param levelNumber Number to indicate level
+     * @return LevelData class with the data from the json file
+     */
     public static LevelData readLevel(int levelNumber) {
         OrderedMap<String, LevelData> jsonmap = json.fromJson(OrderedMap.class, Gdx.files.local("leveldata.json"));
         return jsonmap.get("level" + levelNumber);
     }
 
+    /**
+     * stupid test method
+     */
     public static void test() {
         AbilityParser test = new AbilityParser(1.1f, "jemoeder.png");
         ArrayList<typeholder> x = new ArrayList<typeholder>();
@@ -63,6 +71,13 @@ public class JsonHandler {
 
     }
 
+
+    /**
+     * Gets Ability data from json file for given type en level
+     * @param type Ability type (recommend to use AbilityType.type.toString())
+     * @param level Integer to indicate level
+     * @return AbilityParser with data from json. Or null if data is not present.
+     */
     public static AbilityParser getAbiltydata(String type, int level) {
 
         ArrayList<typeholder> test = json.fromJson(ArrayList.class, typeholder.class, Gdx.files.local("abilitydata.json"));
