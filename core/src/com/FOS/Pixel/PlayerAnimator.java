@@ -34,7 +34,6 @@ public abstract class PlayerAnimator {
     // level of the ability
     protected AnimatedBox2DSprite createAnimation(int body, int level) {
 
-        // TODO : Replace with JSON method
         if(body == 0) {
             // full body
             spriteSheet = new Texture("WIPsheet.png");
@@ -122,22 +121,11 @@ public abstract class PlayerAnimator {
             }
         }
 
-        // Create the animation
         animation = new Animation(0.125f, frames);
-
-        // Loop the animation till infinity (and beyond!)
         animation.setPlayMode(Animation.PlayMode.LOOP);
 
-        // Create a Box2DSprite out of the animation
         animatedBox2DSprite = new AnimatedBox2DSprite(new AnimatedSprite(animation));
-
-        // Properties of the Box2DSprite
-        //animatedBox2DSprite.setScale(0.1f);
-        //animatedBox2DSprite.setAdjustSize(false);
-        //animatedBox2DSprite.scale(Box2DTiledMapParserTest.UnitScale);
-        //animatedBox2DSprite.setUseFrameRegionSize(true);
-
-
+        animatedBox2DSprite.setSize(64, 64);
         return animatedBox2DSprite;
     }
 }

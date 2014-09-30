@@ -12,6 +12,9 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.Gdx;
+import net.dermetfan.utils.libgdx.graphics.AnimatedBox2DSprite;
+import net.dermetfan.utils.libgdx.graphics.AnimatedSprite;
+import net.dermetfan.utils.libgdx.graphics.Box2DSprite;
 
 import javax.swing.*;
 
@@ -22,8 +25,8 @@ public class Player extends PlayerAnimator {
 
     static final float ACCELERATION = 1f;       // acceleration in m/s of the player
     static final float JUMP_VELOCITY = 7.0f;    // jump velocity in m/s of the player
-    static final float GRAVITY = 30f;         // gravity in m/s of the world (9.81 is earth like)
-    static final float MAX_VEL = 10f;           // maximum velocity in m/s of the player
+    static final float GRAVITY = 9.81f;         // gravity in m/s of the world (9.81 is earth like)
+    static final float MAX_VEL = 6f;            // maximum velocity in m/s of the player
     static final int TEXTURE_W = 64;            // the width of the player sprite
     static final int TEXTURE_H = 64;            // the height of the player sprite
 
@@ -38,11 +41,10 @@ public class Player extends PlayerAnimator {
 
     private float levelIncr;
     private float levelDecr;
-    private float levelDefault = 8f;
+    private float levelDefault = 5;
 
     protected World world;
     Fixture bodyFixture;
-    Fixture collisionFixture;
     Fixture feetFixture;
 
     public Player(World world, Vector2 spawn) {
@@ -54,36 +56,32 @@ public class Player extends PlayerAnimator {
     }
 
     private void InitBox2D() {
-
-        // Define the players body
         BodyDef bdef = new BodyDef();
         bdef.fixedRotation = true;
         bdef.position.set(spawnpoint);
         bdef.type = BodyDef.BodyType.DynamicBody;
-        body = world.createBody(bdef);
 
-        // Create the full body fixture
+        body = world.createBody(bdef);
         PolygonShape shape = new PolygonShape();
-        shape.setAsBox(size.x,size.y);
+
+        //shape.setAsBox(size.x,size.y);
+        shape.setAsBox(32 * Box2DTiledMapParserTest.UnitScale, 64 * Box2DTiledMapParserTest.UnitScale);
+
         bodyFixture = body.createFixture(shape, 1);
+        feetFixture = body.createFixture(shape, 1);
         shape.dispose();
 
-        // Make the full body fixture non-collidable
-        bodyFixture.setSensor(true);
-
-
-
-        // Add the sprite animation to the player
+        // Add Player animation
         bodyFixture.setUserData(super.createAnimation(0, 0));
 
-        // Create the collision box and add it to the player
-        PolygonShape cFix = new PolygonShape();
-        cFix.setAsBox(1, size.y);
-        collisionFixture = body.createFixture(cFix, 1);
-        cFix.dispose();
+        // Add Feet animation
+        feetFixture.setUserData(super.createAnimation(1, 0));
 
-        // Density / Mass of the body
-        collisionFixture.setDensity(1000);
+        // Add Wings animation
+        feetFixture.setUserData(super.createAnimation(2, 0));
+
+        // Add Weapon animation
+        feetFixture.setUserData(super.createAnimation(2, 0));
 
 
         //initSensors();
@@ -173,11 +171,7 @@ public class Player extends PlayerAnimator {
 //
 //        }
         if(Gdx.input.isKeyJustPressed(Input.Keys.UP)){
-            //body.setLinearVelocity(body.getLinearVelocity().x,JUMP_VELOCITY);
-            //body.applyLinearImpulse(0, JUMP_VELOCITY, body.getPosition().x, body.getPosition().y, true);
-
-            //body.applyLinearImpulse(0, body.getMass() * 10, body.getWorldCenter().x, body.getWorldCenter().y, true );
-            body.applyLinearImpulse(new Vector2(0, JUMP_VELOCITY / Box2DTiledMapParserTest.UnitScale), this.body.getPosition(), true);
+            body.setLinearVelocity(body.getLinearVelocity().x,JUMP_VELOCITY);
         }
 //        if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)&& body.getLinearVelocity().x <=MAX_VEL){
 //            body.setLinearVelocity(body.getLinearVelocity().x+ACCELERATION,body.getLinearVelocity().y);
