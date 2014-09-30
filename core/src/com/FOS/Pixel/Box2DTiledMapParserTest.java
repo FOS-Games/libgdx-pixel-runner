@@ -1,5 +1,8 @@
 package com.FOS.Pixel;
 
+import com.FOS.Pixel.Data.AbilityType;
+import com.FOS.Pixel.Data.LevelData;
+import com.FOS.Pixel.handlers.JsonHandler;
 import com.FOS.Pixel.screens.PixelScreen;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
@@ -17,8 +20,11 @@ import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.ObjectMap;
-import net.dermetfan.gdx.graphics.g2d.Box2DSprite;
-import net.dermetfan.gdx.physics.box2d.utils.Box2DMapObjectParser;
+import com.badlogic.gdx.utils.*;
+
+import net.dermetfan.utils.libgdx.box2d.Box2DMapObjectParser;
+
+import net.dermetfan.utils.libgdx.graphics.Box2DSprite;
 
 
 /**
@@ -48,13 +54,9 @@ public class Box2DTiledMapParserTest extends PixelScreen {
     @Override
     public void show() {
 
-        Json json= new Json();
-        LevelData test = new LevelData(1,1,1,1,1,1,1,1);
-        String testdata = json.toJson(test, LevelData.class);
-        FileHandle fileHandle = Gdx.files.local("leveldata.json");
-        fileHandle.writeString(testdata, true);
-
         world = new World(new Vector2(0, -player.GRAVITY), true);
+
+        world = new World(new Vector2(0, -9.81f), true);
         box2DRenderer = new Box2DDebugRenderer();
         camera = new OrthographicCamera();
 
