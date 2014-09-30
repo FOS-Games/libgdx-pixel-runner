@@ -12,11 +12,6 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.Gdx;
-import net.dermetfan.utils.libgdx.graphics.AnimatedBox2DSprite;
-import net.dermetfan.utils.libgdx.graphics.AnimatedSprite;
-import net.dermetfan.utils.libgdx.graphics.Box2DSprite;
-
-import net.dermetfan.utils.libgdx.graphics.AnimatedBox2DSprite;
 
 import javax.swing.*;
 
@@ -25,28 +20,29 @@ import javax.swing.*;
  */
 public class Player extends PlayerAnimator {
 
-    static final float ACCELERATION = 1f;
-    static final float JUMP_VELOCITY = 2;
-    static final float GRAVITY = 20.0f;
-    static final float MAX_VEL = 6f;
-    static final float DAMP = 0.90f;
+    static final float ACCELERATION = 1f;       // acceleration in m/s of the player
+    static final float JUMP_VELOCITY = 7.0f;    // jump velocity in m/s of the player
+    static final float GRAVITY = 30f;         // gravity in m/s of the world (9.81 is earth like)
+    static final float MAX_VEL = 10f;           // maximum velocity in m/s of the player
+    static final int TEXTURE_W = 64;            // the width of the player sprite
+    static final int TEXTURE_H = 64;            // the height of the player sprite
 
     Vector2 position = new Vector2();
     Vector2 velocity = new Vector2();
 
-    Vector2 size = new Vector2(16*Box2DTiledMapParserTest.UnitScale,16 * Box2DTiledMapParserTest.UnitScale);
+    Vector2 size = new Vector2(TEXTURE_W * Box2DTiledMapParserTest.UnitScale, TEXTURE_H * Box2DTiledMapParserTest.UnitScale);
     private Vector2 spawnpoint;
-    Box2DSprite testsprite = new Box2DSprite(new Texture(Gdx.files.internal("DARK.png")));
 
     protected Body body;
     public Body getBody() { return body;}
 
     private float levelIncr;
     private float levelDecr;
-    private float levelDefault = 5;
+    private float levelDefault = 8f;
 
     protected World world;
     Fixture bodyFixture;
+    Fixture collisionFixture;
     Fixture feetFixture;
 
     public Player(World world, Vector2 spawn) {
@@ -58,29 +54,36 @@ public class Player extends PlayerAnimator {
     }
 
     private void InitBox2D() {
+
+        // Define the players body
         BodyDef bdef = new BodyDef();
         bdef.fixedRotation = true;
         bdef.position.set(spawnpoint);
         bdef.type = BodyDef.BodyType.DynamicBody;
-
         body = world.createBody(bdef);
+
+        // Create the full body fixture
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(size.x,size.y);
-        bodyFixture = body.createFixture(shape,1);
-        feetFixture = body.createFixture(shape,1);
+        bodyFixture = body.createFixture(shape, 1);
         shape.dispose();
 
-        // Player animatie toevoegen
+        // Make the full body fixture non-collidable
+        bodyFixture.setSensor(true);
+
+
+
+        // Add the sprite animation to the player
         bodyFixture.setUserData(super.createAnimation(0, 0));
 
-        // Voeten animatie toevoegen
-        feetFixture.setUserData(super.createAnimation(1, 0));
+        // Create the collision box and add it to the player
+        PolygonShape cFix = new PolygonShape();
+        cFix.setAsBox(1, size.y);
+        collisionFixture = body.createFixture(cFix, 1);
+        cFix.dispose();
 
-        // Wings animatie toevoegen
-        feetFixture.setUserData(super.createAnimation(2, 0));
-
-        // Weapon animatie toevoegen
-        feetFixture.setUserData(super.createAnimation(2, 0));
+        // Density / Mass of the body
+        collisionFixture.setDensity(1000);
 
 
         //initSensors();
@@ -170,7 +173,11 @@ public class Player extends PlayerAnimator {
 //
 //        }
         if(Gdx.input.isKeyJustPressed(Input.Keys.UP)){
-            body.setLinearVelocity(body.getLinearVelocity().x,JUMP_VELOCITY);
+            //body.setLinearVelocity(body.getLinearVelocity().x,JUMP_VELOCITY);
+            //body.applyLinearImpulse(0, JUMP_VELOCITY, body.getPosition().x, body.getPosition().y, true);
+
+            //body.applyLinearImpulse(0, body.getMass() * 10, body.getWorldCenter().x, body.getWorldCenter().y, true );
+            body.applyLinearImpulse(new Vector2(0, JUMP_VELOCITY / Box2DTiledMapParserTest.UnitScale), this.body.getPosition(), true);
         }
 //        if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)&& body.getLinearVelocity().x <=MAX_VEL){
 //            body.setLinearVelocity(body.getLinearVelocity().x+ACCELERATION,body.getLinearVelocity().y);

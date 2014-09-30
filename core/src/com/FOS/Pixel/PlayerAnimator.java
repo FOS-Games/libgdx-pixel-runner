@@ -4,9 +4,8 @@ package com.FOS.Pixel;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import net.dermetfan.utils.libgdx.graphics.AnimatedBox2DSprite;
-import net.dermetfan.utils.libgdx.graphics.AnimatedSprite;
-import net.dermetfan.utils.libgdx.graphics.Box2DSprite;
+import net.dermetfan.gdx.graphics.g2d.AnimatedBox2DSprite;
+import net.dermetfan.gdx.graphics.g2d.AnimatedSprite;
 
 /**
  * Created by Stefan on 29-9-2014.
@@ -35,6 +34,7 @@ public abstract class PlayerAnimator {
     // level of the ability
     protected AnimatedBox2DSprite createAnimation(int body, int level) {
 
+        // TODO : Replace with JSON method
         if(body == 0) {
             // full body
             spriteSheet = new Texture("WIPsheet.png");
@@ -83,7 +83,7 @@ public abstract class PlayerAnimator {
             // wings level 4
             spriteSheet = new Texture("WIPsheet.png");
         }
-        else if(body == 2 && level == 5){
+        else if(body == 2 && level == 5) {
             // wings level 5
             spriteSheet = new Texture("WIPsheet.png");
         }
@@ -122,10 +122,22 @@ public abstract class PlayerAnimator {
             }
         }
 
+        // Create the animation
         animation = new Animation(0.125f, frames);
+
+        // Loop the animation till infinity (and beyond!)
         animation.setPlayMode(Animation.PlayMode.LOOP);
 
+        // Create a Box2DSprite out of the animation
         animatedBox2DSprite = new AnimatedBox2DSprite(new AnimatedSprite(animation));
+
+        // Properties of the Box2DSprite
+        //animatedBox2DSprite.setScale(0.1f);
+        //animatedBox2DSprite.setAdjustSize(false);
+        //animatedBox2DSprite.scale(Box2DTiledMapParserTest.UnitScale);
+        //animatedBox2DSprite.setUseFrameRegionSize(true);
+
+
         return animatedBox2DSprite;
     }
 }
