@@ -72,7 +72,7 @@ public class Box2DTiledMapParserTest extends PixelScreen {
 //        System.out.println(testdata);
 
         //JsonHandler.test();
-        System.out.println(json.prettyPrint(JsonHandler.getAbiltydata(AbilityType.JUMP,3)));
+        System.out.println(json.prettyPrint(JsonHandler.getAbiltydata(AbilityType.JUMP.toString(),3)));
 
 
         world = new World(new Vector2(0, -9.81f), true);

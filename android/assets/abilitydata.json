@@ -1,44 +1,125 @@
+[
 {
-SPEED: {
-	Level1: {
-		multiplier: 1.1,
-		texturename: jemoeder.png
-	},
-	Level2: {
-		multiplier: 1.1,
-		texturename: jemoeder.png
-	},
-	Level3: {
-		multiplier: 1.1,
-		texturename: jemoeder.png
-	}
+	class: com.FOS.Pixel.handlers.typeholder,
+	Level: [
+		{
+			level: Level1,
+			abilityData: {
+				multiplier: 1.1,
+				texturename: jemoeder.png
+			}
+		},
+		{
+			level: Level2,
+			abilityData: {
+				multiplier: 1.1,
+				texturename: jemoeder.png
+			}
+		},
+		{
+			level: Level3,
+			abilityData: {
+				multiplier: 1.1,
+				texturename: jemoeder.png
+			}
+		},
+		{
+			level: Level4,
+			abilityData: {
+				multiplier: 1.1,
+				texturename: jemoeder.png
+			}
+		},
+		{
+			level: Level5,
+			abilityData: {
+				multiplier: 1.1,
+				texturename: jemoeder.png
+			}
+		}
+	],
+	Type: SPEED
 },
-STRENGTH: {
-	Level1: {
-		multiplier: 1.1,
-		texturename: jemoeder.png
-	},
-	Level2: {
-		multiplier: 1.1,
-		texturename: jemoeder.png
-	},
-	Level3: {
-		multiplier: 1.1,
-		texturename: jemoeder.png
-	}
+{
+	class: com.FOS.Pixel.handlers.typeholder,
+	Level: [
+		{
+			level: Level1,
+			abilityData: {
+				multiplier: 1.1,
+				texturename: jemoeder.png
+			}
+		},
+		{
+			level: Level2,
+			abilityData: {
+				multiplier: 1.1,
+				texturename: jemoeder.png
+			}
+		},
+		{
+			level: Level3,
+			abilityData: {
+				multiplier: 1.1,
+				texturename: jemoeder.png
+			}
+		},
+		{
+			level: Level4,
+			abilityData: {
+				multiplier: 1.1,
+				texturename: jemoeder.png
+			}
+		},
+		{
+			level: Level5,
+			abilityData: {
+				multiplier: 1.1,
+				texturename: jemoeder.png
+			}
+		}
+	],
+	Type: STRENGTH
 },
-JUMP: {
-	Level1: {
-		multiplier: 1.1,
-		texturename: jemoeder.png
-	},
-	Level2: {
-		multiplier: 1.1,
-		texturename: jemoeder.png
-	},
-	Level3: {
-		multiplier: 1.1,
-		texturename: jemoeder.png
-	}
+{
+	class: com.FOS.Pixel.handlers.typeholder,
+	Level: [
+		{
+			level: Level1,
+			abilityData: {
+				multiplier: 1.1,
+				texturename: jemoeder.png
+			}
+		},
+		{
+			level: Level2,
+			abilityData: {
+				multiplier: 1.1,
+				texturename: jemoeder.png
+			}
+		},
+		{
+			level: Level3,
+			abilityData: {
+				multiplier: 1.1,
+				texturename: jemoeder.png
+			}
+		},
+		{
+			level: Level4,
+			abilityData: {
+				multiplier: 1.1,
+				texturename: jemoeder.png
+			}
+		},
+		{
+			level: Level5,
+			abilityData: {
+				multiplier: 1.1,
+				texturename: jemoeder.png
+			}
+		}
+	],
+	Type: JUMP
 }
-}
+]
