@@ -4,9 +4,8 @@ package com.FOS.Pixel;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import net.dermetfan.utils.libgdx.graphics.AnimatedBox2DSprite;
-import net.dermetfan.utils.libgdx.graphics.AnimatedSprite;
-import net.dermetfan.utils.libgdx.graphics.Box2DSprite;
+import net.dermetfan.gdx.graphics.g2d.AnimatedBox2DSprite;
+import net.dermetfan.gdx.graphics.g2d.AnimatedSprite;
 
 /**
  * Created by Stefan on 29-9-2014.
@@ -126,6 +125,7 @@ public abstract class PlayerAnimator {
         animation.setPlayMode(Animation.PlayMode.LOOP);
 
         animatedBox2DSprite = new AnimatedBox2DSprite(new AnimatedSprite(animation));
+        animatedBox2DSprite.setSize(64, 64);
         return animatedBox2DSprite;
     }
 }
