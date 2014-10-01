@@ -83,4 +83,5 @@ public class GameScreen extends PixelGameScreen {
         camera.position.y = player.position.y;
         camera.update();
     }
+
 }
