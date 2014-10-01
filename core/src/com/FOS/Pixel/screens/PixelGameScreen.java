@@ -1,6 +1,7 @@
 package com.FOS.Pixel.screens;
 
 import com.FOS.Pixel.Data.PixelVars;
+import com.FOS.Pixel.PixelContactListener;
 import com.FOS.Pixel.Player;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Screen;
@@ -55,8 +56,11 @@ public abstract class PixelGameScreen implements Screen {
     public PixelGameScreen(Game game){
 
         this.game=game;
+
+        // Set up the box2d world and contact listener
         world = new World(new Vector2(0, -overrideEarthGravity()), true);
         box2DRenderer = new Box2DDebugRenderer();
+
         camera = new OrthographicCamera();
         map = new TmxMapLoader().load(getLevelMap());
         parser = new Box2DMapObjectParser(PixelVars.UNITSCALE);
