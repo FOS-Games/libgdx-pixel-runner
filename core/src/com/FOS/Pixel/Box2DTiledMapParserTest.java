@@ -15,6 +15,7 @@ import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.ObjectMap;
+
 import net.dermetfan.gdx.graphics.g2d.Box2DSprite;
 import net.dermetfan.gdx.physics.box2d.utils.Box2DMapObjectParser;
 
