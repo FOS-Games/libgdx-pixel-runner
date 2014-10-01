@@ -17,7 +17,7 @@ import com.badlogic.gdx.utils.OrderedMap;
 public class Player extends PlayerAnimatorHandler {
 
     static final float ACCELERATION = 1f;       // acceleration in m/s of the player
-    static final float JUMP_VELOCITY = 7.0f;    // jump velocity in m/s of the player
+    static final float JUMP_VELOCITY = 10f;    // jump velocity in m/s of the player
     static final float GRAVITY = 30f;         // gravity in m/s of the world (9.81 is earth like)
     static final float MAX_VEL = 10f;           // maximum velocity in m/s of the player
     static final int TEXTURE_W = 64;            // the width of the player sprite
@@ -40,11 +40,14 @@ public class Player extends PlayerAnimatorHandler {
     Fixture bodyFixture;
     Fixture collisionFixture;
     Fixture feetFixture;
+    GameScreen gameScreen;
 
     public Player(GameScreen gameScreen, Vector2 spawn) {
         super();
         this.world = gameScreen.getWorld();
         this.spawnpoint = spawn;
+        this.gameScreen = gameScreen;
+
         InitBox2D();
         body.setUserData(this);
     }
@@ -62,7 +65,12 @@ public class Player extends PlayerAnimatorHandler {
     }
 
     private void InitBox2D() {
+        initPlayer();
+        initCollision();
+        initSensors();
+    }
 
+    private void initPlayer() {
         // Define the players body
         BodyDef bdef = new BodyDef();
         bdef.fixedRotation = true;
@@ -79,36 +87,35 @@ public class Player extends PlayerAnimatorHandler {
         // Make the full body fixture non-collidable
         bodyFixture.setSensor(true);
 
-
-
         // Add the sprite animation to the player
-        bodyFixture.setUserData(super.createAnimation(0, 0));
+        //bodyFixture.setUserData(super.createAnimation(0, 0));
+    }
 
-        // Create the collision box and add it to the player
-        PolygonShape cFix = new PolygonShape();
-        cFix.setAsBox(1, size.y);
-        collisionFixture = body.createFixture(cFix, 1);
-        cFix.dispose();
+    private void initCollision() {
+        FixtureDef collDef = new FixtureDef();
 
-        // Density / Mass of the body
-        collisionFixture.setDensity(1000);
+        PolygonShape shape = new PolygonShape();
+        shape.setAsBox(size.x / 4, size.y);
 
+        collDef.shape = shape;
+        collDef.density = 1;
+        collDef.friction = 0;
 
-        //initSensors();
+        body.createFixture(collDef).setUserData("collision");
+        shape.dispose();
     }
 
     private void initSensors() {
-        FixtureDef feetdef = new FixtureDef();
-        FixtureDef frontdef = new FixtureDef();
+        FixtureDef feetDef = new FixtureDef();
 
-        feetdef.friction = 1;
-        feetdef.density = 1;
-        feetdef.isSensor = true;
         PolygonShape shape = new PolygonShape();
-        shape.setAsBox(size.x,0,new Vector2(0,size.y/2),0);
+        shape.setAsBox(size.x / 4, size.y / 4, new Vector2(0,-size.y), 0);
 
+        feetDef.shape = shape;
+        feetDef.isSensor = true;
 
-
+        body.createFixture(feetDef).setUserData("foot");
+        shape.dispose();
     }
 
     public void render(float dt){
@@ -174,8 +181,10 @@ public class Player extends PlayerAnimatorHandler {
         }
     }
     private void playerMovement() {
-        if(Gdx.input.isKeyJustPressed(Input.Keys.UP)){
-            body.applyLinearImpulse(new Vector2(0, JUMP_VELOCITY / PixelVars.UNITSCALE), this.body.getPosition(), true);
+        if(gameScreen.pixelContactListener.playerCanJump()) {
+            if (Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
+                body.applyLinearImpulse(new Vector2(0, JUMP_VELOCITY / PixelVars.UNITSCALE), this.body.getPosition(), true);
+            }
         }
     }
 }

@@ -1,6 +1,8 @@
 package com.FOS.Pixel.screens;
 
 import com.FOS.Pixel.Data.LevelData;
+import com.FOS.Pixel.Data.PixelVars;
+import com.FOS.Pixel.PixelContactListener;
 import com.FOS.Pixel.Player;
 import com.FOS.Pixel.handlers.JsonHandler;
 import com.FOS.Pixel.screens.PixelGameScreen;
@@ -17,6 +19,8 @@ public class GameScreen extends PixelGameScreen {
     int levelwidth;
     int levelheight;
 
+    public PixelContactListener pixelContactListener = new PixelContactListener();
+
 
 
     public GameScreen(Game game,int level) {
@@ -25,6 +29,8 @@ public class GameScreen extends PixelGameScreen {
     @Override
     public void show() {
         createPlayer();
+
+        world.setContactListener(pixelContactListener);
 
         // set camera zoom
         camera.zoom = 2.5f;
@@ -80,5 +86,10 @@ public class GameScreen extends PixelGameScreen {
         camera.position.x = player.position.x;
         camera.position.y = player.position.y;
         camera.update();
+    }
+
+    @Override
+    protected float overrideEarthGravity() {
+        return 50f;
     }
 }
