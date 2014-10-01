@@ -43,4 +43,36 @@ public class LevelData {
         this.tmxpath = tmxpath;
         this.musicpath = musicpath;
     }
+
+    public float getMinSpeed() {
+        return minSpeed;
+    }
+
+    public float getMaxSpeed() {
+        return maxSpeed;
+    }
+
+    public float getSpeedIncr() {
+        return speedIncr;
+    }
+
+    public float getBronzeTime() {
+        return bronzeTime;
+    }
+
+    public float getSilverTime() {
+        return silverTime;
+    }
+
+    public float getGoldTime() {
+        return goldTime;
+    }
+
+    public String getTmxpath() {
+        return tmxpath;
+    }
+
+    public String getMusicpath() {
+        return musicpath;
+    }
 }

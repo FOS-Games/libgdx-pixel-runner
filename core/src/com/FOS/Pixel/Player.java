@@ -46,6 +46,7 @@ public class Player extends PlayerAnimatorHandler {
         this.world = gameScreen.getWorld();
         this.spawnpoint = spawn;
         InitBox2D();
+        body.setUserData(this);
     }
 
     @Override

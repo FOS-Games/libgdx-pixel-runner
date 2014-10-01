@@ -1,9 +1,13 @@
 package com.FOS.Pixel.screens;
 
+import com.FOS.Pixel.Data.LevelData;
 import com.FOS.Pixel.Data.PixelVars;
 import com.FOS.Pixel.Player;
+import com.FOS.Pixel.handlers.JsonHandler;
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -28,6 +32,7 @@ public abstract class PixelGameScreen implements Screen {
     protected TiledMap map;
     protected SpriteBatch spriteBatch;
     protected Player player;
+    LevelData levelData;
 
     Boolean BOX2DDEBUG = false;
 
@@ -52,18 +57,21 @@ public abstract class PixelGameScreen implements Screen {
         return player;
     }
 
-    public PixelGameScreen(Game game){
+    public PixelGameScreen(Game game, int level){
 
         this.game=game;
+        levelData = JsonHandler.readLevel(level);
         world = new World(new Vector2(0, -overrideEarthGravity()), true);
         box2DRenderer = new Box2DDebugRenderer();
         camera = new OrthographicCamera();
-        map = new TmxMapLoader().load(getLevelMap());
+        map = new TmxMapLoader().load(levelData.getTmxpath());
         parser = new Box2DMapObjectParser(PixelVars.UNITSCALE);
 
         parser.load(world, map);
         spriteBatch = new SpriteBatch();
         mapRenderer = new OrthogonalTiledMapRenderer(map, parser.getUnitScale());
+        Sound mp3Sound = Gdx.audio.newSound(Gdx.files.internal(levelData.getMusicpath()));
+        mp3Sound.loop();
 
     }
 
@@ -123,5 +131,4 @@ public abstract class PixelGameScreen implements Screen {
     protected float overrideEarthGravity(){
         return 9.81f;
     }
-    protected abstract String getLevelMap();
 }

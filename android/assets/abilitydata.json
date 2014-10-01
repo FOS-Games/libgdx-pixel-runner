@@ -5,36 +5,36 @@
 		{
 			level: Level1,
 			abilityData: {
-				multiplier: 1.1,
-				texturename: jemoeder.png
+				multiplier: 1,
+				texturename: DEFAULT.png
 			}
 		},
 		{
 			level: Level2,
 			abilityData: {
-				multiplier: 1.1,
-				texturename: jemoeder.png
+				multiplier: 1,
+				texturename: DEFAULT.png
 			}
 		},
 		{
 			level: Level3,
 			abilityData: {
-				multiplier: 1.1,
-				texturename: jemoeder.png
+				multiplier: 1,
+				texturename: DEFAULT.png
 			}
 		},
 		{
 			level: Level4,
 			abilityData: {
-				multiplier: 1.1,
-				texturename: jemoeder.png
+				multiplier: 1,
+				texturename: DEFAULT.png
 			}
 		},
 		{
 			level: Level5,
 			abilityData: {
-				multiplier: 1.1,
-				texturename: jemoeder.png
+				multiplier: 1,
+				texturename: DEFAULT.png
 			}
 		}
 	],
@@ -46,36 +46,36 @@
 		{
 			level: Level1,
 			abilityData: {
-				multiplier: 1.1,
-				texturename: jemoeder.png
+				multiplier: 1,
+				texturename: DEFAULT.png
 			}
 		},
 		{
 			level: Level2,
 			abilityData: {
-				multiplier: 1.1,
-				texturename: jemoeder.png
+				multiplier: 1,
+				texturename: DEFAULT.png
 			}
 		},
 		{
 			level: Level3,
 			abilityData: {
-				multiplier: 1.1,
-				texturename: jemoeder.png
+				multiplier: 1,
+				texturename: DEFAULT.png
 			}
 		},
 		{
 			level: Level4,
 			abilityData: {
-				multiplier: 1.1,
-				texturename: jemoeder.png
+				multiplier: 1,
+				texturename: DEFAULT.png
 			}
 		},
 		{
 			level: Level5,
 			abilityData: {
-				multiplier: 1.1,
-				texturename: jemoeder.png
+				multiplier: 1,
+				texturename: DEFAULT.png
 			}
 		}
 	],
@@ -87,36 +87,36 @@
 		{
 			level: Level1,
 			abilityData: {
-				multiplier: 1.1,
-				texturename: jemoeder.png
+				multiplier: 1,
+				texturename: DEFAULT.png
 			}
 		},
 		{
 			level: Level2,
 			abilityData: {
-				multiplier: 1.1,
-				texturename: jemoeder.png
+				multiplier: 1,
+				texturename: DEFAULT.png
 			}
 		},
 		{
 			level: Level3,
 			abilityData: {
-				multiplier: 1.1,
-				texturename: jemoeder.png
+				multiplier: 1,
+				texturename: DEFAULT.png
 			}
 		},
 		{
 			level: Level4,
 			abilityData: {
-				multiplier: 1.1,
-				texturename: jemoeder.png
+				multiplier: 1,
+				texturename: DEFAULT.png
 			}
 		},
 		{
 			level: Level5,
 			abilityData: {
-				multiplier: 1.1,
-				texturename: jemoeder.png
+				multiplier: 1,
+				texturename: DEFAULT.png
 			}
 		}
 	],

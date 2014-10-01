@@ -31,45 +31,58 @@ public class JsonHandler {
      */
     public static LevelData readLevel(int levelNumber) {
         OrderedMap<String, LevelData> jsonmap = json.fromJson(OrderedMap.class, Gdx.files.local("leveldata.json"));
-        return jsonmap.get("level" + levelNumber);
+        return jsonmap.get("Level" + levelNumber);
+    }
+    public  static int getLevelCount(){
+        OrderedMap<String, LevelData> jsonmap = json.fromJson(OrderedMap.class, Gdx.files.local("leveldata.json"));
+        return  jsonmap.size;
     }
 
-    /**
-     * stupid test method
-     */
-    public static void test() {
-        AbilityParser test = new AbilityParser(1.1f, "jemoeder.png");
-        ArrayList<typeholder> x = new ArrayList<typeholder>();
-        x.add(new typeholder(AbilityType.SPEED.toString(), new Abilitylevel[]{
-                new Abilitylevel("Level1", test),
-                new Abilitylevel("Level2", test),
-                new Abilitylevel("Level3", test),
-                new Abilitylevel("Level4", test),
-                new Abilitylevel("Level5", test)
-
-        }));
-        x.add(new typeholder(AbilityType.STRENGTH.toString(), new Abilitylevel[]{
-                new Abilitylevel("Level1", test),
-                new Abilitylevel("Level2", test),
-                new Abilitylevel("Level3", test),
-                new Abilitylevel("Level4", test),
-                new Abilitylevel("Level5", test)
-
-        }));
-        x.add(new typeholder(AbilityType.JUMP.toString(), new Abilitylevel[]{
-                new Abilitylevel("Level1", test),
-                new Abilitylevel("Level2", test),
-                new Abilitylevel("Level3", test),
-                new Abilitylevel("Level4", test),
-                new Abilitylevel("Level5", test)
-
-        }));
-
-        String printdata = json.prettyPrint(x);
-        FileHandle fileHandle = Gdx.files.local("abilitydata.json");
-        fileHandle.writeString(printdata, true);
-
-    }
+//    /**
+//     * stupid test method
+//     */
+//    public static void test() {
+//        AbilityParser test = new AbilityParser(1f, "DEFAULT.png");
+//        ArrayList<typeholder> x = new ArrayList<typeholder>();
+//        x.add(new typeholder(AbilityType.SPEED.toString(), new Abilitylevel[]{
+//                new Abilitylevel("Level1", test),
+//                new Abilitylevel("Level2", test),
+//                new Abilitylevel("Level3", test),
+//                new Abilitylevel("Level4", test),
+//                new Abilitylevel("Level5", test)
+//
+//        }));
+//        x.add(new typeholder(AbilityType.STRENGTH.toString(), new Abilitylevel[]{
+//                new Abilitylevel("Level1", test),
+//                new Abilitylevel("Level2", test),
+//                new Abilitylevel("Level3", test),
+//                new Abilitylevel("Level4", test),
+//                new Abilitylevel("Level5", test)
+//
+//        }));
+//        x.add(new typeholder(AbilityType.JUMP.toString(), new Abilitylevel[]{
+//                new Abilitylevel("Level1", test),
+//                new Abilitylevel("Level2", test),
+//                new Abilitylevel("Level3", test),
+//                new Abilitylevel("Level4", test),
+//                new Abilitylevel("Level5", test)
+//
+//        }));
+//
+//        String printdata = json.prettyPrint(x);
+//        FileHandle fileHandle = Gdx.files.local("abilitydata.json");
+//        fileHandle.writeString(printdata, true);
+//
+//        OrderedMap<String, LevelData> leveldatatest = new OrderedMap<String, LevelData>();
+//        LevelData  leveltest = new LevelData(1f,2f,1f,120,90,60,"tmxpath/map.tmx","soundpath/sound.mp3");
+//        leveldatatest.put("Level1",leveltest);
+//        leveldatatest.put("Level2",leveltest);
+//        printdata = json.prettyPrint(leveldatatest);
+//         fileHandle = Gdx.files.local("leveldata.json");
+//        fileHandle.writeString(printdata,true);
+//
+//
+//    }
 
 
     /**

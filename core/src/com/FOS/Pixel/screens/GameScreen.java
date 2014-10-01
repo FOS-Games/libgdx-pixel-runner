@@ -1,25 +1,26 @@
 package com.FOS.Pixel.screens;
 
+import com.FOS.Pixel.Data.LevelData;
 import com.FOS.Pixel.Player;
+import com.FOS.Pixel.handlers.JsonHandler;
 import com.FOS.Pixel.screens.PixelGameScreen;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Json;
 import net.dermetfan.gdx.graphics.g2d.Box2DSprite;
 
 
-/**
- * Created by Stefan on 19-9-2014.
- */
 public class GameScreen extends PixelGameScreen {
 
     int levelwidth;
     int levelheight;
 
 
-    public GameScreen(Game game) {
-        super(game);
+
+    public GameScreen(Game game,int level) {
+        super(game,level);
     }
     @Override
     public void show() {
@@ -28,10 +29,7 @@ public class GameScreen extends PixelGameScreen {
         // set camera zoom
         camera.zoom = 2.5f;
     }
-    @Override
-    protected String getLevelMap() {
-        return "level_2_grass.tmx";
-    }
+
 
     /**
      * Create player at appropriate position.
