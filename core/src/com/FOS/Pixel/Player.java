@@ -1,19 +1,10 @@
 package com.FOS.Pixel;
 
-import com.badlogic.gdx.Game;
+import com.FOS.Pixel.Data.PixelVars;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.InputAdapter;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.Gdx;
-
-import javax.swing.*;
 
 /**
  * Created by Lars on 9/19/2014.
@@ -27,10 +18,10 @@ public class Player extends PlayerAnimator {
     static final int TEXTURE_W = 64;            // the width of the player sprite
     static final int TEXTURE_H = 64;            // the height of the player sprite
 
-    Vector2 position = new Vector2();
-    Vector2 velocity = new Vector2();
+    public Vector2 position = new Vector2();
+    public Vector2 velocity = new Vector2();
 
-    Vector2 size = new Vector2(TEXTURE_W * Box2DTiledMapParserTest.UnitScale, TEXTURE_H * Box2DTiledMapParserTest.UnitScale);
+    Vector2 size = new Vector2(TEXTURE_W * PixelVars.UNITSCALE, TEXTURE_H * PixelVars.UNITSCALE);
     private Vector2 spawnpoint;
 
     protected Body body;
@@ -168,20 +159,8 @@ public class Player extends PlayerAnimator {
         }
     }
     private void playerMovement() {
-//        if(Gdx.input.isKeyPressed(Input.Keys.LEFT)&& body.getLinearVelocity().x >=-MAX_VEL){
-//            body.setLinearVelocity(body.getLinearVelocity().x-ACCELERATION,body.getLinearVelocity().y);
-//
-//        }
         if(Gdx.input.isKeyJustPressed(Input.Keys.UP)){
-            //body.setLinearVelocity(body.getLinearVelocity().x,JUMP_VELOCITY);
-            //body.applyLinearImpulse(0, JUMP_VELOCITY, body.getPosition().x, body.getPosition().y, true);
-
-            //body.applyLinearImpulse(0, body.getMass() * 10, body.getWorldCenter().x, body.getWorldCenter().y, true );
-            body.applyLinearImpulse(new Vector2(0, JUMP_VELOCITY / Box2DTiledMapParserTest.UnitScale), this.body.getPosition(), true);
+            body.applyLinearImpulse(new Vector2(0, JUMP_VELOCITY / PixelVars.UNITSCALE), this.body.getPosition(), true);
         }
-//        if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)&& body.getLinearVelocity().x <=MAX_VEL){
-//            body.setLinearVelocity(body.getLinearVelocity().x+ACCELERATION,body.getLinearVelocity().y);
-//        }
-
     }
 }
