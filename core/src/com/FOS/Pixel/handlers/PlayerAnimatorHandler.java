@@ -16,6 +16,12 @@ import net.dermetfan.gdx.graphics.g2d.AnimatedSprite;
  */
 public abstract class PlayerAnimatorHandler {
 
+    public enum BodyPart{
+        BODY,
+        FEET,
+        WINGS,
+        WEAPON
+    }
 
     private static final int COLUMNS = 4;   // amount of columns (vertical) in the spritesheet
     private static final int ROWS = 1;      // amount of rows (horizontal) in the spritesheet
