@@ -11,7 +11,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Json;
-import com.badlogic.gdx.utils.Timer;
 import net.dermetfan.gdx.graphics.g2d.Box2DSprite;
 
 
@@ -19,8 +18,6 @@ public class GameScreen extends PixelGameScreen {
 
     int levelwidth;
     int levelheight;
-
-    Timer timer = new Timer();
 
     public PixelContactListener pixelContactListener = new PixelContactListener();
 
@@ -50,10 +47,6 @@ public class GameScreen extends PixelGameScreen {
         }else{
             spawn = new Vector2(0,0); }
         player=new Player(this, spawn);
-        startMedalTimer();
-    }
-
-    private void startMedalTimer() {
     }
 
     @Override
