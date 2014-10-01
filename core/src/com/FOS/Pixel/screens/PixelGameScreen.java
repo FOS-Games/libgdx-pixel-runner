@@ -29,7 +29,6 @@ public abstract class PixelGameScreen implements Screen {
     protected TiledMap map;
     protected SpriteBatch spriteBatch;
     protected Player player;
-    protected PixelContactListener contactListener;
 
     Boolean BOX2DDEBUG = false;
 
@@ -60,8 +59,6 @@ public abstract class PixelGameScreen implements Screen {
 
         // Set up the box2d world and contact listener
         world = new World(new Vector2(0, -overrideEarthGravity()), true);
-        contactListener = new PixelContactListener();
-        world.setContactListener(contactListener);
         box2DRenderer = new Box2DDebugRenderer();
 
         camera = new OrthographicCamera();

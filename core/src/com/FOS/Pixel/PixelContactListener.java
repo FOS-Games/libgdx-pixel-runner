@@ -20,7 +20,7 @@ public class PixelContactListener implements ContactListener {
         if(fa.getUserData() != null && fa.getUserData().equals("foot")) {
             numFootContacts++;
         }
-        if(fb.getUserData() != null && fa.getUserData().equals("foot")) {
+        if(fb.getUserData() != null && fb.getUserData().equals("foot")) {
             numFootContacts++;
         }
 
@@ -57,6 +57,10 @@ public class PixelContactListener implements ContactListener {
 
     }
 
+    /**
+     * Returns true if the player should be able to jump.
+     * TODO double jump
+     */
     public boolean playerCanJump() {
         return numFootContacts > 0;
     }

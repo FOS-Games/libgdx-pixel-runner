@@ -17,7 +17,7 @@ import com.badlogic.gdx.utils.OrderedMap;
 public class Player extends PlayerAnimatorHandler {
 
     static final float ACCELERATION = 1f;       // acceleration in m/s of the player
-    static final float JUMP_VELOCITY = 7.0f;    // jump velocity in m/s of the player
+    static final float JUMP_VELOCITY = 10f;    // jump velocity in m/s of the player
     static final float GRAVITY = 30f;         // gravity in m/s of the world (9.81 is earth like)
     static final float MAX_VEL = 10f;           // maximum velocity in m/s of the player
     static final int TEXTURE_W = 64;            // the width of the player sprite
@@ -40,11 +40,14 @@ public class Player extends PlayerAnimatorHandler {
     Fixture bodyFixture;
     Fixture collisionFixture;
     Fixture feetFixture;
+    GameScreen gameScreen;
 
     public Player(GameScreen gameScreen, Vector2 spawn) {
         super();
         this.world = gameScreen.getWorld();
         this.spawnpoint = spawn;
+        this.gameScreen = gameScreen;
+
         InitBox2D();
 
         body.setUserData(this);
@@ -64,7 +67,7 @@ public class Player extends PlayerAnimatorHandler {
 
     private void InitBox2D() {
         initPlayer();
-        initCollison();
+        initCollision();
         initSensors();
     }
 
@@ -86,14 +89,14 @@ public class Player extends PlayerAnimatorHandler {
         bodyFixture.setSensor(true);
 
         // Add the sprite animation to the player
-        bodyFixture.setUserData(super.createAnimation(0, 0));
+        //bodyFixture.setUserData(super.createAnimation(0, 0));
     }
 
-    private void initCollison() {
+    private void initCollision() {
         FixtureDef collDef = new FixtureDef();
 
         PolygonShape shape = new PolygonShape();
-        shape.setAsBox(4, size.y);
+        shape.setAsBox(size.x / 4, size.y);
 
         collDef.shape = shape;
         collDef.density = 1;
@@ -107,7 +110,7 @@ public class Player extends PlayerAnimatorHandler {
         FixtureDef feetDef = new FixtureDef();
 
         PolygonShape shape = new PolygonShape();
-        shape.setAsBox(8, 8);
+        shape.setAsBox(size.x / 4, size.y / 4, new Vector2(0,-size.y), 0);
 
         feetDef.shape = shape;
         feetDef.isSensor = true;
@@ -179,8 +182,10 @@ public class Player extends PlayerAnimatorHandler {
         }
     }
     private void playerMovement() {
-        if(Gdx.input.isKeyJustPressed(Input.Keys.UP)){
-            body.applyLinearImpulse(new Vector2(0, JUMP_VELOCITY / PixelVars.UNITSCALE), this.body.getPosition(), true);
+        if(gameScreen.pixelContactListener.playerCanJump()) {
+            if (Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
+                body.applyLinearImpulse(new Vector2(0, JUMP_VELOCITY / PixelVars.UNITSCALE), this.body.getPosition(), true);
+            }
         }
     }
 }
