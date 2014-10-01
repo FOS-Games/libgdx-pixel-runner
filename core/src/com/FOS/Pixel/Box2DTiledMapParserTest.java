@@ -1,12 +1,8 @@
 package com.FOS.Pixel;
 
-import com.FOS.Pixel.Data.AbilityType;
-import com.FOS.Pixel.Data.LevelData;
-import com.FOS.Pixel.handlers.JsonHandler;
 import com.FOS.Pixel.screens.PixelScreen;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -18,13 +14,9 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.World;
-import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.ObjectMap;
-import com.badlogic.gdx.utils.*;
-
-import net.dermetfan.utils.libgdx.box2d.Box2DMapObjectParser;
-
-import net.dermetfan.utils.libgdx.graphics.Box2DSprite;
+import net.dermetfan.gdx.graphics.g2d.Box2DSprite;
+import net.dermetfan.gdx.physics.box2d.utils.Box2DMapObjectParser;
 
 
 /**
