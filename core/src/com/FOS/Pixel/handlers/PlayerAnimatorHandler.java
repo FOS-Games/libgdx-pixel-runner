@@ -48,15 +48,15 @@ public abstract class PlayerAnimatorHandler {
         // TODO : Replace with JSON method
         if(body == 0) {
             // full body
-            spriteSheet = new Texture("WIPsheet.png");
+            spriteSheet = new Texture("playerSheet 128.png");
         }
         else if(body == 1 && level == 0){
             // shoes level 0
-            spriteSheet = new Texture("WIPsheet.png");
+            spriteSheet = new Texture("playerSheet 128.png");
         }
         else if(body == 1 && level == 1){
             // shoes level 1
-            spriteSheet = new Texture("WIPsheet.png");
+            spriteSheet = new Texture("playerSheet 128.png");
         }
         else if(body == 1 && level == 2){
             // shoes level 2
