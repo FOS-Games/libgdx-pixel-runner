@@ -32,6 +32,26 @@ public abstract class PixelGameScreen implements Screen {
     Boolean BOX2DDEBUG = false;
 
 
+    public Game getGame() {
+        return game;
+    }
+
+    public World getWorld() {
+        return world;
+    }
+
+    public OrthographicCamera getCamera() {
+        return camera;
+    }
+
+    public SpriteBatch getSpriteBatch() {
+        return spriteBatch;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
     public PixelGameScreen(Game game){
 
         this.game=game;
@@ -46,6 +66,7 @@ public abstract class PixelGameScreen implements Screen {
         mapRenderer = new OrthogonalTiledMapRenderer(map, parser.getUnitScale());
 
     }
+
     @Override
     public void render(float delta) {
         mapRenderer.setView(camera);

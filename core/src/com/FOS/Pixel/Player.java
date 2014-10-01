@@ -1,15 +1,20 @@
 package com.FOS.Pixel;
 
+import com.FOS.Pixel.Data.AbilityData;
+import com.FOS.Pixel.Data.AbilityType;
 import com.FOS.Pixel.Data.PixelVars;
+import com.FOS.Pixel.handlers.PlayerAnimatorHandler;
+import com.FOS.Pixel.screens.GameScreen;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.utils.OrderedMap;
 
 /**
  * Created by Lars on 9/19/2014.
  */
-public class Player extends PlayerAnimator {
+public class Player extends PlayerAnimatorHandler {
 
     static final float ACCELERATION = 1f;       // acceleration in m/s of the player
     static final float JUMP_VELOCITY = 7.0f;    // jump velocity in m/s of the player
@@ -24,7 +29,7 @@ public class Player extends PlayerAnimator {
     Vector2 size = new Vector2(TEXTURE_W * PixelVars.UNITSCALE, TEXTURE_H * PixelVars.UNITSCALE);
     private Vector2 spawnpoint;
 
-    protected Body body;
+    private Body body;
     public Body getBody() { return body;}
 
     private float levelIncr;
@@ -36,12 +41,23 @@ public class Player extends PlayerAnimator {
     Fixture collisionFixture;
     Fixture feetFixture;
 
-    public Player(World world, Vector2 spawn) {
+    public Player(GameScreen gameScreen, Vector2 spawn) {
         super();
-        this.world = world;
+        this.world = gameScreen.getWorld();
         this.spawnpoint = spawn;
         InitBox2D();
-        //this.body.setLinearVelocity(5,0);
+    }
+
+    @Override
+    protected AbilityData getAbilities() {
+        //TODO: Return AbilityData
+        return null;
+    }
+
+    @Override
+    protected OrderedMap<AbilityType, Fixture> getFixtures() {
+        //TODO:Return OrderdMap with Fixtures per AbilityType
+        return null;
     }
 
     private void InitBox2D() {
@@ -99,10 +115,8 @@ public class Player extends PlayerAnimator {
     }
 
     public void update(float dt){
-        //this.body.setLinearVelocity(5,0);
         position = body.getPosition();
         playerMovement();
-        //this.body.setLinearVelocity(levelDefault,this.body.getLinearVelocity().y);
         playerUpdateSpeed();
     }
 

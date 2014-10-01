@@ -42,7 +42,7 @@ public class GameScreen extends PixelGameScreen {
            spawn = parser.getBodies().get("spawn").getPosition();
         }else{
             spawn = new Vector2(0,0); }
-        player=new Player(this.world, spawn);
+        player=new Player(this, spawn);
     }
 
     @Override
