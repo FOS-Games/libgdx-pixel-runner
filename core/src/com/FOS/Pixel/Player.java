@@ -108,10 +108,8 @@ public class Player extends PlayerAnimator {
     }
 
     public void update(float dt){
-        //this.body.setLinearVelocity(5,0);
         position = body.getPosition();
         playerMovement();
-        //this.body.setLinearVelocity(levelDefault,this.body.getLinearVelocity().y);
         playerUpdateSpeed();
     }
 
@@ -168,20 +166,8 @@ public class Player extends PlayerAnimator {
         }
     }
     private void playerMovement() {
-//        if(Gdx.input.isKeyPressed(Input.Keys.LEFT)&& body.getLinearVelocity().x >=-MAX_VEL){
-//            body.setLinearVelocity(body.getLinearVelocity().x-ACCELERATION,body.getLinearVelocity().y);
-//
-//        }
         if(Gdx.input.isKeyJustPressed(Input.Keys.UP)){
-            //body.setLinearVelocity(body.getLinearVelocity().x,JUMP_VELOCITY);
-            //body.applyLinearImpulse(0, JUMP_VELOCITY, body.getPosition().x, body.getPosition().y, true);
-
-            //body.applyLinearImpulse(0, body.getMass() * 10, body.getWorldCenter().x, body.getWorldCenter().y, true );
             body.applyLinearImpulse(new Vector2(0, JUMP_VELOCITY / Box2DTiledMapParserTest.UnitScale), this.body.getPosition(), true);
         }
-//        if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)&& body.getLinearVelocity().x <=MAX_VEL){
-//            body.setLinearVelocity(body.getLinearVelocity().x+ACCELERATION,body.getLinearVelocity().y);
-//        }
-
     }
 }

@@ -48,8 +48,6 @@ public class Box2DTiledMapParserTest extends PixelScreen {
     public void show() {
 
         world = new World(new Vector2(0, -player.GRAVITY), true);
-
-        world = new World(new Vector2(0, -9.81f), true);
         box2DRenderer = new Box2DDebugRenderer();
         camera = new OrthographicCamera();
 
@@ -146,6 +144,7 @@ public class Box2DTiledMapParserTest extends PixelScreen {
     public void updateCamera() {
 
         // TODO : Edit the way the camera behaves
+        //Yeahh it definitly needs to sit when I tell him too :P
         camera.position.x = player.position.x;
         camera.position.y = player.position.y;
         camera.update();
