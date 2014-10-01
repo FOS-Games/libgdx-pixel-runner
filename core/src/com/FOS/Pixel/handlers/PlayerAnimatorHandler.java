@@ -1,16 +1,21 @@
-package com.FOS.Pixel;
+package com.FOS.Pixel.handlers;
 
 
+import com.FOS.Pixel.Data.AbilityData;
+import com.FOS.Pixel.Data.AbilityType;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.physics.box2d.Fixture;
+import com.badlogic.gdx.utils.OrderedMap;
 import net.dermetfan.gdx.graphics.g2d.AnimatedBox2DSprite;
 import net.dermetfan.gdx.graphics.g2d.AnimatedSprite;
 
 /**
  * Created by Stefan on 29-9-2014.
  */
-public abstract class PlayerAnimator {
+public abstract class PlayerAnimatorHandler {
+
     public enum BodyPart{
         BODY,
         FEET,
@@ -26,7 +31,7 @@ public abstract class PlayerAnimator {
     private TextureRegion[] frames;
     private AnimatedBox2DSprite animatedBox2DSprite;
 
-    protected PlayerAnimator(){
+    protected PlayerAnimatorHandler(){
 
     }
 
@@ -146,4 +151,7 @@ public abstract class PlayerAnimator {
 
         return animatedBox2DSprite;
     }
+
+    protected abstract AbilityData getAbilities();
+    protected abstract OrderedMap<AbilityType,Fixture> getFixtures();
 }
