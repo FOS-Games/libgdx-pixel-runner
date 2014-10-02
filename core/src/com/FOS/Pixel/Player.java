@@ -10,6 +10,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.OrderedMap;
+import com.badlogic.gdx.utils.TimeUtils;
 
 /**
  * Created by Lars on 9/19/2014.
@@ -17,7 +18,7 @@ import com.badlogic.gdx.utils.OrderedMap;
 public class Player extends PlayerAnimatorHandler {
 
     static final float ACCELERATION = 1f;       // acceleration in m/s of the player
-    static final float JUMP_VELOCITY = 10f;    // jump velocity in m/s of the player
+    static final float JUMP_VELOCITY = 6f;    // jump velocity in m/s of the player
     static final float GRAVITY = 30f;         // gravity in m/s of the world (9.81 is earth like)
     static final float MAX_VEL = 10f;           // maximum velocity in m/s of the player
     static final int TEXTURE_W = 128;            // the width of the player sprite
@@ -184,21 +185,32 @@ public class Player extends PlayerAnimatorHandler {
 //        }
 //    }
 
+    boolean jumped = false;
+    boolean holdable = false;
+    long time = 0;
+
     private void playerJump() {
 
-
-        double jumpPushedTime;
-        double MaxVelocityApplyTime = 1;
-
         // First jump off the ground
-        if(gameScreen.pixelContactListener.playerCanJump() && Gdx.input.isKeyPressed(Input.Keys.UP)) {
-            jumpPushedTime = System.nanoTime() / 1E9; // converted to seconds
-            body.applyLinearImpulse(new Vector2(0, 2 / PixelVars.UNITSCALE), this.body.getPosition(), true);
+        if(jumped == false && gameScreen.pixelContactListener.playerCanJump() && Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
+            jumped = true;
+            holdable = true;
+            time = System.currentTimeMillis();
+            body.applyLinearImpulse(new Vector2(0, JUMP_VELOCITY / PixelVars.UNITSCALE), this.body.getPosition(), true);
+        }
+
+        // Check if key is released in between
+        if(!Gdx.input.isKeyPressed(Input.Keys.UP)) {
+            holdable = false;
         }
 
         // In the jumping activity
-        if(Gdx.input.isKeyPressed(Input.Keys.UP) && System.nanoTime() / 1E9 < MaxVelocityApplyTime) {
-            body.applyLinearImpulse(new Vector2(0, 2 / PixelVars.UNITSCALE), this.body.getPosition(), true);
+        if(holdable == true && Gdx.input.isKeyPressed(Input.Keys.UP) && TimeUtils.timeSinceMillis(time) <= 250) {
+            jumped = false;
+            body.applyLinearImpulse(new Vector2(0, (JUMP_VELOCITY / 4) / PixelVars.UNITSCALE), this.body.getPosition(), true);
+            body.setLinearVelocity(body.getLinearVelocity().x, body.getLinearVelocity().y * 0.85f);
+
         }
+
     }
 }
