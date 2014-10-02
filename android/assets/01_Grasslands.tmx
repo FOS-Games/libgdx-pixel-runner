@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="1000" height="20" tilewidth="69" tileheight="70">
+ <tileset firstgid="1" name="forestSheet" tilewidth="69" tileheight="70">
+  <image source="forestSheet.png" width="276" height="140"/>
+ </tileset>
+ <layer name="Tilelaag 1" width="1000" height="20">
+  <data encoding="base64" compression="zlib">
+   eJzt2ssKgzAQBVD7oP3/P65dCKXk1RgzBc+BWUnGuLzjLAsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABDpstYjUdfISwEAAMCJvLP5ba1nou5LXEbPzQw2I5+ZQwAAABCplM0jM3rpXpuRzyLnEAAAAJxbSzaPyK+1e+018htT//hbevSeAwAAYJ7U/vWeyvVtzeaf+XXGrnntXnuNmkPk5gi1Hr3nAAAAmOuXzNxSR/U9ate89Z29RuwK1P7x53r0ngMAAGA++Tw2n285ubST0LJ7kOrRe+577wAAAIDjyefx+fxfCwAAgHnkc/lcPgcAAIgnn8vn8jkAAEC8FzLfEu0=
+  </data>
+ </layer>
+ <objectgroup name="Ground">
+  <object x="0" y="980" width="1380" height="420"/>
+  <object x="1518" y="1400">
+   <polyline points="0,0 0,-420 276,-420 552,-700 897,-700 1173,-420 1449,-420 1449,0 0,0"/>
+  </object>
+  <object x="3105" y="980" width="345" height="420"/>
+  <object x="3588" y="980" width="345" height="420"/>
+  <object x="4071" y="980">
+   <polyline points="0,0 345,0 552,-210 897,-210 897,420 0,420 0,0"/>
+  </object>
+  <object x="5106" y="770" width="345" height="140"/>
+  <object x="5589" y="770" width="345" height="140"/>
+  <object x="6072" y="1400">
+   <polyline points="0,0 0,-630 345,-630 690,-280 1173,-280 1380,-490 1656,-490 1863,-280 2139,-280 2346,-490 2622,-490 2829,-280 3243,-280 3243,0 0,0"/>
+  </object>
+ </objectgroup>
+ <objectgroup name="Spawn">
+  <object name="spawn" type="object" x="207" y="770" width="69" height="70"/>
+ </objectgroup>
+</map>
