@@ -15,7 +15,6 @@ import com.badlogic.gdx.utils.TimeUtils;
 
 public class Player extends PlayerAnimatorHandler {
 
-    static final float JUMP_VELOCITY = 6f;    // jump velocity in m/s of the player
 
     static final float JUMP_VELOCITY = 10f;    // jump velocity in m/s of the player
     static final float MAX_VEL = 10f;           // maximum velocity in m/s of the player
