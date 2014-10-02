@@ -20,8 +20,8 @@ public class Player extends PlayerAnimatorHandler {
     static final float JUMP_VELOCITY = 10f;    // jump velocity in m/s of the player
     static final float GRAVITY = 30f;         // gravity in m/s of the world (9.81 is earth like)
     static final float MAX_VEL = 10f;           // maximum velocity in m/s of the player
-    static final int TEXTURE_W = 64;            // the width of the player sprite
-    static final int TEXTURE_H = 64;            // the height of the player sprite
+    static final int TEXTURE_W = 128;            // the width of the player sprite
+    static final int TEXTURE_H = 128;            // the height of the player sprite
 
     public Vector2 position = new Vector2();
     public Vector2 velocity = new Vector2();
@@ -37,9 +37,9 @@ public class Player extends PlayerAnimatorHandler {
     private float levelDefault = 8f;
 
     protected World world;
-    Fixture bodyFixture;
-    Fixture collisionFixture;
-    Fixture feetFixture;
+    FixtureDef bodyFixture = new FixtureDef();
+    FixtureDef collisionFixture = new FixtureDef();
+    FixtureDef feetFixture = new FixtureDef();
     GameScreen gameScreen;
 
     public Player(GameScreen gameScreen, Vector2 spawn) {
@@ -81,40 +81,37 @@ public class Player extends PlayerAnimatorHandler {
         // Create the full body fixture
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(size.x,size.y);
-        bodyFixture = body.createFixture(shape, 1);
+
+        bodyFixture.shape = shape;
+        bodyFixture.isSensor = true;
+        bodyFixture.density = 0;
+
+        body.createFixture(bodyFixture).setUserData(super.createAnimation(0, 0));
         shape.dispose();
 
-        // Make the full body fixture non-collidable
-        bodyFixture.setSensor(true);
-
-        // Add the sprite animation to the player
-        //bodyFixture.setUserData(super.createAnimation(0, 0));
     }
 
     private void initCollision() {
-        FixtureDef collDef = new FixtureDef();
-
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(size.x / 4, size.y);
 
-        collDef.shape = shape;
-        collDef.density = 1;
-        collDef.friction = 0;
+        collisionFixture.shape = shape;
+        collisionFixture.density = 1;
+        collisionFixture.friction = 0;
 
-        body.createFixture(collDef).setUserData("collision");
+        body.createFixture(collisionFixture).setUserData("collision");
         shape.dispose();
     }
 
     private void initSensors() {
-        FixtureDef feetDef = new FixtureDef();
-
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(size.x / 4, size.y / 4, new Vector2(0,-size.y), 0);
 
-        feetDef.shape = shape;
-        feetDef.isSensor = true;
+        feetFixture.shape = shape;
+        feetFixture.density = 0;
+        feetFixture.isSensor = true;
 
-        body.createFixture(feetDef).setUserData("foot");
+        body.createFixture(feetFixture).setUserData("foot");
         shape.dispose();
     }
 
