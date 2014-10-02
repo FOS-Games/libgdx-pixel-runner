@@ -14,6 +14,7 @@ public class LevelData {
 
     String tmxpath;
     String musicpath;
+    String background;
 
 
     /**
@@ -33,7 +34,7 @@ public class LevelData {
      * @param tmxpath Path to the tmx map
      * @param musicpath Path to the level music
      */
-    public LevelData(float minSpeed, float maxSpeed, float speedIncr, float bronzeTime, float silverTime, float goldTime, String tmxpath, String musicpath) {
+    public LevelData(float minSpeed, float maxSpeed, float speedIncr, float bronzeTime, float silverTime, float goldTime, String tmxpath, String musicpath, String background) {
         this.minSpeed = minSpeed;
         this.maxSpeed = maxSpeed;
         this.speedIncr = speedIncr;
@@ -42,6 +43,8 @@ public class LevelData {
         this.goldTime = goldTime;
         this.tmxpath = tmxpath;
         this.musicpath = musicpath;
+        this.background = background;
+
     }
 
     public float getMinSpeed() {
