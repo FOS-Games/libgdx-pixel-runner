@@ -47,11 +47,11 @@ public class GameScreen extends PixelGameScreen {
     @Override
     public void show() {
         createPlayer();
-
         world.setContactListener(pixelContactListener);
-
         // set camera zoom
-        camera.zoom = 2.5f;
+
+        camera.zoom = 1.0f;
+        super.startMusic();
 
     }
 
