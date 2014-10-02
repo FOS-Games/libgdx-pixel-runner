@@ -11,14 +11,10 @@ import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.OrderedMap;
 
-/**
- * Created by Lars on 9/19/2014.
- */
+
 public class Player extends PlayerAnimatorHandler {
 
-    static final float ACCELERATION = 1f;       // acceleration in m/s of the player
     static final float JUMP_VELOCITY = 10f;    // jump velocity in m/s of the player
-    static final float GRAVITY = 30f;         // gravity in m/s of the world (9.81 is earth like)
     static final float MAX_VEL = 10f;           // maximum velocity in m/s of the player
     static final int TEXTURE_W = 64;            // the width of the player sprite
     static final int TEXTURE_H = 64;            // the height of the player sprite
