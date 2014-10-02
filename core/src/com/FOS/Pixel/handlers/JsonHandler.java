@@ -30,11 +30,11 @@ public class JsonHandler {
      * @return LevelData class with the data from the json file
      */
     public static LevelData readLevel(int levelNumber) {
-        OrderedMap<String, LevelData> jsonmap = json.fromJson(OrderedMap.class, Gdx.files.local("leveldata.json"));
+        OrderedMap<String, LevelData> jsonmap = json.fromJson(OrderedMap.class, Gdx.files.internal("leveldata.json"));
         return jsonmap.get("Level" + levelNumber);
     }
     public  static int getLevelCount(){
-        OrderedMap<String, LevelData> jsonmap = json.fromJson(OrderedMap.class, Gdx.files.local("leveldata.json"));
+        OrderedMap<String, LevelData> jsonmap = json.fromJson(OrderedMap.class, Gdx.files.internal("leveldata.json"));
         return  jsonmap.size;
     }
 
@@ -93,7 +93,7 @@ public class JsonHandler {
      */
     public static AbilityParser getAbiltydata(String type, int level) {
 
-        ArrayList<typeholder> test = json.fromJson(ArrayList.class, typeholder.class, Gdx.files.local("abilitydata.json"));
+        ArrayList<typeholder> test = json.fromJson(ArrayList.class, typeholder.class, Gdx.files.internal("abilitydata.json"));
 
         Abilitylevel[] levelholder = null;
 

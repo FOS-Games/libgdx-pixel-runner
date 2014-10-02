@@ -39,13 +39,22 @@ public class AbilityData{
      * @return New Ability Data with both previous values
      */
     public AbilityData add(AbilityData x){
-        ArrayList<AbilityType> collection = new ArrayList<AbilityType>();
-        collection.addAll(Arrays.asList(this.data));
-        collection.addAll(Arrays.asList(x.data));
-        HashSet<AbilityType> hs = new HashSet<AbilityType>(collection);
-        collection.clear();
-        collection.addAll(hs);
-        AbilityType[] abilityTypes =(AbilityType[]) collection.toArray();
+        AbilityType[] abilityTypes;
+        if(Arrays.asList(this.data).contains(AbilityType.NONE)){
+            abilityTypes = x.data;
+        }
+        else if(Arrays.asList(x).contains(AbilityType.NONE)){
+            abilityTypes = x.data;
+        }
+        else {
+            ArrayList<AbilityType> collection = new ArrayList<AbilityType>();
+            collection.addAll(Arrays.asList(this.data));
+            collection.addAll(Arrays.asList(x.data));
+            HashSet<AbilityType> hs = new HashSet<AbilityType>(collection);
+            collection.clear();
+            collection.addAll(hs);
+            abilityTypes = (AbilityType[]) collection.toArray();
+        }
         return new AbilityData(abilityTypes,this.jump+x.jump,this.strength+x.strength,this.speed+x.speed);
     }
 

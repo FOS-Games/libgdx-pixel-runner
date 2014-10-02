@@ -46,6 +46,8 @@ public class Player extends PlayerAnimatorHandler {
         this.spawnpoint = spawn;
         this.gameScreen = gameScreen;
 
+        //TODO: get relevant player data from save data
+
         InitBox2D();
         body.setUserData(this);
     }
@@ -210,4 +212,6 @@ public class Player extends PlayerAnimatorHandler {
         }
 
     }
+
+
 }

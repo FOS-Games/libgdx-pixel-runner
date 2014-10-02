@@ -12,11 +12,13 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.Json;
+import com.badlogic.gdx.utils.ObjectMap;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.badlogic.gdx.utils.viewport.ScalingViewport;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
@@ -61,7 +63,9 @@ public class GameScreen extends PixelGameScreen {
      */
     private void createPlayer(){
         Vector2 spawn;
+        ObjectMap<String,Body> bodiemap = parser.getBodies();
         if(parser.getBodies().containsKey("spawn")) {
+            bodiemap.get("spawn").getFixtureList().get(0).setSensor(true);
            spawn = parser.getBodies().get("spawn").getPosition();
         }else{
             spawn = new Vector2(0,0); }
