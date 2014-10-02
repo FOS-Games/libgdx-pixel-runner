@@ -121,7 +121,7 @@ public class Player extends PlayerAnimatorHandler {
 
     public void update(float dt){
         position = body.getPosition();
-        playerMovement();
+        playerJump();
         playerUpdateSpeed();
     }
 
@@ -177,11 +177,28 @@ public class Player extends PlayerAnimatorHandler {
             return true;
         }
     }
-    private void playerMovement() {
-        if(gameScreen.pixelContactListener.playerCanJump()) {
-            if (Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
-                body.applyLinearImpulse(new Vector2(0, JUMP_VELOCITY / PixelVars.UNITSCALE), this.body.getPosition(), true);
-            }
+//    private void playerJump() {
+//        if(gameScreen.pixelContactListener.playerCanJump()) {
+//            if (Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
+//                body.applyLinearImpulse(new Vector2(0, JUMP_VELOCITY / PixelVars.UNITSCALE), this.body.getPosition(), true);
+//        }
+//    }
+
+    private void playerJump() {
+
+
+        double jumpPushedTime;
+        double MaxVelocityApplyTime = 1;
+
+        // First jump off the ground
+        if(gameScreen.pixelContactListener.playerCanJump() && Gdx.input.isKeyPressed(Input.Keys.UP)) {
+            jumpPushedTime = System.nanoTime() / 1E9; // converted to seconds
+            body.applyLinearImpulse(new Vector2(0, 2 / PixelVars.UNITSCALE), this.body.getPosition(), true);
+        }
+
+        // In the jumping activity
+        if(Gdx.input.isKeyPressed(Input.Keys.UP) && System.nanoTime() / 1E9 < MaxVelocityApplyTime) {
+            body.applyLinearImpulse(new Vector2(0, 2 / PixelVars.UNITSCALE), this.body.getPosition(), true);
         }
     }
 }
