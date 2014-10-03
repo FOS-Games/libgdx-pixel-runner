@@ -53,7 +53,7 @@ public abstract class PlayerAnimatorHandler {
     protected AnimatedBox2DSprite createAnimation(Texture spriteSheet) {
 
         TextureRegion[][] tmp = TextureRegion.split(spriteSheet, spriteSheet.getWidth()/COLUMNS, spriteSheet.getHeight()/ROWS);
-        frames = new TextureRegion[COLUMNS * ROWS];
+        frames = new TextureRegion[4];
 
         int index = 0;
 
@@ -73,6 +73,7 @@ public abstract class PlayerAnimatorHandler {
 
         // Create a Box2DSprite out of the animation
         animatedBox2DSprite = new AnimatedBox2DSprite(new AnimatedSprite(animation));
+
 
         // Properties of the Box2DSprite
         //animatedBox2DSprite.setScale(0.1f);
