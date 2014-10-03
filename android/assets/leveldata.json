@@ -3,11 +3,12 @@ Level1: {
 	class: com.FOS.Pixel.Data.LevelData,
 	maxSpeed: 2,
 	tmxpath: level_2_grass.tmx,
-	bronzeTime: 30,
-	musicpath: flatwound_-_The_Long_Goodbye.mp3,
-	goldTime: 10,
+	bronzeTime: 120,
+	musicpath: soundpath/sound.mp3,
+	goldTime: 60,
+	background: Background.path,
 	minSpeed: 1,
-	silverTime: 20,
+	silverTime: 90,
 	speedIncr: 1
 },
 Level2: {
@@ -17,6 +18,7 @@ Level2: {
 	bronzeTime: 120,
 	musicpath: soundpath/sound.mp3,
 	goldTime: 60,
+	background: Background.path,
 	minSpeed: 1,
 	silverTime: 90,
 	speedIncr: 1

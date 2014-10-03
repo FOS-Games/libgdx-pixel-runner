@@ -1,0 +1,14 @@
+{
+levelSaveDatas: [
+	{
+		unlocked: true
+	},
+	{}
+],
+playerData: {
+	data: [
+		NONE
+	],
+	skinType: HUMAN
+}
+}

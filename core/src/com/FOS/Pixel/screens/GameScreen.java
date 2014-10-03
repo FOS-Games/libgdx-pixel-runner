@@ -48,6 +48,7 @@ public class GameScreen extends PixelGameScreen {
     }
     @Override
     public void show() {
+
         createPlayer();
         world.setContactListener(pixelContactListener);
         // set camera zoom
@@ -67,6 +68,7 @@ public class GameScreen extends PixelGameScreen {
         if(parser.getBodies().containsKey("spawn")) {
             bodyMap.get("spawn").getFixtureList().get(0).setSensor(true);
             spawn = parser.getBodies().get("spawn").getPosition();
+
         }else{
             spawn = new Vector2(0,0); }
         player=new Player(this, spawn);
