@@ -96,15 +96,19 @@ public class JsonHandler {
         ArrayList<typeholder> test = json.fromJson(ArrayList.class, typeholder.class, Gdx.files.internal("abilitydata.json"));
 
         Abilitylevel[] levelholder = null;
-
+        //System.out.println("Searching for: Type "+type.toString()+",Level"+level);
         for (typeholder x : test) {
             if (x.Type.equals( type)) {
+                //System.out.println("Found Type ");
                 levelholder = x.Level;
             }
         }
         if (levelholder != null) {
             for (Abilitylevel x : levelholder) {
+                //System.out.println(x.level);
                 if (x.level.equals( "Level"+level)){
+
+                    //System.out.println("Found level ");
                     return x.abilityData;
 
                 }

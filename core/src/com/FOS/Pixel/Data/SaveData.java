@@ -7,6 +7,7 @@ import java.util.Arrays;
  * Created by Lars on 10/2/2014.
  */
 public class SaveData {
+
     PlayerData playerData;
     LevelSaveData[] levelSaveDatas;
     int totalOrbs;

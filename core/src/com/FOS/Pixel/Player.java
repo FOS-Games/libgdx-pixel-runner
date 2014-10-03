@@ -70,7 +70,7 @@ public class Player extends PlayerAnimatorHandler{
 
     @Override
     protected PlayerData getPlayerData() {
-        return null;
+        return SaveHandler.getSaveData().getPlayerData();
     }
 
     @Override

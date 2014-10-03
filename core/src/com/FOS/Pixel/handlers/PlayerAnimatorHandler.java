@@ -87,12 +87,16 @@ public abstract class PlayerAnimatorHandler {
     protected void InitAnimation(){
 
         PlayerData Data = getPlayerData();
+        System.out.println(Data.toString());
         OrderedMap<AbilityType,Fixture> fixtureOrderedMap = getFixtures();
         Fixture bodyFixture = getBodyFixture();
 
         for(AbilityType type : fixtureOrderedMap.keys()){
             AbilityData abilityData = Data.getAbilityData(type);
-            fixtureOrderedMap.get(type).setUserData(createAnimation(new Texture(Gdx.files.internal(abilityData.getTexturename()))));
+            String texturepath =abilityData.getTexturename();
+            System.out.println(texturepath);
+            Texture texture = new Texture(Gdx.files.internal(texturepath));
+            fixtureOrderedMap.get(type).setUserData(createAnimation(texture));
         }
         bodyFixture.setUserData(createAnimation(new Texture(Gdx.files.internal(skinTypeStringOrderedMap.get(Data.getSkinType())))));
 

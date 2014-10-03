@@ -95,5 +95,10 @@ public class PlayerData {
     public SkinType getSkinType() {
         return skinType;
     }
+
+    @Override
+    public String toString() {
+        return "Data: "+this.data.toString()+", Jumplevel: "+this.jump+", StrengthLevel: "+ strength+", Speedlevel: "+this.speed+", Skin: "+this.skinType.toString();
+    }
 }
 
