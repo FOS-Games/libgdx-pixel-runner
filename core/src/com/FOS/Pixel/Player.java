@@ -142,7 +142,7 @@ public class Player extends PlayerAnimatorHandler{
         feetDef.density = 0;
         feetDef.isSensor = true;
 
-        collisionFixture = body.createFixture(feetDef);
+        feetFixture = body.createFixture(feetDef);
         shape.dispose();
     }
 
@@ -156,7 +156,7 @@ public class Player extends PlayerAnimatorHandler{
         wingDef.density = 0;
         wingDef.isSensor = true;
 
-        collisionFixture = body.createFixture(wingDef);
+        wingFixture = body.createFixture(wingDef);
         shape.dispose();
     }
 
@@ -170,8 +170,7 @@ public class Player extends PlayerAnimatorHandler{
         weaponDef.density = 0;
         weaponDef.isSensor = true;
 
-        collisionFixture = body.createFixture(weaponDef);
-        collisionFixture.setUserData("weapon");
+        weaponFixture = body.createFixture(weaponDef);
         shape.dispose();
     }
 
