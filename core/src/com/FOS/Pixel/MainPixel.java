@@ -1,5 +1,6 @@
 package com.FOS.Pixel;
 
+import com.FOS.Pixel.handlers.JsonHandler;
 import com.FOS.Pixel.handlers.SaveHandler;
 import com.FOS.Pixel.screens.GameScreen;
 import com.badlogic.gdx.Game;

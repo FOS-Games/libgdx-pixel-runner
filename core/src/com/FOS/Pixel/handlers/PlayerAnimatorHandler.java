@@ -2,7 +2,9 @@ package com.FOS.Pixel.handlers;
 
 
 import com.FOS.Pixel.Data.AbilityData;
-import com.FOS.Pixel.Data.AbilityType;
+import com.FOS.Pixel.Data.PlayerData;
+import com.FOS.Pixel.Data.PlayerData.AbilityType;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -26,12 +28,17 @@ public abstract class PlayerAnimatorHandler {
     private static final int COLUMNS = 4;   // amount of columns (vertical) in the spritesheet
     private static final int ROWS = 1;      // amount of rows (horizontal) in the spritesheet
 
-    private Texture spriteSheet;
     private Animation animation;
     private TextureRegion[] frames;
     private AnimatedBox2DSprite animatedBox2DSprite;
 
+    private OrderedMap<PlayerData.SkinType,String> skinTypeStringOrderedMap = new OrderedMap<PlayerData.SkinType, String>();
+
     protected PlayerAnimatorHandler(){
+
+        skinTypeStringOrderedMap.put(PlayerData.SkinType.HUMAN,"WIPsheet.png");
+        skinTypeStringOrderedMap.put(PlayerData.SkinType.ORC,"WIPsheet.png");
+        skinTypeStringOrderedMap.put(PlayerData.SkinType.ELF,"WIPsheet.png");
 
     }
 
@@ -43,85 +50,7 @@ public abstract class PlayerAnimatorHandler {
 
     // int level
     // level of the ability
-    protected AnimatedBox2DSprite createAnimation(int body, int level) {
-
-        // TODO : Replace with JSON method
-        if(body == 0) {
-            // full body
-            spriteSheet = new Texture("playerSheet 128.png");
-        }
-        else if(body == 1 && level == 0){
-            // shoes level 0
-            spriteSheet = new Texture("playerSheet 128.png");
-        }
-        else if(body == 1 && level == 1){
-            // shoes level 1
-            spriteSheet = new Texture("playerSheet 128.png");
-        }
-        else if(body == 1 && level == 2){
-            // shoes level 2
-            spriteSheet = new Texture("WIPsheet.png");
-        }
-        else if(body == 1 && level == 3){
-            // shoes level 3
-            spriteSheet = new Texture("WIPsheet.png");
-        }
-        else if(body == 1 && level == 4){
-            // shoes level 4
-            spriteSheet = new Texture("WIPsheet.png");
-        }
-        else if(body == 1 && level == 5){
-            // shoes level 5
-            spriteSheet = new Texture("WIPsheet.png");
-        }
-        else if(body == 2 && level == 0){
-            // wings level 0
-            spriteSheet = new Texture("WIPsheet.png");
-        }
-        else if(body == 2 && level == 1){
-            // wings level 1
-            spriteSheet = new Texture("WIPsheet.png");
-        }
-        else if(body == 2 && level == 2){
-            // wings level 2
-            spriteSheet = new Texture("WIPsheet.png");
-        }
-        else if(body == 2 && level == 3){
-            // wings level 3
-            spriteSheet = new Texture("WIPsheet.png");
-        }
-        else if(body == 2 && level == 4){
-            // wings level 4
-            spriteSheet = new Texture("WIPsheet.png");
-        }
-        else if(body == 2 && level == 5) {
-            // wings level 5
-            spriteSheet = new Texture("WIPsheet.png");
-        }
-        else if(body == 3 && level == 0){
-            // weapon level 0
-            spriteSheet = new Texture("WIPsheet.png");
-        }
-        else if(body == 3 && level == 1){
-            // weapon level 1
-            spriteSheet = new Texture("WIPsheet.png");
-        }
-        else if(body == 3 && level == 2){
-            // weapon level 2
-            spriteSheet = new Texture("WIPsheet.png");
-        }
-        else if(body == 3 && level == 3){
-            // weapon level 3
-            spriteSheet = new Texture("WIPsheet.png");
-        }
-        else if(body == 3 && level == 4){
-            // weapon level 4
-            spriteSheet = new Texture("WIPsheet.png");
-        }
-        else if(body == 3 && level == 5){
-            // weapon level 5
-            spriteSheet = new Texture("WIPsheet.png");
-        }
+    protected AnimatedBox2DSprite createAnimation(Texture spriteSheet) {
 
         TextureRegion[][] tmp = TextureRegion.split(spriteSheet, spriteSheet.getWidth()/COLUMNS, spriteSheet.getHeight()/ROWS);
         frames = new TextureRegion[COLUMNS * ROWS];
@@ -152,6 +81,24 @@ public abstract class PlayerAnimatorHandler {
         return animatedBox2DSprite;
     }
 
-    protected abstract AbilityData getAbilities();
+    protected void InitAnimation(){
+
+        PlayerData Data = getPlayerData();
+        OrderedMap<AbilityType,Fixture> fixtureOrderedMap = getFixtures();
+        Fixture bodyFixture = getBodyFixture();
+
+        for(AbilityType type : fixtureOrderedMap.keys()){
+            AbilityData abilityData = Data.getAbilityData(type);
+            fixtureOrderedMap.get(type).setUserData(createAnimation(new Texture(Gdx.files.internal(abilityData.getTexturename()))));
+        }
+        bodyFixture.setUserData(createAnimation(new Texture(Gdx.files.internal(skinTypeStringOrderedMap.get(Data.getSkinType())))));
+
+
+    }
+
+
+
+    protected abstract PlayerData getPlayerData();
     protected abstract OrderedMap<AbilityType,Fixture> getFixtures();
+    protected abstract Fixture getBodyFixture();
 }

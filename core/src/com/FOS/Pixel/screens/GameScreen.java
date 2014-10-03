@@ -48,6 +48,7 @@ public class GameScreen extends PixelGameScreen {
     }
     @Override
     public void show() {
+
         createPlayer();
 
         world.setContactListener(pixelContactListener);

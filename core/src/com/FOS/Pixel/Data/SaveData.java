@@ -7,17 +7,15 @@ import java.util.Arrays;
  * Created by Lars on 10/2/2014.
  */
 public class SaveData {
-    AbilityData abilityData;
-    String playerRace;
+    PlayerData playerData;
     LevelSaveData[] levelSaveDatas;
     int totalOrbs;
 
     public SaveData() {
     }
 
-    public SaveData(AbilityData abilityData, String playerRace, LevelSaveData[] levelSaveDatas, int totalOrbs) {
-        this.abilityData = abilityData;
-        this.playerRace = playerRace;
+    public SaveData(PlayerData playerData, LevelSaveData[] levelSaveDatas, int totalOrbs) {
+        this.playerData = playerData;
         this.levelSaveDatas = levelSaveDatas;
         this.totalOrbs = totalOrbs;
     }
@@ -31,5 +29,18 @@ public class SaveData {
         else{
             levelSaveDatas[level-1] = saveData;
         }
+    }
+
+    public PlayerData getPlayerData() {
+        return playerData;
+    }
+
+
+    public LevelSaveData[] getLevelSaveDatas() {
+        return levelSaveDatas;
+    }
+
+    public int getTotalOrbs() {
+        return totalOrbs;
     }
 }

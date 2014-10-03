@@ -1,8 +1,8 @@
 package com.FOS.Pixel.handlers;
 
-import com.FOS.Pixel.Data.AbilityParser;
-import com.FOS.Pixel.Data.AbilityType;
+import com.FOS.Pixel.Data.AbilityData;
 import com.FOS.Pixel.Data.LevelData;
+import com.FOS.Pixel.Data.PlayerData;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.Json;
@@ -38,51 +38,51 @@ public class JsonHandler {
         return  jsonmap.size;
     }
 
-//    /**
-//     * stupid test method
-//     */
-//    public static void test() {
-//        AbilityParser test = new AbilityParser(1f, "DEFAULT.png");
-//        ArrayList<typeholder> x = new ArrayList<typeholder>();
-//        x.add(new typeholder(AbilityType.SPEED.toString(), new Abilitylevel[]{
-//                new Abilitylevel("Level1", test),
-//                new Abilitylevel("Level2", test),
-//                new Abilitylevel("Level3", test),
-//                new Abilitylevel("Level4", test),
-//                new Abilitylevel("Level5", test)
-//
-//        }));
-//        x.add(new typeholder(AbilityType.STRENGTH.toString(), new Abilitylevel[]{
-//                new Abilitylevel("Level1", test),
-//                new Abilitylevel("Level2", test),
-//                new Abilitylevel("Level3", test),
-//                new Abilitylevel("Level4", test),
-//                new Abilitylevel("Level5", test)
-//
-//        }));
-//        x.add(new typeholder(AbilityType.JUMP.toString(), new Abilitylevel[]{
-//                new Abilitylevel("Level1", test),
-//                new Abilitylevel("Level2", test),
-//                new Abilitylevel("Level3", test),
-//                new Abilitylevel("Level4", test),
-//                new Abilitylevel("Level5", test)
-//
-//        }));
-//
-//        String printdata = json.prettyPrint(x);
-//        FileHandle fileHandle = Gdx.files.local("abilitydata.json");
-//        fileHandle.writeString(printdata, true);
-//
-//        OrderedMap<String, LevelData> leveldatatest = new OrderedMap<String, LevelData>();
-//        LevelData  leveltest = new LevelData(1f,2f,1f,120,90,60,"tmxpath/map.tmx","soundpath/sound.mp3");
-//        leveldatatest.put("Level1",leveltest);
-//        leveldatatest.put("Level2",leveltest);
-//        printdata = json.prettyPrint(leveldatatest);
-//         fileHandle = Gdx.files.local("leveldata.json");
-//        fileHandle.writeString(printdata,true);
-//
-//
-//    }
+    /**
+     * stupid test method
+     */
+    public static void test() {
+        AbilityData test = new AbilityData(1f, "DEFAULT.png");
+        ArrayList<typeholder> x = new ArrayList<typeholder>();
+        x.add(new typeholder(PlayerData.AbilityType.SPEED.toString(), new Abilitylevel[]{
+                new Abilitylevel("Level1", test),
+                new Abilitylevel("Level2", test),
+                new Abilitylevel("Level3", test),
+                new Abilitylevel("Level4", test),
+                new Abilitylevel("Level5", test)
+
+        }));
+        x.add(new typeholder(PlayerData.AbilityType.STRENGTH.toString(), new Abilitylevel[]{
+                new Abilitylevel("Level1", test),
+                new Abilitylevel("Level2", test),
+                new Abilitylevel("Level3", test),
+                new Abilitylevel("Level4", test),
+                new Abilitylevel("Level5", test)
+
+        }));
+        x.add(new typeholder(PlayerData.AbilityType.JUMP.toString(), new Abilitylevel[]{
+                new Abilitylevel("Level1", test),
+                new Abilitylevel("Level2", test),
+                new Abilitylevel("Level3", test),
+                new Abilitylevel("Level4", test),
+                new Abilitylevel("Level5", test)
+
+        }));
+
+        String printdata = json.prettyPrint(x);
+        FileHandle fileHandle = Gdx.files.local("abilitydata.json");
+        fileHandle.writeString(printdata, true);
+
+        OrderedMap<String, LevelData> leveldatatest = new OrderedMap<String, LevelData>();
+        LevelData  leveltest = new LevelData(1f,2f,1f,120,90,60,"tmxpath/map.tmx","soundpath/sound.mp3","Background.path");
+        leveldatatest.put("Level1",leveltest);
+        leveldatatest.put("Level2",leveltest);
+        printdata = json.prettyPrint(leveldatatest);
+         fileHandle = Gdx.files.local("leveldata.json");
+        fileHandle.writeString(printdata,true);
+
+
+    }
 
 
     /**
@@ -91,7 +91,7 @@ public class JsonHandler {
      * @param level Integer to indicate level
      * @return AbilityParser with data from json. Or null if data is not present.
      */
-    public static AbilityParser getAbiltydata(String type, int level) {
+    public static AbilityData getAbiltydata(String type, int level) {
 
         ArrayList<typeholder> test = json.fromJson(ArrayList.class, typeholder.class, Gdx.files.internal("abilitydata.json"));
 
@@ -119,9 +119,9 @@ public class JsonHandler {
 
 class Abilitylevel {
     String level;
-    AbilityParser abilityData;
+    AbilityData abilityData;
 
-    Abilitylevel(String level, AbilityParser abilityData) {
+    Abilitylevel(String level, AbilityData abilityData) {
         this.level = level;
         this.abilityData = abilityData;
     }

@@ -1,6 +1,6 @@
 package com.FOS.Pixel.handlers;
 
-import com.FOS.Pixel.Data.AbilityData;
+import com.FOS.Pixel.Data.PlayerData;
 import com.FOS.Pixel.Data.LevelSaveData;
 import com.FOS.Pixel.Data.SaveData;
 import com.badlogic.gdx.Gdx;
@@ -18,12 +18,10 @@ public class SaveHandler {
     public static void Initialize(){
 
         FileHandle file = Gdx.files.local("saves/savedata.json");
-        //TODO: check file present
         if(!file.exists()){
 
             String savestring = json.prettyPrint(new SaveData(
-                    new AbilityData(),
-                    "jemoeder",
+                    new PlayerData(PlayerData.AbilityType.NONE,0,0,0, PlayerData.SkinType.HUMAN),
                     new LevelSaveData[]{
                             new LevelSaveData(0,0,true),
                             new LevelSaveData(0,0,false)

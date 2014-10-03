@@ -1,9 +1,10 @@
 package com.FOS.Pixel;
 
-import com.FOS.Pixel.Data.AbilityData;
-import com.FOS.Pixel.Data.AbilityType;
+import com.FOS.Pixel.Data.PlayerData;
+import com.FOS.Pixel.Data.PlayerData.AbilityType;
 import com.FOS.Pixel.Data.PixelVars;
 import com.FOS.Pixel.handlers.PlayerAnimatorHandler;
+import com.FOS.Pixel.handlers.SaveHandler;
 import com.FOS.Pixel.screens.GameScreen;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.math.Vector2;
@@ -40,27 +41,34 @@ public class Player extends PlayerAnimatorHandler {
     FixtureDef feetFixture = new FixtureDef();
     GameScreen gameScreen;
 
+    PlayerData playerData;
+
     public Player(GameScreen gameScreen, Vector2 spawn) {
         super();
         this.world = gameScreen.getWorld();
         this.spawnpoint = spawn;
         this.gameScreen = gameScreen;
 
-        //TODO: get relevant player data from save data
+        playerData=SaveHandler.getSaveData().getPlayerData();
 
         InitBox2D();
         body.setUserData(this);
     }
 
     @Override
-    protected AbilityData getAbilities() {
-        //TODO: Return AbilityData
+    protected PlayerData getPlayerData() {
         return null;
     }
 
     @Override
     protected OrderedMap<AbilityType, Fixture> getFixtures() {
         //TODO:Return OrderdMap with Fixtures per AbilityType
+        return null;
+    }
+
+    @Override
+    protected Fixture getBodyFixture() {
+        //TODO:return body fixture
         return null;
     }
 
@@ -86,7 +94,6 @@ public class Player extends PlayerAnimatorHandler {
         bodyFixture.isSensor = true;
         bodyFixture.density = 0;
 
-        body.createFixture(bodyFixture).setUserData(super.createAnimation(0, 0));
         shape.dispose();
 
     }

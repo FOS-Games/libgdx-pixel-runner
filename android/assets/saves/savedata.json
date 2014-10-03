@@ -5,6 +5,10 @@ levelSaveDatas: [
 	},
 	{}
 ],
-playerRace: jemoeder,
-abilityData: {}
+playerData: {
+	data: [
+		NONE
+	],
+	skinType: HUMAN
+}
 }
