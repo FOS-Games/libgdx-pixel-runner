@@ -39,7 +39,11 @@ public class Player extends PlayerAnimatorHandler {
     protected World world;
     FixtureDef bodyFixture = new FixtureDef();
     FixtureDef collisionFixture = new FixtureDef();
+
     FixtureDef feetFixture = new FixtureDef();
+    FixtureDef wingFixture = new FixtureDef();
+    FixtureDef weaponFixture = new FixtureDef();
+
     GameScreen gameScreen;
 
     PlayerData playerData;
@@ -54,6 +58,8 @@ public class Player extends PlayerAnimatorHandler {
 
         InitBox2D();
         body.setUserData(this);
+
+        super.InitAnimation();
     }
 
     @Override
@@ -63,20 +69,24 @@ public class Player extends PlayerAnimatorHandler {
 
     @Override
     protected OrderedMap<AbilityType, Fixture> getFixtures() {
-        //TODO:Return OrderdMap with Fixtures per AbilityType
-        return null;
+        OrderedMap<AbilityType, Fixture> map = new OrderedMap<AbilityType, Fixture>();
+        map.put(AbilityType.SPEED, body.createFixture(feetFixture));
+        map.put(AbilityType.JUMP, body.createFixture(wingFixture));
+        map.put(AbilityType.STRENGTH, body.createFixture(weaponFixture));
+        return map;
     }
 
     @Override
     protected Fixture getBodyFixture() {
-        //TODO:return body fixture
-        return null;
+        return body.createFixture(bodyFixture);
     }
 
     private void InitBox2D() {
         initPlayer();
         initCollision();
         initSensors();
+        initWeapon();
+        initWings();
     }
 
     private void initPlayer() {
@@ -120,6 +130,30 @@ public class Player extends PlayerAnimatorHandler {
         feetFixture.isSensor = true;
 
         body.createFixture(feetFixture).setUserData("foot");
+        shape.dispose();
+    }
+
+    private void initWings() {
+        PolygonShape shape = new PolygonShape();
+        shape.setAsBox(size.x,size.y);
+
+        wingFixture.shape = shape;
+        wingFixture.density = 0;
+        wingFixture.isSensor = true;
+
+        body.createFixture(wingFixture).setUserData("wing");
+        shape.dispose();
+    }
+
+    private void initWeapon() {
+        PolygonShape shape = new PolygonShape();
+        shape.setAsBox(size.x,size.y);
+
+        weaponFixture.shape = shape;
+        weaponFixture.density = 0;
+        weaponFixture.isSensor = true;
+
+        body.createFixture(weaponFixture).setUserData("weapon");
         shape.dispose();
     }
 
