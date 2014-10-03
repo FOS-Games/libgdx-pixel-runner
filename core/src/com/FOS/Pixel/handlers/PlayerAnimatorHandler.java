@@ -25,7 +25,7 @@ public abstract class PlayerAnimatorHandler {
         WEAPON
     }
 
-    private static final int COLUMNS = 4;   // amount of columns (vertical) in the spritesheet
+    private static final int COLUMNS = 6;   // amount of columns (vertical) in the spritesheet
     private static final int ROWS = 1;      // amount of rows (horizontal) in the spritesheet
 
     private Animation animation;
@@ -36,9 +36,9 @@ public abstract class PlayerAnimatorHandler {
 
     protected PlayerAnimatorHandler(){
 
-        skinTypeStringOrderedMap.put(PlayerData.SkinType.HUMAN,"WIPsheet.png");
-        skinTypeStringOrderedMap.put(PlayerData.SkinType.ORC,"WIPsheet.png");
-        skinTypeStringOrderedMap.put(PlayerData.SkinType.ELF,"WIPsheet.png");
+        skinTypeStringOrderedMap.put(PlayerData.SkinType.HUMAN,"sprites/spriteSheet_player.png");
+        skinTypeStringOrderedMap.put(PlayerData.SkinType.ORC,"sprites/spriteSheet_player.png");
+        skinTypeStringOrderedMap.put(PlayerData.SkinType.ELF,"sprites/spriteSheet_player.png");
 
     }
 
@@ -56,8 +56,11 @@ public abstract class PlayerAnimatorHandler {
         frames = new TextureRegion[COLUMNS * ROWS];
 
         int index = 0;
+
+        // Running animation only has 4 frames, spritesheet has 6 frames.
+        // Therefore i < COLUMNS becomes: i < 4.
         for (int i = 0; i < ROWS; i++) {
-            for (int j = 0; j < COLUMNS; j++) {
+            for (int j = 0; j < 4; j++) {
                 frames[index++] = tmp[i][j];
             }
         }

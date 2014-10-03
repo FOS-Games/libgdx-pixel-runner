@@ -6,35 +6,35 @@
 			level: Level1,
 			abilityData: {
 				multiplier: 1,
-				texturename: DEFAULT.png
+				texturename: sprites/EMPTY.png
 			}
 		},
 		{
 			level: Level2,
 			abilityData: {
 				multiplier: 1,
-				texturename: DEFAULT.png
+				texturename: sprites/spriteSheet_normalBoots.png
 			}
 		},
 		{
 			level: Level3,
 			abilityData: {
 				multiplier: 1,
-				texturename: DEFAULT.png
+				texturename: sprites/spriteSheet_normalBoots.png
 			}
 		},
 		{
 			level: Level4,
 			abilityData: {
 				multiplier: 1,
-				texturename: DEFAULT.png
+				texturename: sprites/spriteSheet_normalBoots.png
 			}
 		},
 		{
 			level: Level5,
 			abilityData: {
 				multiplier: 1,
-				texturename: DEFAULT.png
+				texturename: sprites/spriteSheet_hermesBoots.png
 			}
 		}
 	],
@@ -47,35 +47,35 @@
 			level: Level1,
 			abilityData: {
 				multiplier: 1,
-				texturename: DEFAULT.png
+				texturename: sprites/EMPTY.png
 			}
 		},
 		{
 			level: Level2,
 			abilityData: {
 				multiplier: 1,
-				texturename: DEFAULT.png
+				texturename: sprites/spriteSheet_smallHammer.png
 			}
 		},
 		{
 			level: Level3,
 			abilityData: {
 				multiplier: 1,
-				texturename: DEFAULT.png
+				texturename: sprites/spriteSheet_smallHammer.png
 			}
 		},
 		{
 			level: Level4,
 			abilityData: {
 				multiplier: 1,
-				texturename: DEFAULT.png
+				texturename: sprites/spriteSheet_smallHammer.png
 			}
 		},
 		{
 			level: Level5,
 			abilityData: {
 				multiplier: 1,
-				texturename: DEFAULT.png
+				texturename: sprites/spriteSheet_bigHammer.png
 			}
 		}
 	],
@@ -88,35 +88,35 @@
 			level: Level1,
 			abilityData: {
 				multiplier: 1,
-				texturename: DEFAULT.png
+				texturename: sprites/EMPTY.png
 			}
 		},
 		{
 			level: Level2,
 			abilityData: {
 				multiplier: 1,
-				texturename: DEFAULT.png
+				texturename: sprites/spriteSheet_smallWings.png
 			}
 		},
 		{
 			level: Level3,
 			abilityData: {
 				multiplier: 1,
-				texturename: DEFAULT.png
+				texturename: sprites/spriteSheet_smallWings.png
 			}
 		},
 		{
 			level: Level4,
 			abilityData: {
 				multiplier: 1,
-				texturename: DEFAULT.png
+				texturename: sprites/spriteSheet_smallWings.png
 			}
 		},
 		{
 			level: Level5,
 			abilityData: {
 				multiplier: 1,
-				texturename: DEFAULT.png
+				texturename: sprites/spriteSheet_angelWings.png
 			}
 		}
 	],

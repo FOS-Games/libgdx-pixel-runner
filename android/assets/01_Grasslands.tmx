@@ -5,24 +5,141 @@
  </tileset>
  <layer name="Tilelaag 1" width="1000" height="20">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <objectgroup name="Ground">
-  <object x="0" y="980" width="1380" height="420"/>
-  <object x="1518" y="1400">
+  <object type="object" x="0" y="980" width="1380" height="420"/>
+  <object type="object" x="1518" y="1400">
    <polyline points="0,0 0,-420 276,-420 552,-700 897,-700 1173,-420 1449,-420 1449,0 0,0"/>
   </object>
-  <object x="3105" y="980" width="345" height="420"/>
-  <object x="3588" y="980" width="345" height="420"/>
-  <object x="4071" y="980">
+  <object type="object" x="3105" y="980" width="345" height="420"/>
+  <object type="object" x="3588" y="980" width="345" height="420"/>
+  <object type="object" x="4071" y="980">
    <polyline points="0,0 345,0 552,-210 897,-210 897,420 0,420 0,0"/>
   </object>
-  <object x="5106" y="770" width="345" height="140"/>
-  <object x="5589" y="770" width="345" height="140"/>
-  <object x="6072" y="1400">
+  <object type="object" x="5106" y="770" width="345" height="140"/>
+  <object type="object" x="5589" y="770" width="345" height="140"/>
+  <object type="object" x="6072" y="1400">
    <polyline points="0,0 0,-630 345,-630 690,-280 1173,-280 1380,-490 1656,-490 1863,-280 2139,-280 2346,-490 2622,-490 2829,-280 3243,-280 3243,0 0,0"/>
   </object>
+  <object type="object" x="9453" y="1120" width="345" height="280"/>
+  <object type="object" x="9936" y="1120" width="345" height="280"/>
+  <object type="object" x="10419" y="980" width="345" height="420"/>
+  <object type="object" x="10902" y="980" width="345" height="420"/>
+  <object type="object" x="11385" y="1050" width="345" height="350"/>
+  <object type="object" x="11868" y="1120">
+   <polyline points="0,0 828,0 1311,-490 2001,-490 2001,280 0,280 0,0"/>
+  </object>
+  <object type="object" x="14007" y="630" width="345" height="140"/>
+  <object type="object" x="14490" y="700" width="345" height="140"/>
+  <object type="object" x="14973" y="770" width="345" height="140"/>
+  <object type="object" x="15456" y="840" width="345" height="140"/>
+  <object type="object" x="15939" y="910" width="345" height="140"/>
+  <object type="object" x="16422" y="980" width="345" height="140"/>
+  <object type="object" x="16905" y="1050" width="345" height="140"/>
+  <object type="object" x="17388" y="1120">
+   <polyline points="0,0 1035,0 1380,-350 2001,-350 2001,280 0,280 0,0"/>
+  </object>
+  <object type="object" x="19527" y="770" width="345" height="140"/>
+  <object type="object" x="20010" y="770" width="345" height="140"/>
+  <object type="object" x="20493" y="770" width="345" height="140"/>
+  <object type="object" x="20976" y="630" width="345" height="140"/>
+  <object type="object" x="21459" y="490" width="345" height="140"/>
+  <object type="object" x="21942" y="490" width="690" height="910"/>
+  <object type="object" x="22770" y="560" width="345" height="140"/>
+  <object type="object" x="23253" y="490">
+   <polyline points="0,0 690,0 690,630 1449,630 1449,910 0,910 0,0"/>
+  </object>
+  <object type="object" x="24495" y="490" width="207" height="140"/>
+  <object type="object" x="24840" y="490" width="207" height="140"/>
+  <object type="object" x="25185" y="490" width="207" height="140"/>
+  <object type="object" x="25530" y="490" width="207" height="140"/>
+  <object type="object" x="25875" y="490" width="207" height="140"/>
+  <object type="object" x="24840" y="1120" width="345" height="280"/>
+  <object type="object" x="25323" y="1120" width="345" height="280"/>
+  <object type="object" x="25806" y="1120" width="345" height="280"/>
+  <object type="object" x="26289" y="980" width="1587" height="420"/>
+  <object type="object" x="28014" y="840" width="276" height="140"/>
+  <object type="object" x="28428" y="770" width="276" height="140"/>
+  <object type="object" x="28842" y="700" width="276" height="140"/>
+  <object type="object" x="29256" y="630" width="276" height="140"/>
+  <object type="object" x="29670" y="560">
+   <polyline points="0,0 552,0 897,350 1104,350 1449,0 1656,0 2001,350 2208,350 2415,140 2622,140 2967,490 3312,490 3312,840 0,840 0,0"/>
+  </object>
+  <object type="object" x="33120" y="1050" width="276" height="350"/>
+  <object type="object" x="33534" y="1050" width="276" height="350"/>
+  <object type="object" x="33948" y="1050" width="276" height="350"/>
+  <object type="object" x="34362" y="910" width="276" height="490"/>
+  <object type="object" x="34776" y="770" width="276" height="630"/>
+  <object type="object" x="35190" y="630" width="276" height="770"/>
+  <object type="object" x="35604" y="630" width="276" height="770"/>
+  <object type="object" x="36018" y="490" width="276" height="910"/>
+  <object type="object" x="36432" y="700" width="276" height="700"/>
+  <object type="object" x="36846" y="910" width="276" height="490"/>
+  <object type="object" x="37260" y="1120" width="828" height="280"/>
+  <object type="object" x="37536" y="560" width="552" height="140"/>
+  <object type="object" x="38226" y="560" width="138" height="140"/>
+  <object type="object" x="38502" y="490" width="138" height="140"/>
+  <object type="object" x="38778" y="560" width="138" height="140"/>
+  <object type="object" x="39054" y="490" width="138" height="140"/>
+  <object type="object" x="39330" y="560" width="138" height="140"/>
+  <object type="object" x="38226" y="1120" width="207" height="280"/>
+  <object type="object" x="38571" y="1120" width="207" height="280"/>
+  <object type="object" x="38916" y="1120" width="207" height="280"/>
+  <object type="object" x="39261" y="1120">
+   <polyline points="0,0 1035,0 1173,-140 1311,-140 1449,0 1587,0 1725,-140 1863,-140 2001,0 2139,0 2277,-140 2415,-140 2553,0 2760,0 2760,280 0,280 0,0"/>
+  </object>
+  <object type="object" x="42159" y="980" width="276" height="140"/>
+  <object type="object" x="42573" y="840" width="276" height="140"/>
+  <object type="object" x="42987" y="980" width="276" height="140"/>
+  <object type="object" x="43401" y="840" width="276" height="140"/>
+  <object type="object" x="43815" y="700" width="276" height="140"/>
+  <object type="object" x="44229" y="560" width="414" height="840"/>
+  <object type="object" x="44919" y="840" width="414" height="560"/>
+  <object type="object" x="45609" y="1120" width="414" height="280"/>
+  <object type="object" x="46230" y="1120" width="414" height="280"/>
+  <object type="object" x="46851" y="1120" width="414" height="280"/>
+  <object type="object" x="47472" y="980" width="414" height="420"/>
+  <object type="object" x="48093" y="840">
+   <polyline points="0,0 414,0 759,350 966,350 1311,0 1518,0 1863,350 2070,350 2415,0 2622,0 2967,350 3243,350 3243,560 0,560 0,0"/>
+  </object>
+  <object type="object" x="51267" y="630" width="276" height="140"/>
+  <object type="object" x="51819" y="630" width="276" height="140"/>
+  <object type="object" x="52371" y="630" width="276" height="140"/>
+  <object type="object" x="51543" y="1190" width="276" height="210"/>
+  <object type="object" x="52026" y="1190" width="276" height="210"/>
+  <object type="object" x="52509" y="1190" width="276" height="210"/>
+  <object type="object" x="52992" y="1190" width="1035" height="210"/>
+  <object type="object" x="54165" y="980" width="207" height="140"/>
+  <object type="object" x="54510" y="770" width="207" height="140"/>
+  <object type="object" x="54855" y="560" width="207" height="140"/>
+  <object type="object" x="55200" y="560" width="207" height="140"/>
+  <object type="object" x="55545" y="560" width="207" height="140"/>
+  <object type="object" x="55959" y="560" width="207" height="140"/>
+  <object type="object" x="56373" y="560" width="207" height="140"/>
+  <object type="object" x="56787" y="560" width="207" height="140"/>
+  <object type="object" x="57270" y="560" width="207" height="140"/>
+  <object type="object" x="57753" y="560" width="207" height="140"/>
+  <object type="object" x="58236" y="560">
+   <polyline points="0,0 414,0 966,560 1242,560 1449,350 1587,350 1794,560 1932,560 2139,350 2277,350 2484,560 2691,560 2691,840 0,840 0,0"/>
+  </object>
+  <object type="object" x="61134" y="1120" width="207" height="280"/>
+  <object type="object" x="61548" y="980" width="207" height="420"/>
+  <object type="object" x="61962" y="840" width="207" height="560"/>
+  <object type="object" x="62376" y="980" width="207" height="420"/>
+  <object type="object" x="62790" y="840" width="207" height="560"/>
+  <object type="object" x="63204" y="700" width="207" height="700"/>
+  <object type="object" x="63618" y="560" width="207" height="840"/>
+  <object type="object" x="64032" y="700">
+   <polyline points="0,0 414,0 759,350 966,350 1173,140 1380,140 1587,350 1794,350 2001,140 2208,140 2415,350 2553,350 2553,700 0,700 0,0"/>
+  </object>
+  <object type="object" x="66792" y="980" width="138" height="140"/>
+  <object type="object" x="67137" y="910" width="138" height="140"/>
+  <object type="object" x="67482" y="840" width="138" height="140"/>
+  <object type="object" x="67827" y="840" width="138" height="140"/>
+  <object type="object" x="68172" y="840" width="138" height="140"/>
+  <object type="object" x="68517" y="840" width="483" height="560"/>
  </objectgroup>
  <objectgroup name="Spawn">
   <object name="spawn" type="object" x="207" y="770" width="69" height="70"/>
