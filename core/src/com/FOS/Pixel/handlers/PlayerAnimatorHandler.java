@@ -53,7 +53,7 @@ public abstract class PlayerAnimatorHandler {
     protected AnimatedBox2DSprite createAnimation(Texture spriteSheet) {
 
         TextureRegion[][] tmp = TextureRegion.split(spriteSheet, spriteSheet.getWidth()/COLUMNS, spriteSheet.getHeight()/ROWS);
-        frames = new TextureRegion[COLUMNS * ROWS];
+        frames = new TextureRegion[4];
 
         int index = 0;
 
@@ -74,6 +74,7 @@ public abstract class PlayerAnimatorHandler {
         // Create a Box2DSprite out of the animation
         animatedBox2DSprite = new AnimatedBox2DSprite(new AnimatedSprite(animation));
 
+
         // Properties of the Box2DSprite
         //animatedBox2DSprite.setScale(0.1f);
         //animatedBox2DSprite.setAdjustSize(false);
@@ -87,20 +88,21 @@ public abstract class PlayerAnimatorHandler {
     protected void InitAnimation(){
 
         PlayerData Data = getPlayerData();
+        System.out.println(Data.toString());
         OrderedMap<AbilityType,Fixture> fixtureOrderedMap = getFixtures();
         Fixture bodyFixture = getBodyFixture();
 
         for(AbilityType type : fixtureOrderedMap.keys()){
             AbilityData abilityData = Data.getAbilityData(type);
-            fixtureOrderedMap.get(type).setUserData(createAnimation(new Texture(Gdx.files.internal(abilityData.getTexturename()))));
+            String texturepath =abilityData.getTexturename();
+            System.out.println(texturepath);
+            Texture texture = new Texture(Gdx.files.internal(texturepath));
+            fixtureOrderedMap.get(type).setUserData(createAnimation(texture));
         }
         bodyFixture.setUserData(createAnimation(new Texture(Gdx.files.internal(skinTypeStringOrderedMap.get(Data.getSkinType())))));
 
 
     }
-
-
-
     protected abstract PlayerData getPlayerData();
     protected abstract OrderedMap<AbilityType,Fixture> getFixtures();
     protected abstract Fixture getBodyFixture();

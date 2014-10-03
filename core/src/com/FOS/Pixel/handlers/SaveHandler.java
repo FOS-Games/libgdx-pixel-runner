@@ -21,7 +21,7 @@ public class SaveHandler {
         if(!file.exists()){
 
             String savestring = json.prettyPrint(new SaveData(
-                    new PlayerData(PlayerData.AbilityType.NONE,0,0,0, PlayerData.SkinType.HUMAN),
+                    new PlayerData(PlayerData.AbilityType.NONE,1,1,1, PlayerData.SkinType.HUMAN),
                     new LevelSaveData[]{
                             new LevelSaveData(0,0,true),
                             new LevelSaveData(0,0,false)

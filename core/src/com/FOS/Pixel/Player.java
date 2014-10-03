@@ -15,7 +15,7 @@ import com.badlogic.gdx.utils.OrderedMap;
 import com.badlogic.gdx.utils.TimeUtils;
 
 
-public class Player extends PlayerAnimatorHandler {
+public class Player extends PlayerAnimatorHandler{
 
 
     static final float JUMP_VELOCITY = 6f;    // jump velocity in m/s of the player
@@ -37,12 +37,19 @@ public class Player extends PlayerAnimatorHandler {
     private float levelDefault = 8f;
 
     protected World world;
-    FixtureDef bodyFixture = new FixtureDef();
-    FixtureDef collisionFixture = new FixtureDef();
+//    FixtureDef bodyFixture = new FixtureDef();
+//    FixtureDef collisionFixture = new FixtureDef();
+//
+//    FixtureDef feetFixture = new FixtureDef();
+//    FixtureDef wingFixture = new FixtureDef();
+//    FixtureDef weaponFixture = new FixtureDef();
 
-    FixtureDef feetFixture = new FixtureDef();
-    FixtureDef wingFixture = new FixtureDef();
-    FixtureDef weaponFixture = new FixtureDef();
+    Fixture bodyFixture;
+    Fixture collisionFixture;
+    Fixture feetFixture;
+    Fixture wingFixture;
+    Fixture weaponFixture;
+    Fixture sensorFixture;
 
     GameScreen gameScreen;
 
@@ -54,7 +61,7 @@ public class Player extends PlayerAnimatorHandler {
         this.spawnpoint = spawn;
         this.gameScreen = gameScreen;
 
-        playerData=SaveHandler.getSaveData().getPlayerData();
+        playerData = SaveHandler.getSaveData().getPlayerData();
 
         InitBox2D();
         body.setUserData(this);
@@ -64,29 +71,30 @@ public class Player extends PlayerAnimatorHandler {
 
     @Override
     protected PlayerData getPlayerData() {
-        return null;
+        return SaveHandler.getSaveData().getPlayerData();
     }
 
     @Override
     protected OrderedMap<AbilityType, Fixture> getFixtures() {
         OrderedMap<AbilityType, Fixture> map = new OrderedMap<AbilityType, Fixture>();
-        map.put(AbilityType.SPEED, body.createFixture(feetFixture));
-        map.put(AbilityType.JUMP, body.createFixture(wingFixture));
-        map.put(AbilityType.STRENGTH, body.createFixture(weaponFixture));
+        map.put(AbilityType.SPEED, feetFixture);
+        map.put(AbilityType.JUMP, wingFixture);
+        map.put(AbilityType.STRENGTH, weaponFixture);
         return map;
     }
 
     @Override
     protected Fixture getBodyFixture() {
-        return body.createFixture(bodyFixture);
+        return bodyFixture;
     }
 
     private void InitBox2D() {
         initPlayer();
         initCollision();
-        initSensors();
+        initFeet();
         initWeapon();
         initWings();
+        initSensor();
     }
 
     private void initPlayer() {
@@ -97,63 +105,89 @@ public class Player extends PlayerAnimatorHandler {
         bdef.type = BodyDef.BodyType.DynamicBody;
         body = world.createBody(bdef);
 
+        FixtureDef bodyDef = new FixtureDef();
+
         // Create the full body fixture
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(size.x,size.y);
 
-        bodyFixture.shape = shape;
-        bodyFixture.isSensor = true;
-        bodyFixture.density = 0;
+        bodyDef.shape = shape;
+        bodyDef.isSensor = true;
+        bodyDef.density = 0;
 
+        bodyFixture = body.createFixture(bodyDef);
         shape.dispose();
 
     }
 
-    private void initCollision() {
-        PolygonShape shape = new PolygonShape();
-        shape.setAsBox(size.x / 4, size.y);
+    private void initSensor() {
+        FixtureDef sensorDef = new FixtureDef();
 
-        collisionFixture.shape = shape;
-        collisionFixture.density = 1;
-        collisionFixture.friction = 0;
-
-        body.createFixture(collisionFixture).setUserData("collision");
-        shape.dispose();
-    }
-
-    private void initSensors() {
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(size.x / 4, size.y / 4, new Vector2(0,-size.y), 0);
 
-        feetFixture.shape = shape;
-        feetFixture.density = 0;
-        feetFixture.isSensor = true;
+        sensorDef.shape = shape;
+        sensorDef.density = 0;
+        sensorDef.isSensor = true;
 
-        body.createFixture(feetFixture).setUserData("foot");
+        sensorFixture = body.createFixture(sensorDef);
+        sensorFixture.setUserData("feet");
+        shape.dispose();
+    }
+
+    private void initCollision() {
+        FixtureDef collisionDef = new FixtureDef();
+
+        PolygonShape shape = new PolygonShape();
+        shape.setAsBox(size.x / 4, size.y);
+
+        collisionDef.shape = shape;
+        collisionDef.density = 1;
+        collisionDef.friction = 0;
+
+        collisionFixture = body.createFixture(collisionDef);
+        shape.dispose();
+    }
+
+    private void initFeet() {
+        FixtureDef feetDef = new FixtureDef();
+
+        PolygonShape shape = new PolygonShape();
+        shape.setAsBox(size.x / 4, size.y / 4, new Vector2(0,-size.y), 0);
+
+        feetDef.shape = shape;
+        feetDef.density = 0;
+        feetDef.isSensor = true;
+
+        feetFixture = body.createFixture(feetDef);
         shape.dispose();
     }
 
     private void initWings() {
+        FixtureDef wingDef = new FixtureDef();
+
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(size.x,size.y);
 
-        wingFixture.shape = shape;
-        wingFixture.density = 0;
-        wingFixture.isSensor = true;
+        wingDef.shape = shape;
+        wingDef.density = 0;
+        wingDef.isSensor = true;
 
-        body.createFixture(wingFixture).setUserData("wing");
+        wingFixture = body.createFixture(wingDef);
         shape.dispose();
     }
 
     private void initWeapon() {
+        FixtureDef weaponDef = new FixtureDef();
+
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(size.x,size.y);
 
-        weaponFixture.shape = shape;
-        weaponFixture.density = 0;
-        weaponFixture.isSensor = true;
+        weaponDef.shape = shape;
+        weaponDef.density = 0;
+        weaponDef.isSensor = true;
 
-        body.createFixture(weaponFixture).setUserData("weapon");
+        weaponFixture = body.createFixture(weaponDef);
         shape.dispose();
     }
 

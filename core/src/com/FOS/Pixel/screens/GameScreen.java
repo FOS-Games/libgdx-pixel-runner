@@ -126,12 +126,10 @@ public class GameScreen extends PixelGameScreen {
         world.step(1 / 60f, 8, 3);
         super.render(delta);
 
-
-
-
-
         spriteBatch.begin();
+
         Box2DSprite.draw(spriteBatch, world);
+
         spriteBatch.end();
         updateCamera();
         player.update(delta);
