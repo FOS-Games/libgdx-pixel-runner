@@ -49,6 +49,7 @@ public class Player extends PlayerAnimatorHandler{
     Fixture feetFixture;
     Fixture wingFixture;
     Fixture weaponFixture;
+    Fixture sensorFixture;
 
     GameScreen gameScreen;
 
@@ -90,9 +91,10 @@ public class Player extends PlayerAnimatorHandler{
     private void InitBox2D() {
         initPlayer();
         initCollision();
-        initSensors();
+        initFeet();
         initWeapon();
         initWings();
+        initSensor();
     }
 
     private void initPlayer() {
@@ -118,6 +120,21 @@ public class Player extends PlayerAnimatorHandler{
 
     }
 
+    private void initSensor() {
+        FixtureDef sensorDef = new FixtureDef();
+
+        PolygonShape shape = new PolygonShape();
+        shape.setAsBox(size.x / 4, size.y / 4, new Vector2(0,-size.y), 0);
+
+        sensorDef.shape = shape;
+        sensorDef.density = 0;
+        sensorDef.isSensor = true;
+
+        sensorFixture = body.createFixture(sensorDef);
+        sensorFixture.setUserData("feet");
+        shape.dispose();
+    }
+
     private void initCollision() {
         FixtureDef collisionDef = new FixtureDef();
 
@@ -132,7 +149,7 @@ public class Player extends PlayerAnimatorHandler{
         shape.dispose();
     }
 
-    private void initSensors() {
+    private void initFeet() {
         FixtureDef feetDef = new FixtureDef();
 
         PolygonShape shape = new PolygonShape();
