@@ -6,6 +6,7 @@ import com.FOS.Pixel.Data.PixelVars;
 import com.FOS.Pixel.handlers.PlayerAnimatorHandler;
 import com.FOS.Pixel.screens.GameScreen;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.Gdx;
@@ -16,7 +17,7 @@ import com.badlogic.gdx.utils.TimeUtils;
 public class Player extends PlayerAnimatorHandler {
 
 
-    static final float JUMP_VELOCITY = 10f;    // jump velocity in m/s of the player
+    static final float JUMP_VELOCITY = 6f;    // jump velocity in m/s of the player
     static final float MAX_VEL = 10f;           // maximum velocity in m/s of the player
     static final int TEXTURE_W = 128;            // the width of the player sprite
     static final int TEXTURE_H = 128;            // the height of the player sprite
@@ -189,7 +190,7 @@ public class Player extends PlayerAnimatorHandler {
     private void playerJump() {
 
         // First jump off the ground
-        if(jumped == false && gameScreen.pixelContactListener.playerCanJump() && Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
+        if(jumped == false && gameScreen.pixelContactListener.playerCanJump() && inputJustPressed()) {
             jumped = true;
             holdable = true;
             time = System.currentTimeMillis();
@@ -197,17 +198,23 @@ public class Player extends PlayerAnimatorHandler {
         }
 
         // Check if key is released in between
-        if(!Gdx.input.isKeyPressed(Input.Keys.UP)) {
+        if(!inputPressed()) {
             holdable = false;
         }
 
         // In the jumping activity
-        if(holdable == true && Gdx.input.isKeyPressed(Input.Keys.UP) && TimeUtils.timeSinceMillis(time) <= 250) {
+        if(holdable == true && inputPressed() && TimeUtils.timeSinceMillis(time) <= 250) {
             jumped = false;
             body.applyLinearImpulse(new Vector2(0, (JUMP_VELOCITY / 4) / PixelVars.UNITSCALE), this.body.getPosition(), true);
             body.setLinearVelocity(body.getLinearVelocity().x, body.getLinearVelocity().y * 0.85f);
-
         }
+    }
 
+    private boolean inputJustPressed() {
+        return Gdx.input.isKeyJustPressed(Input.Keys.UP) || Gdx.input.justTouched();
+    }
+
+    private boolean inputPressed() {
+        return Gdx.input.isKeyPressed(Input.Keys.UP) || Gdx.input.isTouched();
     }
 }

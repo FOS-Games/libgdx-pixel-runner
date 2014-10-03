@@ -8,6 +8,8 @@ import com.FOS.Pixel.handlers.JsonHandler;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -34,6 +36,7 @@ public abstract class PixelGameScreen implements Screen {
     protected SpriteBatch spriteBatch;
     protected Player player;
     LevelData levelData;
+    private AssetManager assetManager;
 
     Boolean BOX2DDEBUG = false;
 
@@ -58,9 +61,9 @@ public abstract class PixelGameScreen implements Screen {
         return player;
     }
 
-    public PixelGameScreen(Game game, int level){
+    public PixelGameScreen(Game game, int level) {
 
-        this.game=game;
+        this.game = game;
         levelData = JsonHandler.readLevel(level);
 
         // Set up the box2d world and contact listener
@@ -74,8 +77,10 @@ public abstract class PixelGameScreen implements Screen {
         parser.load(world, map);
         spriteBatch = new SpriteBatch();
         mapRenderer = new OrthogonalTiledMapRenderer(map, parser.getUnitScale());
-        Sound mp3Sound = Gdx.audio.newSound(Gdx.files.internal(levelData.getMusicpath()));
-        mp3Sound.loop();
+
+        assetManager = new AssetManager();
+        assetManager.load("flatwound_-_The_Long_Goodbye.mp3", Music.class);
+        assetManager.finishLoading();
 
     }
 
@@ -96,7 +101,6 @@ public abstract class PixelGameScreen implements Screen {
 
     @Override
     public void show() {
-
     }
 
     @Override
@@ -132,7 +136,18 @@ public abstract class PixelGameScreen implements Screen {
         return super.equals(obj);
     }
 
-    protected float overrideEarthGravity(){
+    protected float overrideEarthGravity() {
         return 9.81f;
+    }
+
+    protected void startMusic() {
+        if (assetManager.isLoaded("flatwound_-_The_Long_Goodbye.mp3")){
+            Music music = assetManager.get("flatwound_-_The_Long_Goodbye.mp3", Music.class);
+            music.play();
+            music.setLooping(true);
+            System.out.println("Music loaded, rock on!");
+        }else{
+            System.out.println("Music not loaded yet!");
+        }
     }
 }
