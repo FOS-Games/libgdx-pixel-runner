@@ -13,6 +13,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -23,6 +24,7 @@ import com.badlogic.gdx.utils.TimeUtils;
 import com.badlogic.gdx.utils.viewport.ScalingViewport;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import net.dermetfan.gdx.graphics.g2d.Box2DSprite;
+import net.dermetfan.utils.Pair;
 
 
 public class GameScreen extends PixelGameScreen {
@@ -50,12 +52,39 @@ public class GameScreen extends PixelGameScreen {
     public void show() {
 
         createPlayer();
+        createCollectibles();
+        createBoxes();
         world.setContactListener(pixelContactListener);
         // set camera zoom
 
         camera.zoom = 1.0f;
         super.startMusic();
 
+    }
+
+    private void createBoxes() {
+        ObjectMap<String,Body> bodies = parser.getBodies();
+        for (ObjectMap.Entry<String,Body> x : bodies){
+            if(x.key.equals("obstacle")){
+                for(Fixture fix: x.value.getFixtureList()){
+                    fix.setSensor(true);
+                    fix.setUserData("obstacle");
+                }
+            }
+        }
+
+    }
+
+    private void createCollectibles() {
+        ObjectMap<String,Body> bodies = parser.getBodies();
+        for (ObjectMap.Entry<String,Body> x : bodies){
+            if(x.key.equals("orb")){
+                for(Fixture fix: x.value.getFixtureList()){
+                    fix.setSensor(true);
+                    fix.setUserData("orb");
+                }
+            }
+        }
     }
 
 
