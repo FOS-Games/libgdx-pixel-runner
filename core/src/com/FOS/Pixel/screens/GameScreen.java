@@ -5,6 +5,7 @@ import com.FOS.Pixel.Data.PixelVars;
 import com.FOS.Pixel.PixelContactListener;
 import com.FOS.Pixel.Player;
 import com.FOS.Pixel.handlers.JsonHandler;
+import com.FOS.Pixel.handlers.SaveHandler;
 import com.FOS.Pixel.screens.PixelGameScreen;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
@@ -42,6 +43,7 @@ public class GameScreen extends PixelGameScreen {
     boolean silver = true;
     boolean bronze=true;
 
+    public int orbs = 0;
 
 
 
@@ -56,7 +58,7 @@ public class GameScreen extends PixelGameScreen {
         createBoxes();
         world.setContactListener(pixelContactListener);
         // set camera zoom
-
+        orbs = SaveHandler.getSaveData().getTotalOrbs();
         camera.zoom = 1.0f;
         super.startMusic();
 
@@ -82,6 +84,18 @@ public class GameScreen extends PixelGameScreen {
                 for(Fixture fix: x.value.getFixtureList()){
                     fix.setSensor(true);
                     fix.setUserData("orb");
+                }
+            }
+        }
+    }
+
+    private void createPowerUps() {
+        ObjectMap<String,Body> bodies = parser.getBodies();
+        for (ObjectMap.Entry<String,Body> x : bodies){
+            if(x.key.equals("powerup")){
+                for(Fixture fix: x.value.getFixtureList()){
+                    fix.setSensor(true);
+                    fix.setUserData("powerup");
                 }
             }
         }

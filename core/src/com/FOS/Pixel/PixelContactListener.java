@@ -24,11 +24,27 @@ public class PixelContactListener implements ContactListener {
             numFootContacts++;
         }
 
-        // Orb contact
 
-        // Powerup contact
+        if(fa.getUserData() != null && fa.getUserData().equals("orb") && fb.getUserData() instanceof Player) {
+            ((Player)fb.getUserData()).gameScreen.orbs++;
+            fa.getBody().getWorld().destroyBody(fa.getBody());
+        }
+        if(fb.getUserData() != null && fb.getUserData().equals("orb")&& fb.getUserData() instanceof Player) {
+            ((Player)fa.getUserData()).gameScreen.orbs++;
+            fb.getBody().getWorld().destroyBody(fb.getBody());
+        }
 
-        // Crate contact
+
+        if(fa.getUserData() != null && fa.getUserData().equals("powerup") && fb.getUserData() instanceof Player) {
+            //TODO: something something when player hits powerup
+            fa.getBody().getWorld().destroyBody(fa.getBody());
+        }
+        if(fb.getUserData() != null && fb.getUserData().equals("powerup")&& fb.getUserData() instanceof Player) {
+            //TODO: something something when player hits powerup
+            fb.getBody().getWorld().destroyBody(fb.getBody());
+        }
+
+        //TODO Crate contact
 
     }
 
