@@ -98,9 +98,6 @@ public abstract class PlayerAnimatorHandler {
 
 
     }
-
-
-
     protected abstract PlayerData getPlayerData();
     protected abstract OrderedMap<AbilityType,Fixture> getFixtures();
     protected abstract Fixture getBodyFixture();
