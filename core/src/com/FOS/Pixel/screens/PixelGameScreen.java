@@ -35,7 +35,7 @@ public abstract class PixelGameScreen implements Screen {
     protected TiledMap map;
     protected SpriteBatch spriteBatch;
     protected Player player;
-    LevelData levelData;
+    public LevelData levelData;
     private AssetManager assetManager;
 
     Boolean BOX2DDEBUG = false;

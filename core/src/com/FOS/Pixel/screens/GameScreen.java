@@ -46,7 +46,6 @@ public class GameScreen extends PixelGameScreen {
     public int orbs = 0;
 
 
-
     public GameScreen(Game game,int level) {
         super(game,level);
     }
@@ -61,6 +60,7 @@ public class GameScreen extends PixelGameScreen {
         orbs = SaveHandler.getSaveData().getTotalOrbs();
         camera.zoom = 1.0f;
         super.startMusic();
+        player.incrSpeed(new Vector2(5,0),10);
 
     }
 
