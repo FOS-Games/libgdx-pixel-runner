@@ -14,7 +14,7 @@ Level1: {
 Level2: {
 	class: com.FOS.Pixel.Data.LevelData,
 	maxSpeed: 2,
-	tmxpath: tmxpath/map.tmx,
+	tmxpath: 02_Cave.tmx,
 	bronzeTime: 120,
 	musicpath: soundpath/sound.mp3,
 	goldTime: 60,
