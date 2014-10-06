@@ -7,7 +7,9 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -15,6 +17,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 
 /**
@@ -27,6 +31,10 @@ public class MainMenuScreen extends MenuScreen {
     SpriteBatch batch;
     Game game;
 
+    Texture tBlueButton;
+    Texture tBlueButtonHover;
+    Texture tBlueButtonPressed;
+
     public MainMenuScreen(Game game) {
         this.game = game;
     }
@@ -36,6 +44,16 @@ public class MainMenuScreen extends MenuScreen {
         batch = new SpriteBatch();
         stage = new Stage(new StretchViewport(640, 480));
         Gdx.input.setInputProcessor(stage);
+
+        tBlueButton = new Texture(Gdx.files.internal("ui/blueButton.png"));
+        TextureRegion rBlueButton = new TextureRegion(tBlueButton);
+
+        tBlueButtonHover = new Texture(Gdx.files.internal("ui/blueButtonHover.png"));
+        TextureRegion rBlueButtonHover = new TextureRegion(tBlueButtonHover);
+
+        tBlueButtonPressed = new Texture(Gdx.files.internal("ui/blueButtonPressed.png"));
+        TextureRegion rBlueButtonPressed = new TextureRegion(tBlueButtonPressed);
+
 
         skin = new Skin();
 
@@ -47,10 +65,10 @@ public class MainMenuScreen extends MenuScreen {
         skin.add("default", new BitmapFont());
 
         TextButtonStyle textButtonStyle = new TextButtonStyle();
-        textButtonStyle.up = skin.newDrawable("white", Color.DARK_GRAY);
-        textButtonStyle.down = skin.newDrawable("white", Color.DARK_GRAY);
-        textButtonStyle.checked = skin.newDrawable("white", Color.BLUE);
-        textButtonStyle.over = skin.newDrawable("white", Color.LIGHT_GRAY);
+        textButtonStyle.up = skin.newDrawable(new TextureRegionDrawable(rBlueButton));
+        textButtonStyle.down = skin.newDrawable(new TextureRegionDrawable(rBlueButtonPressed));
+        textButtonStyle.checked = skin.newDrawable(new TextureRegionDrawable(rBlueButtonPressed));
+        textButtonStyle.over = skin.newDrawable(new TextureRegionDrawable(rBlueButtonHover));
         textButtonStyle.font = skin.getFont("default");
         skin.add("default", textButtonStyle);
 
@@ -97,6 +115,7 @@ public class MainMenuScreen extends MenuScreen {
     public void dispose() {
         stage.dispose();
         skin.dispose();
+        batch.dispose();
     }
 
     @Override
