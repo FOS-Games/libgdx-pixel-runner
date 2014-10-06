@@ -267,7 +267,7 @@ public class Player extends PlayerAnimatorHandler{
     private void playerJump() {
 
         // First jump off the ground
-        if(jumped == false && gameScreen.pixelContactListener.playerCanJump() && inputJustPressed()) {
+        if( !isFalling() && !jumped && gameScreen.pixelContactListener.playerCanJump() && inputJustPressed()) {
             jumped = true;
             holdable = true;
             time = System.currentTimeMillis();
@@ -280,7 +280,7 @@ public class Player extends PlayerAnimatorHandler{
         }
 
         // In the jumping activity
-        if(holdable == true && inputPressed() && TimeUtils.timeSinceMillis(time) <= 250) {
+        if(holdable && inputPressed() && TimeUtils.timeSinceMillis(time) <= 250) {
             jumped = false;
             body.applyLinearImpulse(new Vector2(0, (JUMP_VELOCITY / 4) / PixelVars.UNITSCALE), this.body.getPosition(), true);
             body.setLinearVelocity(body.getLinearVelocity().x, body.getLinearVelocity().y * 0.85f);
@@ -294,6 +294,8 @@ public class Player extends PlayerAnimatorHandler{
     private boolean inputPressed() {
         return Gdx.input.isKeyPressed(Input.Keys.UP) || Gdx.input.isTouched();
     }
+
+    private boolean isFalling() { return body.getLinearVelocity().y < 0; }
 
 
 }
