@@ -53,10 +53,13 @@ public class GameScreen extends PixelGameScreen {
     Texture bgTex;
     Sprite bgSpr;
     Camera fixedCam;
+    Integer level;
 
     public GameScreen(Game game,int level) {
         super(game,level);
+        this.level = level;
     }
+
     @Override
     public void show() {
 
@@ -69,18 +72,27 @@ public class GameScreen extends PixelGameScreen {
         orbs = SaveHandler.getSaveData().getTotalOrbs();
         super.startMusic();
         player.decrSpeed(new Vector2(10,0),10,0.5f);
+
+
+        // TODO: Read this!
+        // LARS LARS
+        // LARS
+        // ...
+        // HIER IK HEB JE ANIMATIONUTIL UITGEZET
+        // JE ROEPT EEN PNG OP DIE IK ALLANG VERWIJDERD HEB
+        // :)
+        // Goedemorgen trouwens.
+        //
         //AnimationUtil.createTextureRegion(new Texture(Gdx.files.internal("sprite-animation1.png")), 6, 1, 1, 3);
 
     }
 
     // TODO : Retrieve out of levelData
     private void createBackground() {
-        bgTex = new Texture(Gdx.files.internal("maps/backgrounds/bgSky.png"));
+        bgTex = new Texture(Gdx.files.internal(JsonHandler.readLevel(level).getBackground()));
         bgSpr = new Sprite(bgTex);
 
         fixedCam = new OrthographicCamera();
-//        fixedCam.viewportHeight = camera.viewportHeight;
-//        fixedCam.viewportWidth = camera.viewportWidth;
         fixedCam.viewportHeight = bgSpr.getHeight();
         fixedCam.viewportWidth = bgSpr.getWidth();
         fixedCam.position.set(fixedCam.viewportWidth * .5f, fixedCam.viewportHeight * .5f, 0f);
