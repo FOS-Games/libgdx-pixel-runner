@@ -68,6 +68,7 @@ public class GameScreen extends PixelGameScreen {
         ObjectMap<String,Body> bodies = parser.getBodies();
         for (ObjectMap.Entry<String,Body> x : bodies){
             if(x.key.equals("obstacle")){
+                x.value.setUserData(new Box2DSprite(new Texture(Gdx.files.internal("obstacle.png"))));
                 for(Fixture fix: x.value.getFixtureList()){
                     fix.setSensor(true);
                     fix.setUserData("obstacle");
@@ -81,6 +82,7 @@ public class GameScreen extends PixelGameScreen {
         ObjectMap<String,Body> bodies = parser.getBodies();
         for (ObjectMap.Entry<String,Body> x : bodies){
             if(x.key.equals("orb")){
+                x.value.setUserData(new Box2DSprite(new Texture(Gdx.files.internal("orb.png"))));
                 for(Fixture fix: x.value.getFixtureList()){
                     fix.setSensor(true);
                     fix.setUserData("orb");
