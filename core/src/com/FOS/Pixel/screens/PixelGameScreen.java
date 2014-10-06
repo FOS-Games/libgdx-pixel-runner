@@ -77,9 +77,9 @@ public abstract class PixelGameScreen implements Screen {
         float w = Gdx.graphics.getWidth();
         float h = Gdx.graphics.getHeight();
 
-        // 30 units on X visible
-        // 10 units on Y visible
-        camera = new OrthographicCamera(40, 40 * (h / w));
+        // 40 units on X visible
+        // 40 units on Y visible
+        camera = new OrthographicCamera(PixelVars.UNITS_VISIBLE, PixelVars.UNITS_VISIBLE * (h / w));
         camera.position.set(camera.viewportWidth / 2f, camera.viewportHeight / 2f, 0);
         camera.update();
 

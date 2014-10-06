@@ -173,8 +173,8 @@ public class GameScreen extends PixelGameScreen {
         //camera.viewportHeight = height / 25;
 
         // Every screen sees the same amount of units (fair play!)
-        camera.viewportWidth = 40f;
-        camera.viewportHeight = 40f * height/width;
+        camera.viewportWidth = PixelVars.UNITS_VISIBLE;
+        camera.viewportHeight = PixelVars.UNITS_VISIBLE * height/width;
         camera.update();
 
     }
