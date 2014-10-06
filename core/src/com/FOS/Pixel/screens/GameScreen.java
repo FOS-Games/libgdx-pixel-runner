@@ -108,7 +108,8 @@ public class GameScreen extends PixelGameScreen {
         Vector2 spawn;
         ObjectMap<String,Body> bodyMap = parser.getBodies();
         if(parser.getBodies().containsKey("spawn")) {
-            bodyMap.get("spawn").getFixtureList().get(0).setSensor(true);
+            // added isSensor in tmx map, testing.
+            //bodyMap.get("spawn").getFixtureList().get(0).setSensor(true);
             spawn = parser.getBodies().get("spawn").getPosition();
 
         }else{

@@ -167,6 +167,10 @@
   </object>
  </objectgroup>
  <objectgroup name="Spawn">
-  <object name="spawn" type="object" x="210" y="840" width="70" height="70"/>
+  <object name="spawn" type="object" x="210" y="700" width="280" height="210">
+   <properties>
+    <property name="isSensor" value="true"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>
