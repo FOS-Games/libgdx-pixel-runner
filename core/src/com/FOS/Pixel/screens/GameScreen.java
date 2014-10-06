@@ -1,5 +1,6 @@
 package com.FOS.Pixel.screens;
 
+import com.FOS.Pixel.AnimationUtil;
 import com.FOS.Pixel.Data.LevelData;
 import com.FOS.Pixel.Data.PixelVars;
 import com.FOS.Pixel.PixelContactListener;
@@ -9,6 +10,7 @@ import com.FOS.Pixel.handlers.SaveHandler;
 import com.FOS.Pixel.screens.PixelGameScreen;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -60,7 +62,8 @@ public class GameScreen extends PixelGameScreen {
         orbs = SaveHandler.getSaveData().getTotalOrbs();
         camera.zoom = 1.0f;
         super.startMusic();
-        player.incrSpeed(new Vector2(5,0),10);
+        player.decrSpeed(new Vector2(10,0),10,0.5f);
+        AnimationUtil.createTextureRegion(new Texture(Gdx.files.internal("sprite-animation1.png")),6,1,1,3);
 
     }
 

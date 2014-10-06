@@ -205,6 +205,7 @@ public class Player extends PlayerAnimatorHandler implements ISpeedController{
 //            velocity.x = minVelocity;
 //        }
         this.body.setLinearVelocity(minVelocity,velocity.y);
+        System.out.println(this.body.getLinearVelocity());
     }
 
 //    public boolean increaseSpeed(int incr){
@@ -287,7 +288,9 @@ public class Player extends PlayerAnimatorHandler implements ISpeedController{
 
     @Override
     public void incrSpeed(Vector2 increaseto, int steps) {
-        final Vector2 incrsteps = new Vector2(increaseto.x/steps, increaseto.y/steps);
+        float xincr=(increaseto.x-body.getLinearVelocity().x)/(float)steps;
+        float yincr= (increaseto.y-body.getLinearVelocity().y)/(float)steps;
+        final Vector2 incrsteps = new Vector2(xincr,yincr);
         Timer timer = new Timer();
         timer.scheduleTask(new Timer.Task() {
             @Override
@@ -302,17 +305,52 @@ public class Player extends PlayerAnimatorHandler implements ISpeedController{
 
     @Override
     public void decrSpeed(Vector2 decreaseto, int steps) {
+        float xincr=(decreaseto.x-body.getLinearVelocity().x)/(float)steps;
+        float yincr= (decreaseto.y-body.getLinearVelocity().y)/(float)steps;
+        final Vector2 incrsteps = new Vector2(xincr,yincr);
+        Timer timer = new Timer();
+        timer.scheduleTask(new Timer.Task() {
+            @Override
+            public void run() {
+                System.out.println("Decr");
+                body.setLinearVelocity(body.getLinearVelocity().add(incrsteps));
+                minVelocity += incrsteps.x;
+            }
 
+        },1,1,steps);
     }
 
     @Override
     public void incrSpeed(Vector2 increaseto, int steps, float seconds) {
-
+        float xincr=(increaseto.x-body.getLinearVelocity().x)/(float)steps;
+        float yincr= (increaseto.y-body.getLinearVelocity().y)/(float)steps;
+        final Vector2 incrsteps = new Vector2(xincr,yincr);
+        Timer timer = new Timer();
+        timer.scheduleTask(new Timer.Task() {
+            @Override
+            public void run() {
+                System.out.println("Incr");
+                body.setLinearVelocity(body.getLinearVelocity().add(incrsteps));
+                minVelocity += incrsteps.x;
+            }
+        },seconds,seconds,steps);
     }
 
     @Override
     public void decrSpeed(Vector2 decreaseto, int steps, float seconds) {
+        float xincr=(decreaseto.x-body.getLinearVelocity().x)/(float)steps;
+        float yincr= (decreaseto.y-body.getLinearVelocity().y)/(float)steps;
+        final Vector2 incrsteps = new Vector2(xincr,yincr);
+        Timer timer = new Timer();
+        timer.scheduleTask(new Timer.Task() {
+            @Override
+            public void run() {
+                System.out.println("Decr");
+                body.setLinearVelocity(body.getLinearVelocity().add(incrsteps));
+                minVelocity += incrsteps.x;
+            }
 
+        },seconds,seconds,steps);
     }
 
 
