@@ -9,165 +9,609 @@
   </data>
  </layer>
  <objectgroup name="Ground">
-  <object name="ground" type="object" x="0" y="980" width="1400" height="420"/>
-  <object name="ground" type="object" x="1610" y="980" width="210" height="420"/>
-  <object name="ground" type="object" x="2030" y="840" width="210" height="560"/>
-  <object name="ground" type="object" x="2450" y="980" width="210" height="420"/>
-  <object name="ground" type="object" x="2870" y="0" width="560" height="700"/>
+  <object name="ground" type="object" x="0" y="980" width="1400" height="420">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
+  <object name="ground" type="object" x="1610" y="980" width="210" height="420">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
+  <object name="ground" type="object" x="2030" y="840" width="210" height="560">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
+  <object name="ground" type="object" x="2450" y="980" width="210" height="420">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
+  <object name="ground" type="object" x="2870" y="0" width="560" height="700">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
   <object name="ground" type="object" x="2870" y="910">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
    <polyline points="0,0 490,0 630,140 980,140 980,490 0,490 0,0"/>
   </object>
-  <object name="ground" type="object" x="4130" y="1050" width="210" height="350"/>
-  <object name="ground" type="object" x="4620" y="1050" width="210" height="350"/>
-  <object name="ground" type="object" x="5110" y="1050" width="210" height="350"/>
-  <object name="ground" type="object" x="5530" y="0" width="770" height="700"/>
+  <object name="ground" type="object" x="4130" y="1050" width="210" height="350">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
+  <object name="ground" type="object" x="4620" y="1050" width="210" height="350">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
+  <object name="ground" type="object" x="5110" y="1050" width="210" height="350">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
+  <object name="ground" type="object" x="5530" y="0" width="770" height="700">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
   <object name="ground" type="object" x="5530" y="910">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
    <polyline points="0,0 910,0 1190,-280 1540,-280 1540,490 70,490 0,490 0,0"/>
   </object>
-  <object name="ground" type="object" x="7350" y="630" width="210" height="140"/>
-  <object name="ground" type="object" x="7840" y="630" width="210" height="140"/>
-  <object name="ground" type="object" x="8330" y="770" width="210" height="140"/>
-  <object name="ground" type="object" x="8820" y="910" width="210" height="140"/>
-  <object name="ground" type="object" x="9310" y="770" width="210" height="140"/>
-  <object name="ground" type="object" x="9800" y="630" width="210" height="140"/>
+  <object name="ground" type="object" x="7350" y="630" width="210" height="140">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
+  <object name="ground" type="object" x="7840" y="630" width="210" height="140">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
+  <object name="ground" type="object" x="8330" y="770" width="210" height="140">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
+  <object name="ground" type="object" x="8820" y="910" width="210" height="140">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
+  <object name="ground" type="object" x="9310" y="770" width="210" height="140">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
+  <object name="ground" type="object" x="9800" y="630" width="210" height="140">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
   <object name="ground" type="object" x="10290" y="630">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
    <polyline points="0,0 420,0 910,490 1050,490 1540,0 1680,0 2170,490 2380,490 2380,770 0,770 0,0"/>
   </object>
-  <object name="ground" type="object" x="12880" y="1120" width="140" height="280"/>
-  <object name="ground" type="object" x="13230" y="1120" width="140" height="280"/>
-  <object name="ground" type="object" x="13580" y="1120" width="140" height="280"/>
-  <object name="ground" type="object" x="13930" y="1050" width="420" height="350"/>
-  <object name="ground" type="object" x="14560" y="840" width="280" height="560"/>
-  <object name="ground" type="object" x="15050" y="630" width="280" height="770"/>
-  <object name="ground" type="object" x="15540" y="350" width="280" height="1050"/>
-  <object name="ground" type="object" x="16240" y="1120" width="280" height="280"/>
-  <object name="ground" type="object" x="16380" y="350" width="140" height="140"/>
-  <object name="ground" type="object" x="16800" y="350" width="140" height="140"/>
-  <object name="ground" type="object" x="16730" y="1120" width="280" height="280"/>
-  <object name="ground" type="object" x="17220" y="350" width="140" height="140"/>
-  <object name="ground" type="object" x="17220" y="1120" width="280" height="280"/>
-  <object name="ground" type="object" x="17640" y="350" width="140" height="140"/>
-  <object name="ground" type="object" x="17710" y="1120" width="280" height="280"/>
-  <object name="ground" type="object" x="18200" y="1120" width="280" height="280"/>
+  <object name="ground" type="object" x="12880" y="1120" width="140" height="280">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
+  <object name="ground" type="object" x="13230" y="1120" width="140" height="280">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
+  <object name="ground" type="object" x="13580" y="1120" width="140" height="280">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
+  <object name="ground" type="object" x="13930" y="1050" width="420" height="350">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
+  <object name="ground" type="object" x="14560" y="840" width="280" height="560">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
+  <object name="ground" type="object" x="15050" y="630" width="280" height="770">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
+  <object name="ground" type="object" x="15540" y="350" width="280" height="1050">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
+  <object name="ground" type="object" x="16240" y="1120" width="280" height="280">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
+  <object name="ground" type="object" x="16380" y="350" width="140" height="140">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
+  <object name="ground" type="object" x="16800" y="350" width="140" height="140">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
+  <object name="ground" type="object" x="16730" y="1120" width="280" height="280">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
+  <object name="ground" type="object" x="17220" y="350" width="140" height="140">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
+  <object name="ground" type="object" x="17220" y="1120" width="280" height="280">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
+  <object name="ground" type="object" x="17640" y="350" width="140" height="140">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
+  <object name="ground" type="object" x="17710" y="1120" width="280" height="280">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
+  <object name="ground" type="object" x="18200" y="1120" width="280" height="280">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
   <object name="ground" type="object" x="18760" y="1050">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
    <polyline points="0,0 70,-70 140,-70 210,0 210,350 0,350 0,0"/>
   </object>
   <object name="ground" type="object" x="19250" y="1050">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
    <polyline points="0,0 70,-70 140,-70 210,0 210,350 0,350 0,0"/>
   </object>
   <object name="ground" type="object" x="19740" y="1190">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
    <polyline points="0,0 70,-70 140,-70 210,0 210,210 0,210 0,0"/>
   </object>
   <object name="ground" type="object" x="20230" y="1050">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
    <polyline points="0,0 70,-70 140,-70 210,0 210,350 0,350 0,0"/>
   </object>
   <object name="ground" type="object" x="20720" y="910">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
    <polyline points="0,0 70,-70 140,-70 210,0 210,490 0,490 0,0"/>
   </object>
-  <object name="ground" type="object" x="21210" y="1050" width="280" height="350"/>
-  <object name="ground" type="object" x="21210" y="0" width="770" height="840"/>
+  <object name="ground" type="object" x="21210" y="1050" width="280" height="350">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
+  <object name="ground" type="object" x="21210" y="0" width="770" height="840">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
   <object name="ground" type="object" x="21700" y="1050">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
    <polyline points="0,0 280,0 420,140 560,140 700,0 840,0 980,140 1120,140 1260,0 1540,0 1540,350 0,350 0,0"/>
   </object>
-  <object name="ground" type="object" x="23520" y="1050" width="140" height="350"/>
-  <object name="ground" type="object" x="23940" y="1050" width="140" height="350"/>
-  <object name="ground" type="object" x="24360" y="910" width="140" height="490"/>
-  <object name="ground" type="object" x="24780" y="910" width="140" height="490"/>
-  <object name="ground" type="object" x="25200" y="1050" width="140" height="350"/>
+  <object name="ground" type="object" x="23520" y="1050" width="140" height="350">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
+  <object name="ground" type="object" x="23940" y="1050" width="140" height="350">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
+  <object name="ground" type="object" x="24360" y="910" width="140" height="490">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
+  <object name="ground" type="object" x="24780" y="910" width="140" height="490">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
+  <object name="ground" type="object" x="25200" y="1050" width="140" height="350">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
   <object name="ground" type="object" x="25620" y="1050">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
    <polyline points="0,0 560,0 1330,-770 1750,-770 1750,280 1750,350 0,350 0,0"/>
   </object>
-  <object name="ground" type="object" x="27720" y="700" width="140" height="140"/>
-  <object name="ground" type="object" x="27580" y="1260" width="140" height="140"/>
-  <object name="ground" type="object" x="28000" y="1120" width="140" height="140"/>
-  <object name="ground" type="object" x="27930" y="140" width="140" height="140"/>
-  <object name="ground" type="object" x="28280" y="490" width="140" height="140"/>
-  <object name="ground" type="object" x="28630" y="140" width="140" height="140"/>
-  <object name="ground" type="object" x="29050" y="350" width="140" height="140"/>
-  <object name="ground" type="object" x="28630" y="700" width="140" height="140"/>
-  <object name="ground" type="object" x="28420" y="1120" width="140" height="140"/>
-  <object name="ground" type="object" x="28840" y="1120" width="140" height="140"/>
-  <object name="ground" type="object" x="29120" y="980" width="140" height="140"/>
-  <object name="ground" type="object" x="29610" y="1120" width="700" height="280"/>
-  <object name="ground" type="object" x="30590" y="1120" width="140" height="280"/>
-  <object name="ground" type="object" x="31010" y="1120" width="140" height="280"/>
+  <object name="ground" type="object" x="27720" y="700" width="140" height="140">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
+  <object name="ground" type="object" x="27580" y="1260" width="140" height="140">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
+  <object name="ground" type="object" x="28000" y="1120" width="140" height="140">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
+  <object name="ground" type="object" x="27930" y="140" width="140" height="140">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
+  <object name="ground" type="object" x="28280" y="490" width="140" height="140">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
+  <object name="ground" type="object" x="28630" y="140" width="140" height="140">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
+  <object name="ground" type="object" x="29050" y="350" width="140" height="140">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
+  <object name="ground" type="object" x="28630" y="700" width="140" height="140">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
+  <object name="ground" type="object" x="28420" y="1120" width="140" height="140">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
+  <object name="ground" type="object" x="28840" y="1120" width="140" height="140">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
+  <object name="ground" type="object" x="29120" y="980" width="140" height="140">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
+  <object name="ground" type="object" x="29610" y="1120" width="700" height="280">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
+  <object name="ground" type="object" x="30590" y="1120" width="140" height="280">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
+  <object name="ground" type="object" x="31010" y="1120" width="140" height="280">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
   <object name="ground" type="object" x="31430" y="1120">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
    <polyline points="0,0 350,0 630,-280 770,-280 1050,0 1190,0 1470,-280 1610,-280 1890,0 2030,0 2310,-280 2450,-280 2730,0 3220,0 3220,280 0,280 0,0"/>
   </object>
-  <object name="ground" type="object" x="32480" y="560" width="140" height="140"/>
-  <object name="ground" type="object" x="33320" y="560" width="140" height="140"/>
-  <object name="ground" type="object" x="35000" y="1120" width="280" height="280"/>
-  <object name="ground" type="object" x="35630" y="1120" width="560" height="280"/>
-  <object name="ground" type="object" x="36400" y="910" width="280" height="490"/>
-  <object name="ground" type="object" x="36890" y="700" width="280" height="700"/>
-  <object name="ground" type="object" x="37380" y="490" width="560" height="910"/>
-  <object name="ground" type="object" x="38220" y="630" width="280" height="770"/>
-  <object name="ground" type="object" x="38220" y="0" width="770" height="350"/>
+  <object name="ground" type="object" x="32480" y="560" width="140" height="140">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
+  <object name="ground" type="object" x="33320" y="560" width="140" height="140">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
+  <object name="ground" type="object" x="35000" y="1120" width="280" height="280">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
+  <object name="ground" type="object" x="35630" y="1120" width="560" height="280">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
+  <object name="ground" type="object" x="36400" y="910" width="280" height="490">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
+  <object name="ground" type="object" x="36890" y="700" width="280" height="700">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
+  <object name="ground" type="object" x="37380" y="490" width="560" height="910">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
+  <object name="ground" type="object" x="38220" y="630" width="280" height="770">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
+  <object name="ground" type="object" x="38220" y="0" width="770" height="350">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
   <object name="ground" type="object" x="38710" y="630">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
    <polyline points="0,0 280,0 560,280 770,280 770,770 0,770 0,0"/>
   </object>
   <object name="ground" type="object" x="39760" y="980">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
    <polyline points="0,0 70,-70 140,-70 210,0 210,420 0,420 0,0"/>
   </object>
   <object name="ground" type="object" x="40250" y="980">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
    <polyline points="0,0 70,-70 140,-70 210,0 210,420 0,420 0,0"/>
   </object>
   <object name="ground" type="object" x="40740" y="980">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
    <polyline points="0,0 70,-70 140,-70 210,0 210,420 0,420 0,0"/>
   </object>
-  <object name="ground" type="object" x="41230" y="840" width="140" height="70"/>
-  <object name="ground" type="object" x="41650" y="770" width="140" height="70"/>
-  <object name="ground" type="object" x="42070" y="840" width="140" height="70"/>
+  <object name="ground" type="object" x="41230" y="840" width="140" height="70">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
+  <object name="ground" type="object" x="41650" y="770" width="140" height="70">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
+  <object name="ground" type="object" x="42070" y="840" width="140" height="70">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
   <object name="ground" type="object" x="42490" y="770">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
    <polyline points="0,0 350,0 700,-350 770,-350 1470,350 1540,350 2240,-350 2310,-350 3010,350 3080,350 3780,-350 3850,-350 4550,350 4760,350 4760,630 0,630 0,0"/>
   </object>
-  <object name="ground" type="object" x="47530" y="1120" width="210" height="280"/>
-  <object name="ground" type="object" x="48020" y="1120" width="210" height="280"/>
-  <object name="ground" type="object" x="48510" y="1120" width="210" height="280"/>
-  <object name="ground" type="object" x="49000" y="980" width="210" height="420"/>
-  <object name="ground" type="object" x="49490" y="840" width="210" height="560"/>
-  <object name="ground" type="object" x="49980" y="700" width="210" height="700"/>
-  <object name="ground" type="object" x="50470" y="840" width="210" height="560"/>
-  <object name="ground" type="object" x="50960" y="700" width="210" height="700"/>
-  <object name="ground" type="object" x="51450" y="560" width="210" height="840"/>
-  <object name="ground" type="object" x="51940" y="420" width="210" height="980"/>
-  <object name="ground" type="object" x="52430" y="280" width="210" height="1120"/>
-  <object name="ground" type="object" x="52920" y="280" width="210" height="1120"/>
-  <object name="ground" type="object" x="54110" y="1190" width="280" height="210"/>
-  <object name="ground" type="object" x="54670" y="1190" width="280" height="210"/>
-  <object name="ground" type="object" x="55230" y="1190" width="280" height="210"/>
-  <object name="ground" type="object" x="56980" y="420" width="210" height="140"/>
-  <object name="ground" type="object" x="58100" y="420" width="210" height="140"/>
-  <object name="ground" type="object" x="59220" y="420" width="210" height="140"/>
+  <object name="ground" type="object" x="47530" y="1120" width="210" height="280">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
+  <object name="ground" type="object" x="48020" y="1120" width="210" height="280">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
+  <object name="ground" type="object" x="48510" y="1120" width="210" height="280">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
+  <object name="ground" type="object" x="49000" y="980" width="210" height="420">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
+  <object name="ground" type="object" x="49490" y="840" width="210" height="560">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
+  <object name="ground" type="object" x="49980" y="700" width="210" height="700">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
+  <object name="ground" type="object" x="50470" y="840" width="210" height="560">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
+  <object name="ground" type="object" x="50960" y="700" width="210" height="700">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
+  <object name="ground" type="object" x="51450" y="560" width="210" height="840">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
+  <object name="ground" type="object" x="51940" y="420" width="210" height="980">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
+  <object name="ground" type="object" x="52430" y="280" width="210" height="1120">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
+  <object name="ground" type="object" x="52920" y="280" width="210" height="1120">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
+  <object name="ground" type="object" x="54110" y="1190" width="280" height="210">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
+  <object name="ground" type="object" x="54670" y="1190" width="280" height="210">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
+  <object name="ground" type="object" x="55230" y="1190" width="280" height="210">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
+  <object name="ground" type="object" x="56980" y="420" width="210" height="140">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
+  <object name="ground" type="object" x="58100" y="420" width="210" height="140">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
+  <object name="ground" type="object" x="59220" y="420" width="210" height="140">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
   <object name="ground" type="object" x="55790" y="1190">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
    <polyline points="0,0 280,0 630,-350 840,-350 1190,0 1400,0 1750,-350 1960,-350 2310,0 2520,0 2870,-350 3080,-350 3430,0 3640,0 3640,210 0,210 0,0"/>
   </object>
-  <object name="ground" type="object" x="59780" y="1190" width="210" height="210"/>
-  <object name="ground" type="object" x="60340" y="1190" width="210" height="210"/>
-  <object name="ground" type="object" x="60900" y="1190" width="210" height="210"/>
-  <object name="ground" type="object" x="61250" y="980" width="210" height="420"/>
-  <object name="ground" type="object" x="61600" y="770" width="210" height="630"/>
-  <object name="ground" type="object" x="61950" y="560" width="210" height="840"/>
-  <object name="ground" type="object" x="62440" y="700" width="140" height="140"/>
-  <object name="ground" type="object" x="62860" y="560" width="140" height="140"/>
-  <object name="ground" type="object" x="63280" y="1050" width="140" height="140"/>
-  <object name="ground" type="object" x="63700" y="910" width="140" height="140"/>
-  <object name="ground" type="object" x="64120" y="770" width="140" height="140"/>
+  <object name="ground" type="object" x="59780" y="1190" width="210" height="210">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
+  <object name="ground" type="object" x="60340" y="1190" width="210" height="210">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
+  <object name="ground" type="object" x="60900" y="1190" width="210" height="210">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
+  <object name="ground" type="object" x="61250" y="980" width="210" height="420">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
+  <object name="ground" type="object" x="61600" y="770" width="210" height="630">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
+  <object name="ground" type="object" x="61950" y="560" width="210" height="840">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
+  <object name="ground" type="object" x="62440" y="700" width="140" height="140">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
+  <object name="ground" type="object" x="62860" y="560" width="140" height="140">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
+  <object name="ground" type="object" x="63280" y="1050" width="140" height="140">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
+  <object name="ground" type="object" x="63700" y="910" width="140" height="140">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
+  <object name="ground" type="object" x="64120" y="770" width="140" height="140">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
   <object name="ground" type="object" x="64540" y="770">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
    <polyline points="0,0 420,0 700,280 770,280 1050,0 1120,0 1400,280 1470,280 1750,0 1890,0 1890,630 0,630 0,0"/>
   </object>
-  <object name="ground" type="object" x="66640" y="770" width="210" height="630"/>
-  <object name="ground" type="object" x="67060" y="770" width="210" height="630"/>
-  <object name="ground" type="object" x="67480" y="770" width="210" height="630"/>
+  <object name="ground" type="object" x="66640" y="770" width="210" height="630">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
+  <object name="ground" type="object" x="67060" y="770" width="210" height="630">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
+  <object name="ground" type="object" x="67480" y="770" width="210" height="630">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
+  </object>
   <object name="ground" type="object" x="67900" y="770">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
    <polyline points="0,0 560,0 770,-210 840,-210 840,630 0,630 0,0"/>
   </object>
   <object name="ground" type="object" x="69090" y="560">
+   <properties>
+    <property name="userData" value="ground"/>
+   </properties>
    <polyline points="0,0 70,0 280,210 910,210 910,840 0,840 0,0"/>
   </object>
  </objectgroup>
  <objectgroup name="Spawn">
-  <object name="spawn" type="object" x="210" y="700" width="280" height="210">
+  <object name="spawn" type="object" x="210" y="770" width="70" height="70">
    <properties>
     <property name="isSensor" value="true"/>
    </properties>

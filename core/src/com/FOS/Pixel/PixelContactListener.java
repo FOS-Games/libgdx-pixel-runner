@@ -17,10 +17,10 @@ public class PixelContactListener implements ContactListener {
         if(fa == null || fb == null) return;
 
         // Foot contact
-        if(fa.getUserData() != null && fa.getUserData().equals("feet")) {
+        if(fa.getUserData() != null && fa.getUserData().equals("feet") && fb.getUserData() != null && fb.getUserData().equals("ground")) {
             numFootContacts++;
         }
-        if(fb.getUserData() != null && fb.getUserData().equals("feet")) {
+        if(fb.getUserData() != null && fb.getUserData().equals("feet") && fa.getUserData() != null && fa.getUserData().equals("ground")) {
             numFootContacts++;
         }
 
@@ -55,10 +55,10 @@ public class PixelContactListener implements ContactListener {
 
         if(fa == null || fb == null) return;
 
-        if(fa.getUserData() != null && fa.getUserData().equals("feet")) {
+        if(fa.getUserData() != null && fa.getUserData().equals("feet") && fb.getUserData() != null && fb.getUserData().equals("ground")) {
             numFootContacts--;
         }
-        if(fb.getUserData() != null && fb.getUserData().equals("feet")) {
+        if(fb.getUserData() != null && fb.getUserData().equals("feet") && fa.getUserData() != null && fa.getUserData().equals("ground")) {
             numFootContacts--;
         }
     }
