@@ -18,7 +18,7 @@ import com.badlogic.gdx.utils.TimeUtils;
 public class Player extends PlayerAnimatorHandler{
 
 
-    static final float JUMP_VELOCITY = 6f;    // jump velocity in m/s of the player
+    static final float JUMP_VELOCITY = 4f;    // jump velocity in m/s of the player
     static final float MAX_VEL = 10f;           // maximum velocity in m/s of the player
     static final int TEXTURE_W = 128;            // the width of the player sprite
     static final int TEXTURE_H = 128;            // the height of the player sprite
@@ -260,15 +260,13 @@ public class Player extends PlayerAnimatorHandler{
 //        }
 //    }
 
-    boolean jumped = false;
     boolean holdable = false;
     long time = 0;
 
     private void playerJump() {
 
         // First jump off the ground
-        if( !isFalling() && !jumped && gameScreen.pixelContactListener.playerCanJump() && inputJustPressed()) {
-            jumped = true;
+        if( !isFalling() && gameScreen.pixelContactListener.playerCanJump() && inputJustPressed()) {
             holdable = true;
             time = System.currentTimeMillis();
             body.applyLinearImpulse(new Vector2(0, JUMP_VELOCITY / PixelVars.UNITSCALE), this.body.getPosition(), true);
@@ -281,7 +279,6 @@ public class Player extends PlayerAnimatorHandler{
 
         // In the jumping activity
         if(holdable && inputPressed() && TimeUtils.timeSinceMillis(time) <= 250) {
-            jumped = false;
             body.applyLinearImpulse(new Vector2(0, (JUMP_VELOCITY / 4) / PixelVars.UNITSCALE), this.body.getPosition(), true);
             body.setLinearVelocity(body.getLinearVelocity().x, body.getLinearVelocity().y * 0.85f);
         }
