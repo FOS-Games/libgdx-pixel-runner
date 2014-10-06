@@ -10,24 +10,22 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 /**
  * Created by Stefan on 6-10-2014.
  */
-public class MainMenuScreen extends MenuScreen {
+public class LevelSelectScreen extends MenuScreen {
 
     Skin skin;
     Stage stage;
     SpriteBatch batch;
     Game game;
 
-    public MainMenuScreen(Game game) {
+    public LevelSelectScreen(Game game) {
         this.game = game;
     }
 
@@ -46,7 +44,7 @@ public class MainMenuScreen extends MenuScreen {
 
         skin.add("default", new BitmapFont());
 
-        TextButtonStyle textButtonStyle = new TextButtonStyle();
+        TextButton.TextButtonStyle textButtonStyle = new TextButton.TextButtonStyle();
         textButtonStyle.up = skin.newDrawable("white", Color.DARK_GRAY);
         textButtonStyle.down = skin.newDrawable("white", Color.DARK_GRAY);
         textButtonStyle.checked = skin.newDrawable("white", Color.BLUE);
@@ -58,23 +56,23 @@ public class MainMenuScreen extends MenuScreen {
         table.setFillParent(true);
         stage.addActor(table);
 
-        final TextButton bStart = new TextButton("Level Select", skin);
-        final TextButton bExit = new TextButton("Exit", skin);
+        final TextButton bLevel1 = new TextButton("Start level 1", skin);
+        final TextButton bLevel2 = new TextButton("Start level 2", skin);
 
-        table.add(bStart).size(50, 20).padBottom(10).row();
-        table.add(bExit).size(50, 20).padBottom(10).row();
+        table.add(bLevel1).size(50, 20).padBottom(10).row();
+        table.add(bLevel2).size(50, 20).padBottom(10).row();
 
-        bStart.addListener(new ChangeListener() {
+        bLevel1.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                ((Game) Gdx.app.getApplicationListener()).setScreen(new LevelSelectScreen(game));
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new GameScreen(game, 1));
             }
         });
 
-        bExit.addListener(new ChangeListener() {
+        bLevel2.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                Gdx.app.exit();
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new GameScreen(game, 2));
             }
         });
 
@@ -103,5 +101,4 @@ public class MainMenuScreen extends MenuScreen {
     public void hide() {
         dispose();
     }
-
 }
