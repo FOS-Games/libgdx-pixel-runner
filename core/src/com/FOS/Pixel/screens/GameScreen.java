@@ -32,8 +32,6 @@ import net.dermetfan.utils.Pair;
 
 public class GameScreen extends PixelGameScreen {
 
-    int levelwidth;
-    int levelheight;
     long time = System.currentTimeMillis();
     public PixelContactListener pixelContactListener = new PixelContactListener();
 
@@ -61,7 +59,6 @@ public class GameScreen extends PixelGameScreen {
         world.setContactListener(pixelContactListener);
         // set camera zoom
         orbs = SaveHandler.getSaveData().getTotalOrbs();
-        camera.zoom = 1.0f;
         super.startMusic();
 
     }
@@ -128,7 +125,7 @@ public class GameScreen extends PixelGameScreen {
         world.step(1 / 60f, 8, 3);
         super.render(delta);
 
-        spriteBatch.setProjectionMatrix(camera.combined);
+        //spriteBatch.setProjectionMatrix(camera.combined);
 
         spriteBatch.begin();
         Box2DSprite.draw(spriteBatch, world);
@@ -172,10 +169,12 @@ public class GameScreen extends PixelGameScreen {
     @Override
     public void resize(int width, int height) {
 
-        levelwidth = width;
-        levelheight = height;
-        camera.viewportWidth = width / 25;
-        camera.viewportHeight = height / 25;
+        //camera.viewportWidth = width / 25;
+        //camera.viewportHeight = height / 25;
+
+        // Every screen sees the same amount of units (fair play!)
+        camera.viewportWidth = 40f;
+        camera.viewportHeight = 40f * height/width;
         camera.update();
 
     }

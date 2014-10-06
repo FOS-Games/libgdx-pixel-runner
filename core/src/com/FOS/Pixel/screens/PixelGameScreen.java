@@ -19,6 +19,7 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import net.dermetfan.gdx.physics.box2d.utils.Box2DMapObjectParser;
 
@@ -71,7 +72,22 @@ public abstract class PixelGameScreen implements Screen {
         world = new World(new Vector2(0, -overrideEarthGravity()), true);
         box2DRenderer = new Box2DDebugRenderer();
 
-        camera = new OrthographicCamera();
+        // NEW
+        // Get width and height of application display
+        float w = Gdx.graphics.getWidth();
+        float h = Gdx.graphics.getHeight();
+
+        // 30 units on X visible
+        // 10 units on Y visible
+        camera = new OrthographicCamera(40, 40 * (h / w));
+        camera.position.set(camera.viewportWidth / 2f, camera.viewportHeight / 2f, 0);
+        camera.update();
+
+        // END NEW
+
+        // BACKUP
+        // camera = new OrthographicCamera();
+
         map = new TmxMapLoader().load(levelData.getTmxpath());
         parser = new Box2DMapObjectParser(PixelVars.UNITSCALE);
 
@@ -92,14 +108,14 @@ public abstract class PixelGameScreen implements Screen {
         box2DRenderer.render(world, camera.combined);
 
 
-        // Used in GameScreen (TEST)
-        //spriteBatch.setProjectionMatrix(camera.combined);
+        // render the camera
+        camera.update();
+        spriteBatch.setProjectionMatrix(camera.combined);
 
     }
 
     @Override
     public void resize(int width, int height) {
-
     }
 
     @Override
