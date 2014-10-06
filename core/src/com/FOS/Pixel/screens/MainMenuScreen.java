@@ -61,8 +61,8 @@ public class MainMenuScreen extends MenuScreen {
         final TextButton bStart = new TextButton("Level Select", skin);
         final TextButton bExit = new TextButton("Exit", skin);
 
-        table.add(bStart).size(50, 20).padBottom(10).row();
-        table.add(bExit).size(50, 20).padBottom(10).row();
+        table.add(bStart).size(100, 20).padBottom(20).row();
+        table.add(bExit).size(100, 20).padBottom(20).row();
 
         bStart.addListener(new ChangeListener() {
             @Override

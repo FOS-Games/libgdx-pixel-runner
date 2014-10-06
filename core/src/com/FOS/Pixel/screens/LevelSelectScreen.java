@@ -59,8 +59,8 @@ public class LevelSelectScreen extends MenuScreen {
         final TextButton bLevel1 = new TextButton("Start level 1", skin);
         final TextButton bLevel2 = new TextButton("Start level 2", skin);
 
-        table.add(bLevel1).size(50, 20).padBottom(10).row();
-        table.add(bLevel2).size(50, 20).padBottom(10).row();
+        table.add(bLevel1).size(100, 20).padBottom(20).row();
+        table.add(bLevel2).size(100, 20).padBottom(20).row();
 
         bLevel1.addListener(new ChangeListener() {
             @Override
