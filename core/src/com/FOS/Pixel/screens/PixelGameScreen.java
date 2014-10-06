@@ -110,7 +110,7 @@ public abstract class PixelGameScreen implements Screen {
 
         // render the camera
         camera.update();
-        spriteBatch.setProjectionMatrix(camera.combined);
+        //spriteBatch.setProjectionMatrix(camera.combined);
 
     }
 
