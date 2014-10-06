@@ -14,6 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.utils.viewport.StretchViewport;
 
 /**
  * Created by Stefan on 6-10-2014.
@@ -32,7 +33,7 @@ public class LevelSelectScreen extends MenuScreen {
     @Override
     public void show() {
         batch = new SpriteBatch();
-        stage = new Stage();
+        stage = new Stage(new StretchViewport(640, 480));
         Gdx.input.setInputProcessor(stage);
 
         skin = new Skin();
@@ -59,8 +60,8 @@ public class LevelSelectScreen extends MenuScreen {
         final TextButton bLevel1 = new TextButton("Start level 1", skin);
         final TextButton bLevel2 = new TextButton("Start level 2", skin);
 
-        table.add(bLevel1).size(100, 20).padBottom(20).row();
-        table.add(bLevel2).size(100, 20).padBottom(20).row();
+        table.add(bLevel1).size(200, 50).padBottom(20).row();
+        table.add(bLevel2).size(200, 50).padBottom(20).row();
 
         bLevel1.addListener(new ChangeListener() {
             @Override
@@ -82,7 +83,7 @@ public class LevelSelectScreen extends MenuScreen {
     @Override
     public void render(float delta) {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1/30f));
+        stage.act(delta);
         stage.draw();
     }
 

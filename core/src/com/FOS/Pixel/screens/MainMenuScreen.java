@@ -10,12 +10,12 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.utils.viewport.StretchViewport;
 
 /**
  * Created by Stefan on 6-10-2014.
@@ -34,7 +34,7 @@ public class MainMenuScreen extends MenuScreen {
     @Override
     public void show() {
         batch = new SpriteBatch();
-        stage = new Stage();
+        stage = new Stage(new StretchViewport(640, 480));
         Gdx.input.setInputProcessor(stage);
 
         skin = new Skin();
@@ -61,8 +61,8 @@ public class MainMenuScreen extends MenuScreen {
         final TextButton bStart = new TextButton("Level Select", skin);
         final TextButton bExit = new TextButton("Exit", skin);
 
-        table.add(bStart).size(100, 20).padBottom(20).row();
-        table.add(bExit).size(100, 20).padBottom(20).row();
+        table.add(bStart).size(200, 50).padBottom(20).row();
+        table.add(bExit).size(200, 50).padBottom(20).row();
 
         bStart.addListener(new ChangeListener() {
             @Override
@@ -84,7 +84,7 @@ public class MainMenuScreen extends MenuScreen {
     @Override
     public void render(float delta) {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1/30f));
+        stage.act(delta);
         stage.draw();
     }
 
