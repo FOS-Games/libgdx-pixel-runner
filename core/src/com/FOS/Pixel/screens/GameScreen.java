@@ -197,6 +197,6 @@ public class GameScreen extends PixelGameScreen {
 
     @Override
     protected float overrideEarthGravity() {
-        return 50f;
+        return PixelVars.GRAVITY;
     }
 }
