@@ -49,7 +49,7 @@ public class GameScreen extends PixelGameScreen {
     public int orbs = 0;
 
 
-    // background
+    // Background stuff
     Texture bgTex;
     Sprite bgSpr;
     Camera fixedCam;
@@ -67,8 +67,8 @@ public class GameScreen extends PixelGameScreen {
         createPlayer();
         createCollectibles();
         createBoxes();
+
         world.setContactListener(pixelContactListener);
-        // set camera zoom
         orbs = SaveHandler.getSaveData().getTotalOrbs();
         super.startMusic();
         player.decrSpeed(new Vector2(10,0),10,0.5f);
@@ -92,9 +92,13 @@ public class GameScreen extends PixelGameScreen {
         bgTex = new Texture(Gdx.files.internal(JsonHandler.readLevel(level).getBackground()));
         bgSpr = new Sprite(bgTex);
 
+        // A fixed camera to draw the background (+ GUI!)
         fixedCam = new OrthographicCamera();
+
+        // Viewport equals size of the background, so it fits the screen.
         fixedCam.viewportHeight = bgSpr.getHeight();
         fixedCam.viewportWidth = bgSpr.getWidth();
+
         fixedCam.position.set(fixedCam.viewportWidth * .5f, fixedCam.viewportHeight * .5f, 0f);
         fixedCam.update();
     }
@@ -144,12 +148,8 @@ public class GameScreen extends PixelGameScreen {
      */
     private void createPlayer(){
         Vector2 spawn;
-        //ObjectMap<String,Body> bodyMap = parser.getBodies();
         if(parser.getBodies().containsKey("spawn")) {
-            // added isSensor in tmx map, testing.
-            //bodyMap.get("spawn").getFixtureList().get(0).setSensor(true);
             spawn = parser.getBodies().get("spawn").getPosition();
-
         }else{
             spawn = new Vector2(0,0); }
         player=new Player(this, spawn);
