@@ -11,6 +11,7 @@ import com.FOS.Pixel.screens.PixelGameScreen;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -48,12 +49,18 @@ public class GameScreen extends PixelGameScreen {
     public int orbs = 0;
 
 
+    // background
+    Texture bgTex;
+    Sprite bgSpr;
+    Camera fixedCam;
+
     public GameScreen(Game game,int level) {
         super(game,level);
     }
     @Override
     public void show() {
 
+        createBackground();
         createPlayer();
         createCollectibles();
         createBoxes();
@@ -62,8 +69,22 @@ public class GameScreen extends PixelGameScreen {
         orbs = SaveHandler.getSaveData().getTotalOrbs();
         super.startMusic();
         player.decrSpeed(new Vector2(10,0),10,0.5f);
-        AnimationUtil.createTextureRegion(new Texture(Gdx.files.internal("sprite-animation1.png")),6,1,1,3);
+        //AnimationUtil.createTextureRegion(new Texture(Gdx.files.internal("sprite-animation1.png")), 6, 1, 1, 3);
 
+    }
+
+    // TODO : Retrieve out of levelData
+    private void createBackground() {
+        bgTex = new Texture(Gdx.files.internal("maps/backgrounds/bgSky.png"));
+        bgSpr = new Sprite(bgTex);
+
+        fixedCam = new OrthographicCamera();
+//        fixedCam.viewportHeight = camera.viewportHeight;
+//        fixedCam.viewportWidth = camera.viewportWidth;
+        fixedCam.viewportHeight = bgSpr.getHeight();
+        fixedCam.viewportWidth = bgSpr.getWidth();
+        fixedCam.position.set(fixedCam.viewportWidth * .5f, fixedCam.viewportHeight * .5f, 0f);
+        fixedCam.update();
     }
 
     private void createBoxes() {
@@ -129,11 +150,18 @@ public class GameScreen extends PixelGameScreen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         world.step(1 / 60f, 8, 3);
-        super.render(delta);
 
-        //spriteBatch.setProjectionMatrix(camera.combined);
 
+        spriteBatch.setProjectionMatrix(fixedCam.combined);
         spriteBatch.begin();
+        bgSpr.draw(spriteBatch);
+        spriteBatch.end();
+
+
+        spriteBatch.setProjectionMatrix(camera.combined);
+        super.render(delta);
+        spriteBatch.begin();
+        //spriteBatch.draw(bg, 0, 0);
         Box2DSprite.draw(spriteBatch, world);
         spriteBatch.end();
 

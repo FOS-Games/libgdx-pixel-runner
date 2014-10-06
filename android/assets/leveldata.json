@@ -6,7 +6,7 @@ Level1: {
 	bronzeTime: 120,
 	musicpath: soundpath/sound.mp3,
 	goldTime: 60,
-	background: Background.path,
+	background: maps/background/bgSky.png,
 	minSpeed: 1,
 	silverTime: 90,
 	speedIncr: 1
@@ -18,7 +18,7 @@ Level2: {
 	bronzeTime: 120,
 	musicpath: soundpath/sound.mp3,
 	goldTime: 60,
-	background: Background.path,
+	background: maps/background/bgCave.png,
 	minSpeed: 1,
 	silverTime: 90,
 	speedIncr: 1

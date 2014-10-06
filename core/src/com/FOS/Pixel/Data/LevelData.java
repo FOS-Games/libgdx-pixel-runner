@@ -78,4 +78,6 @@ public class LevelData {
     public String getMusicpath() {
         return musicpath;
     }
+
+    public String getBackground() { return background; }
 }
