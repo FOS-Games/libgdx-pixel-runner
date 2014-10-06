@@ -3,19 +3,20 @@ package com.FOS.Pixel;
 import com.FOS.Pixel.Data.PlayerData;
 import com.FOS.Pixel.Data.PlayerData.AbilityType;
 import com.FOS.Pixel.Data.PixelVars;
+import com.FOS.Pixel.Interfaces.ISpeedController;
 import com.FOS.Pixel.handlers.PlayerAnimatorHandler;
 import com.FOS.Pixel.handlers.SaveHandler;
 import com.FOS.Pixel.screens.GameScreen;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.OrderedMap;
 import com.badlogic.gdx.utils.TimeUtils;
+import com.badlogic.gdx.utils.Timer;
 
 
-public class Player extends PlayerAnimatorHandler{
+public class Player extends PlayerAnimatorHandler implements ISpeedController{
 
 
     static final float JUMP_VELOCITY = 4f;    // jump velocity in m/s of the player
@@ -25,6 +26,7 @@ public class Player extends PlayerAnimatorHandler{
 
     public Vector2 position = new Vector2();
     public Vector2 velocity = new Vector2();
+    public float minVelocity;
 
     Vector2 size = new Vector2(TEXTURE_W * PixelVars.UNITSCALE, TEXTURE_H * PixelVars.UNITSCALE);
     private Vector2 spawnpoint;
@@ -32,17 +34,9 @@ public class Player extends PlayerAnimatorHandler{
     private Body body;
     public Body getBody() { return body;}
 
-    private float levelIncr;
-    private float levelDecr;
     private float levelDefault = 8f;
 
     protected World world;
-//    FixtureDef bodyFixture = new FixtureDef();
-//    FixtureDef collisionFixture = new FixtureDef();
-//
-//    FixtureDef feetFixture = new FixtureDef();
-//    FixtureDef wingFixture = new FixtureDef();
-//    FixtureDef weaponFixture = new FixtureDef();
 
     Fixture bodyFixture;
     Fixture collisionFixture;
@@ -60,7 +54,8 @@ public class Player extends PlayerAnimatorHandler{
         this.world = gameScreen.getWorld();
         this.spawnpoint = spawn;
         this.gameScreen = gameScreen;
-
+        this.velocity = new Vector2(gameScreen.levelData.getMinSpeed(),0);
+        this.minVelocity =gameScreen.levelData.getMinSpeed();
         playerData = SaveHandler.getSaveData().getPlayerData();
 
         InitBox2D();
@@ -203,63 +198,60 @@ public class Player extends PlayerAnimatorHandler{
 
     public void playerUpdateSpeed(){
         velocity = this.body.getLinearVelocity();
-        if(velocity.x > MAX_VEL){
-            velocity.x =MAX_VEL;
-        }
-        else if(velocity.x<levelDefault){
-            velocity.x = levelDefault;
-        }
-        this.body.setLinearVelocity(velocity.x,velocity.y);
+//        if(velocity.x > MAX_VEL){
+//            velocity.x =MAX_VEL;
+//        }
+//        else if(velocity.x<minVelocity){
+//            velocity.x = minVelocity;
+//        }
+        this.body.setLinearVelocity(minVelocity,velocity.y);
+        System.out.println(this.body.getLinearVelocity());
     }
 
-    public boolean increaseSpeed(int incr){
-        velocity = this.body.getLinearVelocity();
-        if(velocity.x +incr > MAX_VEL){
-            return false;
-        }
-        else {
-            this.body.setLinearVelocity(velocity.x+incr, velocity.y);
-            return true;
-        }
-    }
-    public  boolean increaseSpeed(){
-        velocity = this.body.getLinearVelocity();
-        if(velocity.x +levelIncr > MAX_VEL){
-            return false;
-        }
-        else {
-            this.body.setLinearVelocity(velocity.x+levelIncr, velocity.y);
-            return true;
-        }
-    }
-
-    public boolean decreaseSpeed(int decr){
-        velocity=this.body.getLinearVelocity();
-        if(velocity.x-decr<0){
-            return false;
-        }
-        else{
-            this.body.setLinearVelocity(velocity.x-decr, velocity.y);
-            return true;
-        }
-    }
-    public boolean decreaseSpeed(){
-        velocity=this.body.getLinearVelocity();
-        if(velocity.x-levelDecr<0){
-            return false;
-        }
-        else{
-            this.body.setLinearVelocity(velocity.x-levelDecr, velocity.y);
-            return true;
-        }
-    }
-//    private void playerJump() {
-//        if(gameScreen.pixelContactListener.playerCanJump()) {
-//            if (Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
-//                body.applyLinearImpulse(new Vector2(0, JUMP_VELOCITY / PixelVars.UNITSCALE), this.body.getPosition(), true);
+//    public boolean increaseSpeed(int incr){
+//        velocity = this.body.getLinearVelocity();
+//        if(velocity.x +incr > MAX_VEL){
+//            return false;
+//        }
+//        else {
+//            this.body.setLinearVelocity(velocity.x+incr, velocity.y);
+//            return true;
+//        }
+//    }
+//    public  boolean increaseSpeed(){
+//        velocity = this.body.getLinearVelocity();
+//        if(velocity.x +levelIncr > MAX_VEL){
+//            return false;
+//        }
+//        else {
+//            this.body.setLinearVelocity(velocity.x+levelIncr, velocity.y);
+//            return true;
+//        }
+//    }
+//
+//    public boolean decreaseSpeed(int decr){
+//        velocity=this.body.getLinearVelocity();
+//        if(velocity.x-decr<0){
+//            return false;
+//        }
+//        else{
+//            this.body.setLinearVelocity(velocity.x-decr, velocity.y);
+//            return true;
+//        }
+//    }
+//    public boolean decreaseSpeed(){
+//        velocity=this.body.getLinearVelocity();
+//        if(velocity.x-levelDecr<0){
+//            return false;
+//        }
+//        else{
+//            this.body.setLinearVelocity(velocity.x-levelDecr, velocity.y);
+//            return true;
 //        }
 //    }
 
+
+    boolean jumped = false;
     boolean holdable = false;
     long time = 0;
 
@@ -293,6 +285,72 @@ public class Player extends PlayerAnimatorHandler{
     }
 
     private boolean isFalling() { return body.getLinearVelocity().y < 0; }
+    @Override
+    public void incrSpeed(Vector2 increaseto, int steps) {
+        float xincr=(increaseto.x-body.getLinearVelocity().x)/(float)steps;
+        float yincr= (increaseto.y-body.getLinearVelocity().y)/(float)steps;
+        final Vector2 incrsteps = new Vector2(xincr,yincr);
+        Timer timer = new Timer();
+        timer.scheduleTask(new Timer.Task() {
+            @Override
+            public void run() {
+                System.out.println("Incr");
+                body.setLinearVelocity(body.getLinearVelocity().add(incrsteps));
+                minVelocity += incrsteps.x;
+            }
+        },1,1,steps);
+
+    }
+
+    @Override
+    public void decrSpeed(Vector2 decreaseto, int steps) {
+        float xincr=(decreaseto.x-body.getLinearVelocity().x)/(float)steps;
+        float yincr= (decreaseto.y-body.getLinearVelocity().y)/(float)steps;
+        final Vector2 incrsteps = new Vector2(xincr,yincr);
+        Timer timer = new Timer();
+        timer.scheduleTask(new Timer.Task() {
+            @Override
+            public void run() {
+                System.out.println("Decr");
+                body.setLinearVelocity(body.getLinearVelocity().add(incrsteps));
+                minVelocity += incrsteps.x;
+            }
+
+        },1,1,steps);
+    }
+
+    @Override
+    public void incrSpeed(Vector2 increaseto, int steps, float seconds) {
+        float xincr=(increaseto.x-body.getLinearVelocity().x)/(float)steps;
+        float yincr= (increaseto.y-body.getLinearVelocity().y)/(float)steps;
+        final Vector2 incrsteps = new Vector2(xincr,yincr);
+        Timer timer = new Timer();
+        timer.scheduleTask(new Timer.Task() {
+            @Override
+            public void run() {
+                System.out.println("Incr");
+                body.setLinearVelocity(body.getLinearVelocity().add(incrsteps));
+                minVelocity += incrsteps.x;
+            }
+        },seconds,seconds,steps);
+    }
+
+    @Override
+    public void decrSpeed(Vector2 decreaseto, int steps, float seconds) {
+        float xincr=(decreaseto.x-body.getLinearVelocity().x)/(float)steps;
+        float yincr= (decreaseto.y-body.getLinearVelocity().y)/(float)steps;
+        final Vector2 incrsteps = new Vector2(xincr,yincr);
+        Timer timer = new Timer();
+        timer.scheduleTask(new Timer.Task() {
+            @Override
+            public void run() {
+                System.out.println("Decr");
+                body.setLinearVelocity(body.getLinearVelocity().add(incrsteps));
+                minVelocity += incrsteps.x;
+            }
+
+        },seconds,seconds,steps);
+    }
 
 
 }

@@ -16,4 +16,16 @@ public class LevelSaveData {
         this.totaltime = totaltime;
         this.unlocked = unlocked;
     }
+
+    public float getLevelDistance() {
+        return levelDistance;
+    }
+
+    public long getTotaltime() {
+        return totaltime;
+    }
+
+    public boolean isUnlocked() {
+        return unlocked;
+    }
 }

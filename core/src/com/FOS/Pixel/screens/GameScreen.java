@@ -1,5 +1,6 @@
 package com.FOS.Pixel.screens;
 
+import com.FOS.Pixel.AnimationUtil;
 import com.FOS.Pixel.Data.LevelData;
 import com.FOS.Pixel.Data.PixelVars;
 import com.FOS.Pixel.PixelContactListener;
@@ -9,6 +10,7 @@ import com.FOS.Pixel.handlers.SaveHandler;
 import com.FOS.Pixel.screens.PixelGameScreen;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -46,7 +48,6 @@ public class GameScreen extends PixelGameScreen {
     public int orbs = 0;
 
 
-
     public GameScreen(Game game,int level) {
         super(game,level);
     }
@@ -60,6 +61,8 @@ public class GameScreen extends PixelGameScreen {
         // set camera zoom
         orbs = SaveHandler.getSaveData().getTotalOrbs();
         super.startMusic();
+        player.decrSpeed(new Vector2(10,0),10,0.5f);
+        AnimationUtil.createTextureRegion(new Texture(Gdx.files.internal("sprite-animation1.png")),6,1,1,3);
 
     }
 
@@ -67,6 +70,7 @@ public class GameScreen extends PixelGameScreen {
         ObjectMap<String,Body> bodies = parser.getBodies();
         for (ObjectMap.Entry<String,Body> x : bodies){
             if(x.key.equals("obstacle")){
+                x.value.setUserData(new Box2DSprite(new Texture(Gdx.files.internal("obstacle.png"))));
                 for(Fixture fix: x.value.getFixtureList()){
                     fix.setSensor(true);
                     fix.setUserData("obstacle");
@@ -80,6 +84,7 @@ public class GameScreen extends PixelGameScreen {
         ObjectMap<String,Body> bodies = parser.getBodies();
         for (ObjectMap.Entry<String,Body> x : bodies){
             if(x.key.equals("orb")){
+                x.value.setUserData(new Box2DSprite(new Texture(Gdx.files.internal("orb.png"))));
                 for(Fixture fix: x.value.getFixtureList()){
                     fix.setSensor(true);
                     fix.setUserData("orb");
