@@ -10,7 +10,9 @@ import com.FOS.Pixel.screens.PixelGameScreen;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -126,11 +128,12 @@ public class GameScreen extends PixelGameScreen {
         world.step(1 / 60f, 8, 3);
         super.render(delta);
 
+        spriteBatch.setProjectionMatrix(camera.combined);
+
         spriteBatch.begin();
-
         Box2DSprite.draw(spriteBatch, world);
-
         spriteBatch.end();
+
         updateCamera();
         player.update(delta);
 

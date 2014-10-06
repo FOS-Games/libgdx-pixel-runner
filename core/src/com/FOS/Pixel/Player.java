@@ -139,7 +139,7 @@ public class Player extends PlayerAnimatorHandler{
         FixtureDef collisionDef = new FixtureDef();
 
         PolygonShape shape = new PolygonShape();
-        shape.setAsBox(size.x / 4, size.y);
+        shape.setAsBox(size.x / 4, size.y / 2, new Vector2(0, - size.y / 2), 0);
 
         collisionDef.shape = shape;
         collisionDef.density = 1;

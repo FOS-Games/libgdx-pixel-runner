@@ -19,6 +19,7 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.utils.viewport.Viewport;
 import net.dermetfan.gdx.physics.box2d.utils.Box2DMapObjectParser;
 
 /**
@@ -90,7 +91,9 @@ public abstract class PixelGameScreen implements Screen {
         mapRenderer.render();
         box2DRenderer.render(world, camera.combined);
 
-        spriteBatch.setProjectionMatrix(camera.combined);
+
+        // Used in GameScreen (TEST)
+        //spriteBatch.setProjectionMatrix(camera.combined);
 
     }
 
