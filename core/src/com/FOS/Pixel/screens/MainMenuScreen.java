@@ -35,6 +35,8 @@ public class MainMenuScreen extends MenuScreen {
     Texture tBlueButtonHover;
     Texture tBlueButtonPressed;
 
+    Texture background;
+
     public MainMenuScreen(Game game) {
         this.game = game;
     }
@@ -54,6 +56,8 @@ public class MainMenuScreen extends MenuScreen {
         tBlueButtonPressed = new Texture(Gdx.files.internal("ui/blueButtonPressed.png"));
         TextureRegion rBlueButtonPressed = new TextureRegion(tBlueButtonPressed);
 
+        background = new Texture(Gdx.files.internal("ui/menuBackground.png"));
+        TextureRegion rBackground = new TextureRegion(background);
 
         skin = new Skin();
 
@@ -74,6 +78,7 @@ public class MainMenuScreen extends MenuScreen {
 
         Table table = new Table();
         table.setFillParent(true);
+        table.setBackground(new TextureRegionDrawable(rBackground));
         stage.addActor(table);
 
         final TextButton bStart = new TextButton("Level Select", skin);

@@ -40,6 +40,8 @@ public class LevelSelectScreen extends MenuScreen {
     Texture tCaveLocked;
 
 
+    Texture background;
+
 
     public LevelSelectScreen(Game game) {
         this.game = game;
@@ -52,6 +54,8 @@ public class LevelSelectScreen extends MenuScreen {
         stage = new Stage(new StretchViewport(640, 480));
         Gdx.input.setInputProcessor(stage);
 
+        background = new Texture(Gdx.files.internal("ui/menuBackground.png"));
+        TextureRegion rBackground = new TextureRegion(background);
 
         // 01_Grasslands thumbnail
         tGrasslands = new Texture(Gdx.files.internal("maps/thumbnails/01_Grasslands.png"));
@@ -127,6 +131,7 @@ public class LevelSelectScreen extends MenuScreen {
 
         final Table table = new Table();
         table.setFillParent(true);
+        table.setBackground(new TextureRegionDrawable(rBackground));
         table.add(scroller).fill().expand();
 
         stage.addActor(table);
