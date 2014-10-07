@@ -43,11 +43,21 @@ public class PixelContactListener implements ContactListener {
 //            fb.getBody().getWorld().destroyBody(fb.getBody());
 //        }
 
+
+        //Check if player is hugging a wall
+        if(fa.getUserData() != null && fa.getUserData().equals("wallSensorCollider") && fb.getUserData() != null && fb.getUserData().equals("ground")) {
+            numFootContacts--;
+        }
+        if(fb.getUserData() != null && fb.getUserData().equals("wallSensorCollider") && fa.getUserData() != null && fa.getUserData().equals("ground")) {
+            numFootContacts--;
+        }
+
+
+        // Collect the orbs!
         if(fa.getUserData() != null && fa.getUserData().equals("playerCollider") && fb.getUserData() != null && fb.getUserData().equals("orb")) {
             bodiesToRemove.add(fb.getBody());
 
         }
-
         if(fb.getUserData() != null && fb.getUserData().equals("playerCollider") && fa.getUserData() != null && fa.getUserData().equals("orb")) {
             bodiesToRemove.add(fa.getBody());
         }
@@ -73,11 +83,20 @@ public class PixelContactListener implements ContactListener {
 
         if(fa == null || fb == null) return;
 
+        // Not touching the ground with our feet
         if(fa.getUserData() != null && fa.getUserData().equals("feet") && fb.getUserData() != null && fb.getUserData().equals("ground")) {
             numFootContacts--;
         }
         if(fb.getUserData() != null && fb.getUserData().equals("feet") && fa.getUserData() != null && fa.getUserData().equals("ground")) {
             numFootContacts--;
+        }
+
+        // Not touching the wall... ground with out body
+        if(fa.getUserData() != null && fa.getUserData().equals("wallSensorCollider") && fb.getUserData() != null && fb.getUserData().equals("ground")) {
+            numFootContacts++;
+        }
+        if(fb.getUserData() != null && fb.getUserData().equals("wallSensorCollider") && fa.getUserData() != null && fa.getUserData().equals("ground")) {
+            numFootContacts++;
         }
     }
 
