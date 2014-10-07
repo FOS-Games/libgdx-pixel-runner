@@ -146,7 +146,7 @@ public class LevelSelectScreen extends MenuScreen {
         final TextButton bLevel5 = new TextButton("Start level 5", skin);
 
         final TextButton bBack = new TextButton("Back", skin, "blueStyle");
-        final TextButton bAbilities = new TextButton("Exit", skin, "blueStyle");
+        final TextButton bAbilities = new TextButton("Abilities", skin, "blueStyle");
 
         // ScrollPane table
         final Table scrollTable = new Table();
@@ -162,8 +162,9 @@ public class LevelSelectScreen extends MenuScreen {
         final Table table = new Table();
         table.setFillParent(true);
         table.setBackground(new TextureRegionDrawable(rBackground));
-        table.add(scroller).fill().expand().row();
+        table.add(scroller).fill().expand().colspan(2).row();
         table.add(bBack).size(200, 50).bottom().left().padLeft(20).padBottom(20);
+        table.add(bAbilities).size(400, 50).bottom().right().padRight(20).padBottom(20);
 
         // Add table to the stage
         stage.addActor(table);
@@ -190,7 +191,12 @@ public class LevelSelectScreen extends MenuScreen {
             }
         });
 
-        //table.add(new Image(skin.newDrawable("white", Color.RED))).size(64);
+        bAbilities.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new AbilityProgressScreen(game));
+            }
+        });
     }
 
     @Override
