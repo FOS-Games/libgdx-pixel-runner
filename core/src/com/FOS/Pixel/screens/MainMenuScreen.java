@@ -44,7 +44,7 @@ public class MainMenuScreen extends MenuScreen {
     @Override
     public void show() {
         batch = new SpriteBatch();
-        stage = new Stage(new StretchViewport(640, 480));
+        stage = new Stage(new StretchViewport(800, 480));
         Gdx.input.setInputProcessor(stage);
 
         tBlueButton = new Texture(Gdx.files.internal("ui/blueButton.png"));
