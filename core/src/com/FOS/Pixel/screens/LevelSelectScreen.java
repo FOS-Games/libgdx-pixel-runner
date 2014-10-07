@@ -120,11 +120,11 @@ public class LevelSelectScreen extends MenuScreen {
 
         final Table scrollTable = new Table();
         //table.setFillParent(true);
-        scrollTable.add(bLevel1).size(200, 200).padLeft(5).padRight(5);
-        scrollTable.add(bLevel2).size(200, 200).padLeft(5).padRight(5);
-        scrollTable.add(bLevel3).size(200, 200).padLeft(5).padRight(5);
-        scrollTable.add(bLevel4).size(200, 200).padLeft(5).padRight(5);
-        scrollTable.add(bLevel5).size(200, 200).padLeft(5).padRight(5);
+        scrollTable.add(bLevel1).size(200, 200).padLeft(20).padRight(20);
+        scrollTable.add(bLevel2).size(200, 200).padLeft(20).padRight(20);
+        scrollTable.add(bLevel3).size(200, 200).padLeft(20).padRight(20);
+        scrollTable.add(bLevel4).size(200, 200).padLeft(20).padRight(20);
+        scrollTable.add(bLevel5).size(200, 200).padLeft(20).padRight(20);
 
 
         final ScrollPane scroller = new ScrollPane(scrollTable);
