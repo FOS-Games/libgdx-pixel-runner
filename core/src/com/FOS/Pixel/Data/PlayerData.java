@@ -100,5 +100,25 @@ public class PlayerData {
     public String toString() {
         return "Data: "+this.data.toString()+", Jumplevel: "+this.jump+", StrengthLevel: "+ strength+", Speedlevel: "+this.speed+", Skin: "+this.skinType.toString();
     }
+
+    public void setData(AbilityType[] data) {
+        this.data = data;
+    }
+
+    public void setJump(int jump) {
+        this.jump = jump;
+    }
+
+    public void setStrength(int strength) {
+        this.strength = strength;
+    }
+
+    public void setSpeed(int speed) {
+        this.speed = speed;
+    }
+
+    public void setSkinType(SkinType skinType) {
+        this.skinType = skinType;
+    }
 }
 

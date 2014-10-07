@@ -44,4 +44,16 @@ public class SaveData {
     public int getTotalOrbs() {
         return totalOrbs;
     }
+
+    public void setPlayerData(PlayerData playerData) {
+        this.playerData = playerData;
+    }
+
+    public void setLevelSaveDatas(LevelSaveData[] levelSaveDatas) {
+        this.levelSaveDatas = levelSaveDatas;
+    }
+
+    public void setTotalOrbs(int totalOrbs) {
+        this.totalOrbs = totalOrbs;
+    }
 }

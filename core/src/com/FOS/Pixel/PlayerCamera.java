@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.utils.Timer;
+import net.dermetfan.gdx.physics.box2d.Autopilot;
 
 import java.text.DecimalFormat;
 
@@ -55,32 +56,47 @@ public class PlayerCamera extends OrthographicCamera implements ISpeedController
             this.position.x = body.getPosition().x;
             this.position.y = body.getPosition().y;
             playerUpdateSpeed();
+            checkPlayerDeath();
         }
 
     }
 
+    private void checkPlayerDeath() {
+        boolean outofxrange = player.getBody().getPosition().x<body.getPosition().x-(viewportWidth/2)||player.getBody().getPosition().x>body.getPosition().x+(viewportWidth/2);
+        boolean outofyrange = player.getBody().getPosition().y<body.getPosition().y-(viewportHeight/2)||player.getBody().getPosition().y>body.getPosition().y+(viewportHeight/2);
+        if(outofxrange||outofyrange){
+            //TODO:Something dead-like
+            System.out.println("DEADD");
+        }
+    }
+
     private void checkPlayerPosition() {
         DecimalFormat df = new DecimalFormat("###.#");
-
         float playerx = Float.valueOf(df.format(player.getBody().getPosition().x).replace(",", "."));
         float camerax = Float.valueOf(df.format(body.getPosition().x).replace(",", "."));
 
-        System.out.println("Player x = "+playerx+", Camera x = "+camerax+" || "+(playerx == camerax));
+//        System.out.println("Player x = "+playerx+", Camera x = "+camerax+" || "+(playerx == camerax));
 
         if(!isAdjusting){
-            this.body.setTransform(playerx,body.getPosition().y,body.getAngle());
+            if(this.body.getPosition().x<player.getBody().getPosition().x){
+                this.body.setTransform(this.body.getPosition().x+0.01f,this.body.getPosition().y,this.body.getAngle());
+            }else if(this.body.getPosition().x>player.getBody().getPosition().x) {
+                this.body.setTransform(this.body.getPosition().x - 0.01f, this.body.getPosition().y, this.body.getAngle());
+            }else{
+                this.body.setTransform(player.getBody().getPosition(),this.body.getAngle());
+            }
         }
         if(camerax==playerx && isSearching && isAdjusting){
             minVelocity = player.minVelocity;
             this.body.setTransform(playerx,body.getPosition().y,body.getAngle());
-            System.out.println("Found");
+//            System.out.println("Found");
             isSearching=false;
             isAdjusting=false;
         }
 
         boolean outofrange = this.body.getPosition().x > player.getBody().getPosition().x+0.15 || this.body.getPosition().x < player.getBody().getPosition().x-0.15;
         if (outofrange && !isSearching){
-            System.out.println("Searching...");
+//            System.out.println("Searching...");
             isSearching=true;
         }
     }

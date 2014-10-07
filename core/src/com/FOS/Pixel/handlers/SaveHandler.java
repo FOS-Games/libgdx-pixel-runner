@@ -50,6 +50,28 @@ public class SaveHandler {
 
     }
 
+    public static void ResetSave(){
+        saveData = new SaveData(
+                new PlayerData(PlayerData.AbilityType.NONE,1,1,1, PlayerData.SkinType.HUMAN),
+                new LevelSaveData[]{
+                        new LevelSaveData(0,0,true),
+                        new LevelSaveData(0,0,false)
+                },
+                0
+        );
+
+        FileHandle file = Gdx.files.local("saves/savedata.json");
+
+        if(file.exists()){
+            file.delete();
+        }
+
+        String savestring = json.prettyPrint(saveData);
+        file.writeString(savestring, true);
+
+
+    }
+    
     public static SaveData getSaveData() {
         return saveData;
     }
