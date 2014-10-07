@@ -215,12 +215,15 @@ public class GameScreen extends PixelGameScreen {
     }
 
     private void checkCollectedOrbs() {
+
         Array<Body> bodies = pixelContactListener.getBodies();
         for(int i = 0; i < bodies.size; i++) {
             world.destroyBody(bodies.get(i));
             orbs++;
             // play sound
         }
+
+        bodies.clear();
     }
 
 
