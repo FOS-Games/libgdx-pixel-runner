@@ -108,15 +108,14 @@ public class AbilityProgressScreen extends MenuScreen {
         // Player table and container
         final Table playerTable = new Table();
         playerTable.setFillParent(true);
-        playerTable.add(new Image(new SpriteDrawable(new AnimatedSprite(animation))));
+        playerTable.add(new Image(new SpriteDrawable(new AnimatedSprite(animation)))).size(200, 200);
         final Container playerContainer = new Container(playerTable);
 
         // Ability table and container
         final Table abilityTable = new Table();
-        //abilityTable.setFillParent(true);
+        abilityTable.setFillParent(true);
         abilityTable.add(new Image(playerProp.getAnimatedSprite()));
         final Container abilityContainer = new Container(abilityTable);
-
 
 
         // Table
@@ -125,10 +124,10 @@ public class AbilityProgressScreen extends MenuScreen {
         table.setFillParent(true);
         table.setBackground(new TextureRegionDrawable(rBackground));
         //table.add(new Image(playerProp.getAnimation()));
-        table.add(playerContainer).size(200, 200).top().left().padTop(20).padLeft(20);
-        table.add(abilityContainer).size(200, 200).top().right().padTop(20).padRight(20);
+        table.add(playerContainer).size(400, 400).top().left().padTop(20).padLeft(20);
+        table.add(abilityContainer).size(400, 400).top().right().padTop(20).padRight(20);
         table.row();
-        table.add(bBack).size(200, 50).bottom().left().padLeft(20).padBottom(20).colspan(2);
+        table.add(bBack).size(200, 50).bottom().left().padLeft(40).padBottom(20).colspan(2);
 
         // Add table to the stage
         stage.addActor(table);
