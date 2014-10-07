@@ -75,17 +75,6 @@ public class GameScreen extends PixelGameScreen {
         player.decrSpeed(new Vector2(10,0),10,0.5f);
 
 
-        // TODO: Read this!
-        // LARS LARS
-        // LARS
-        // ...
-        // HIER IK HEB JE ANIMATIONUTIL UITGEZET
-        // JE ROEPT EEN PNG OP DIE IK ALLANG VERWIJDERD HEB
-        // :)
-        // Goedemorgen trouwens.
-        //
-        //AnimationUtil.createTextureRegion(new Texture(Gdx.files.internal("sprite-animation1.png")), 6, 1, 1, 3);
-
     }
 
     // TODO : Retrieve out of levelData
