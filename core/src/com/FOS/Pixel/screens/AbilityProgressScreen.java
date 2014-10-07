@@ -105,16 +105,22 @@ public class AbilityProgressScreen extends MenuScreen {
 
         final TextButton bBack = new TextButton("Back", skin, "blueStyle");
 
+        final TextButton bStr = new TextButton("Strength", skin, "blueStyle");
+        final TextButton bSpd = new TextButton("Speed", skin, "blueStyle");
+        final TextButton bAgi = new TextButton("Agility", skin, "blueStyle");
+
         // Player table and container
         final Table playerTable = new Table();
         playerTable.setFillParent(true);
-        playerTable.add(new Image(new SpriteDrawable(new AnimatedSprite(animation)))).size(200, 200);
+        playerTable.add(new Image(new SpriteDrawable(new AnimatedSprite(animation)))).size(256, 256).center();
         final Container playerContainer = new Container(playerTable);
 
         // Ability table and container
         final Table abilityTable = new Table();
         abilityTable.setFillParent(true);
-        abilityTable.add(new Image(playerProp.getAnimatedSprite()));
+        abilityTable.add(bStr).size(100, 50).row();
+        abilityTable.add(bSpd).size(100, 50).row();
+        abilityTable.add(bAgi).size(100, 50).row();
         final Container abilityContainer = new Container(abilityTable);
 
 
@@ -124,8 +130,8 @@ public class AbilityProgressScreen extends MenuScreen {
         table.setFillParent(true);
         table.setBackground(new TextureRegionDrawable(rBackground));
         //table.add(new Image(playerProp.getAnimation()));
-        table.add(playerContainer).size(400, 400).top().left().padTop(20).padLeft(20);
-        table.add(abilityContainer).size(400, 400).top().right().padTop(20).padRight(20);
+        table.add(playerContainer).size(400, 400).top().left().padTop(20);
+        table.add(abilityContainer).size(400, 400).top().right().padTop(20);
         table.row();
         table.add(bBack).size(200, 50).bottom().left().padLeft(40).padBottom(20).colspan(2);
 
