@@ -141,6 +141,7 @@ public class Player extends PlayerAnimatorHandler implements ISpeedController{
         collisionDef.friction = 0;
 
         collisionFixture = body.createFixture(collisionDef);
+        collisionFixture.setUserData("playerCollider");
         shape.dispose();
     }
 
