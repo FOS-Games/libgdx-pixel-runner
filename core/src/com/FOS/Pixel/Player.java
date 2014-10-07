@@ -14,13 +14,18 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.OrderedMap;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.badlogic.gdx.utils.Timer;
+import net.dermetfan.gdx.graphics.g2d.AnimatedBox2DSprite;
 
 
 public class Player extends PlayerAnimatorHandler implements ISpeedController{
 
+    public enum PLAYER_STATE {
+        JUMP,
+        RUN,
+        STUMBLE
+    }
 
     static final float JUMP_VELOCITY = 4f;    // jump velocity in m/s of the player
-    static final float MAX_VEL = 10f;           // maximum velocity in m/s of the player
     static final int TEXTURE_W = 128;            // the width of the player sprite
     static final int TEXTURE_H = 128;            // the height of the player sprite
 
@@ -34,8 +39,6 @@ public class Player extends PlayerAnimatorHandler implements ISpeedController{
     private Body body;
     public Body getBody() { return body;}
 
-    private float levelDefault = 8f;
-
     protected World world;
 
     Fixture bodyFixture;
@@ -47,8 +50,10 @@ public class Player extends PlayerAnimatorHandler implements ISpeedController{
     Fixture wallsensorFixture;
 
     GameScreen gameScreen;
-
     PlayerData playerData;
+
+    PLAYER_STATE state;
+    PLAYER_STATE anim;
 
     public Player(GameScreen gameScreen, Vector2 spawn) {
         super();
@@ -63,6 +68,8 @@ public class Player extends PlayerAnimatorHandler implements ISpeedController{
         body.setUserData(this);
 
         super.InitAnimation();
+        state= PLAYER_STATE.RUN;
+        anim=PLAYER_STATE.RUN;
     }
 
     @Override
@@ -213,62 +220,41 @@ public class Player extends PlayerAnimatorHandler implements ISpeedController{
         position = body.getPosition();
         playerJump();
         playerUpdateSpeed();
+        checkAnim();
+    }
+
+    private void checkAnim() {
+        if(anim!=state){
+            switch (state){
+                case RUN:
+                    setRunAnim();
+                    anim=state;
+                    break;
+                case JUMP:
+                    setJumpAnim();
+                    anim=state;
+                    break;
+                case STUMBLE:
+                    setStumbleAnim();
+                    anim=state;
+                    break;
+            }
+        }
+        if(anim == PLAYER_STATE.RUN){
+            ((AnimatedBox2DSprite)getBodyFixture().getUserData()).getAnimation().setFrameDuration(1/this.body.getLinearVelocity().x);
+        }
+        if(!gameScreen.pixelContactListener.playerCanJump()){
+            state=PLAYER_STATE.JUMP;
+        }
+        else if (gameScreen.pixelContactListener.playerCanJump()&&anim!=PLAYER_STATE.RUN){
+            state=PLAYER_STATE.RUN;
+        }
     }
 
     public void playerUpdateSpeed(){
         velocity = this.body.getLinearVelocity();
-//        if(velocity.x > MAX_VEL){
-//            velocity.x =MAX_VEL;
-//        }
-//        else if(velocity.x<minVelocity){
-//            velocity.x = minVelocity;
-//        }
         this.body.setLinearVelocity(minVelocity,velocity.y);
-        System.out.println(this.body.getLinearVelocity());
     }
-
-//    public boolean increaseSpeed(int incr){
-//        velocity = this.body.getLinearVelocity();
-//        if(velocity.x +incr > MAX_VEL){
-//            return false;
-//        }
-//        else {
-//            this.body.setLinearVelocity(velocity.x+incr, velocity.y);
-//            return true;
-//        }
-//    }
-//    public  boolean increaseSpeed(){
-//        velocity = this.body.getLinearVelocity();
-//        if(velocity.x +levelIncr > MAX_VEL){
-//            return false;
-//        }
-//        else {
-//            this.body.setLinearVelocity(velocity.x+levelIncr, velocity.y);
-//            return true;
-//        }
-//    }
-//
-//    public boolean decreaseSpeed(int decr){
-//        velocity=this.body.getLinearVelocity();
-//        if(velocity.x-decr<0){
-//            return false;
-//        }
-//        else{
-//            this.body.setLinearVelocity(velocity.x-decr, velocity.y);
-//            return true;
-//        }
-//    }
-//    public boolean decreaseSpeed(){
-//        velocity=this.body.getLinearVelocity();
-//        if(velocity.x-levelDecr<0){
-//            return false;
-//        }
-//        else{
-//            this.body.setLinearVelocity(velocity.x-levelDecr, velocity.y);
-//            return true;
-//        }
-//    }
-
 
     boolean jumped = false;
     boolean holdable = false;
@@ -316,7 +302,6 @@ public class Player extends PlayerAnimatorHandler implements ISpeedController{
         timer.scheduleTask(new Timer.Task() {
             @Override
             public void run() {
-                System.out.println("Incr");
                 body.setLinearVelocity(body.getLinearVelocity().add(incrsteps));
                 minVelocity += incrsteps.x;
             }
@@ -333,7 +318,6 @@ public class Player extends PlayerAnimatorHandler implements ISpeedController{
         timer.scheduleTask(new Timer.Task() {
             @Override
             public void run() {
-                System.out.println("Decr");
                 body.setLinearVelocity(body.getLinearVelocity().add(incrsteps));
                 minVelocity += incrsteps.x;
             }
@@ -350,7 +334,6 @@ public class Player extends PlayerAnimatorHandler implements ISpeedController{
         timer.scheduleTask(new Timer.Task() {
             @Override
             public void run() {
-                System.out.println("Incr");
                 body.setLinearVelocity(body.getLinearVelocity().add(incrsteps));
                 minVelocity += incrsteps.x;
             }
@@ -366,7 +349,6 @@ public class Player extends PlayerAnimatorHandler implements ISpeedController{
         timer.scheduleTask(new Timer.Task() {
             @Override
             public void run() {
-                System.out.println("Decr");
                 body.setLinearVelocity(body.getLinearVelocity().add(incrsteps));
                 minVelocity += incrsteps.x;
             }

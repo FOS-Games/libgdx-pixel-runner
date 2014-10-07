@@ -65,35 +65,15 @@ public class AnimationUtil {
 
 
         TextureRegion[][] tmp = TextureRegion.split(SpriteSheet, SpriteSheet.getWidth()/Columns, SpriteSheet.getHeight()/Rows);
-        ArrayList framesList = new ArrayList();
-        TextureRegion[] frames = new TextureRegion[1];
+        TextureRegion[] frames = new TextureRegion[Columns*Rows];
         int index=0;
         for (int i = 0; i < Rows; i++) {
             for (int j = 0; j < Columns; j++) {
-                framesList.add(tmp[i][j]);
+                frames[index++]=tmp[i][j];
             }
         }
 
-        if(endFrame == (Columns*Rows)-1){}
-        else if(endFrame == (Columns*Rows)-2){
-            framesList.remove((Columns*Rows-1));
-        }else if (endFrame <(Columns*Rows)-2){
-            for(int i = endFrame; i<(Columns*Rows)-1; i++ ){
-
-                framesList.remove(i);
-            }
-        }
-        if(startFrame == 1){
-            framesList.remove(0);
-        }
-        else if (startFrame>1){
-            for(int i = 0; i<startFrame;i++){
-                framesList.remove(i);
-            }
-        }
-        frames = (TextureRegion[])framesList.toArray(new TextureRegion[0]);
-
-        return  frames;
+        return  cutFrames(frames,startFrame,endFrame);
     }
 
     public static TextureRegion[] createTextureRegion(FileHandle fileHandle, int Columns, int Rows){
@@ -113,35 +93,15 @@ public class AnimationUtil {
 
         Texture SpriteSheet = new Texture(fileHandle);
         TextureRegion[][] tmp = TextureRegion.split(SpriteSheet, SpriteSheet.getWidth()/Columns, SpriteSheet.getHeight()/Rows);
-        ArrayList framesList = new ArrayList();
-        TextureRegion[] frames = new TextureRegion[1];
+        TextureRegion[] frames = new TextureRegion[Columns*Rows];
         int index=0;
         for (int i = 0; i < Rows; i++) {
             for (int j = 0; j < Columns; j++) {
-                framesList.add(tmp[i][j]);
+                frames[index++]=tmp[i][j];
             }
         }
 
-        if(endFrame == (Columns*Rows)-1){}
-        else if(endFrame == (Columns*Rows)-2){
-            framesList.remove((Columns*Rows-1));
-        }else if (endFrame <(Columns*Rows)-2){
-            for(int i = endFrame; i<(Columns*Rows)-1; i++ ){
-
-                framesList.remove(i);
-            }
-        }
-        if(startFrame == 1){
-            framesList.remove(0);
-        }
-        else if (startFrame>1){
-            for(int i = 0; i<startFrame;i++){
-                framesList.remove(i);
-            }
-        }
-        frames = (TextureRegion[])framesList.toArray(new TextureRegion[0]);
-
-        return  frames;
+        return  cutFrames(frames,startFrame,endFrame);
     }
     public static TextureRegion[] createTextureRegion(String path, int Columns, int Rows){
         Texture SpriteSheet = new Texture(Gdx.files.internal(path));
@@ -159,35 +119,28 @@ public class AnimationUtil {
     public static TextureRegion[] createTextureRegion(String path, int Columns, int Rows, int startFrame, int endFrame){
         Texture SpriteSheet = new Texture(Gdx.files.internal(path));
         TextureRegion[][] tmp = TextureRegion.split(SpriteSheet, SpriteSheet.getWidth()/Columns, SpriteSheet.getHeight()/Rows);
-        ArrayList framesList = new ArrayList();
-        TextureRegion[] frames = new TextureRegion[1];
+
+        TextureRegion[] frames = new TextureRegion[Columns*Rows];
         int index=0;
         for (int i = 0; i < Rows; i++) {
             for (int j = 0; j < Columns; j++) {
-                framesList.add(tmp[i][j]);
+                frames[index]=tmp[i][j];
+                index++;
             }
         }
 
-        if(endFrame == (Columns*Rows)-1){}
-        else if(endFrame == (Columns*Rows)-2){
-            framesList.remove((Columns*Rows-1));
-        }else if (endFrame <(Columns*Rows)-2){
-            for(int i = endFrame; i<(Columns*Rows)-1; i++ ){
 
-                framesList.remove(i);
-            }
-        }
-        if(startFrame == 1){
-            framesList.remove(0);
-        }
-        else if (startFrame>1){
-            for(int i = 0; i<startFrame;i++){
-                framesList.remove(i);
-            }
-        }
-        frames = (TextureRegion[])framesList.toArray(new TextureRegion[0]);
+        return  cutFrames(frames,startFrame,endFrame);
+    }
 
-        return  frames;
+    private static TextureRegion[] cutFrames(TextureRegion[] fullFrames, int start, int end){
+        TextureRegion[] frames = new TextureRegion[(end-start)+1];
+        int count = 0;
+        for(int i = start; i <=end;i++){
+            frames[count] = fullFrames[i];
+            count ++;
+        }
+        return frames;
     }
 
 }
