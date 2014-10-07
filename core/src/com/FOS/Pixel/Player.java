@@ -70,6 +70,16 @@ public class Player extends PlayerAnimatorHandler implements ISpeedController{
         super.InitAnimation();
         state= PLAYER_STATE.RUN;
         anim=PLAYER_STATE.RUN;
+
+        Timer test = new Timer();
+        test.scheduleTask(new Timer.Task() {
+            @Override
+            public void run() {
+                System.out.println("StumbleTest");
+                state = PLAYER_STATE.STUMBLE;
+            }
+        },2,2,1);
+        test.start();
     }
 
     @Override
@@ -235,6 +245,7 @@ public class Player extends PlayerAnimatorHandler implements ISpeedController{
                     anim=state;
                     break;
                 case STUMBLE:
+                    System.out.println("Stumbleing");
                     setStumbleAnim();
                     anim=state;
                     break;
@@ -246,9 +257,17 @@ public class Player extends PlayerAnimatorHandler implements ISpeedController{
         if(!gameScreen.pixelContactListener.playerCanJump()){
             state=PLAYER_STATE.JUMP;
         }
-        else if (gameScreen.pixelContactListener.playerCanJump()&&anim!=PLAYER_STATE.RUN){
+        else if (gameScreen.pixelContactListener.playerCanJump()&&anim!=PLAYER_STATE.RUN&&anim!=PLAYER_STATE.STUMBLE){
             state=PLAYER_STATE.RUN;
         }
+        else if (anim==PLAYER_STATE.STUMBLE && ((AnimatedBox2DSprite)getBodyFixture().getUserData()).isAnimationFinished()){
+            state=PLAYER_STATE.RUN;
+        }
+    }
+
+    @Override
+    protected void finishStumble() {
+        state=PLAYER_STATE.RUN;
     }
 
     public void playerUpdateSpeed(){
