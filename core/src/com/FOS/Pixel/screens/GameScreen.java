@@ -70,6 +70,13 @@ public class GameScreen extends PixelGameScreen {
                 speedController.adjustSpeed(new Vector2(10, 0),5);
             }
         },2,2,0);
+
+        test.scheduleTask(new Timer.Task() {
+            @Override
+            public void run() {
+                speedController.adjustSpeed(new Vector2(-5, 0),5);
+            }
+        },15,2,0);
         test.start();
 
 
