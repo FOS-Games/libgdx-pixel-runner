@@ -20,6 +20,7 @@ public class PlayerCamera extends OrthographicCamera implements ISpeedController
     private Fixture fixture;
     private Player player;
     private boolean isSearching = false;
+    private boolean isAdjusting = false;
 
     public Vector2 velocity;
     public float minVelocity;
@@ -66,11 +67,15 @@ public class PlayerCamera extends OrthographicCamera implements ISpeedController
 
         System.out.println("Player x = "+playerx+", Camera x = "+camerax+" || "+(playerx == camerax));
 
-        if(camerax==playerx && isSearching){
+        if(!isAdjusting){
+            this.body.setTransform(playerx,body.getPosition().y,body.getAngle());
+        }
+        if(camerax==playerx && isSearching && isAdjusting){
             minVelocity = player.minVelocity;
             this.body.setTransform(playerx,body.getPosition().y,body.getAngle());
             System.out.println("Found");
             isSearching=false;
+            isAdjusting=false;
         }
 
         boolean outofrange = this.body.getPosition().x > player.getBody().getPosition().x+0.15 || this.body.getPosition().x < player.getBody().getPosition().x-0.15;
@@ -92,6 +97,7 @@ public class PlayerCamera extends OrthographicCamera implements ISpeedController
 
     @Override
     public void adjustSpeed(Vector2 adjustWith, int steps) {
+        isAdjusting=true;
         int stepcount = steps+2;
         float xincr= adjustWith.x/(float)stepcount;
 
@@ -112,6 +118,7 @@ public class PlayerCamera extends OrthographicCamera implements ISpeedController
 
     @Override
     public void adjustSpeed(Vector2 adjustWith, int steps, float seconds) {
+        isAdjusting=true;
         int stepcount = steps+2;
         float xincr=adjustWith.x/(float)stepcount;
         float yincr= adjustWith.y/(float)stepcount;
