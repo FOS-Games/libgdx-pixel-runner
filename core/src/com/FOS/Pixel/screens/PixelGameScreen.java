@@ -4,6 +4,7 @@ import com.FOS.Pixel.Data.LevelData;
 import com.FOS.Pixel.Data.PixelVars;
 import com.FOS.Pixel.PixelContactListener;
 import com.FOS.Pixel.Player;
+import com.FOS.Pixel.PlayerCamera;
 import com.FOS.Pixel.handlers.JsonHandler;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
@@ -32,7 +33,7 @@ public abstract class PixelGameScreen implements Screen {
     protected World world;
     protected Box2DDebugRenderer box2DRenderer;
     protected OrthogonalTiledMapRenderer mapRenderer;
-    protected OrthographicCamera camera;
+    protected PlayerCamera camera;
     protected Box2DMapObjectParser parser;
     protected TiledMap map;
     protected SpriteBatch spriteBatch;
@@ -74,14 +75,11 @@ public abstract class PixelGameScreen implements Screen {
 
         // NEW
         // Get width and height of application display
-        float w = Gdx.graphics.getWidth();
-        float h = Gdx.graphics.getHeight();
+
 
         // 40 units on X visible
         // 40 units on Y visible
-        camera = new OrthographicCamera(PixelVars.UNITS_VISIBLE, PixelVars.UNITS_VISIBLE * (h / w));
-        camera.position.set(camera.viewportWidth / 2f, camera.viewportHeight / 2f, 0);
-        camera.update();
+
 
         // END NEW
 
@@ -109,7 +107,7 @@ public abstract class PixelGameScreen implements Screen {
 
 
         // render the camera
-        camera.update();
+
         //spriteBatch.setProjectionMatrix(camera.combined);
 
     }

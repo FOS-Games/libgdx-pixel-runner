@@ -1,38 +1,22 @@
 package com.FOS.Pixel.screens;
 
-import com.FOS.Pixel.AnimationUtil;
-import com.FOS.Pixel.Data.LevelData;
+import com.FOS.Pixel.*;
 import com.FOS.Pixel.Data.PixelVars;
-import com.FOS.Pixel.PixelContactListener;
-import com.FOS.Pixel.Player;
 import com.FOS.Pixel.handlers.JsonHandler;
 import com.FOS.Pixel.handlers.SaveHandler;
-import com.FOS.Pixel.screens.PixelGameScreen;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Fixture;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.Json;
-import com.badlogic.gdx.utils.ObjectMap;
-import com.badlogic.gdx.utils.TimeUtils;
-import com.badlogic.gdx.utils.viewport.ScalingViewport;
-import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.badlogic.gdx.utils.*;
 import net.dermetfan.gdx.graphics.g2d.Box2DSprite;
-import net.dermetfan.utils.Pair;
 
 
 public class GameScreen extends PixelGameScreen {
@@ -49,6 +33,7 @@ public class GameScreen extends PixelGameScreen {
     boolean bronze=true;
 
     public int orbs = 0;
+    SpeedController speedController = new SpeedController();
 
 
     // Background stuff
@@ -64,17 +49,33 @@ public class GameScreen extends PixelGameScreen {
 
     @Override
     public void show() {
-
-        createBackground();
         createPlayer();
+        createCamera();
+        createBackground();
+
+
         createCollectibles();
         createBoxes();
+        speedController.registerController(player);
+        speedController.registerController(camera);
 
         world.setContactListener(pixelContactListener);
         orbs = SaveHandler.getSaveData().getTotalOrbs();
         super.startMusic();
-        player.decrSpeed(new Vector2(10,0),10,0.5f);
 
+        Timer test = new Timer();
+        test.scheduleTask(new Timer.Task() {
+            @Override
+            public void run() {
+                speedController.adjustSpeed(new Vector2(10, 0),5);
+            }
+        },2,2,0);
+        test.start();
+
+
+
+        camera.position.set(camera.viewportWidth / 2f, camera.viewportHeight / 2f, 0);
+        camera.update();
 
     }
 
@@ -134,6 +135,19 @@ public class GameScreen extends PixelGameScreen {
 
 
     /**
+     * Create camera at appropriate position.
+     */
+    private void createCamera(){
+        Vector2 spawn;
+        if(parser.getBodies().containsKey("spawn")) {
+            spawn = parser.getBodies().get("spawn").getPosition();
+        }else{
+            spawn = new Vector2(0,0); }
+        float w = Gdx.graphics.getWidth();
+        float h = Gdx.graphics.getHeight();
+        camera = new PlayerCamera(this,spawn,PixelVars.UNITS_VISIBLE, PixelVars.UNITS_VISIBLE * (h / w));
+    }
+    /**
      * Create player at appropriate position.
      */
     private void createPlayer(){
@@ -142,13 +156,14 @@ public class GameScreen extends PixelGameScreen {
             spawn = parser.getBodies().get("spawn").getPosition();
         }else{
             spawn = new Vector2(0,0); }
-        player=new Player(this, spawn);
+        this.player=new Player(this, spawn);
     }
 
     @Override
     public void render(float delta) {
 
         Update();
+
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         world.step(1 / 60f, 8, 3);
@@ -168,6 +183,7 @@ public class GameScreen extends PixelGameScreen {
         spriteBatch.end();
 
         updateCamera();
+        camera.update();
         player.update(delta);
 
     }
@@ -239,7 +255,7 @@ public class GameScreen extends PixelGameScreen {
     public void updateCamera() {
 
         // TODO : Edit the way the camera behaves
-        camera.position.x = player.position.x;
+//        camera.position.x = player.position.x;
         camera.position.y = player.position.y;
         camera.update();
     }
