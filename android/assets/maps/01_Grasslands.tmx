@@ -573,4 +573,1614 @@
    </properties>
   </object>
  </objectgroup>
+ <objectgroup name="Orbs">
+  <object name="orb" type="object" x="1380" y="770" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="1449" y="770" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="2139" y="560" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="2208" y="560" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="2277" y="560" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="2967" y="770" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="3036" y="770" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="3450" y="770" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="3519" y="770" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="3933" y="770" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="4002" y="770" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="4968" y="560" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="5037" y="560" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="5451" y="560" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="5520" y="560" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="5934" y="560" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="6003" y="560" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="6900" y="840" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="6969" y="840" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="7038" y="840" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="8004" y="840" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="8073" y="840" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="8142" y="840" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="7521" y="700" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="7590" y="700" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="8487" y="700" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="8556" y="700" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="9315" y="910" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="9384" y="910" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="9798" y="910" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="9867" y="910" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="10764" y="770" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="10833" y="770" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="10281" y="770" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="10350" y="770" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="11247" y="770" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="11316" y="770" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="11730" y="840" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="11799" y="840" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="12696" y="910" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="12834" y="770" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="12972" y="630" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="13110" y="490" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="14145" y="490" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="14628" y="560" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="15111" y="630" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="15594" y="700" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="16077" y="770" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="16560" y="840" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="17043" y="910" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="18423" y="910" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="18561" y="770" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="18699" y="630" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="19665" y="630" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="20148" y="630" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="20631" y="630" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="21114" y="490" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="21597" y="350" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="22218" y="210" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="22287" y="210" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="23529" y="210" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="23598" y="210" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="24564" y="350" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="24564" y="280" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="24909" y="350" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="24909" y="280" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="25254" y="350" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="25254" y="280" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="25599" y="350" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="25599" y="280" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="25944" y="350" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="25944" y="280" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="24702" y="910" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="24771" y="910" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="25185" y="910" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="25254" y="910" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="25668" y="910" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="25737" y="910" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="26151" y="770" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="26220" y="770" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="26634" y="840" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="26841" y="840" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="27048" y="840" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="27255" y="840" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="27462" y="840" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="27669" y="840" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="27945" y="630" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="27876" y="630" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="28359" y="560" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="28290" y="560" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="28773" y="490" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="28704" y="490" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="29187" y="420" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="29118" y="420" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="29601" y="350" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="29532" y="350" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="30567" y="490" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="30636" y="490" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="30705" y="490" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="30636" y="420" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="30636" y="560" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="31740" y="560" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="31740" y="490" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="31671" y="490" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="31740" y="420" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="31809" y="490" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="31188" y="350" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="31188" y="420" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="32154" y="560" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="32154" y="490" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="32982" y="840" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="33051" y="840" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="33396" y="840" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="33465" y="840" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="33810" y="840" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="33879" y="840" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="34224" y="700" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="34293" y="700" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="34638" y="560" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="34707" y="560" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="35052" y="420" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="35121" y="420" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="35466" y="420" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="35535" y="420" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="35880" y="280" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="35949" y="280" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="36363" y="280" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="36294" y="280" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="36708" y="490" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="36708" y="490" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="36777" y="490" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="37122" y="700" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="37191" y="700" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="37674" y="350" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="37674" y="420" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="37881" y="350" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="37881" y="420" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="38226" y="420" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="38295" y="420" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="38502" y="350" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="38571" y="350" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="38778" y="420" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="38847" y="420" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="39054" y="350" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="39123" y="350" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="39330" y="420" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="39399" y="420" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="38226" y="980" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="38364" y="980" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="38295" y="980" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="38571" y="980" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="38640" y="980" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="38709" y="980" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="38916" y="980" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="38985" y="980" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="39054" y="980" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="40710" y="700" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="40779" y="700" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="41262" y="700" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="41331" y="700" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="40158" y="980" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="39882" y="980" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="39606" y="980" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="42228" y="840" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="42297" y="840" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="42642" y="700" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="42711" y="700" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="43056" y="840" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="43125" y="840" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="43470" y="700" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="43539" y="700" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="43884" y="560" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="43953" y="560" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="44919" y="420" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="44919" y="490" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="44919" y="350" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="45609" y="770" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="45609" y="700" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="45609" y="630" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="46230" y="840" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="46230" y="770" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="46230" y="700" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="46851" y="840" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="46851" y="770" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="46851" y="700" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="47472" y="700" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="47472" y="630" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="47472" y="560" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="48093" y="560" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="48921" y="630" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="48921" y="700" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="48990" y="630" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="48852" y="630" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="48921" y="560" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="50025" y="630" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="50025" y="700" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="50094" y="630" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="49956" y="630" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="50025" y="560" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="49473" y="630" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="50577" y="630" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="50025" y="1050" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="48921" y="1050" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="51612" y="420" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="51681" y="420" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="52164" y="420" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="52233" y="420" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="51405" y="490" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="51336" y="490" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="51957" y="490" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="51888" y="490" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="52509" y="490" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="52440" y="490" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="51405" y="980" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="51888" y="980" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="52371" y="980" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="52854" y="980" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="54234" y="840" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="54579" y="630" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="54924" y="420" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="55269" y="420" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="55614" y="420" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="56028" y="420" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="56442" y="420" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="56856" y="420" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="57339" y="420" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="57822" y="420" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="58305" y="420" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="59271" y="630" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="59271" y="560" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="59340" y="630" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="59202" y="630" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="59271" y="700" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="60030" y="630" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="60030" y="560" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="59961" y="630" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="60099" y="630" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="60030" y="700" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="60789" y="630" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="60789" y="700" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="60858" y="630" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="60720" y="630" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="60789" y="560" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="61203" y="980" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="61617" y="840" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="62031" y="700" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="62445" y="840" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="62859" y="700" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="63273" y="560" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="63687" y="420" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="64860" y="630" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="64860" y="560" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="64929" y="560" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="64791" y="560" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="64860" y="490" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="65688" y="560" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="65688" y="630" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="65757" y="560" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="65619" y="560" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="65688" y="490" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="65274" y="700" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="66102" y="700" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="66999" y="630" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="67344" y="560" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="67689" y="560" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="68034" y="560" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="68586" y="700" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+  <object name="orb" type="object" x="68724" y="700" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="orb"/>
+   </properties>
+  </object>
+ </objectgroup>
 </map>

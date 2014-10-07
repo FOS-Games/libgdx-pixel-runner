@@ -44,6 +44,7 @@ public class Player extends PlayerAnimatorHandler implements ISpeedController{
     Fixture wingFixture;
     Fixture weaponFixture;
     Fixture sensorFixture;
+    Fixture wallsensorFixture;
 
     GameScreen gameScreen;
 
@@ -90,6 +91,7 @@ public class Player extends PlayerAnimatorHandler implements ISpeedController{
         initWeapon();
         initWings();
         initSensor();
+        initWallSensor();
     }
 
     private void initPlayer() {
@@ -141,6 +143,23 @@ public class Player extends PlayerAnimatorHandler implements ISpeedController{
         collisionDef.friction = 0;
 
         collisionFixture = body.createFixture(collisionDef);
+        collisionFixture.setUserData("playerCollider");
+        shape.dispose();
+    }
+
+    private void initWallSensor() {
+        FixtureDef wallsensorDef = new FixtureDef();
+
+        PolygonShape shape = new PolygonShape();
+        shape.setAsBox(size.x / 4, size.y / 3, new Vector2(0, -size.y / 2), 0);
+
+        wallsensorDef.shape = shape;
+        wallsensorDef.density = 0;
+        wallsensorDef.friction = 0;
+        wallsensorDef.isSensor = true;
+
+        wallsensorFixture = body.createFixture(wallsensorDef);
+        wallsensorFixture.setUserData("wallSensorCollider");
         shape.dispose();
     }
 
@@ -258,7 +277,8 @@ public class Player extends PlayerAnimatorHandler implements ISpeedController{
     private void playerJump() {
 
         // First jump off the ground
-        if( !isFalling() && gameScreen.pixelContactListener.playerCanJump() && inputJustPressed()) {
+        // !isFalling()
+        if(gameScreen.pixelContactListener.playerCanJump() && inputJustPressed()) {
             holdable = true;
             time = System.currentTimeMillis();
             body.applyLinearImpulse(new Vector2(0, JUMP_VELOCITY / PixelVars.UNITSCALE), this.body.getPosition(), true);
@@ -285,6 +305,8 @@ public class Player extends PlayerAnimatorHandler implements ISpeedController{
     }
 
     private boolean isFalling() { return body.getLinearVelocity().y < 0; }
+
+
     @Override
     public void incrSpeed(Vector2 increaseto, int steps) {
         float xincr=(increaseto.x-body.getLinearVelocity().x)/(float)steps;

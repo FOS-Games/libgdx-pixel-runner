@@ -1,6 +1,8 @@
 package com.FOS.Pixel;
 
+import com.FOS.Pixel.screens.GameScreen;
 import com.badlogic.gdx.physics.box2d.*;
+import com.badlogic.gdx.utils.Array;
 
 /**
  * Created by Lars on 9/23/2014.
@@ -8,6 +10,12 @@ import com.badlogic.gdx.physics.box2d.*;
 public class PixelContactListener implements ContactListener {
 
     private int numFootContacts;
+    private Array<Body> bodiesToRemove;
+
+    public PixelContactListener() {
+        super();
+        bodiesToRemove = new Array<Body>();
+    }
 
     @Override
     public void beginContact(Contact contact) {
@@ -24,14 +32,34 @@ public class PixelContactListener implements ContactListener {
             numFootContacts++;
         }
 
+//
+//        if(fa.getUserData() != null && fa.getUserData().equals("orb") && fb.getUserData() instanceof Player) {
+//            ((Player)fb.getUserData()).gameScreen.orbs++;
+//            fa.getBody().getWorld().destroyBody(fa.getBody());
+//        }
+//
+//        if(fb.getUserData() != null && fb.getUserData().equals("orb")&& fa.getUserData() instanceof Player) {
+//            ((Player)fa.getUserData()).gameScreen.orbs++;
+//            fb.getBody().getWorld().destroyBody(fb.getBody());
+//        }
 
-        if(fa.getUserData() != null && fa.getUserData().equals("orb") && fb.getUserData() instanceof Player) {
-            ((Player)fb.getUserData()).gameScreen.orbs++;
-            fa.getBody().getWorld().destroyBody(fa.getBody());
+
+        //Check if player is hugging a wall
+        if(fa.getUserData() != null && fa.getUserData().equals("wallSensorCollider") && fb.getUserData() != null && fb.getUserData().equals("ground")) {
+            numFootContacts--;
         }
-        if(fb.getUserData() != null && fb.getUserData().equals("orb")&& fb.getUserData() instanceof Player) {
-            ((Player)fa.getUserData()).gameScreen.orbs++;
-            fb.getBody().getWorld().destroyBody(fb.getBody());
+        if(fb.getUserData() != null && fb.getUserData().equals("wallSensorCollider") && fa.getUserData() != null && fa.getUserData().equals("ground")) {
+            numFootContacts--;
+        }
+
+
+        // Collect the orbs!
+        if(fa.getUserData() != null && fa.getUserData().equals("playerCollider") && fb.getUserData() != null && fb.getUserData().equals("orb")) {
+            bodiesToRemove.add(fb.getBody());
+
+        }
+        if(fb.getUserData() != null && fb.getUserData().equals("playerCollider") && fa.getUserData() != null && fa.getUserData().equals("orb")) {
+            bodiesToRemove.add(fa.getBody());
         }
 
 
@@ -55,11 +83,20 @@ public class PixelContactListener implements ContactListener {
 
         if(fa == null || fb == null) return;
 
+        // Not touching the ground with our feet
         if(fa.getUserData() != null && fa.getUserData().equals("feet") && fb.getUserData() != null && fb.getUserData().equals("ground")) {
             numFootContacts--;
         }
         if(fb.getUserData() != null && fb.getUserData().equals("feet") && fa.getUserData() != null && fa.getUserData().equals("ground")) {
             numFootContacts--;
+        }
+
+        // Not touching the wall... ground with out body
+        if(fa.getUserData() != null && fa.getUserData().equals("wallSensorCollider") && fb.getUserData() != null && fb.getUserData().equals("ground")) {
+            numFootContacts++;
+        }
+        if(fb.getUserData() != null && fb.getUserData().equals("wallSensorCollider") && fa.getUserData() != null && fa.getUserData().equals("ground")) {
+            numFootContacts++;
         }
     }
 
@@ -80,5 +117,8 @@ public class PixelContactListener implements ContactListener {
     public boolean playerCanJump() {
         return numFootContacts > 0;
     }
+
+    public Array<Body> getBodies() { return bodiesToRemove; }
+
 
 }

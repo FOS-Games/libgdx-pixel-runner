@@ -24,6 +24,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.ObjectMap;
 import com.badlogic.gdx.utils.TimeUtils;
@@ -117,15 +118,16 @@ public class GameScreen extends PixelGameScreen {
 
     }
 
+
+    // TODO : Add Orb animation
     private void createCollectibles() {
         ObjectMap<String,Body> bodies = parser.getBodies();
         for (ObjectMap.Entry<String,Body> x : bodies){
-            if(x.key.equals("orb")){
+            if(x.key.startsWith("orb")){
                 x.value.setUserData(new Box2DSprite(new Texture(Gdx.files.internal("orb.png"))));
-                for(Fixture fix: x.value.getFixtureList()){
-                    fix.setSensor(true);
-                    fix.setUserData("orb");
-                }
+//                for(Fixture fix: x.value.getFixtureList()){
+//                    fix.setUserData("orb");
+//                }
             }
         }
     }
@@ -191,6 +193,7 @@ public class GameScreen extends PixelGameScreen {
 //        String stringtime = String.format("%02d:%02d:%02d:%d", hour, minute, second, millis);
 //        //System.out.println(stringtime);
 
+        checkCollectedOrbs();
         checkMedalTime(TimeUtils.timeSinceMillis(time));
 
     }
@@ -209,6 +212,18 @@ public class GameScreen extends PixelGameScreen {
             bronze=false;
             System.out.println("No bronze");
         }
+    }
+
+    private void checkCollectedOrbs() {
+
+        Array<Body> bodies = pixelContactListener.getBodies();
+        for(int i = 0; i < bodies.size; i++) {
+            world.destroyBody(bodies.get(i));
+            orbs++;
+            // play sound
+        }
+
+        bodies.clear();
     }
 
 
