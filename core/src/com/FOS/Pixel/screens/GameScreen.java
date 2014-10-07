@@ -15,6 +15,7 @@ import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
@@ -107,16 +108,14 @@ public class GameScreen extends PixelGameScreen {
 
     }
 
-
     // TODO : Add Orb animation
     private void createCollectibles() {
         ObjectMap<String,Body> bodies = parser.getBodies();
         for (ObjectMap.Entry<String,Body> x : bodies){
             if(x.key.startsWith("orb")){
-                x.value.setUserData(new Box2DSprite(new Texture(Gdx.files.internal("orb.png"))));
-//                for(Fixture fix: x.value.getFixtureList()){
-//                    fix.setUserData("orb");
-//                }
+                //x.value.setUserData(new Box2DSprite(new Texture(Gdx.files.internal("orb.png"))));
+                x.value.setUserData(AnimationUtil.createBox2DAnimation(AnimationUtil.createTextureRegion("sprites/spriteSheet_collectible.png", 15, 1), Animation.PlayMode.LOOP));
+
             }
         }
     }
