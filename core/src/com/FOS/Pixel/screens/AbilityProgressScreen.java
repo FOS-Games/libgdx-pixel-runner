@@ -17,6 +17,7 @@ import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
 import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
@@ -41,6 +42,14 @@ public class AbilityProgressScreen extends MenuScreen {
     Texture tBlueButtonHover;
     Texture tBlueButtonPressed;
 
+    // Ability point textures
+    Texture tGlassPanel;
+    Texture tSquareShadow;
+    Texture tSquareWhite;
+    Texture tGlassPanelPlus;
+    Texture tGlassPanelPlusHover;
+    Texture tGlassPanelPlusLocked;
+
     GameScreen gameScreen;
 
 
@@ -56,9 +65,11 @@ public class AbilityProgressScreen extends MenuScreen {
         stage = new Stage(new StretchViewport(800, 480));
         Gdx.input.setInputProcessor(stage);
 
+
         // Background
         background = new Texture(Gdx.files.internal("ui/menuBackground.png"));
         TextureRegion rBackground = new TextureRegion(background);
+
 
         // Default blue buttons
         tBlueButton = new Texture(Gdx.files.internal("ui/blueButton.png"));
@@ -69,6 +80,27 @@ public class AbilityProgressScreen extends MenuScreen {
 
         tBlueButtonPressed = new Texture(Gdx.files.internal("ui/blueButtonPressed.png"));
         TextureRegion rBlueButtonPressed = new TextureRegion(tBlueButtonPressed);
+
+
+        // Ability point UI
+        tGlassPanel = new Texture(Gdx.files.internal("ui/glassPanel300x50.png"));
+        TextureRegion rGlassPanel = new TextureRegion(tGlassPanel);
+
+        tSquareShadow = new Texture(Gdx.files.internal("ui/squareShadow.png"));
+        TextureRegion rSquareShadow = new TextureRegion(tSquareShadow);
+
+        tSquareWhite = new Texture(Gdx.files.internal("ui/squareWhite.png"));
+        TextureRegion rSquareWhite = new TextureRegion(tSquareWhite);
+
+        tGlassPanelPlus = new Texture(Gdx.files.internal("ui/glassPanelPlus.png"));
+        TextureRegion rGlassPanelPlus = new TextureRegion(tGlassPanelPlus);
+
+        tGlassPanelPlusHover = new Texture(Gdx.files.internal("ui/glassPanelPlusHover.png"));
+        TextureRegion rGlassPanelPlusHover = new TextureRegion(tGlassPanelPlusHover);
+
+        tGlassPanelPlusLocked = new Texture(Gdx.files.internal("ui/glassPanelPlusLocked.png"));
+        TextureRegion rGlassPanelPlusLocked = new TextureRegion(tGlassPanelPlusLocked);
+
 
 
         // Get playerSprite
@@ -88,7 +120,7 @@ public class AbilityProgressScreen extends MenuScreen {
         TextButton.TextButtonStyle textButtonStyle = new TextButton.TextButtonStyle();
         textButtonStyle.up = skin.newDrawable("white", Color.DARK_GRAY);
         textButtonStyle.down = skin.newDrawable("white", Color.DARK_GRAY);
-        textButtonStyle.checked = skin.newDrawable("white", Color.BLUE);
+        //textButtonStyle.checked = skin.newDrawable("white", Color.BLUE);
         textButtonStyle.over = skin.newDrawable("white", Color.LIGHT_GRAY);
         textButtonStyle.font = skin.getFont("default");
         skin.add("default", textButtonStyle);
@@ -97,30 +129,163 @@ public class AbilityProgressScreen extends MenuScreen {
         TextButton.TextButtonStyle textButtonStyleBlue = new TextButton.TextButtonStyle();
         textButtonStyleBlue.up = skin.newDrawable(new TextureRegionDrawable(rBlueButton));
         textButtonStyleBlue.down = skin.newDrawable(new TextureRegionDrawable(rBlueButtonPressed));
-        textButtonStyleBlue.checked = skin.newDrawable(new TextureRegionDrawable(rBlueButtonPressed));
+        //textButtonStyleBlue.checked = skin.newDrawable(new TextureRegionDrawable(rBlueButtonPressed));
         textButtonStyleBlue.over = skin.newDrawable(new TextureRegionDrawable(rBlueButtonHover));
         textButtonStyleBlue.font = skin.getFont("default");
         skin.add("blueStyle", textButtonStyleBlue);
 
+        // GLASSPANEL PLUS TextButtonStyle
+        TextButton.TextButtonStyle textButtonStyleGlassPanelPlus = new TextButton.TextButtonStyle();
+        textButtonStyleGlassPanelPlus.up = skin.newDrawable(new TextureRegionDrawable(rGlassPanelPlus));
+        textButtonStyleGlassPanelPlus.down = skin.newDrawable(new TextureRegionDrawable(rGlassPanelPlusHover));
+        //textButtonStyleGlassPanelPlus.checked = skin.newDrawable(new TextureRegionDrawable(rGlassPanelPlusHover));
+        textButtonStyleGlassPanelPlus.over = skin.newDrawable(new TextureRegionDrawable(rGlassPanelPlusHover));
+        textButtonStyleGlassPanelPlus.font = skin.getFont("default");
+        skin.add("glassPanelStyle", textButtonStyleGlassPanelPlus);
+
 
         final TextButton bBack = new TextButton("Back", skin, "blueStyle");
 
-        final TextButton bStr = new TextButton("Strength", skin, "blueStyle");
-        final TextButton bSpd = new TextButton("Speed", skin, "blueStyle");
-        final TextButton bAgi = new TextButton("Agility", skin, "blueStyle");
+        final TextButton bStrengthPlus = new TextButton("", skin, "glassPanelStyle");
+        final TextButton bSpeedPlus = new TextButton("", skin, "glassPanelStyle");
+        final TextButton bAgilityPlus = new TextButton("", skin, "glassPanelStyle");
 
         // Player table and container
         final Table playerTable = new Table();
         playerTable.setFillParent(true);
-        playerTable.add(new Image(new SpriteDrawable(new AnimatedSprite(animation)))).size(256, 256).center();
+        playerTable.add(new Image(new SpriteDrawable(new AnimatedSprite(animation)))).size(256, 256).center().padRight(100);
+
         final Container playerContainer = new Container(playerTable);
+
+
+        // Ability Strength
+        Image iGlassPanelStrength = new Image(rGlassPanel);
+        iGlassPanelStrength.setSize(300, 50);
+        iGlassPanelStrength.setPosition(-180, 50);
+
+        Image iSquareShadowStrength01 = new Image(rSquareShadow);
+        Image iSquareShadowStrength02 = new Image(rSquareShadow);
+        Image iSquareShadowStrength03 = new Image(rSquareShadow);
+        Image iSquareShadowStrength04 = new Image(rSquareShadow);
+        Image iSquareShadowStrength05 = new Image(rSquareShadow);
+
+        iSquareShadowStrength01.setSize(19, 26);
+        iSquareShadowStrength01.setPosition(-16, 60);
+
+        iSquareShadowStrength02.setSize(19, 26);
+        iSquareShadowStrength02.setPosition(8, 60);
+
+        iSquareShadowStrength03.setSize(19, 26);
+        iSquareShadowStrength03.setPosition(32, 60);
+
+        iSquareShadowStrength04.setSize(19, 26);
+        iSquareShadowStrength04.setPosition(56, 60);
+
+        iSquareShadowStrength05.setSize(19, 26);
+        iSquareShadowStrength05.setPosition(80, 60);
+
+        bStrengthPlus.setSize(50, 50);
+        bStrengthPlus.setPosition(120, 50);
+
+
+
+        // Ability Speed
+        Image iGlassPanelSpeed = new Image(rGlassPanel);
+        iGlassPanelSpeed.setSize(300, 50);
+        iGlassPanelSpeed.setPosition(-180, -20);
+
+        Image iSquareShadowSpeed01 = new Image(rSquareShadow);
+        Image iSquareShadowSpeed02 = new Image(rSquareShadow);
+        Image iSquareShadowSpeed03 = new Image(rSquareShadow);
+        Image iSquareShadowSpeed04 = new Image(rSquareShadow);
+        Image iSquareShadowSpeed05 = new Image(rSquareShadow);
+
+        iSquareShadowSpeed01.setSize(19, 26);
+        iSquareShadowSpeed01.setPosition(-16, -10);
+
+        iSquareShadowSpeed02.setSize(19, 26);
+        iSquareShadowSpeed02.setPosition(8, -10);
+
+        iSquareShadowSpeed03.setSize(19, 26);
+        iSquareShadowSpeed03.setPosition(32, -10);
+
+        iSquareShadowSpeed04.setSize(19, 26);
+        iSquareShadowSpeed04.setPosition(56, -10);
+
+        iSquareShadowSpeed05.setSize(19, 26);
+        iSquareShadowSpeed05.setPosition(80, -10);
+
+        bSpeedPlus.setSize(50, 50);
+        bSpeedPlus.setPosition(120, -20);
+
+
+
+        // Ability Agility
+        Image iGlassPanelAgility = new Image(rGlassPanel);
+        iGlassPanelAgility.setSize(300, 50);
+        iGlassPanelAgility.setPosition(-180, -90);
+
+        Image iSquareShadowAgility01 = new Image(rSquareShadow);
+        Image iSquareShadowAgility02 = new Image(rSquareShadow);
+        Image iSquareShadowAgility03 = new Image(rSquareShadow);
+        Image iSquareShadowAgility04 = new Image(rSquareShadow);
+        Image iSquareShadowAgility05 = new Image(rSquareShadow);
+
+        iSquareShadowAgility01.setSize(19, 26);
+        iSquareShadowAgility01.setPosition(-16, -80);
+
+        iSquareShadowAgility02.setSize(19, 26);
+        iSquareShadowAgility02.setPosition(8, -80);
+
+        iSquareShadowAgility03.setSize(19, 26);
+        iSquareShadowAgility03.setPosition(32, -80);
+
+        iSquareShadowAgility04.setSize(19, 26);
+        iSquareShadowAgility04.setPosition(56, -80);
+
+        iSquareShadowAgility05.setSize(19, 26);
+        iSquareShadowAgility05.setPosition(80, -80);
+
+        bAgilityPlus.setSize(50, 50);
+        bAgilityPlus.setPosition(120, -90);
+
+
+        final Group strengthGroup = new Group();
+        strengthGroup.addActor(iGlassPanelStrength);
+        strengthGroup.addActor(iSquareShadowStrength01);
+        strengthGroup.addActor(iSquareShadowStrength02);
+        strengthGroup.addActor(iSquareShadowStrength03);
+        strengthGroup.addActor(iSquareShadowStrength04);
+        strengthGroup.addActor(iSquareShadowStrength05);
+        strengthGroup.addActor(bStrengthPlus);
+
+        final Group speedGroup = new Group();
+        speedGroup.addActor(iGlassPanelSpeed);
+        speedGroup.addActor(iSquareShadowSpeed01);
+        speedGroup.addActor(iSquareShadowSpeed02);
+        speedGroup.addActor(iSquareShadowSpeed03);
+        speedGroup.addActor(iSquareShadowSpeed04);
+        speedGroup.addActor(iSquareShadowSpeed05);
+        speedGroup.addActor(bSpeedPlus);
+
+        final Group agilityGroup = new Group();
+        agilityGroup.addActor(iGlassPanelAgility);
+        agilityGroup.addActor(iSquareShadowAgility01);
+        agilityGroup.addActor(iSquareShadowAgility02);
+        agilityGroup.addActor(iSquareShadowAgility03);
+        agilityGroup.addActor(iSquareShadowAgility04);
+        agilityGroup.addActor(iSquareShadowAgility05);
+        agilityGroup.addActor(bAgilityPlus);
+
+
 
         // Ability table and container
         final Table abilityTable = new Table();
-        abilityTable.setFillParent(true);
-        abilityTable.add(bStr).size(100, 50).row();
-        abilityTable.add(bSpd).size(100, 50).row();
-        abilityTable.add(bAgi).size(100, 50).row();
+        abilityTable.setFillParent(false);
+        abilityTable.add(strengthGroup);
+        abilityTable.add(speedGroup);
+        abilityTable.add(agilityGroup);
+        abilityTable.row();
         final Container abilityContainer = new Container(abilityTable);
 
 

@@ -78,7 +78,6 @@ public class GameScreen extends PixelGameScreen {
 
     }
 
-    // TODO : Retrieve out of levelData
     private void createBackground() {
         bgTex = new Texture(Gdx.files.internal(JsonHandler.readLevel(level).getBackground()));
         bgSpr = new Sprite(bgTex);
@@ -108,7 +107,6 @@ public class GameScreen extends PixelGameScreen {
 
     }
 
-    // TODO : Add Orb animation
     private void createCollectibles() {
         ObjectMap<String,Body> bodies = parser.getBodies();
         for (ObjectMap.Entry<String,Body> x : bodies){
@@ -238,7 +236,6 @@ public class GameScreen extends PixelGameScreen {
      */
     public void updateCamera() {
 
-        // TODO : Edit the way the camera behaves
         camera.position.x = player.position.x;
         camera.position.y = player.position.y;
         camera.update();
