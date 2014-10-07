@@ -47,8 +47,11 @@ public class LevelSelectScreen extends MenuScreen {
     Texture tBlueButtonHover;
     Texture tBlueButtonPressed;
 
+    GameScreen gameScreen;
 
-    public LevelSelectScreen(Game game) {
+
+    public LevelSelectScreen(Game game, GameScreen gameScreen) {
+        this.gameScreen = gameScreen;
         this.game = game;
     }
 
@@ -187,14 +190,14 @@ public class LevelSelectScreen extends MenuScreen {
         bBack.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                ((Game) Gdx.app.getApplicationListener()).setScreen(new MainMenuScreen(game));
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new MainMenuScreen(game, gameScreen));
             }
         });
 
         bAbilities.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                ((Game) Gdx.app.getApplicationListener()).setScreen(new AbilityProgressScreen(game));
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new AbilityProgressScreen(game, gameScreen));
             }
         });
     }

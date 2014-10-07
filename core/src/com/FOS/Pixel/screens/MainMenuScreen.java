@@ -37,7 +37,10 @@ public class MainMenuScreen extends MenuScreen {
 
     Texture background;
 
-    public MainMenuScreen(Game game) {
+    GameScreen gameScreen;
+
+    public MainMenuScreen(Game game, GameScreen gameScreen) {
+        this.gameScreen = gameScreen;
         this.game = game;
     }
 
@@ -90,7 +93,7 @@ public class MainMenuScreen extends MenuScreen {
         bStart.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                ((Game) Gdx.app.getApplicationListener()).setScreen(new LevelSelectScreen(game));
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new LevelSelectScreen(game, gameScreen));
             }
         });
 

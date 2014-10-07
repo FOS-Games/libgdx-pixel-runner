@@ -13,7 +13,7 @@ public class MainPixel extends Game {
         SaveHandler.Initialize();
 
         //setScreen(new GameScreen(this,1));
-        setScreen(new MainMenuScreen(this));
+        setScreen(new MainMenuScreen(this, new GameScreen(this, 1)));
 
     }
 }

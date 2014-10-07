@@ -1,6 +1,7 @@
 package com.FOS.Pixel.screens;
 
 import com.FOS.Pixel.AnimationUtil;
+import com.FOS.Pixel.PlayerProp;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -16,6 +17,7 @@ import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import net.dermetfan.gdx.graphics.g2d.AnimatedBox2DSprite;
@@ -39,11 +41,11 @@ public class AbilityProgressScreen extends MenuScreen {
     Texture tBlueButtonHover;
     Texture tBlueButtonPressed;
 
-    AnimatedSprite playerSprite;
-    TextureRegion[] playerSprites;
+    GameScreen gameScreen;
 
 
-    public AbilityProgressScreen(Game game) {
+    public AbilityProgressScreen(Game game, GameScreen gameScreen) {
+        this.gameScreen = gameScreen;
         this.game = game;
     }
 
@@ -70,9 +72,8 @@ public class AbilityProgressScreen extends MenuScreen {
 
 
         // Get playerSprite
-        playerSprite = AnimationUtil.createAnimatedSprite(AnimationUtil.createTextureRegion("sprites/spriteSheet_collectible.png", 15, 1), Animation.PlayMode.LOOP);
-        playerSprites = playerSprite.getAnimation().getKeyFrames();
-
+        PlayerProp playerProp = new PlayerProp(gameScreen);
+        Animation animation = playerProp.getAnimation();
 
         skin = new Skin();
 
@@ -104,12 +105,30 @@ public class AbilityProgressScreen extends MenuScreen {
 
         final TextButton bBack = new TextButton("Back", skin, "blueStyle");
 
+        // Player table and container
+        final Table playerTable = new Table();
+        playerTable.setFillParent(true);
+        playerTable.add(new Image(new SpriteDrawable(new AnimatedSprite(animation))));
+        final Container playerContainer = new Container(playerTable);
+
+        // Ability table and container
+        final Table abilityTable = new Table();
+        //abilityTable.setFillParent(true);
+        abilityTable.add(new Image(playerProp.getAnimatedSprite()));
+        final Container abilityContainer = new Container(abilityTable);
+
+
+
         // Table
         final Table table = new Table();
+        table.debug();
         table.setFillParent(true);
         table.setBackground(new TextureRegionDrawable(rBackground));
-        table.add(new Image(playerSprites[0]));
-        table.add(bBack).size(200, 50).bottom().left().padLeft(20).padBottom(20);
+        //table.add(new Image(playerProp.getAnimation()));
+        table.add(playerContainer).size(200, 200).top().left().padTop(20).padLeft(20);
+        table.add(abilityContainer).size(200, 200).top().right().padTop(20).padRight(20);
+        table.row();
+        table.add(bBack).size(200, 50).bottom().left().padLeft(20).padBottom(20).colspan(2);
 
         // Add table to the stage
         stage.addActor(table);
@@ -117,13 +136,14 @@ public class AbilityProgressScreen extends MenuScreen {
         bBack.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                ((Game) Gdx.app.getApplicationListener()).setScreen(new LevelSelectScreen(game));
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new LevelSelectScreen(game, gameScreen));
             }
         });
     }
 
     @Override
     public void render(float delta) {
+
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         stage.act(delta);
         stage.draw();
