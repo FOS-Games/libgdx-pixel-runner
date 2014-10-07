@@ -39,8 +39,13 @@ public class LevelSelectScreen extends MenuScreen {
     Texture tCaveHover;
     Texture tCaveLocked;
 
-
+    // Menu background
     Texture background;
+
+    // Default blue button
+    Texture tBlueButton;
+    Texture tBlueButtonHover;
+    Texture tBlueButtonPressed;
 
 
     public LevelSelectScreen(Game game) {
@@ -54,8 +59,19 @@ public class LevelSelectScreen extends MenuScreen {
         stage = new Stage(new StretchViewport(800, 480));
         Gdx.input.setInputProcessor(stage);
 
+        // Background
         background = new Texture(Gdx.files.internal("ui/menuBackground.png"));
         TextureRegion rBackground = new TextureRegion(background);
+
+        // Default blue buttons
+        tBlueButton = new Texture(Gdx.files.internal("ui/blueButton.png"));
+        TextureRegion rBlueButton = new TextureRegion(tBlueButton);
+
+        tBlueButtonHover = new Texture(Gdx.files.internal("ui/blueButtonHover.png"));
+        TextureRegion rBlueButtonHover = new TextureRegion(tBlueButtonHover);
+
+        tBlueButtonPressed = new Texture(Gdx.files.internal("ui/blueButtonPressed.png"));
+        TextureRegion rBlueButtonPressed = new TextureRegion(tBlueButtonPressed);
 
         // 01_Grasslands thumbnail
         tGrasslands = new Texture(Gdx.files.internal("maps/thumbnails/01_Grasslands.png"));
@@ -88,6 +104,7 @@ public class LevelSelectScreen extends MenuScreen {
 
         skin.add("default", new BitmapFont());
 
+        // DEFAULT TextButtonStyle
         TextButton.TextButtonStyle textButtonStyle = new TextButton.TextButtonStyle();
         textButtonStyle.up = skin.newDrawable("white", Color.DARK_GRAY);
         textButtonStyle.down = skin.newDrawable("white", Color.DARK_GRAY);
@@ -96,6 +113,16 @@ public class LevelSelectScreen extends MenuScreen {
         textButtonStyle.font = skin.getFont("default");
         skin.add("default", textButtonStyle);
 
+        // BLUE TextButtonStyle
+        TextButton.TextButtonStyle textButtonStyleBlue = new TextButton.TextButtonStyle();
+        textButtonStyleBlue.up = skin.newDrawable(new TextureRegionDrawable(rBlueButton));
+        textButtonStyleBlue.down = skin.newDrawable(new TextureRegionDrawable(rBlueButtonPressed));
+        textButtonStyleBlue.checked = skin.newDrawable(new TextureRegionDrawable(rBlueButtonPressed));
+        textButtonStyleBlue.over = skin.newDrawable(new TextureRegionDrawable(rBlueButtonHover));
+        textButtonStyleBlue.font = skin.getFont("default");
+        skin.add("blueStyle", textButtonStyleBlue);
+
+        // GRASSLANDS TextButtonStyle
         TextButton.TextButtonStyle textButtonStyleGrasslands = new TextButton.TextButtonStyle();
         textButtonStyleGrasslands.up = skin.newDrawable(new TextureRegionDrawable(rGrasslands));
         textButtonStyleGrasslands.down = skin.newDrawable(new TextureRegionDrawable(rGrasslandsHover));
@@ -104,6 +131,7 @@ public class LevelSelectScreen extends MenuScreen {
         textButtonStyleGrasslands.font = skin.getFont("default");
         skin.add("grasslandsStyle", textButtonStyleGrasslands);
 
+        // CAVE TextButtonStyle
         TextButton.TextButtonStyle textButtonStyleCave = new TextButton.TextButtonStyle();
         textButtonStyleCave.up = skin.newDrawable(new TextureRegionDrawable(rCave));
         textButtonStyleCave.down = skin.newDrawable(new TextureRegionDrawable(rCaveHover));
@@ -117,23 +145,27 @@ public class LevelSelectScreen extends MenuScreen {
         final TextButton bLevel4 = new TextButton("Start level 4", skin);
         final TextButton bLevel5 = new TextButton("Start level 5", skin);
 
+        final TextButton bBack = new TextButton("Back", skin, "blueStyle");
+        final TextButton bAbilities = new TextButton("Exit", skin, "blueStyle");
 
+        // ScrollPane table
         final Table scrollTable = new Table();
-        //table.setFillParent(true);
         scrollTable.add(bLevel1).size(200, 200).padLeft(20).padRight(20);
         scrollTable.add(bLevel2).size(200, 200).padLeft(20).padRight(20);
         scrollTable.add(bLevel3).size(200, 200).padLeft(20).padRight(20);
         scrollTable.add(bLevel4).size(200, 200).padLeft(20).padRight(20);
         scrollTable.add(bLevel5).size(200, 200).padLeft(20).padRight(20);
 
-
         final ScrollPane scroller = new ScrollPane(scrollTable);
 
+        // Table
         final Table table = new Table();
         table.setFillParent(true);
         table.setBackground(new TextureRegionDrawable(rBackground));
-        table.add(scroller).fill().expand();
+        table.add(scroller).fill().expand().row();
+        table.add(bBack).size(200, 50).bottom().left().padLeft(20).padBottom(20);
 
+        // Add table to the stage
         stage.addActor(table);
 
 
@@ -148,6 +180,13 @@ public class LevelSelectScreen extends MenuScreen {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 ((Game) Gdx.app.getApplicationListener()).setScreen(new GameScreen(game, 2));
+            }
+        });
+
+        bBack.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new MainMenuScreen(game));
             }
         });
 
