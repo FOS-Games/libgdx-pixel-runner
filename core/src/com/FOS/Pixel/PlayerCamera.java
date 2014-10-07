@@ -60,8 +60,8 @@ public class PlayerCamera extends OrthographicCamera implements ISpeedController
 
     private void checkPlayerPosition() {
         DecimalFormat df = new DecimalFormat("###.#");
-        float playerx = Float.valueOf(df.format(player.getBody().getPosition().x));
-        float camerax = Float.valueOf(df.format(body.getPosition().x));
+        float playerx = Float.valueOf(df.format(player.getBody().getPosition().x).replace(",", "."));
+        float camerax = Float.valueOf(df.format(body.getPosition().x).replace(",", "."));
         System.out.println("Player x = "+playerx+", Camera x = "+camerax+" || "+(playerx == camerax));
         if(camerax==playerx && isSearching){
             minVelocity = player.getBody().getLinearVelocity().x;
