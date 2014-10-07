@@ -58,6 +58,30 @@ public class AbilityProgressScreen extends MenuScreen {
 
     PlayerProp playerProp;
 
+    Image iSquareShadowStrength01;
+    Image iSquareShadowStrength02;
+    Image iSquareShadowStrength03;
+    Image iSquareShadowStrength04;
+    Image iSquareShadowStrength05;
+
+    Image iSquareShadowSpeed01;
+    Image iSquareShadowSpeed02;
+    Image iSquareShadowSpeed03;
+    Image iSquareShadowSpeed04;
+    Image iSquareShadowSpeed05;
+
+    Image iSquareShadowAgility01;
+    Image iSquareShadowAgility02;
+    Image iSquareShadowAgility03;
+    Image iSquareShadowAgility04;
+    Image iSquareShadowAgility05;
+
+    TextureRegion rSquareWhite;
+    Image iWhite;
+
+    Group strengthGroup;
+    Group speedGroup;
+    Group agilityGroup;
 
     public AbilityProgressScreen(Game game, GameScreen gameScreen) {
         this.gameScreen = gameScreen;
@@ -96,7 +120,7 @@ public class AbilityProgressScreen extends MenuScreen {
         TextureRegion rSquareShadow = new TextureRegion(tSquareShadow);
 
         tSquareWhite = new Texture(Gdx.files.internal("ui/squareWhite.png"));
-        final TextureRegion rSquareWhite = new TextureRegion(tSquareWhite);
+        rSquareWhite = new TextureRegion(tSquareWhite);
 
         tGlassPanelPlus = new Texture(Gdx.files.internal("ui/glassPanelPlus.png"));
         TextureRegion rGlassPanelPlus = new TextureRegion(tGlassPanelPlus);
@@ -169,11 +193,11 @@ public class AbilityProgressScreen extends MenuScreen {
         iGlassPanelStrength.setSize(300, 50);
         iGlassPanelStrength.setPosition(-180, 50);
 
-        final Image iSquareShadowStrength01 = new Image(rSquareShadow);
-        final Image iSquareShadowStrength02 = new Image(rSquareShadow);
-        final Image iSquareShadowStrength03 = new Image(rSquareShadow);
-        final Image iSquareShadowStrength04 = new Image(rSquareShadow);
-        final Image iSquareShadowStrength05 = new Image(rSquareShadow);
+        iSquareShadowStrength01 = new Image(rSquareShadow);
+        iSquareShadowStrength02 = new Image(rSquareShadow);
+        iSquareShadowStrength03 = new Image(rSquareShadow);
+        iSquareShadowStrength04 = new Image(rSquareShadow);
+        iSquareShadowStrength05 = new Image(rSquareShadow);
 
         iSquareShadowStrength01.setSize(19, 26);
         iSquareShadowStrength01.setPosition(-16, 60);
@@ -200,11 +224,11 @@ public class AbilityProgressScreen extends MenuScreen {
         iGlassPanelSpeed.setSize(300, 50);
         iGlassPanelSpeed.setPosition(-180, -20);
 
-        final Image iSquareShadowSpeed01 = new Image(rSquareShadow);
-        final Image iSquareShadowSpeed02 = new Image(rSquareShadow);
-        final Image iSquareShadowSpeed03 = new Image(rSquareShadow);
-        final Image iSquareShadowSpeed04 = new Image(rSquareShadow);
-        final Image iSquareShadowSpeed05 = new Image(rSquareShadow);
+        iSquareShadowSpeed01 = new Image(rSquareShadow);
+        iSquareShadowSpeed02 = new Image(rSquareShadow);
+        iSquareShadowSpeed03 = new Image(rSquareShadow);
+        iSquareShadowSpeed04 = new Image(rSquareShadow);
+        iSquareShadowSpeed05 = new Image(rSquareShadow);
 
         iSquareShadowSpeed01.setSize(19, 26);
         iSquareShadowSpeed01.setPosition(-16, -10);
@@ -231,11 +255,11 @@ public class AbilityProgressScreen extends MenuScreen {
         iGlassPanelAgility.setSize(300, 50);
         iGlassPanelAgility.setPosition(-180, -90);
 
-        final Image iSquareShadowAgility01 = new Image(rSquareShadow);
-        final Image iSquareShadowAgility02 = new Image(rSquareShadow);
-        final Image iSquareShadowAgility03 = new Image(rSquareShadow);
-        final Image iSquareShadowAgility04 = new Image(rSquareShadow);
-        final Image iSquareShadowAgility05 = new Image(rSquareShadow);
+        iSquareShadowAgility01 = new Image(rSquareShadow);
+        iSquareShadowAgility02 = new Image(rSquareShadow);
+        iSquareShadowAgility03 = new Image(rSquareShadow);
+        iSquareShadowAgility04 = new Image(rSquareShadow);
+        iSquareShadowAgility05 = new Image(rSquareShadow);
 
         iSquareShadowAgility01.setSize(19, 26);
         iSquareShadowAgility01.setPosition(-16, -80);
@@ -256,7 +280,7 @@ public class AbilityProgressScreen extends MenuScreen {
         bAgilityPlus.setPosition(120, -90);
 
 
-        final Group strengthGroup = new Group();
+        strengthGroup = new Group();
         strengthGroup.addActor(iGlassPanelStrength);
         strengthGroup.addActor(iSquareShadowStrength01);
         strengthGroup.addActor(iSquareShadowStrength02);
@@ -265,7 +289,7 @@ public class AbilityProgressScreen extends MenuScreen {
         strengthGroup.addActor(iSquareShadowStrength05);
         strengthGroup.addActor(bStrengthPlus);
 
-        final Group speedGroup = new Group();
+        speedGroup = new Group();
         speedGroup.addActor(iGlassPanelSpeed);
         speedGroup.addActor(iSquareShadowSpeed01);
         speedGroup.addActor(iSquareShadowSpeed02);
@@ -274,7 +298,7 @@ public class AbilityProgressScreen extends MenuScreen {
         speedGroup.addActor(iSquareShadowSpeed05);
         speedGroup.addActor(bSpeedPlus);
 
-        final Group agilityGroup = new Group();
+        agilityGroup = new Group();
         agilityGroup.addActor(iGlassPanelAgility);
         agilityGroup.addActor(iSquareShadowAgility01);
         agilityGroup.addActor(iSquareShadowAgility02);
@@ -326,10 +350,10 @@ public class AbilityProgressScreen extends MenuScreen {
                 // 3. Voeg wit blokje toe op de juiste positie
                 // 4. SaveData
 
+                int strengthLevel = playerProp.getPlayerData().getStrengthLevel();
+
 
                 Vector2 coords = new Vector2(iSquareShadowStrength01.getX(), iSquareShadowStrength01.getY());
-                //iSquareShadowStrength01.localToStageCoordinates(/*in/out*/coords);
-                //iSquareShadowStrength01.getStage().stageToScreenCoordinates(/*in/out*/coords);
 
                 Image iWhite = new Image(rSquareWhite);
                 iWhite.setSize(19, 26);
@@ -338,7 +362,7 @@ public class AbilityProgressScreen extends MenuScreen {
             }
         });
 
-        // TODO: Haal PlayerData op en vul de witte blokjes in bij openen scherm.
+        // TODO: Voeg logica toe aan [+] knoppen
         // TODO: Haal Totaal aantal orbs op en zet ze boven aan de screen.
         // TODO: Zet aantal benodige orbs naast [+] bij elke ability.
         // TODO: Render poppetje opnieuw bij het levelen van een ability.
@@ -356,6 +380,38 @@ public class AbilityProgressScreen extends MenuScreen {
 
     private void addWhiteSquares() {
         System.out.println(playerProp.getPlayerData().getStrengthLevel());
+
+        int strengthLevel = playerProp.getPlayerData().getStrengthLevel();
+        int speedLevel = playerProp.getPlayerData().getSpeedLevel();
+        int agilityLevel = playerProp.getPlayerData().getAgilityLevel();
+
+        Vector2 coordsStrength =  new Vector2(iSquareShadowStrength01.getX(), iSquareShadowStrength01.getY());
+        Vector2 coordsSpeed =  new Vector2(iSquareShadowSpeed01.getX(), iSquareShadowSpeed01.getY());
+        Vector2 coordsAgility =  new Vector2(iSquareShadowAgility01.getX(), iSquareShadowAgility01.getY());
+
+        for(int i = 0; i < strengthLevel; i++)
+        {
+            Image iWhite = new Image(rSquareWhite);
+            iWhite.setSize(19, 26);
+            iWhite.setPosition(coordsStrength.x + (i * 24), coordsStrength.y);
+            strengthGroup.addActor(iWhite);
+        }
+
+        for(int i = 0; i < speedLevel; i++)
+        {
+            Image iWhite = new Image(rSquareWhite);
+            iWhite.setSize(19, 26);
+            iWhite.setPosition(coordsSpeed.x + (i * 24), coordsSpeed.y);
+            speedGroup.addActor(iWhite);
+        }
+
+        for(int i = 0; i < agilityLevel; i++)
+        {
+            Image iWhite = new Image(rSquareWhite);
+            iWhite.setSize(19, 26);
+            iWhite.setPosition(coordsAgility.x + (i * 24), coordsAgility.y);
+            agilityGroup.addActor(iWhite);
+        }
     }
 
     @Override
