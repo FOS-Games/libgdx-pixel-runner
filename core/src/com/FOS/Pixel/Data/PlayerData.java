@@ -92,6 +92,18 @@ public class PlayerData {
 
     }
 
+    public int getStrengthLevel() {
+        return this.strength;
+    }
+
+    public int getAgilityLevel() {
+        return this.jump;
+    }
+
+    public int getSpeedLevel() {
+        return this.speed;
+    }
+
     public SkinType getSkinType() {
         return skinType;
     }

@@ -1,7 +1,10 @@
 package com.FOS.Pixel.screens;
 
 import com.FOS.Pixel.AnimationUtil;
+import com.FOS.Pixel.Data.AbilityData;
+import com.FOS.Pixel.Data.PlayerData;
 import com.FOS.Pixel.PlayerProp;
+import com.FOS.Pixel.handlers.JsonHandler;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -12,6 +15,7 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -52,6 +56,8 @@ public class AbilityProgressScreen extends MenuScreen {
 
     GameScreen gameScreen;
 
+    PlayerProp playerProp;
+
 
     public AbilityProgressScreen(Game game, GameScreen gameScreen) {
         this.gameScreen = gameScreen;
@@ -90,7 +96,7 @@ public class AbilityProgressScreen extends MenuScreen {
         TextureRegion rSquareShadow = new TextureRegion(tSquareShadow);
 
         tSquareWhite = new Texture(Gdx.files.internal("ui/squareWhite.png"));
-        TextureRegion rSquareWhite = new TextureRegion(tSquareWhite);
+        final TextureRegion rSquareWhite = new TextureRegion(tSquareWhite);
 
         tGlassPanelPlus = new Texture(Gdx.files.internal("ui/glassPanelPlus.png"));
         TextureRegion rGlassPanelPlus = new TextureRegion(tGlassPanelPlus);
@@ -104,7 +110,7 @@ public class AbilityProgressScreen extends MenuScreen {
 
 
         // Get playerSprite
-        PlayerProp playerProp = new PlayerProp(gameScreen);
+        playerProp = new PlayerProp(gameScreen);
         Animation animation = playerProp.getAnimation();
 
         skin = new Skin();
@@ -159,15 +165,15 @@ public class AbilityProgressScreen extends MenuScreen {
 
 
         // Ability Strength
-        Image iGlassPanelStrength = new Image(rGlassPanel);
+        final Image iGlassPanelStrength = new Image(rGlassPanel);
         iGlassPanelStrength.setSize(300, 50);
         iGlassPanelStrength.setPosition(-180, 50);
 
-        Image iSquareShadowStrength01 = new Image(rSquareShadow);
-        Image iSquareShadowStrength02 = new Image(rSquareShadow);
-        Image iSquareShadowStrength03 = new Image(rSquareShadow);
-        Image iSquareShadowStrength04 = new Image(rSquareShadow);
-        Image iSquareShadowStrength05 = new Image(rSquareShadow);
+        final Image iSquareShadowStrength01 = new Image(rSquareShadow);
+        final Image iSquareShadowStrength02 = new Image(rSquareShadow);
+        final Image iSquareShadowStrength03 = new Image(rSquareShadow);
+        final Image iSquareShadowStrength04 = new Image(rSquareShadow);
+        final Image iSquareShadowStrength05 = new Image(rSquareShadow);
 
         iSquareShadowStrength01.setSize(19, 26);
         iSquareShadowStrength01.setPosition(-16, 60);
@@ -190,15 +196,15 @@ public class AbilityProgressScreen extends MenuScreen {
 
 
         // Ability Speed
-        Image iGlassPanelSpeed = new Image(rGlassPanel);
+        final Image iGlassPanelSpeed = new Image(rGlassPanel);
         iGlassPanelSpeed.setSize(300, 50);
         iGlassPanelSpeed.setPosition(-180, -20);
 
-        Image iSquareShadowSpeed01 = new Image(rSquareShadow);
-        Image iSquareShadowSpeed02 = new Image(rSquareShadow);
-        Image iSquareShadowSpeed03 = new Image(rSquareShadow);
-        Image iSquareShadowSpeed04 = new Image(rSquareShadow);
-        Image iSquareShadowSpeed05 = new Image(rSquareShadow);
+        final Image iSquareShadowSpeed01 = new Image(rSquareShadow);
+        final Image iSquareShadowSpeed02 = new Image(rSquareShadow);
+        final Image iSquareShadowSpeed03 = new Image(rSquareShadow);
+        final Image iSquareShadowSpeed04 = new Image(rSquareShadow);
+        final Image iSquareShadowSpeed05 = new Image(rSquareShadow);
 
         iSquareShadowSpeed01.setSize(19, 26);
         iSquareShadowSpeed01.setPosition(-16, -10);
@@ -221,15 +227,15 @@ public class AbilityProgressScreen extends MenuScreen {
 
 
         // Ability Agility
-        Image iGlassPanelAgility = new Image(rGlassPanel);
+        final Image iGlassPanelAgility = new Image(rGlassPanel);
         iGlassPanelAgility.setSize(300, 50);
         iGlassPanelAgility.setPosition(-180, -90);
 
-        Image iSquareShadowAgility01 = new Image(rSquareShadow);
-        Image iSquareShadowAgility02 = new Image(rSquareShadow);
-        Image iSquareShadowAgility03 = new Image(rSquareShadow);
-        Image iSquareShadowAgility04 = new Image(rSquareShadow);
-        Image iSquareShadowAgility05 = new Image(rSquareShadow);
+        final Image iSquareShadowAgility01 = new Image(rSquareShadow);
+        final Image iSquareShadowAgility02 = new Image(rSquareShadow);
+        final Image iSquareShadowAgility03 = new Image(rSquareShadow);
+        final Image iSquareShadowAgility04 = new Image(rSquareShadow);
+        final Image iSquareShadowAgility05 = new Image(rSquareShadow);
 
         iSquareShadowAgility01.setSize(19, 26);
         iSquareShadowAgility01.setPosition(-16, -80);
@@ -294,7 +300,6 @@ public class AbilityProgressScreen extends MenuScreen {
         table.debug();
         table.setFillParent(true);
         table.setBackground(new TextureRegionDrawable(rBackground));
-        //table.add(new Image(playerProp.getAnimation()));
         table.add(playerContainer).size(400, 400).top().left().padTop(20);
         table.add(abilityContainer).size(400, 400).top().right().padTop(20);
         table.row();
@@ -303,12 +308,42 @@ public class AbilityProgressScreen extends MenuScreen {
         // Add table to the stage
         stage.addActor(table);
 
+        // Add white ability point squares
+        addWhiteSquares();
+
         bBack.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 ((Game) Gdx.app.getApplicationListener()).setScreen(new LevelSelectScreen(game, gameScreen));
             }
         });
+
+        bStrengthPlus.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                // 1. Check op genoeg orbs
+                // 2. Check level van Strength
+                // 3. Voeg wit blokje toe op de juiste positie
+                // 4. SaveData
+
+
+                Vector2 coords = new Vector2(iSquareShadowStrength01.getX(), iSquareShadowStrength01.getY());
+                //iSquareShadowStrength01.localToStageCoordinates(/*in/out*/coords);
+                //iSquareShadowStrength01.getStage().stageToScreenCoordinates(/*in/out*/coords);
+
+                Image iWhite = new Image(rSquareWhite);
+                iWhite.setSize(19, 26);
+                iWhite.setPosition(coords.x, coords.y);
+                strengthGroup.addActor(iWhite);
+            }
+        });
+
+        // TODO: Haal PlayerData op en vul de witte blokjes in bij openen scherm.
+        // TODO: Haal Totaal aantal orbs op en zet ze boven aan de screen.
+        // TODO: Zet aantal benodige orbs naast [+] bij elke ability.
+        // TODO: Render poppetje opnieuw bij het levelen van een ability.
+        // TODO: Geef ras ("string") weer onder poppetje.
+
     }
 
     @Override
@@ -317,6 +352,10 @@ public class AbilityProgressScreen extends MenuScreen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         stage.act(delta);
         stage.draw();
+    }
+
+    private void addWhiteSquares() {
+        System.out.println(playerProp.getPlayerData().getStrengthLevel());
     }
 
     @Override

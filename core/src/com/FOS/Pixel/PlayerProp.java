@@ -76,7 +76,7 @@ public class PlayerProp extends PlayerAnimatorHandler {
     }
 
     @Override
-    protected PlayerData getPlayerData() {
+    public PlayerData getPlayerData() {
         return SaveHandler.getSaveData().getPlayerData();
     }
 
