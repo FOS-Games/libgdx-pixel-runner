@@ -21,7 +21,7 @@ public class SaveHandler {
         if(!file.exists()){
 
             String savestring = json.prettyPrint(new SaveData(
-                    new PlayerData(PlayerData.AbilityType.NONE,1,1,1, PlayerData.SkinType.HUMAN),
+                    new PlayerData(PlayerData.AbilityType.NONE,0,0,0,0, PlayerData.SkinType.HUMAN),
                     new LevelSaveData[]{
                             new LevelSaveData(0,0,true),
                             new LevelSaveData(0,0,false)
@@ -52,7 +52,7 @@ public class SaveHandler {
 
     public static void ResetSave(){
         saveData = new SaveData(
-                new PlayerData(PlayerData.AbilityType.NONE,1,1,1, PlayerData.SkinType.HUMAN),
+                new PlayerData(PlayerData.AbilityType.NONE,0,0,0,0, PlayerData.SkinType.HUMAN),
                 new LevelSaveData[]{
                         new LevelSaveData(0,0,true),
                         new LevelSaveData(0,0,false)
@@ -85,17 +85,25 @@ public class SaveHandler {
 
     public static  SaveData upStrength(int level){
         SaveData data = saveData;
-        data.setPlayerData(saveData.getPlayerData().add(new PlayerData(PlayerData.AbilityType.NONE,0,level,0, PlayerData.SkinType.HUMAN),saveData.getPlayerData().getSkinType()));
+        data.setPlayerData(saveData.getPlayerData().add(new PlayerData(PlayerData.AbilityType.NONE,0,level,0,saveData.getPlayerData().getPhase(), PlayerData.SkinType.HUMAN),saveData.getPlayerData().getSkinType()));
         return data;
     }
     public static  SaveData upSpeed(int level){
         SaveData data = saveData;
-        data.setPlayerData(saveData.getPlayerData().add(new PlayerData(PlayerData.AbilityType.NONE,0,0,level, PlayerData.SkinType.HUMAN),saveData.getPlayerData().getSkinType()));
+        data.setPlayerData(saveData.getPlayerData().add(new PlayerData(PlayerData.AbilityType.NONE,0,0,level,saveData.getPlayerData().getPhase(), PlayerData.SkinType.HUMAN),saveData.getPlayerData().getSkinType()));
         return data;
     }
     public static  SaveData upJump(int level){
         SaveData data = saveData;
-        data.setPlayerData(saveData.getPlayerData().add(new PlayerData(PlayerData.AbilityType.NONE,level,0,0, PlayerData.SkinType.HUMAN),saveData.getPlayerData().getSkinType()));
+        data.setPlayerData(saveData.getPlayerData().add(new PlayerData(PlayerData.AbilityType.NONE,level,0,0,saveData.getPlayerData().getPhase(), PlayerData.SkinType.HUMAN),saveData.getPlayerData().getSkinType()));
+        return data;
+    }
+
+    public static SaveData changePhase(int phase){
+        SaveData data = saveData;
+        PlayerData playerData = saveData.getPlayerData();
+        playerData.setPhase(phase);
+        data.setPlayerData(playerData);
         return data;
     }
 
