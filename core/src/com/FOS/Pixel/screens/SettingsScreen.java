@@ -1,5 +1,6 @@
 package com.FOS.Pixel.screens;
 
+import com.FOS.Pixel.handlers.SaveHandler;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -7,24 +8,21 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
+import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 
 /**
- * Created by Stefan on 6-10-2014.
+ * Created by Stefan on 8-10-2014.
  */
-public class MainMenuScreen extends MenuScreen {
+public class SettingsScreen extends MenuScreen{
 
     Skin skin;
     Stage stage;
@@ -39,7 +37,9 @@ public class MainMenuScreen extends MenuScreen {
 
     GameScreen gameScreen;
 
-    public MainMenuScreen(Game game, GameScreen gameScreen) {
+    BitmapFont font;
+
+    public SettingsScreen(Game game, GameScreen gameScreen) {
         this.gameScreen = gameScreen;
         this.game = game;
     }
@@ -70,46 +70,58 @@ public class MainMenuScreen extends MenuScreen {
         skin.add("white", new Texture(pixmap));
 
         skin.add("default", new BitmapFont());
+        // Create ability font
+        FreeTypeFontGenerator generatorAbility = new FreeTypeFontGenerator(Gdx.files.internal("fonts/kenvector_future.ttf"));
+        FreeTypeFontGenerator.FreeTypeFontParameter parameterAbility = new FreeTypeFontGenerator.FreeTypeFontParameter();
+        parameterAbility.size = 16;
+        font = generatorAbility.generateFont(parameterAbility);
+        //abilityFont.dispose();
+        skin.add("customFont", font);
 
-        TextButtonStyle textButtonStyle = new TextButtonStyle();
+        TextButton.TextButtonStyle textButtonStyle = new TextButton.TextButtonStyle();
         textButtonStyle.up = skin.newDrawable(new TextureRegionDrawable(rBlueButton));
         textButtonStyle.down = skin.newDrawable(new TextureRegionDrawable(rBlueButtonPressed));
-        textButtonStyle.checked = skin.newDrawable(new TextureRegionDrawable(rBlueButtonPressed));
+        //textButtonStyle.checked = skin.newDrawable(new TextureRegionDrawable(rBlueButtonPressed));
         textButtonStyle.over = skin.newDrawable(new TextureRegionDrawable(rBlueButtonHover));
-        textButtonStyle.font = skin.getFont("default");
+        textButtonStyle.font = skin.getFont("customFont");
         skin.add("default", textButtonStyle);
+
+        Label.LabelStyle labelStyle = new Label.LabelStyle();
+        labelStyle.font = skin.getFont("customFont");
+        skin.add("default", labelStyle);
+
+        Window.WindowStyle windowStyle = new Window.WindowStyle();
+        windowStyle.titleFont = skin.getFont("customFont");
+        windowStyle.stageBackground = skin.newDrawable("white", 0, 0, 0, 0.7f);
+        skin.add("dialog", windowStyle);
+
 
         Table table = new Table();
         table.setFillParent(true);
         table.setBackground(new TextureRegionDrawable(rBackground));
         stage.addActor(table);
 
-        final TextButton bStart = new TextButton("Level Select", skin);
-        final TextButton bSettings = new TextButton("Settings", skin);
-        final TextButton bExit = new TextButton("Exit", skin);
+        final TextButton bReset = new TextButton("RESET CHARACTER", skin);
+        final TextButton bBack= new TextButton("Back", skin);
 
-        table.add(bStart).size(200, 50).padBottom(20).row();
-        table.add(bSettings).size(200, 50).padBottom(20).row();
-        table.add(bExit).size(200, 50).padBottom(20).row();
+        table.add(bReset).size(200, 50).padBottom(20).row();
+        table.add(bBack).size(200, 50).padBottom(20).row();
 
-        bStart.addListener(new ChangeListener() {
+        bReset.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                ((Game) Gdx.app.getApplicationListener()).setScreen(new LevelSelectScreen(game, gameScreen));
+                new Dialog("RESET", skin, "dialog"){
+                    protected void result (Object object) {
+                        SaveHandler.ResetSave();
+                    }
+                }.text("Are you sure you want to reset your character progress?").button("Yes", true).button("No", false).show(stage);
             }
         });
 
-        bSettings.addListener(new ChangeListener() {
+        bBack.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                ((Game) Gdx.app.getApplicationListener()).setScreen(new SettingsScreen(game, gameScreen));
-            }
-        });
-
-        bExit.addListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                Gdx.app.exit();
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new MainMenuScreen(game, gameScreen));
             }
         });
 
@@ -139,5 +151,6 @@ public class MainMenuScreen extends MenuScreen {
     public void hide() {
         dispose();
     }
+
 
 }
