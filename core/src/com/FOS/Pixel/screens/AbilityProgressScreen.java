@@ -241,7 +241,6 @@ public class AbilityProgressScreen extends MenuScreen {
 
         final Container playerContainer = new Container(playerGroup);
 
-
         // Ability Strength
         final Image iGlassPanelStrength = new Image(rGlassPanel);
         iGlassPanelStrength.setSize(300, 50);
