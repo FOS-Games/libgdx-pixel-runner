@@ -2,41 +2,29 @@ package com.FOS.Pixel.screens;
 
 import com.FOS.Pixel.*;
 import com.FOS.Pixel.AnimationUtil;
-import com.FOS.Pixel.Data.LevelData;
 import com.FOS.Pixel.Data.PixelVars;
-import com.FOS.Pixel.Data.PlayerData;
 import com.FOS.Pixel.PixelContactListener;
 import com.FOS.Pixel.Player;
 import com.FOS.Pixel.SpeedController;
 import com.FOS.Pixel.handlers.JsonHandler;
 import com.FOS.Pixel.handlers.SaveHandler;
-import com.FOS.Pixel.screens.PixelGameScreen;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.utils.*;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.ObjectMap;
 import com.badlogic.gdx.utils.TimeUtils;
-import com.badlogic.gdx.utils.viewport.ScalingViewport;
-import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import net.dermetfan.gdx.graphics.g2d.AnimatedBox2DSprite;
 import net.dermetfan.gdx.graphics.g2d.Box2DSprite;
-import net.dermetfan.utils.Pair;
 
 
 public class GameScreen extends PixelGameScreen {
@@ -51,7 +39,7 @@ public class GameScreen extends PixelGameScreen {
     boolean gold = true;
     boolean silver = true;
     boolean bronze=true;
-
+    private Array<Body> playingAnimation = new Array<Body>();
     public int orbs = 0;
     SpeedController speedController = new SpeedController();
 
@@ -224,6 +212,8 @@ public class GameScreen extends PixelGameScreen {
 //        //System.out.println(stringtime);
 
         checkCollectedOrbs();
+        breakAnim();
+        checkAnimFinished();
         checkMedalTime(TimeUtils.timeSinceMillis(time));
 
     }
@@ -246,7 +236,7 @@ public class GameScreen extends PixelGameScreen {
 
     private void checkCollectedOrbs() {
 
-        Array<Body> bodies = pixelContactListener.getBodies();
+        Array<Body> bodies = pixelContactListener.getOrbs();
         for(int i = 0; i < bodies.size; i++) {
             world.destroyBody(bodies.get(i));
             orbs++;
@@ -254,6 +244,27 @@ public class GameScreen extends PixelGameScreen {
         }
 
         bodies.clear();
+    }
+
+    private void breakAnim() {
+
+        Array<Body> bodies = pixelContactListener.getCrates();
+        for(Body crate : bodies) {
+            crate.setUserData(AnimationUtil.createBox2DAnimation(0.100f,AnimationUtil.createTextureRegion("sprites/spriteSheet_box.png",4,1), Animation.PlayMode.NORMAL));
+            playingAnimation.add(crate);
+            // play sound
+        }
+
+        bodies.clear();
+    }
+    private void checkAnimFinished(){
+        for(Body crate : playingAnimation){
+            AnimatedBox2DSprite anim = ((AnimatedBox2DSprite)crate.getUserData());
+            if(anim.isAnimationFinished()){
+                world.destroyBody(crate);
+                playingAnimation.removeValue(crate,true);
+            }
+        }
     }
 
 

@@ -1,6 +1,5 @@
 package com.FOS.Pixel;
 
-import com.FOS.Pixel.screens.GameScreen;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.utils.Array;
 
@@ -10,11 +9,15 @@ import com.badlogic.gdx.utils.Array;
 public class PixelContactListener implements ContactListener {
 
     private int numFootContacts;
-    private Array<Body> bodiesToRemove;
+    private Array<Body> orbsToRemove;
+
+    private Array<Body> cratesToRemove;
 
     public PixelContactListener() {
         super();
-        bodiesToRemove = new Array<Body>();
+        orbsToRemove = new Array<Body>();
+
+        cratesToRemove = new Array<Body>();
     }
 
     @Override
@@ -42,21 +45,20 @@ public class PixelContactListener implements ContactListener {
 
         // Collect the orbs!
         if(fa.getUserData() != null && fa.getUserData().equals("playerCollider") && fb.getUserData() != null && fb.getUserData().equals("orb")) {
-            bodiesToRemove.add(fb.getBody());
+            orbsToRemove.add(fb.getBody());
 
         }
         if(fb.getUserData() != null && fb.getUserData().equals("playerCollider") && fa.getUserData() != null && fa.getUserData().equals("orb")) {
-            bodiesToRemove.add(fa.getBody());
+            orbsToRemove.add(fa.getBody());
         }
 
 
-        if(fa.getUserData() != null && fa.getUserData().equals("powerup") && fb.getUserData() instanceof Player) {
-            //TODO: something something when player hits powerup
-            fa.getBody().getWorld().destroyBody(fa.getBody());
+        if(fa.getUserData() != null && fa.getUserData().equals("playerCollider") && fb.getUserData() != null && fb.getUserData().equals("crate")) {
+            cratesToRemove.add(fb.getBody());
+
         }
-        if(fb.getUserData() != null && fb.getUserData().equals("powerup")&& fb.getUserData() instanceof Player) {
-            //TODO: something something when player hits powerup
-            fb.getBody().getWorld().destroyBody(fb.getBody());
+        if(fb.getUserData() != null && fb.getUserData().equals("playerCollider") && fa.getUserData() != null && fa.getUserData().equals("crate")) {
+            cratesToRemove.add(fa.getBody());
         }
 
         //TODO Crate contact
@@ -105,7 +107,9 @@ public class PixelContactListener implements ContactListener {
         return numFootContacts > 0;
     }
 
-    public Array<Body> getBodies() { return bodiesToRemove; }
+    public Array<Body> getOrbs() { return orbsToRemove; }
 
-
+    public Array<Body> getCrates() {
+        return cratesToRemove;
+    }
 }
