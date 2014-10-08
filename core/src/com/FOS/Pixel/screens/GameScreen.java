@@ -60,6 +60,7 @@ public class GameScreen extends PixelGameScreen {
     Sprite bgSpr;
     Camera fixedCam;
     Integer level;
+    private Vector2 finish;
 
     public GameScreen(Game game,int level) {
         super(game,level);
@@ -102,9 +103,19 @@ public class GameScreen extends PixelGameScreen {
 
         camera.position.set(camera.viewportWidth / 2f, camera.viewportHeight / 2f, 0);
         camera.update();
+        findFinish();
 
 
     }
+
+    private void findFinish() {
+        ObjectMap<String,Body> bodies = parser.getBodies();
+        for (ObjectMap.Entry<String,Body> x : bodies){
+            if(x.key.equals("finish")){
+                finish=x.value.getPosition();
+                System.out.println("Finish found");
+            }
+    }}
 
     private void createBackground() {
         bgTex = new Texture(Gdx.files.internal(JsonHandler.readLevel(level).getBackground()));
@@ -230,7 +241,14 @@ public class GameScreen extends PixelGameScreen {
         breakAnim();
         checkAnimFinished();
         checkMedalTime(TimeUtils.timeSinceMillis(time));
+        checkPlayerFinished();
 
+    }
+
+    private void checkPlayerFinished() {
+        if(player.getBody().getPosition().x>finish.x){
+            System.out.println("!!!!!!!!!!!!!!!!FINISH!!!!!!!!!!!!!");
+        }
     }
 
     private  void checkMedalTime(long timepassed){
