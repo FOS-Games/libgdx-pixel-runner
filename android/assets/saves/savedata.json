@@ -14,5 +14,5 @@ playerData: {
 	jump: 1,
 	skinType: HUMAN
 },
-totalOrbs: 176
+totalOrbs: 379
 }
