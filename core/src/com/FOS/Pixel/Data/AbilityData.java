@@ -6,13 +6,15 @@ package com.FOS.Pixel.Data;
 public class AbilityData {
     float multiplier;
     String texturename;
+    int cost;
 
     public AbilityData() {
     }
 
-    public AbilityData(float multiplier, String texturename) {
+    public AbilityData(float multiplier, String texturename,int cost) {
         this.multiplier = multiplier;
         this.texturename = texturename;
+        this.cost = cost;
     }
 
     public float getMultiplier() {
@@ -21,5 +23,9 @@ public class AbilityData {
 
     public String getTexturename() {
         return texturename;
+    }
+
+    public int getCost() {
+        return cost;
     }
 }
