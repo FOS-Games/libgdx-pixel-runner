@@ -28,4 +28,19 @@ public class LevelSaveData {
     public boolean isUnlocked() {
         return unlocked;
     }
+
+    public LevelSaveData setLevelDistance(float levelDistance) {
+        this.levelDistance = levelDistance;
+        return this;
+    }
+
+    public LevelSaveData setTotaltime(long totaltime) {
+        this.totaltime = totaltime;
+        return this;
+    }
+
+    public LevelSaveData setUnlocked(boolean unlocked) {
+        this.unlocked = unlocked;
+        return this;
+    }
 }
