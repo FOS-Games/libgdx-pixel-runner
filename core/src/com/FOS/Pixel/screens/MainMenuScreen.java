@@ -13,6 +13,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -37,6 +38,8 @@ public class MainMenuScreen extends MenuScreen {
     Texture tBlueButtonPressed;
 
     Texture background;
+
+    Texture logo;
 
     GameScreen gameScreen;
 
@@ -64,6 +67,13 @@ public class MainMenuScreen extends MenuScreen {
 
         background = new Texture(Gdx.files.internal("ui/menuBackground.png"));
         TextureRegion rBackground = new TextureRegion(background);
+
+        logo = new Texture(Gdx.files.internal("ui/logoBig.png"));
+        TextureRegion rLogo = new TextureRegion(logo);
+
+        Image iLogo = new Image(new TextureRegionDrawable(rLogo));
+        iLogo.setPosition(112, 350);
+        iLogo.setSize(585, 89);
 
         skin = new Skin();
 
@@ -99,9 +109,12 @@ public class MainMenuScreen extends MenuScreen {
         final TextButton bSettings = new TextButton("Settings", skin);
         final TextButton bExit = new TextButton("Exit", skin);
 
-        table.add(bStart).size(200, 50).padBottom(20).row();
-        table.add(bSettings).size(200, 50).padBottom(20).row();
-        table.add(bExit).size(200, 50).padBottom(20).row();
+        table.add(bStart).size(220, 50).padBottom(20).padTop(100).row();
+        table.add(bSettings).size(220, 50).padBottom(20).row();
+        table.add(bExit).size(220, 50).padBottom(20).row();
+
+        stage.addActor(iLogo);
+
 
         bStart.addListener(new ChangeListener() {
             @Override

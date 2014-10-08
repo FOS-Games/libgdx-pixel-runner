@@ -7,7 +7,7 @@
             abilityData: {
                 multiplier: 1,
                 texturename: sprites/EMPTY.png,
-                cost: 9999
+                cost: 200
             }
         },
 		{
@@ -15,7 +15,7 @@
 			abilityData: {
 				multiplier: 1,
 				texturename: sprites/EMPTY.png,
-                cost: 9999
+                cost: 400
 			}
 		},
 		{
@@ -23,7 +23,7 @@
 			abilityData: {
 				multiplier: 1,
 				texturename: sprites/spriteSheet_normalBoots.png,
-                cost: 9999
+                cost: 800
 			}
 		},
 		{
@@ -31,7 +31,7 @@
 			abilityData: {
 				multiplier: 1,
 				texturename: sprites/spriteSheet_normalBoots.png,
-                cost: 9999
+                cost: 1200
 			}
 		},
 		{
@@ -39,7 +39,7 @@
 			abilityData: {
 				multiplier: 1,
 				texturename: sprites/spriteSheet_normalBoots.png,
-                cost: 9999
+                cost: 1600
 			}
 		},
 		{
@@ -47,7 +47,7 @@
 			abilityData: {
 				multiplier: 1,
 				texturename: sprites/spriteSheet_hermesBoots.png,
-                cost: 9999
+                cost: 2000
 
 			}
 		}
@@ -62,7 +62,7 @@
             abilityData: {
                 multiplier: 1,
                 texturename: sprites/EMPTY.png,
-                cost: 9999
+                cost: 200
             }
         },
 		{
@@ -70,7 +70,7 @@
 			abilityData: {
 				multiplier: 1,
 				texturename: sprites/EMPTY.png,
-                cost: 9999
+                cost: 400
 			}
 		},
 		{
@@ -78,7 +78,7 @@
 			abilityData: {
 				multiplier: 1,
 				texturename: sprites/spriteSheet_smallHammer.png,
-                cost: 9999
+                cost: 800
 			}
 		},
 		{
@@ -86,7 +86,7 @@
 			abilityData: {
 				multiplier: 1,
 				texturename: sprites/spriteSheet_smallHammer.png,
-                cost: 9999
+                cost: 1200
 			}
 		},
 		{
@@ -94,7 +94,7 @@
 			abilityData: {
 				multiplier: 1,
 				texturename: sprites/spriteSheet_smallHammer.png,
-                cost: 9999
+                cost: 1600
 			}
 		},
 		{
@@ -102,7 +102,7 @@
 			abilityData: {
 				multiplier: 1,
 				texturename: sprites/spriteSheet_goldenHammer.png,
-                cost: 9999
+                cost: 2000
 			}
 		}
 	],
@@ -116,7 +116,7 @@
             abilityData: {
                 multiplier: 1,
                 texturename: sprites/EMPTY.png,
-                cost: 9999
+                cost: 200
             }
         },
 		{
@@ -124,7 +124,7 @@
 			abilityData: {
 				multiplier: 1,
 				texturename: sprites/EMPTY.png,
-                cost: 9999
+                cost: 400
 			}
 		},
 		{
@@ -132,7 +132,7 @@
 			abilityData: {
 				multiplier: 1,
 				texturename: sprites/spriteSheet_smallWings.png,
-                cost: 9999
+                cost: 800
 			}
 		},
 		{
@@ -140,7 +140,7 @@
 			abilityData: {
 				multiplier: 1,
 				texturename: sprites/spriteSheet_smallWings.png,
-                cost: 9999
+                cost: 1200
 			}
 		},
 		{
@@ -148,7 +148,7 @@
 			abilityData: {
 				multiplier: 1,
 				texturename: sprites/spriteSheet_smallWings.png,
-                cost: 9999
+                cost: 1600
 			}
 		},
 		{
@@ -156,7 +156,7 @@
 			abilityData: {
 				multiplier: 1,
 				texturename: sprites/spriteSheet_angelWings.png,
-                cost: 9999
+                cost: 2000
 			}
 		}
 	],
