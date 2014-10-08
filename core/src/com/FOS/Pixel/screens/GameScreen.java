@@ -253,6 +253,8 @@ public class GameScreen extends PixelGameScreen {
             crate.setUserData(AnimationUtil.createBox2DAnimation(0.100f,AnimationUtil.createTextureRegion("sprites/spriteSheet_box.png",4,1), Animation.PlayMode.NORMAL));
             playingAnimation.add(crate);
             // play sound
+            speedController.adjustSpeed(new Vector2(-2,0),5,0.1f);
+            player.setState(Player.PLAYER_STATE.STUMBLE);
         }
 
         bodies.clear();

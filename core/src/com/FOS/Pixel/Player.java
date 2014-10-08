@@ -101,6 +101,10 @@ public class Player extends PlayerAnimatorHandler implements ISpeedController{
         return bodyFixture;
     }
 
+    public void setState(PLAYER_STATE state) {
+        this.state = state;
+    }
+
     private void InitBox2D() {
         initPlayer();
         initCollision();
