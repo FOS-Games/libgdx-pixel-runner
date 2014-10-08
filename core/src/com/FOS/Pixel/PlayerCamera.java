@@ -2,12 +2,10 @@ package com.FOS.Pixel;
 
 import com.FOS.Pixel.Interfaces.ISpeedController;
 import com.FOS.Pixel.screens.GameScreen;
-import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.utils.Timer;
-import net.dermetfan.gdx.physics.box2d.Autopilot;
 
 import java.text.DecimalFormat;
 
@@ -26,12 +24,17 @@ public class PlayerCamera extends OrthographicCamera implements ISpeedController
     public Vector2 velocity;
     public float minVelocity;
 
+    private float ymin;
+    private float ymax;
+
     public PlayerCamera(GameScreen gameScreen, Vector2 spawn,float viewportWidth, float viewportHeight){
         super(viewportWidth, viewportHeight);
         this.gameScreen = gameScreen;
         this.spawn=spawn;
         this.player = gameScreen.getPlayer();
         this.minVelocity =gameScreen.levelData.getMinSpeed();
+        ymin = spawn.y+1f;
+        ymax = ymin + 6f;
         createBody();
     }
 
@@ -52,7 +55,8 @@ public class PlayerCamera extends OrthographicCamera implements ISpeedController
     public void update() {
         super.update();
         if(player!=null && body!=null) {
-            checkPlayerPosition();
+            checkPlayerxPosition();
+            checkPlayeryPosition();
             this.position.x = body.getPosition().x;
             this.position.y = body.getPosition().y;
             playerUpdateSpeed();
@@ -61,16 +65,31 @@ public class PlayerCamera extends OrthographicCamera implements ISpeedController
 
     }
 
+    private void checkPlayeryPosition() {
+        boolean inrange = player.getBody().getPosition().y > ymin &&player.getBody().getPosition().y <ymax;
+
+        if(inrange){
+            this.body.setTransform(this.body.getPosition().x,player.getBody().getPosition().y, this.body.getAngle());
+        }else if(!inrange && player.getBody().getPosition().y < ymin){
+
+            this.body.setTransform(this.body.getPosition().x,ymin, this.body.getAngle());
+        }
+        else if(!inrange && player.getBody().getPosition().y > ymax){
+
+            this.body.setTransform(this.body.getPosition().x,ymax, this.body.getAngle());
+        }
+    }
+
     private void checkPlayerDeath() {
         boolean outofxrange = player.getBody().getPosition().x<body.getPosition().x-(viewportWidth/2)||player.getBody().getPosition().x>body.getPosition().x+(viewportWidth/2);
-        boolean outofyrange = player.getBody().getPosition().y<body.getPosition().y-(viewportHeight/2)||player.getBody().getPosition().y>body.getPosition().y+(viewportHeight/2);
+        boolean outofyrange = player.getBody().getPosition().y<body.getPosition().y-(viewportHeight/2);
         if(outofxrange||outofyrange){
             //TODO:Something dead-like
             System.out.println("DEADD");
         }
     }
 
-    private void checkPlayerPosition() {
+    private void checkPlayerxPosition() {
         DecimalFormat df = new DecimalFormat("###.#");
         float playerx = Float.valueOf(df.format(player.getBody().getPosition().x).replace(",", "."));
         float camerax = Float.valueOf(df.format(body.getPosition().x).replace(",", "."));

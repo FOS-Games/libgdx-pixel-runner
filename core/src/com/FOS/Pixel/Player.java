@@ -309,7 +309,15 @@ public class Player extends PlayerAnimatorHandler implements ISpeedController{
 
     @Override
     public void adjustSpeed(Vector2 adjustWith, int steps) {
-        float xincr= (adjustWith.x/(float)steps)/playerData.getAbilityData(AbilityType.STRENGTH).getMultiplier();
+        float xincr;
+        if(adjustWith.x<0) {
+            xincr = (adjustWith.x / (float) steps) / playerData.getAbilityData(AbilityType.STRENGTH).getMultiplier();
+        }else if (adjustWith.x>0) {
+            xincr = (adjustWith.x / (float) steps) / playerData.getAbilityData(AbilityType.STRENGTH).getMultiplier();
+        }
+        else{
+            xincr=0;
+        }
         float yincr= adjustWith.y/(float)steps;
         final Vector2 incrsteps = new Vector2(xincr,yincr);
         Timer timer = new Timer();
