@@ -5,16 +5,14 @@ import com.FOS.Pixel.Data.AbilityData;
 import com.FOS.Pixel.Data.PlayerData;
 import com.FOS.Pixel.PlayerProp;
 import com.FOS.Pixel.handlers.JsonHandler;
+import com.FOS.Pixel.handlers.SaveHandler;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
@@ -77,7 +75,6 @@ public class AbilityProgressScreen extends MenuScreen {
     Image iSquareShadowAgility05;
 
     TextureRegion rSquareWhite;
-    Image iWhite;
 
     Group strengthGroup;
     Group speedGroup;
@@ -145,6 +142,16 @@ public class AbilityProgressScreen extends MenuScreen {
         skin.add("white", new Texture(pixmap));
 
         skin.add("default", new BitmapFont());
+        skin.add("font2", new BitmapFont());
+
+        // DEFAULT TextFieldStyle
+        TextField.TextFieldStyle textFieldStyle = new TextField.TextFieldStyle();
+        textFieldStyle.fontColor = Color.WHITE;
+        // TODO: Use kenney font
+        textFieldStyle.font = skin.getFont("font2");
+        textFieldStyle.font.setScale(3, 3);
+        textFieldStyle.font.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+        skin.add("default", textFieldStyle);
 
         // DEFAULT TextButtonStyle
         TextButton.TextButtonStyle textButtonStyle = new TextButton.TextButtonStyle();
@@ -153,6 +160,7 @@ public class AbilityProgressScreen extends MenuScreen {
         //textButtonStyle.checked = skin.newDrawable("white", Color.BLUE);
         textButtonStyle.over = skin.newDrawable("white", Color.LIGHT_GRAY);
         textButtonStyle.font = skin.getFont("default");
+        textButtonStyle.font.setScale(1, 1);
         skin.add("default", textButtonStyle);
 
         // BLUE TextButtonStyle
@@ -327,13 +335,21 @@ public class AbilityProgressScreen extends MenuScreen {
         table.add(playerContainer).size(400, 400).top().left().padTop(20);
         table.add(abilityContainer).size(400, 400).top().right().padTop(20);
         table.row();
-        table.add(bBack).size(200, 50).bottom().left().padLeft(40).padBottom(20).colspan(2);
+        table.add(bBack).size(200, 50).bottom().left().padLeft(20).padBottom(20).colspan(2);
 
         // Add table to the stage
         stage.addActor(table);
 
+
+
         // Add white ability point squares
         addWhiteSquares();
+
+        // Show total Orbs
+        showTotalOrbs();
+
+
+        // Button listeners
 
         bBack.addListener(new ChangeListener() {
             @Override
@@ -352,21 +368,27 @@ public class AbilityProgressScreen extends MenuScreen {
 
                 int strengthLevel = playerProp.getPlayerData().getStrengthLevel();
 
+                if(strengthLevel != 5) {
+                    Vector2 coords = new Vector2(iSquareShadowStrength01.getX(), iSquareShadowStrength01.getY());
+                    Image iWhite = new Image(rSquareWhite);
+                    iWhite.setSize(19, 26);
+                    iWhite.setPosition(coords.x + strengthLevel * 24, coords.y);
+                    strengthGroup.addActor(iWhite);
 
-                Vector2 coords = new Vector2(iSquareShadowStrength01.getX(), iSquareShadowStrength01.getY());
+                    // TODO: SAVE (setStrengthLevel).
 
-                Image iWhite = new Image(rSquareWhite);
-                iWhite.setSize(19, 26);
-                iWhite.setPosition(coords.x, coords.y);
-                strengthGroup.addActor(iWhite);
+                }
             }
         });
+
+        // TODO: @LARS Negeer TODO'S in AbilityProgressScreen.
 
         // TODO: Voeg logica toe aan [+] knoppen
         // TODO: Haal Totaal aantal orbs op en zet ze boven aan de screen.
         // TODO: Zet aantal benodige orbs naast [+] bij elke ability.
         // TODO: Render poppetje opnieuw bij het levelen van een ability.
         // TODO: Geef ras ("string") weer onder poppetje.
+        // TODO: Zet "Strength" "Speed" en "Agility" neer
 
     }
 
@@ -412,6 +434,25 @@ public class AbilityProgressScreen extends MenuScreen {
             iWhite.setPosition(coordsAgility.x + (i * 24), coordsAgility.y);
             agilityGroup.addActor(iWhite);
         }
+    }
+
+    private void showTotalOrbs() {
+        // TODO: Render total orbs
+
+        int totalOrbs = SaveHandler.getSaveData().getTotalOrbs();
+        System.out.println(totalOrbs);
+
+        AnimatedSprite orbAnimSprite = AnimationUtil.createAnimatedSprite(AnimationUtil.createTextureRegion("sprites/spriteSheet_collectible.png", 15, 1), Animation.PlayMode.LOOP);
+        Image iOrb = new Image(new SpriteDrawable(orbAnimSprite));
+        iOrb.setPosition(450, 390);
+        iOrb.setSize(64, 64);
+        stage.addActor(iOrb);
+
+        TextField orbText = new TextField("x" + Integer.toString(totalOrbs), skin);
+        orbText.setPosition(490, 390);
+        orbText.setSize(64, 64);
+        stage.addActor(orbText);
+
     }
 
     @Override
