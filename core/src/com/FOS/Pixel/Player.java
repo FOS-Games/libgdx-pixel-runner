@@ -188,7 +188,7 @@ public class Player extends PlayerAnimatorHandler implements ISpeedController{
         FixtureDef feetDef = new FixtureDef();
 
         PolygonShape shape = new PolygonShape();
-        shape.setAsBox(size.x / 4, size.y / 4, new Vector2(0,-size.y), 0);
+        shape.setAsBox(size.x,size.y);
 
         feetDef.shape = shape;
         feetDef.density = 0;

@@ -137,7 +137,11 @@ public class AbilityProgressScreen extends MenuScreen {
 
         // Get playerSprite
         playerProp = new PlayerProp(gameScreen);
-        Animation animation = playerProp.getAnimation();
+        Animation animationBody = playerProp.getAnimation();
+        Animation animationFeet = playerProp.getFeetAnimation();
+        Animation animationWings = playerProp.getWingAnimation();
+        Animation animationWeapon = playerProp.getWeaponAnimation();
+
 
         skin = new Skin();
 
@@ -210,11 +214,32 @@ public class AbilityProgressScreen extends MenuScreen {
         final TextButton bAgilityPlus = new TextButton("", skin, "glassPanelStyle");
 
         // Player table and container
-        final Table playerTable = new Table();
-        playerTable.setFillParent(true);
-        playerTable.add(new Image(new SpriteDrawable(new AnimatedSprite(animation)))).size(256, 256).center().padRight(100);
+        final Group playerGroup = new Group();
+       // playerGroup.setFillParent(true);
 
-        final Container playerContainer = new Container(playerTable);
+        Image iBody = new Image(new SpriteDrawable(new AnimatedSprite(animationBody)));
+        Image iFeet = new Image(new SpriteDrawable(new AnimatedSprite(animationFeet)));
+        Image iWings = new Image(new SpriteDrawable(new AnimatedSprite(animationWings)));
+        Image iWeapon = new Image(new SpriteDrawable(new AnimatedSprite(animationWeapon)));
+
+        iBody.setSize(256, 256);
+        iBody.setPosition(-150, -50);
+
+        iFeet.setSize(256, 256);
+        iFeet.setPosition(-150, -50);
+
+        iWings.setSize(256, 256);
+        iWings.setPosition(-150, -50);
+
+        iWeapon.setSize(256, 256);
+        iWeapon.setPosition(-150, -50);
+
+        playerGroup.addActor(iBody);
+        playerGroup.addActor(iFeet);
+        playerGroup.addActor(iWings);
+        playerGroup.addActor(iWeapon);
+
+        final Container playerContainer = new Container(playerGroup);
 
 
         // Ability Strength
