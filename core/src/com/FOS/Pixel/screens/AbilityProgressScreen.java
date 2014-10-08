@@ -129,7 +129,7 @@ public class AbilityProgressScreen extends MenuScreen {
 
 
         // Ability point UI
-        tGlassPanel = new Texture(Gdx.files.internal("ui/glassPanel300x50.png"));
+        tGlassPanel = new Texture(Gdx.files.internal("ui/glassPanel320x50.png"));
         TextureRegion rGlassPanel = new TextureRegion(tGlassPanel);
 
         tSquareShadow = new Texture(Gdx.files.internal("ui/squareShadow.png"));
@@ -256,8 +256,8 @@ public class AbilityProgressScreen extends MenuScreen {
 
         // Ability Strength
         final Image iGlassPanelStrength = new Image(rGlassPanel);
-        iGlassPanelStrength.setSize(300, 50);
-        iGlassPanelStrength.setPosition(-180, 50);
+        iGlassPanelStrength.setSize(320, 50);
+        iGlassPanelStrength.setPosition(-200, 50);
 
         iSquareShadowStrength01 = new Image(rSquareShadow);
         iSquareShadowStrength02 = new Image(rSquareShadow);
@@ -287,8 +287,8 @@ public class AbilityProgressScreen extends MenuScreen {
 
         // Ability Speed
         final Image iGlassPanelSpeed = new Image(rGlassPanel);
-        iGlassPanelSpeed.setSize(300, 50);
-        iGlassPanelSpeed.setPosition(-180, -20);
+        iGlassPanelSpeed.setSize(320, 50);
+        iGlassPanelSpeed.setPosition(-200, -20);
 
         iSquareShadowSpeed01 = new Image(rSquareShadow);
         iSquareShadowSpeed02 = new Image(rSquareShadow);
@@ -318,8 +318,8 @@ public class AbilityProgressScreen extends MenuScreen {
 
         // Ability Agility
         final Image iGlassPanelAgility = new Image(rGlassPanel);
-        iGlassPanelAgility.setSize(300, 50);
-        iGlassPanelAgility.setPosition(-180, -90);
+        iGlassPanelAgility.setSize(320, 50);
+        iGlassPanelAgility.setPosition(-200, -90);
 
         iSquareShadowAgility01 = new Image(rSquareShadow);
         iSquareShadowAgility02 = new Image(rSquareShadow);
