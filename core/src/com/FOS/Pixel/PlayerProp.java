@@ -24,11 +24,6 @@ import net.dermetfan.gdx.graphics.g2d.AnimatedSprite;
 public class PlayerProp extends PlayerAnimatorHandler {
 
 
-    @Override
-    protected void finishStumble() {
-
-    }
-
     public enum PLAYER_STATE {
         RUN,
     }

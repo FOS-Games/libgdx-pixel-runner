@@ -1,10 +1,12 @@
 package com.FOS.Pixel.screens;
 
+import com.FOS.Pixel.*;
 import com.FOS.Pixel.AnimationUtil;
 import com.FOS.Pixel.Data.LevelData;
 import com.FOS.Pixel.Data.PixelVars;
 import com.FOS.Pixel.PixelContactListener;
 import com.FOS.Pixel.Player;
+import com.FOS.Pixel.SpeedController;
 import com.FOS.Pixel.handlers.JsonHandler;
 import com.FOS.Pixel.handlers.SaveHandler;
 import com.FOS.Pixel.screens.PixelGameScreen;
@@ -21,6 +23,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Fixture;
+import com.badlogic.gdx.utils.*;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -49,6 +52,7 @@ public class GameScreen extends PixelGameScreen {
     boolean bronze=true;
 
     public int orbs = 0;
+    SpeedController speedController = new SpeedController();
 
 
     // Background stuff
@@ -67,13 +71,36 @@ public class GameScreen extends PixelGameScreen {
 
         createBackground();
         createPlayer();
+        createCamera();
         createCollectibles();
         createBoxes();
+
+        speedController.registerController(player);
+        speedController.registerController(camera);
 
         world.setContactListener(pixelContactListener);
         orbs = SaveHandler.getSaveData().getTotalOrbs();
         super.startMusic();
-        player.decrSpeed(new Vector2(10,0),10,0.5f);
+        //player.decrSpeed(new Vector2(10,0),10,0.5f);
+
+        Timer test = new Timer();
+        test.scheduleTask(new Timer.Task() {
+            @Override
+            public void run() {
+                speedController.adjustSpeed(new Vector2(10, 0),5);
+            }
+        },2,2,0);
+
+        test.scheduleTask(new Timer.Task() {
+            @Override
+            public void run() {
+                speedController.adjustSpeed(new Vector2(-5, 0),5);
+            }
+        },15,2,0);
+        test.start();
+
+        camera.position.set(camera.viewportWidth / 2f, camera.viewportHeight / 2f, 0);
+        camera.update();
 
 
     }
@@ -130,6 +157,20 @@ public class GameScreen extends PixelGameScreen {
         }
     }
 
+    /**
+     * Create camera at appropriate position.
+     */
+    private void createCamera(){
+        Vector2 spawn;
+        if(parser.getBodies().containsKey("spawn")) {
+            spawn = parser.getBodies().get("spawn").getPosition();
+        }else{
+            spawn = new Vector2(0,0); }
+        float w = Gdx.graphics.getWidth();
+        float h = Gdx.graphics.getHeight();
+        camera = new PlayerCamera(this,spawn,PixelVars.UNITS_VISIBLE, PixelVars.UNITS_VISIBLE * (h / w));
+    }
+    /**
 
     /**
      * Create player at appropriate position.
@@ -140,7 +181,7 @@ public class GameScreen extends PixelGameScreen {
             spawn = parser.getBodies().get("spawn").getPosition();
         }else{
             spawn = new Vector2(0,0); }
-        player=new Player(this, spawn);
+        this.player=new Player(this, spawn);
     }
 
     @Override
@@ -166,6 +207,7 @@ public class GameScreen extends PixelGameScreen {
         spriteBatch.end();
 
         updateCamera();
+        camera.update();
         player.update(delta);
 
     }
