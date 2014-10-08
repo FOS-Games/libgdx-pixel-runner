@@ -2,39 +2,53 @@
 {
 	class: com.FOS.Pixel.handlers.typeholder,
 	Level: [
+            {
+            level: Level0,
+            abilityData: {
+                multiplier: 1,
+                texturename: sprites/EMPTY.png,
+                cost: 9999
+            }
+        },
 		{
 			level: Level1,
 			abilityData: {
 				multiplier: 1,
-				texturename: sprites/EMPTY.png
+				texturename: sprites/EMPTY.png,
+                cost: 9999
 			}
 		},
 		{
 			level: Level2,
 			abilityData: {
 				multiplier: 1,
-				texturename: sprites/spriteSheet_normalBoots.png
+				texturename: sprites/spriteSheet_normalBoots.png,
+                cost: 9999
 			}
 		},
 		{
 			level: Level3,
 			abilityData: {
 				multiplier: 1,
-				texturename: sprites/spriteSheet_normalBoots.png
+				texturename: sprites/spriteSheet_normalBoots.png,
+                cost: 9999
 			}
 		},
 		{
 			level: Level4,
 			abilityData: {
 				multiplier: 1,
-				texturename: sprites/spriteSheet_normalBoots.png
+				texturename: sprites/spriteSheet_normalBoots.png,
+                cost: 9999
 			}
 		},
 		{
 			level: Level5,
 			abilityData: {
 				multiplier: 1,
-				texturename: sprites/spriteSheet_hermesBoots.png
+				texturename: sprites/spriteSheet_hermesBoots.png,
+                cost: 9999
+
 			}
 		}
 	],
@@ -43,39 +57,52 @@
 {
 	class: com.FOS.Pixel.handlers.typeholder,
 	Level: [
+        {
+            level: Level0,
+            abilityData: {
+                multiplier: 1,
+                texturename: sprites/EMPTY.png,
+                cost: 9999
+            }
+        },
 		{
 			level: Level1,
 			abilityData: {
 				multiplier: 1,
-				texturename: sprites/EMPTY.png
+				texturename: sprites/EMPTY.png,
+                cost: 9999
 			}
 		},
 		{
 			level: Level2,
 			abilityData: {
 				multiplier: 1,
-				texturename: sprites/spriteSheet_smallHammer.png
+				texturename: sprites/spriteSheet_smallHammer.png,
+                cost: 9999
 			}
 		},
 		{
 			level: Level3,
 			abilityData: {
 				multiplier: 1,
-				texturename: sprites/spriteSheet_smallHammer.png
+				texturename: sprites/spriteSheet_smallHammer.png,
+                cost: 9999
 			}
 		},
 		{
 			level: Level4,
 			abilityData: {
 				multiplier: 1,
-				texturename: sprites/spriteSheet_smallHammer.png
+				texturename: sprites/spriteSheet_smallHammer.png,
+                cost: 9999
 			}
 		},
 		{
 			level: Level5,
 			abilityData: {
 				multiplier: 1,
-				texturename: sprites/spriteSheet_bigHammer.png
+				texturename: sprites/spriteSheet_bigHammer.png,
+                cost: 9999
 			}
 		}
 	],
@@ -84,39 +111,52 @@
 {
 	class: com.FOS.Pixel.handlers.typeholder,
 	Level: [
+        {
+            level: Level0,
+            abilityData: {
+                multiplier: 1,
+                texturename: sprites/EMPTY.png,
+                cost: 9999
+            }
+        },
 		{
 			level: Level1,
 			abilityData: {
 				multiplier: 1,
-				texturename: sprites/EMPTY.png
+				texturename: sprites/EMPTY.png,
+                cost: 9999
 			}
 		},
 		{
 			level: Level2,
 			abilityData: {
 				multiplier: 1,
-				texturename: sprites/spriteSheet_smallWings.png
+				texturename: sprites/spriteSheet_smallWings.png,
+                cost: 9999
 			}
 		},
 		{
 			level: Level3,
 			abilityData: {
 				multiplier: 1,
-				texturename: sprites/spriteSheet_smallWings.png
+				texturename: sprites/spriteSheet_smallWings.png,
+                cost: 9999
 			}
 		},
 		{
 			level: Level4,
 			abilityData: {
 				multiplier: 1,
-				texturename: sprites/spriteSheet_smallWings.png
+				texturename: sprites/spriteSheet_smallWings.png,
+                cost: 9999
 			}
 		},
 		{
 			level: Level5,
 			abilityData: {
 				multiplier: 1,
-				texturename: sprites/spriteSheet_angelWings.png
+				texturename: sprites/spriteSheet_angelWings.png,
+                cost: 9999
 			}
 		}
 	],

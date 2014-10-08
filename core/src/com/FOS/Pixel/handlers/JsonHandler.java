@@ -42,7 +42,7 @@ public class JsonHandler {
      * stupid test method
      */
     public static void test() {
-        AbilityData test = new AbilityData(1f, "DEFAULT.png");
+        AbilityData test = new AbilityData(1f, "DEFAULT.png",9999);
         ArrayList<typeholder> x = new ArrayList<typeholder>();
         x.add(new typeholder(PlayerData.AbilityType.SPEED.toString(), new Abilitylevel[]{
                 new Abilitylevel("Level1", test),

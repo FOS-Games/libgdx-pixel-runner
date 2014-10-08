@@ -8,11 +8,13 @@ import com.FOS.Pixel.handlers.JsonHandler;
 import com.FOS.Pixel.handlers.SaveHandler;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.*;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
@@ -80,6 +82,9 @@ public class AbilityProgressScreen extends MenuScreen {
     Group speedGroup;
     Group agilityGroup;
 
+    BitmapFont orbFont;
+    BitmapFont abilityFont;
+
     public AbilityProgressScreen(Game game, GameScreen gameScreen) {
         this.gameScreen = gameScreen;
         this.game = game;
@@ -142,22 +147,40 @@ public class AbilityProgressScreen extends MenuScreen {
         skin.add("white", new Texture(pixmap));
 
         skin.add("default", new BitmapFont());
-        skin.add("font2", new BitmapFont());
+
+        // Create orb font
+        FreeTypeFontGenerator generatorOrb = new FreeTypeFontGenerator(Gdx.files.internal("fonts/kenpixel_blocks.ttf"));
+        FreeTypeFontGenerator.FreeTypeFontParameter parameterOrb = new FreeTypeFontGenerator.FreeTypeFontParameter();
+        parameterOrb.size = 36;
+        orbFont = generatorOrb.generateFont(parameterOrb);
+        //generatorOrb.dispose();
+        skin.add("orbFont", orbFont);
+
+        // Create ability font
+        FreeTypeFontGenerator generatorAbility = new FreeTypeFontGenerator(Gdx.files.internal("fonts/kenvector_future.ttf"));
+        FreeTypeFontGenerator.FreeTypeFontParameter parameterAbility = new FreeTypeFontGenerator.FreeTypeFontParameter();
+        parameterAbility.size = 24;
+        abilityFont = generatorAbility.generateFont(parameterAbility);
+        //abilityFont.dispose();
+        skin.add("abilityFont", abilityFont);
+
 
         // DEFAULT TextFieldStyle
         TextField.TextFieldStyle textFieldStyle = new TextField.TextFieldStyle();
-        textFieldStyle.fontColor = Color.WHITE;
-        // TODO: Use kenney font
-        textFieldStyle.font = skin.getFont("font2");
-        textFieldStyle.font.setScale(3, 3);
-        textFieldStyle.font.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+        textFieldStyle.fontColor = Color.DARK_GRAY;
+        textFieldStyle.font = skin.getFont("orbFont");
         skin.add("default", textFieldStyle);
+
+        // ABILITY TextFieldStyle
+        TextField.TextFieldStyle textFieldStyle1 = new TextField.TextFieldStyle();
+        textFieldStyle1.fontColor = Color.WHITE;
+        textFieldStyle1.font = skin.getFont("abilityFont");
+        skin.add("ability", textFieldStyle1);
 
         // DEFAULT TextButtonStyle
         TextButton.TextButtonStyle textButtonStyle = new TextButton.TextButtonStyle();
         textButtonStyle.up = skin.newDrawable("white", Color.DARK_GRAY);
         textButtonStyle.down = skin.newDrawable("white", Color.DARK_GRAY);
-        //textButtonStyle.checked = skin.newDrawable("white", Color.BLUE);
         textButtonStyle.over = skin.newDrawable("white", Color.LIGHT_GRAY);
         textButtonStyle.font = skin.getFont("default");
         textButtonStyle.font.setScale(1, 1);
@@ -167,7 +190,6 @@ public class AbilityProgressScreen extends MenuScreen {
         TextButton.TextButtonStyle textButtonStyleBlue = new TextButton.TextButtonStyle();
         textButtonStyleBlue.up = skin.newDrawable(new TextureRegionDrawable(rBlueButton));
         textButtonStyleBlue.down = skin.newDrawable(new TextureRegionDrawable(rBlueButtonPressed));
-        //textButtonStyleBlue.checked = skin.newDrawable(new TextureRegionDrawable(rBlueButtonPressed));
         textButtonStyleBlue.over = skin.newDrawable(new TextureRegionDrawable(rBlueButtonHover));
         textButtonStyleBlue.font = skin.getFont("default");
         skin.add("blueStyle", textButtonStyleBlue);
@@ -176,7 +198,6 @@ public class AbilityProgressScreen extends MenuScreen {
         TextButton.TextButtonStyle textButtonStyleGlassPanelPlus = new TextButton.TextButtonStyle();
         textButtonStyleGlassPanelPlus.up = skin.newDrawable(new TextureRegionDrawable(rGlassPanelPlus));
         textButtonStyleGlassPanelPlus.down = skin.newDrawable(new TextureRegionDrawable(rGlassPanelPlusHover));
-        //textButtonStyleGlassPanelPlus.checked = skin.newDrawable(new TextureRegionDrawable(rGlassPanelPlusHover));
         textButtonStyleGlassPanelPlus.over = skin.newDrawable(new TextureRegionDrawable(rGlassPanelPlusHover));
         textButtonStyleGlassPanelPlus.font = skin.getFont("default");
         skin.add("glassPanelStyle", textButtonStyleGlassPanelPlus);
@@ -348,8 +369,12 @@ public class AbilityProgressScreen extends MenuScreen {
         // Show total Orbs
         showTotalOrbs();
 
+        // Show ability texts
+        showAbilityText();
+
 
         // Button listeners
+
 
         bBack.addListener(new ChangeListener() {
             @Override
@@ -362,9 +387,6 @@ public class AbilityProgressScreen extends MenuScreen {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 // 1. Check op genoeg orbs
-                // 2. Check level van Strength
-                // 3. Voeg wit blokje toe op de juiste positie
-                // 4. SaveData
 
                 int strengthLevel = playerProp.getPlayerData().getStrengthLevel();
 
@@ -374,9 +396,43 @@ public class AbilityProgressScreen extends MenuScreen {
                     iWhite.setSize(19, 26);
                     iWhite.setPosition(coords.x + strengthLevel * 24, coords.y);
                     strengthGroup.addActor(iWhite);
+                    SaveHandler.Save(SaveHandler.upStrength(1));
+                }
+            }
+        });
 
-                    // TODO: SAVE (setStrengthLevel).
+        bSpeedPlus.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                // 1. Check op genoeg orbs
 
+                int speedLevel = playerProp.getPlayerData().getSpeedLevel();
+
+                if(speedLevel != 5) {
+                    Vector2 coords = new Vector2(iSquareShadowSpeed01.getX(), iSquareShadowSpeed01.getY());
+                    Image iWhite = new Image(rSquareWhite);
+                    iWhite.setSize(19, 26);
+                    iWhite.setPosition(coords.x + speedLevel * 24, coords.y);
+                    strengthGroup.addActor(iWhite);
+                    SaveHandler.Save(SaveHandler.upSpeed(1));
+                }
+            }
+        });
+
+        bAgilityPlus.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                // 1. Check op genoeg orbs
+
+                int agilityLevel = playerProp.getPlayerData().getAgilityLevel();
+
+                if(agilityLevel != 5) {
+                    Vector2 coords = new Vector2(iSquareShadowAgility01.getX(), iSquareShadowAgility01.getY());
+                    Image iWhite = new Image(rSquareWhite);
+                    iWhite.setSize(19, 26);
+                    iWhite.setPosition(coords.x + agilityLevel * 24, coords.y);
+                    agilityGroup.addActor(iWhite);
+                    SaveHandler.Save(SaveHandler.upJump(1));
                 }
             }
         });
@@ -448,10 +504,26 @@ public class AbilityProgressScreen extends MenuScreen {
         iOrb.setSize(64, 64);
         stage.addActor(iOrb);
 
-        TextField orbText = new TextField("x" + Integer.toString(totalOrbs), skin);
-        orbText.setPosition(490, 390);
-        orbText.setSize(64, 64);
+        TextField orbText = new TextField(Integer.toString(totalOrbs), skin);
+        orbText.setPosition(495, 395);
         stage.addActor(orbText);
+    }
+
+    private void showAbilityText() {
+        TextField strengthText = new TextField("strength", skin, "ability");
+        strengthText.setPosition(410, 315);
+        strengthText.setSize(200, 50);
+        stage.addActor(strengthText);
+
+        TextField speedText = new TextField("speed", skin, "ability");
+        speedText.setPosition(410, 245);
+        speedText.setSize(200, 50);
+        stage.addActor(speedText);
+
+        TextField agilityText = new TextField("agility", skin, "ability");
+        agilityText.setPosition(410, 175);
+        agilityText.setSize(200, 50);
+        stage.addActor(agilityText);
 
     }
 

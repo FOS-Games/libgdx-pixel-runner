@@ -125,14 +125,18 @@ public class GameScreen extends PixelGameScreen {
     }
 
     private void createCollectibles() {
+        int orbCounter = 0;
+
         ObjectMap<String,Body> bodies = parser.getBodies();
         for (ObjectMap.Entry<String,Body> x : bodies){
             if(x.key.startsWith("orb")){
                 //x.value.setUserData(new Box2DSprite(new Texture(Gdx.files.internal("orb.png"))));
                 x.value.setUserData(AnimationUtil.createBox2DAnimation(AnimationUtil.createTextureRegion("sprites/spriteSheet_collectible.png", 15, 1), Animation.PlayMode.LOOP));
-
+                orbCounter++;
             }
         }
+
+        System.out.println("Orbs: " + Integer.toString(orbCounter));
     }
 
     private void createPowerUps() {
