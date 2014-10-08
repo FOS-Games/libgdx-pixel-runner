@@ -35,14 +35,19 @@ public class MainMenuScreen extends MenuScreen {
     Texture tBlueButtonHover;
     Texture tBlueButtonPressed;
 
-    public MainMenuScreen(Game game) {
+    Texture background;
+
+    GameScreen gameScreen;
+
+    public MainMenuScreen(Game game, GameScreen gameScreen) {
+        this.gameScreen = gameScreen;
         this.game = game;
     }
 
     @Override
     public void show() {
         batch = new SpriteBatch();
-        stage = new Stage(new StretchViewport(640, 480));
+        stage = new Stage(new StretchViewport(800, 480));
         Gdx.input.setInputProcessor(stage);
 
         tBlueButton = new Texture(Gdx.files.internal("ui/blueButton.png"));
@@ -54,6 +59,8 @@ public class MainMenuScreen extends MenuScreen {
         tBlueButtonPressed = new Texture(Gdx.files.internal("ui/blueButtonPressed.png"));
         TextureRegion rBlueButtonPressed = new TextureRegion(tBlueButtonPressed);
 
+        background = new Texture(Gdx.files.internal("ui/menuBackground.png"));
+        TextureRegion rBackground = new TextureRegion(background);
 
         skin = new Skin();
 
@@ -74,6 +81,7 @@ public class MainMenuScreen extends MenuScreen {
 
         Table table = new Table();
         table.setFillParent(true);
+        table.setBackground(new TextureRegionDrawable(rBackground));
         stage.addActor(table);
 
         final TextButton bStart = new TextButton("Level Select", skin);
@@ -85,7 +93,7 @@ public class MainMenuScreen extends MenuScreen {
         bStart.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                ((Game) Gdx.app.getApplicationListener()).setScreen(new LevelSelectScreen(game));
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new LevelSelectScreen(game, gameScreen));
             }
         });
 

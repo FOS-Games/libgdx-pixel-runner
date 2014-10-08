@@ -32,18 +32,6 @@ public class PixelContactListener implements ContactListener {
             numFootContacts++;
         }
 
-//
-//        if(fa.getUserData() != null && fa.getUserData().equals("orb") && fb.getUserData() instanceof Player) {
-//            ((Player)fb.getUserData()).gameScreen.orbs++;
-//            fa.getBody().getWorld().destroyBody(fa.getBody());
-//        }
-//
-//        if(fb.getUserData() != null && fb.getUserData().equals("orb")&& fa.getUserData() instanceof Player) {
-//            ((Player)fa.getUserData()).gameScreen.orbs++;
-//            fb.getBody().getWorld().destroyBody(fb.getBody());
-//        }
-
-
         //Check if player is hugging a wall
         if(fa.getUserData() != null && fa.getUserData().equals("wallSensorCollider") && fb.getUserData() != null && fb.getUserData().equals("ground")) {
             numFootContacts--;
@@ -51,7 +39,6 @@ public class PixelContactListener implements ContactListener {
         if(fb.getUserData() != null && fb.getUserData().equals("wallSensorCollider") && fa.getUserData() != null && fa.getUserData().equals("ground")) {
             numFootContacts--;
         }
-
 
         // Collect the orbs!
         if(fa.getUserData() != null && fa.getUserData().equals("playerCollider") && fb.getUserData() != null && fb.getUserData().equals("orb")) {
