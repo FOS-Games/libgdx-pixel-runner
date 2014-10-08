@@ -68,6 +68,7 @@ public class PlayerProp extends PlayerAnimatorHandler {
         super.InitAnimation();
         state = PLAYER_STATE.RUN;
         anim = PLAYER_STATE.RUN;
+        super.InitAnimation();
     }
 
     @Override
