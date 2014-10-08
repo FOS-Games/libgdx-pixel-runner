@@ -86,6 +86,7 @@ public class PlayerCamera extends OrthographicCamera implements ISpeedController
         if(outofxrange||outofyrange){
             //TODO:Something dead-like
             System.out.println("DEADD");
+            gameScreen.saveOrbs();
         }
     }
 

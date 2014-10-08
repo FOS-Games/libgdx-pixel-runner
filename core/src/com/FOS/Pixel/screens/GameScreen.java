@@ -2,7 +2,9 @@ package com.FOS.Pixel.screens;
 
 import com.FOS.Pixel.*;
 import com.FOS.Pixel.AnimationUtil;
+import com.FOS.Pixel.Data.LevelSaveData;
 import com.FOS.Pixel.Data.PixelVars;
+import com.FOS.Pixel.Data.SaveData;
 import com.FOS.Pixel.PixelContactListener;
 import com.FOS.Pixel.Player;
 import com.FOS.Pixel.SpeedController;
@@ -306,4 +308,35 @@ public class GameScreen extends PixelGameScreen {
     protected float overrideEarthGravity() {
         return PixelVars.GRAVITY;
     }
+
+
+    public void saveOrbs(){
+        SaveData data = SaveHandler.getSaveData();
+        data.setTotalOrbs(data.getTotalOrbs()+orbs);
+        SaveHandler.Save(data);
+        orbs=0;
+    }
+    public void saveTime(){
+
+        SaveData data = SaveHandler.getSaveData();
+        LevelSaveData [] levelSaveDatas = data.getLevelSaveDatas();
+        levelSaveDatas[level-1] = levelSaveDatas[level-1].setTotaltime(time);
+
+    }
+    public void saveLevelProgress(){
+        SaveData data = SaveHandler.getSaveData();
+        LevelSaveData [] levelSaveDatas = data.getLevelSaveDatas();
+        levelSaveDatas[level] = levelSaveDatas[level].setUnlocked(true);
+        saveOrbs();
+        saveTime();
+
+    }
+
+
+
+
+
+
+
+
 }
