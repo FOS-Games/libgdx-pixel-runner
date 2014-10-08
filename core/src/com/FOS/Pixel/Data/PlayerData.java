@@ -28,24 +28,27 @@ public class PlayerData {
     int jump;
     int strength;
     int speed;
+    int phase;
     SkinType skinType;
 
     public PlayerData() {
     }
 
-    public PlayerData(AbilityType[] data, int jump, int strength, int speed, SkinType skinType) {
+    public PlayerData(AbilityType[] data, int jump, int strength, int speed,int phase, SkinType skinType) {
         this.data = data;
         this.jump = jump;
         this.strength = strength;
         this.speed = speed;
+        this.phase = phase;
         this.skinType = skinType;
     }
 
-    public PlayerData(AbilityType data, int jump, int strength, int speed, SkinType skinType) {
+    public PlayerData(AbilityType data, int jump, int strength, int speed, int phase ,SkinType skinType) {
         this.data = new AbilityType[]{data};
         this.jump = jump;
         this.strength = strength;
         this.speed = speed;
+        this.phase = phase;
         this.skinType= skinType;
     }
 
@@ -73,7 +76,7 @@ public class PlayerData {
             collection.addAll(hs);
             abilityTypes = (AbilityType[]) collection.toArray();
         }
-        return new PlayerData(abilityTypes,this.jump+x.jump,this.strength+x.strength,this.speed+x.speed,skinType);
+        return new PlayerData(abilityTypes,this.jump+x.jump,this.strength+x.strength,this.speed+x.speed,this.phase,skinType);
     }
 
     public AbilityData getAbilityData(AbilityType type){
@@ -108,6 +111,10 @@ public class PlayerData {
         return skinType;
     }
 
+    public int getPhase() {
+        return phase;
+    }
+
     @Override
     public String toString() {
         return "Data: "+this.data.toString()+", Jumplevel: "+this.jump+", StrengthLevel: "+ strength+", Speedlevel: "+this.speed+", Skin: "+this.skinType.toString();
@@ -131,6 +138,10 @@ public class PlayerData {
 
     public void setSkinType(SkinType skinType) {
         this.skinType = skinType;
+    }
+
+    public void setPhase(int phase) {
+        this.phase = phase;
     }
 }
 
