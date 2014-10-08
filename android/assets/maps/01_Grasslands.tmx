@@ -2183,4 +2183,12 @@
    </properties>
   </object>
  </objectgroup>
+ <objectgroup name="Crates">
+  <object name="crate" type="object" x="4278" y="910" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="crate"/>
+   </properties>
+  </object>
+ </objectgroup>
 </map>
