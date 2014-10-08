@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
@@ -48,6 +49,8 @@ public class LevelSelectScreen extends MenuScreen {
     Texture tBlueButtonPressed;
 
     GameScreen gameScreen;
+
+    BitmapFont font;
 
 
     public LevelSelectScreen(Game game, GameScreen gameScreen) {
@@ -107,13 +110,21 @@ public class LevelSelectScreen extends MenuScreen {
 
         skin.add("default", new BitmapFont());
 
+        // Create ability font
+        FreeTypeFontGenerator generatorAbility = new FreeTypeFontGenerator(Gdx.files.internal("fonts/kenvector_future.ttf"));
+        FreeTypeFontGenerator.FreeTypeFontParameter parameterAbility = new FreeTypeFontGenerator.FreeTypeFontParameter();
+        parameterAbility.size = 24;
+        font = generatorAbility.generateFont(parameterAbility);
+        //abilityFont.dispose();
+        skin.add("customFont", font);
+
         // DEFAULT TextButtonStyle
         TextButton.TextButtonStyle textButtonStyle = new TextButton.TextButtonStyle();
         textButtonStyle.up = skin.newDrawable("white", Color.DARK_GRAY);
         textButtonStyle.down = skin.newDrawable("white", Color.DARK_GRAY);
         textButtonStyle.checked = skin.newDrawable("white", Color.BLUE);
         textButtonStyle.over = skin.newDrawable("white", Color.LIGHT_GRAY);
-        textButtonStyle.font = skin.getFont("default");
+        textButtonStyle.font = skin.getFont("customFont");
         skin.add("default", textButtonStyle);
 
         // BLUE TextButtonStyle
@@ -122,7 +133,7 @@ public class LevelSelectScreen extends MenuScreen {
         textButtonStyleBlue.down = skin.newDrawable(new TextureRegionDrawable(rBlueButtonPressed));
         textButtonStyleBlue.checked = skin.newDrawable(new TextureRegionDrawable(rBlueButtonPressed));
         textButtonStyleBlue.over = skin.newDrawable(new TextureRegionDrawable(rBlueButtonHover));
-        textButtonStyleBlue.font = skin.getFont("default");
+        textButtonStyleBlue.font = skin.getFont("customFont");
         skin.add("blueStyle", textButtonStyleBlue);
 
         // GRASSLANDS TextButtonStyle
@@ -131,7 +142,7 @@ public class LevelSelectScreen extends MenuScreen {
         textButtonStyleGrasslands.down = skin.newDrawable(new TextureRegionDrawable(rGrasslandsHover));
         textButtonStyleGrasslands.down = skin.newDrawable(new TextureRegionDrawable(rGrasslandsHover));
         textButtonStyleGrasslands.over = skin.newDrawable(new TextureRegionDrawable(rGrasslandsHover));
-        textButtonStyleGrasslands.font = skin.getFont("default");
+        textButtonStyleGrasslands.font = skin.getFont("customFont");
         skin.add("grasslandsStyle", textButtonStyleGrasslands);
 
         // CAVE TextButtonStyle
@@ -139,7 +150,7 @@ public class LevelSelectScreen extends MenuScreen {
         textButtonStyleCave.up = skin.newDrawable(new TextureRegionDrawable(rCave));
         textButtonStyleCave.down = skin.newDrawable(new TextureRegionDrawable(rCaveHover));
         textButtonStyleCave.over = skin.newDrawable(new TextureRegionDrawable(rCaveHover));
-        textButtonStyleCave.font = skin.getFont("default");
+        textButtonStyleCave.font = skin.getFont("customFont");
         skin.add("caveStyle", textButtonStyleCave);
 
         final TextButton bLevel1 = new TextButton("", skin, "grasslandsStyle");

@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -38,6 +39,8 @@ public class MainMenuScreen extends MenuScreen {
     Texture background;
 
     GameScreen gameScreen;
+
+    BitmapFont font;
 
     public MainMenuScreen(Game game, GameScreen gameScreen) {
         this.gameScreen = gameScreen;
@@ -71,12 +74,20 @@ public class MainMenuScreen extends MenuScreen {
 
         skin.add("default", new BitmapFont());
 
+        // Create ability font
+        FreeTypeFontGenerator generatorAbility = new FreeTypeFontGenerator(Gdx.files.internal("fonts/kenvector_future.ttf"));
+        FreeTypeFontGenerator.FreeTypeFontParameter parameterAbility = new FreeTypeFontGenerator.FreeTypeFontParameter();
+        parameterAbility.size = 24;
+        font = generatorAbility.generateFont(parameterAbility);
+        //abilityFont.dispose();
+        skin.add("customFont", font);
+
         TextButtonStyle textButtonStyle = new TextButtonStyle();
         textButtonStyle.up = skin.newDrawable(new TextureRegionDrawable(rBlueButton));
         textButtonStyle.down = skin.newDrawable(new TextureRegionDrawable(rBlueButtonPressed));
         textButtonStyle.checked = skin.newDrawable(new TextureRegionDrawable(rBlueButtonPressed));
         textButtonStyle.over = skin.newDrawable(new TextureRegionDrawable(rBlueButtonHover));
-        textButtonStyle.font = skin.getFont("default");
+        textButtonStyle.font = skin.getFont("customFont");
         skin.add("default", textButtonStyle);
 
         Table table = new Table();
@@ -84,7 +95,7 @@ public class MainMenuScreen extends MenuScreen {
         table.setBackground(new TextureRegionDrawable(rBackground));
         stage.addActor(table);
 
-        final TextButton bStart = new TextButton("Level Select", skin);
+        final TextButton bStart = new TextButton("Start Game", skin);
         final TextButton bSettings = new TextButton("Settings", skin);
         final TextButton bExit = new TextButton("Exit", skin);
 

@@ -24,7 +24,6 @@ import com.badlogic.gdx.utils.viewport.StretchViewport;
  */
 public class SettingsScreen extends MenuScreen{
 
-    Skin skin;
     Stage stage;
     SpriteBatch batch;
     Game game;
@@ -38,6 +37,8 @@ public class SettingsScreen extends MenuScreen{
     GameScreen gameScreen;
 
     BitmapFont font;
+
+    public static Skin skin;
 
     public SettingsScreen(Game game, GameScreen gameScreen) {
         this.gameScreen = gameScreen;
@@ -73,7 +74,7 @@ public class SettingsScreen extends MenuScreen{
         // Create ability font
         FreeTypeFontGenerator generatorAbility = new FreeTypeFontGenerator(Gdx.files.internal("fonts/kenvector_future.ttf"));
         FreeTypeFontGenerator.FreeTypeFontParameter parameterAbility = new FreeTypeFontGenerator.FreeTypeFontParameter();
-        parameterAbility.size = 16;
+        parameterAbility.size = 24;
         font = generatorAbility.generateFont(parameterAbility);
         //abilityFont.dispose();
         skin.add("customFont", font);
@@ -101,7 +102,7 @@ public class SettingsScreen extends MenuScreen{
         table.setBackground(new TextureRegionDrawable(rBackground));
         stage.addActor(table);
 
-        final TextButton bReset = new TextButton("RESET CHARACTER", skin);
+        final TextButton bReset = new TextButton("Reset", skin);
         final TextButton bBack= new TextButton("Back", skin);
 
         table.add(bReset).size(200, 50).padBottom(20).row();
@@ -110,11 +111,11 @@ public class SettingsScreen extends MenuScreen{
         bReset.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                new Dialog("RESET", skin, "dialog"){
+                new Dialog("", skin, "dialog"){
                     protected void result (Object object) {
                         SaveHandler.ResetSave();
                     }
-                }.text("Are you sure you want to reset your character progress?").button("Yes", true).button("No", false).show(stage);
+                }.text("Are you sure you\nwant to reset your\ncharacter progress?").button("Yes", true).button("No", false).show(stage);
             }
         });
 

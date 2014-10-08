@@ -97,6 +97,8 @@ public class AbilityProgressScreen extends MenuScreen {
     BitmapFont orbFont;
     BitmapFont abilityFont;
 
+    TextField orbText;
+
     public AbilityProgressScreen(Game game, GameScreen gameScreen) {
         this.gameScreen = gameScreen;
         this.game = game;
@@ -198,7 +200,7 @@ public class AbilityProgressScreen extends MenuScreen {
         textButtonStyle.up = skin.newDrawable("white", Color.DARK_GRAY);
         textButtonStyle.down = skin.newDrawable("white", Color.DARK_GRAY);
         textButtonStyle.over = skin.newDrawable("white", Color.LIGHT_GRAY);
-        textButtonStyle.font = skin.getFont("default");
+        textButtonStyle.font = skin.getFont("abilityFont");
         textButtonStyle.font.setScale(1, 1);
         skin.add("default", textButtonStyle);
 
@@ -207,7 +209,7 @@ public class AbilityProgressScreen extends MenuScreen {
         textButtonStyleBlue.up = skin.newDrawable(new TextureRegionDrawable(rBlueButton));
         textButtonStyleBlue.down = skin.newDrawable(new TextureRegionDrawable(rBlueButtonPressed));
         textButtonStyleBlue.over = skin.newDrawable(new TextureRegionDrawable(rBlueButtonHover));
-        textButtonStyleBlue.font = skin.getFont("default");
+        textButtonStyleBlue.font = skin.getFont("abilityFont");
         skin.add("blueStyle", textButtonStyleBlue);
 
         // GLASSPANEL PLUS TextButtonStyle
@@ -215,7 +217,7 @@ public class AbilityProgressScreen extends MenuScreen {
         textButtonStyleGlassPanelPlus.up = skin.newDrawable(new TextureRegionDrawable(rGlassPanelPlus));
         textButtonStyleGlassPanelPlus.down = skin.newDrawable(new TextureRegionDrawable(rGlassPanelPlusHover));
         textButtonStyleGlassPanelPlus.over = skin.newDrawable(new TextureRegionDrawable(rGlassPanelPlusHover));
-        textButtonStyleGlassPanelPlus.font = skin.getFont("default");
+        textButtonStyleGlassPanelPlus.font = skin.getFont("abilityFont");
         skin.add("glassPanelStyle", textButtonStyleGlassPanelPlus);
 
 
@@ -439,6 +441,7 @@ public class AbilityProgressScreen extends MenuScreen {
                     SaveHandler.Save(SaveHandler.upStrength(1));
 
                     rebuildPlayer();
+                    reshowTotalOrbs();
                 }
             }
         });
@@ -464,6 +467,7 @@ public class AbilityProgressScreen extends MenuScreen {
                     SaveHandler.Save(SaveHandler.upSpeed(1));
 
                     rebuildPlayer();
+                    reshowTotalOrbs();
                 }
             }
         });
@@ -489,6 +493,7 @@ public class AbilityProgressScreen extends MenuScreen {
                     SaveHandler.Save(SaveHandler.upJump(1));
 
                     rebuildPlayer();
+                    reshowTotalOrbs();
                 }
             }
         });
@@ -595,7 +600,16 @@ public class AbilityProgressScreen extends MenuScreen {
         iOrb.setSize(64, 64);
         stage.addActor(iOrb);
 
-        TextField orbText = new TextField(Integer.toString(totalOrbs), skin);
+        orbText = new TextField(Integer.toString(totalOrbs), skin);
+        orbText.setPosition(495, 395);
+        stage.addActor(orbText);
+    }
+
+    private void reshowTotalOrbs() {
+        orbText.remove();
+
+        int totalOrbs = SaveHandler.getSaveData().getTotalOrbs();
+        orbText = new TextField(Integer.toString(totalOrbs), skin);
         orbText.setPosition(495, 395);
         stage.addActor(orbText);
     }
