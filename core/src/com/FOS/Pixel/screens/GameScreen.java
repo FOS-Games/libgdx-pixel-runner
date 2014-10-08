@@ -12,6 +12,7 @@ import com.FOS.Pixel.handlers.JsonHandler;
 import com.FOS.Pixel.handlers.SaveHandler;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -45,6 +46,14 @@ public class GameScreen extends PixelGameScreen {
     public int orbs = 0;
     SpeedController speedController = new SpeedController();
 
+
+    public Sound coin = Gdx.audio.newSound(Gdx.files.internal("Sounds/coin1.ogg"));
+    public Sound crash = Gdx.audio.newSound(Gdx.files.internal("Sounds/crash2.mp3"));
+    public Sound death = Gdx.audio.newSound(Gdx.files.internal("Sounds/death.wav"));
+    public Sound jump = Gdx.audio.newSound(Gdx.files.internal("Sounds/jump2.ogg"));
+    public Sound pain = Gdx.audio.newSound(Gdx.files.internal("Sounds/pain1.mp3"));
+
+    public boolean isDeath=false;
 
     // Background stuff
     Texture bgTex;
@@ -244,6 +253,7 @@ public class GameScreen extends PixelGameScreen {
 
         Array<Body> bodies = pixelContactListener.getOrbs();
         for(int i = 0; i < bodies.size; i++) {
+            coin.play();
             world.destroyBody(bodies.get(i));
             orbs++;
             // play sound
@@ -258,7 +268,7 @@ public class GameScreen extends PixelGameScreen {
         for(Body crate : bodies) {
             crate.setUserData(AnimationUtil.createBox2DAnimation(0.100f,AnimationUtil.createTextureRegion("sprites/spriteSheet_box.png",4,1), Animation.PlayMode.NORMAL));
             playingAnimation.add(crate);
-            // play sound
+            crash.play();
             speedController.adjustSpeed(new Vector2(-2,0),5,0.1f);
             player.setState(Player.PLAYER_STATE.STUMBLE);
         }
@@ -271,6 +281,7 @@ public class GameScreen extends PixelGameScreen {
             if(anim.isAnimationFinished()){
                 world.destroyBody(crate);
                 playingAnimation.removeValue(crate,true);
+                pain.play();
             }
         }
     }
@@ -292,6 +303,11 @@ public class GameScreen extends PixelGameScreen {
     @Override
     public void dispose() {
         super.dispose();
+        coin.dispose();
+        crash.dispose();
+        death.dispose();
+        jump.dispose();
+        pain.dispose();
     }
 
     /**

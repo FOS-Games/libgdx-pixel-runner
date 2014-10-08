@@ -83,10 +83,12 @@ public class PlayerCamera extends OrthographicCamera implements ISpeedController
     private void checkPlayerDeath() {
         boolean outofxrange = player.getBody().getPosition().x<body.getPosition().x-(viewportWidth/2)||player.getBody().getPosition().x>body.getPosition().x+(viewportWidth/2);
         boolean outofyrange = player.getBody().getPosition().y<body.getPosition().y-(viewportHeight/2);
-        if(outofxrange||outofyrange){
+        if((outofxrange||outofyrange)&&!gameScreen.isDeath){
             //TODO:Something dead-like
             System.out.println("DEADD");
             gameScreen.saveOrbs();
+            gameScreen.death.play();
+            gameScreen.isDeath = true;
         }
     }
 

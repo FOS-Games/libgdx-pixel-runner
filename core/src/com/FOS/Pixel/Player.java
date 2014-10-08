@@ -246,6 +246,7 @@ public class Player extends PlayerAnimatorHandler implements ISpeedController{
                     break;
                 case JUMP:
                     setJumpAnim();
+                    gameScreen.jump.play();
                     anim=state;
                     break;
                 case STUMBLE:

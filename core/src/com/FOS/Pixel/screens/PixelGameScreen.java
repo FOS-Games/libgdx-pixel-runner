@@ -160,7 +160,9 @@ public abstract class PixelGameScreen implements Screen {
     protected void startMusic() {
         if (assetManager.isLoaded("flatwound_-_The_Long_Goodbye.mp3")){
             Music music = assetManager.get("flatwound_-_The_Long_Goodbye.mp3", Music.class);
+            music.setVolume(0.1f);
             music.play();
+
             music.setLooping(true);
             System.out.println("Music loaded, rock on!");
         }else{
