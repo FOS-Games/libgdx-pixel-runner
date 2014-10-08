@@ -657,15 +657,15 @@ public class AbilityProgressScreen extends MenuScreen {
         stage.addActor(iOrb4);
 
 
-        orbText1 = new TextField("300", skin, "ability");
+        orbText1 = new TextField(Integer.toString(playerProp.getPlayerData().getAbilityData(PlayerData.AbilityType.STRENGTH).getCost()), skin, "ability");
         orbText1.setPosition(685, 287);
         stage.addActor(orbText1);
 
-        orbText2 = new TextField("300", skin, "ability");
+        orbText2 = new TextField(Integer.toString(playerProp.getPlayerData().getAbilityData(PlayerData.AbilityType.SPEED).getCost()), skin, "ability");
         orbText2.setPosition(685, 192);
         stage.addActor(orbText2);
 
-        orbText3 = new TextField("300", skin, "ability");
+        orbText3 = new TextField(Integer.toString(playerProp.getPlayerData().getAbilityData(PlayerData.AbilityType.JUMP).getCost()), skin, "ability");
         orbText3.setPosition(685, 97);
         stage.addActor(orbText3);
     }
@@ -678,6 +678,10 @@ public class AbilityProgressScreen extends MenuScreen {
         orbText1 = new TextField(Integer.toString(playerProp.getPlayerData().getAbilityData(PlayerData.AbilityType.STRENGTH).getCost()), skin, "ability");
         orbText2 = new TextField(Integer.toString(playerProp.getPlayerData().getAbilityData(PlayerData.AbilityType.SPEED).getCost()), skin, "ability");
         orbText3 = new TextField(Integer.toString(playerProp.getPlayerData().getAbilityData(PlayerData.AbilityType.JUMP).getCost()), skin, "ability");
+
+        orbText1.setPosition(685, 287);
+        orbText2.setPosition(685, 192);
+        orbText3.setPosition(685, 97);
 
         stage.addActor(orbText1);
         stage.addActor(orbText2);
