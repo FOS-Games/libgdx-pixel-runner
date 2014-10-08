@@ -104,9 +104,6 @@ public class PlayerData {
         return this.speed;
     }
 
-    // TODO : @LARS Voeg een setStrengthLevel(int level) of strengthLevelUp() toe please
-    // Ik weet niet hoe ik het huidige level van de strength kan verhogen met 1 (om vervolgens op te slaan).
-
     public SkinType getSkinType() {
         return skinType;
     }

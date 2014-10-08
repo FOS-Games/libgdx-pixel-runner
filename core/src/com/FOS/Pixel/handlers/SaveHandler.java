@@ -71,6 +71,36 @@ public class SaveHandler {
 
 
     }
+
+    public static SaveData replacePlayerData(PlayerData playerData){
+        SaveData data = saveData;
+        data.setPlayerData(playerData);
+        return data;
+    }
+    public static  SaveData addPlayerData(PlayerData playerData){
+        SaveData data = saveData;
+        data.setPlayerData(saveData.getPlayerData().add(playerData,saveData.getPlayerData().getSkinType()));
+        return data;
+    }
+
+    public static  SaveData upStrength(int level){
+        SaveData data = saveData;
+        data.setPlayerData(saveData.getPlayerData().add(new PlayerData(PlayerData.AbilityType.NONE,0,1,0, PlayerData.SkinType.HUMAN),saveData.getPlayerData().getSkinType()));
+        return data;
+    }
+    public static  SaveData upSpeed(int level){
+        SaveData data = saveData;
+        data.setPlayerData(saveData.getPlayerData().add(new PlayerData(PlayerData.AbilityType.NONE,0,0,1, PlayerData.SkinType.HUMAN),saveData.getPlayerData().getSkinType()));
+        return data;
+    }
+    public static  SaveData upJump(int level){
+        SaveData data = saveData;
+        data.setPlayerData(saveData.getPlayerData().add(new PlayerData(PlayerData.AbilityType.NONE,1,0,0, PlayerData.SkinType.HUMAN),saveData.getPlayerData().getSkinType()));
+        return data;
+    }
+
+
+
     
     public static SaveData getSaveData() {
         return saveData;

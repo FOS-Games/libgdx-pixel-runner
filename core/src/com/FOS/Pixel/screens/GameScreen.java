@@ -4,6 +4,7 @@ import com.FOS.Pixel.*;
 import com.FOS.Pixel.AnimationUtil;
 import com.FOS.Pixel.Data.LevelData;
 import com.FOS.Pixel.Data.PixelVars;
+import com.FOS.Pixel.Data.PlayerData;
 import com.FOS.Pixel.PixelContactListener;
 import com.FOS.Pixel.Player;
 import com.FOS.Pixel.SpeedController;
@@ -98,6 +99,7 @@ public class GameScreen extends PixelGameScreen {
             }
         },15,2,0);
         test.start();
+
 
         camera.position.set(camera.viewportWidth / 2f, camera.viewportHeight / 2f, 0);
         camera.update();
