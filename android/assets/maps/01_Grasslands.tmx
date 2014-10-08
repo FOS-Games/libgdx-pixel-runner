@@ -8,7 +8,7 @@
    eJztnNuO3CAMQLftqv3/P16tRlFXowR8xSY5R+LFBkIMdgzJzMcHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABk8fekjHSj+trrWPqajTNCBmDB4heZzMbRZZwAAAAAAPDi30kZ6Ub1R/ttbV+S8WbJ7sLsLOS3sr9fzvZ3R7uWpUjPtK58zqqH/3jOJgGkeM+Vo+RROp4XcogrACDlPR/X5IjEmj5Y50S7p47c64Mc65nI54c8Z/qOBX8c7XdEGuMOstay1v9m/Vj1T4Z41ZPZc82rX433XDlKHqV70vPCC3FlH672RqxvWMFZPu7do7F3r8GaV0buqdmf+9HuCyX2luRMo1ggbb/jM0xq15mcmLcP2rMuqGU2H1496PE+b+7O1bPgah3yPUIvvPlQ5ris7061OtZeHdq9uWePdnDXvbv0G4SDDJ0V9uc1RL2fldp89EyRxAJt+245mvfcwyqHfkjnkLkEL3fLdQ48z5sncBU/JHLsWIs3H6oY10GkjrVXg2VvHpGnjPrcde+useVBhs5K5NyvWkc7kf2dtMZ/z+KtZv1q23eK71KfipZDHNrng7a+NF7Nzl+7EvWOzvutzK7f2li4a0ywPi+6o/Vn7XtyidxiR61PZfngmS20ssrY6s2HqsblJfIez95XSvqwtrsT1r159vNldL2uuZD19wGdiBz7znbIIvvetT78HW9/+pE2Fmjbr87Rqt6TS2MX2NH6krf+Vbtd41qEj3q/ldnhWxuYo3leaHPzUX1pPSuenCdKrrWj1qeifHB0LuGRnRXJ96ma8n4PUfnQqG+PbjYuL1E53NWeaNaHtV0E1nmKxrM3r8w/RmOp2rtn/T5gNZFj380O0TG/Yh9m9eWVZWX+fbXWusl3ZJYbe/UHWl+K8j1pvOoY1yRxyOujEf9RscO3NlaedA4XGf/f18VVfWk9CRIf8dT3yDV21PqU1Qele3EPmTmI9Pmc3bdVJ72mFa8PfzPbE0n92nJtD9Z5isz7vXvzSD+MZJX9flL1+4AMIse+mx0yYvPqe8y8h8hyds48Oqe0yqVxtlq+G7Pc2Kv/idZmUTaW+nK1z58hGZPER1f+R4Wm/Q50WQsrsMR/TW4+ix/eNSPxkSr5zI6a96qe+mfjy0S7pjwl85qjvq066TWtWNae9h3/VR/Wdpp33SNdxhxq3+d59+bZvplBpP0ibNmRyLFL+9LY+mCVX0aVVWTew4pydR93l2tjzlk7jywi5n0G6t/zwQqkviytN5vLyDqSMUn8cfV/VEjaQz8ssV6bm8/ihySOSPylm7xLWU3Fva3u26rLnqvqtdbN3hm6VXa4A9jvReTY7+B7u811xTpeMb9Pk1vs5JF1LNVIxxVZr0Od97L6Pypm7WfnFRk6y9nZk6iOFdI4sqO8S1lNxb2t7tuqy56r6rXWzd4ZulV2uAPY70Xk2O/ge7vNdcU6XjG/T5Nb7OSRdSzVSMcVWa9DnR3K6D4ydDut2wqq14Nlrewi71JWU3Fvq/u26rLnqnqtdbN3hm6VHe4A9nsROfY7+N5uc12xjlfM79PkFjt5ZB1LNdJxRdbrUGeHMrqPDN1O67aC6vVgWSu7yLuU1YzG8gU/MXSF
   </data>
  </layer>
- <objectgroup name="Ground">
+ <objectgroup color="#a0ffa4" name="Ground">
   <object name="ground" type="object" x="0" y="980" width="1380" height="420">
    <properties>
     <property name="userData" value="ground"/>
@@ -573,7 +573,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup name="Orbs">
+ <objectgroup color="#a0a0ff" name="Orbs">
   <object name="orb" type="object" x="1380" y="770" width="69" height="70">
    <properties>
     <property name="isSensor" value="true"/>
@@ -2183,11 +2183,235 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup name="Crates">
+ <objectgroup color="#ffa0a4" name="Crates">
   <object name="crate" type="object" x="4278" y="910" width="69" height="70">
    <properties>
     <property name="isSensor" value="true"/>
     <property name="userData" value="crate"/>
+   </properties>
+  </object>
+  <object name="crate" type="object" x="6969" y="1050" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="crate"/>
+   </properties>
+  </object>
+  <object name="crate" type="object" x="8073" y="1050" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="crate"/>
+   </properties>
+  </object>
+  <object name="crate" type="object" x="10695" y="910" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="crate"/>
+   </properties>
+  </object>
+  <object name="crate" type="object" x="12282" y="1050" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="crate"/>
+   </properties>
+  </object>
+  <object name="crate" type="object" x="13524" y="560" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="crate"/>
+   </properties>
+  </object>
+  <object name="crate" type="object" x="17595" y="1050" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="crate"/>
+   </properties>
+  </object>
+  <object name="crate" type="object" x="18216" y="1050" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="crate"/>
+   </properties>
+  </object>
+  <object name="crate" type="object" x="22218" y="420" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="crate"/>
+   </properties>
+  </object>
+  <object name="crate" type="object" x="22770" y="490" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="crate"/>
+   </properties>
+  </object>
+  <object name="crate" type="object" x="24495" y="1050" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="crate"/>
+   </properties>
+  </object>
+  <object name="crate" type="object" x="27048" y="910" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="crate"/>
+   </properties>
+  </object>
+  <object name="crate" type="object" x="29877" y="490" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="crate"/>
+   </properties>
+  </object>
+  <object name="crate" type="object" x="30636" y="840" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="crate"/>
+   </properties>
+  </object>
+  <object name="crate" type="object" x="31188" y="490" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="crate"/>
+   </properties>
+  </object>
+  <object name="crate" type="object" x="31740" y="840" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="crate"/>
+   </properties>
+  </object>
+  <object name="crate" type="object" x="32154" y="630" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="crate"/>
+   </properties>
+  </object>
+  <object name="crate" type="object" x="37674" y="1050" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="crate"/>
+   </properties>
+  </object>
+  <object name="crate" type="object" x="39744" y="1050" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="crate"/>
+   </properties>
+  </object>
+  <object name="crate" type="object" x="40779" y="1050" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="crate"/>
+   </properties>
+  </object>
+  <object name="crate" type="object" x="41331" y="1050" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="crate"/>
+   </properties>
+  </object>
+  <object name="crate" type="object" x="44505" y="490" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="crate"/>
+   </properties>
+  </object>
+  <object name="crate" type="object" x="45885" y="1050" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="crate"/>
+   </properties>
+  </object>
+  <object name="crate" type="object" x="46920" y="1050" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="crate"/>
+   </properties>
+  </object>
+  <object name="crate" type="object" x="48921" y="1120" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="crate"/>
+   </properties>
+  </object>
+  <object name="crate" type="object" x="50025" y="1120" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="crate"/>
+   </properties>
+  </object>
+  <object name="crate" type="object" x="49473" y="770" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="crate"/>
+   </properties>
+  </object>
+  <object name="crate" type="object" x="50577" y="770" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="crate"/>
+   </properties>
+  </object>
+  <object name="crate" type="object" x="48369" y="770" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="crate"/>
+   </properties>
+  </object>
+  <object name="crate" type="object" x="53268" y="1120" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="crate"/>
+   </properties>
+  </object>
+  <object name="crate" type="object" x="53682" y="1120" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="crate"/>
+   </properties>
+  </object>
+  <object name="crate" type="object" x="59754" y="840" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="crate"/>
+   </properties>
+  </object>
+  <object name="crate" type="object" x="60444" y="840" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="crate"/>
+   </properties>
+  </object>
+  <object name="crate" type="object" x="60099" y="1050" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="crate"/>
+   </properties>
+  </object>
+  <object name="crate" type="object" x="59409" y="1050" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="crate"/>
+   </properties>
+  </object>
+  <object name="crate" type="object" x="64860" y="980" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="crate"/>
+   </properties>
+  </object>
+  <object name="crate" type="object" x="65688" y="980" width="69" height="70">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="crate"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="Finish">
+  <object name="finish" type="object" x="68862" y="0" width="69" height="1400">
+   <properties>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="finish"/>
    </properties>
   </object>
  </objectgroup>
