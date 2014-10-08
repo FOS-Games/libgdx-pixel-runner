@@ -101,7 +101,7 @@
 			level: Level5,
 			abilityData: {
 				multiplier: 1,
-				texturename: sprites/spriteSheet_bigHammer.png,
+				texturename: sprites/spriteSheet_goldenHammer.png,
                 cost: 9999
 			}
 		}

@@ -6,12 +6,12 @@ levelSaveDatas: [
 	{}
 ],
 playerData: {
-	strength: 0,
-	speed: 0,
+	strength: 2,
+	speed: 5,
 	data: [
 		NONE
 	],
-	jump: 0,
+	jump: 5,
 	skinType: HUMAN
 }
 }
