@@ -113,11 +113,11 @@ public class GameScreen extends PixelGameScreen {
     private void createBoxes() {
         ObjectMap<String,Body> bodies = parser.getBodies();
         for (ObjectMap.Entry<String,Body> x : bodies){
-            if(x.key.equals("obstacle")){
+            if(x.key.equals("crate")){
                 x.value.setUserData(new Box2DSprite(new Texture(Gdx.files.internal("obstacle.png"))));
                 for(Fixture fix: x.value.getFixtureList()){
                     fix.setSensor(true);
-                    fix.setUserData("obstacle");
+                    fix.setUserData("crate");
                 }
             }
         }
