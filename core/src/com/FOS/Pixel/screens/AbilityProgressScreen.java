@@ -3,6 +3,7 @@ package com.FOS.Pixel.screens;
 import com.FOS.Pixel.AnimationUtil;
 import com.FOS.Pixel.Data.AbilityData;
 import com.FOS.Pixel.Data.PlayerData;
+import com.FOS.Pixel.Data.SaveData;
 import com.FOS.Pixel.PlayerProp;
 import com.FOS.Pixel.handlers.JsonHandler;
 import com.FOS.Pixel.handlers.SaveHandler;
@@ -76,14 +77,27 @@ public class AbilityProgressScreen extends MenuScreen {
     Image iSquareShadowAgility04;
     Image iSquareShadowAgility05;
 
+    Image iBody;
+    Image iFeet;
+    Image iWings;
+    Image iWeapon;
+
+    Animation animationBody;
+    Animation animationWings;
+    Animation animationFeet;
+    Animation animationWeapon;
+
     TextureRegion rSquareWhite;
 
     Group strengthGroup;
     Group speedGroup;
     Group agilityGroup;
+    Group playerGroup;
 
     BitmapFont orbFont;
     BitmapFont abilityFont;
+
+    TextField orbText;
 
     public AbilityProgressScreen(Game game, GameScreen gameScreen) {
         this.gameScreen = gameScreen;
@@ -115,7 +129,7 @@ public class AbilityProgressScreen extends MenuScreen {
 
 
         // Ability point UI
-        tGlassPanel = new Texture(Gdx.files.internal("ui/glassPanel300x50.png"));
+        tGlassPanel = new Texture(Gdx.files.internal("ui/glassPanel320x50.png"));
         TextureRegion rGlassPanel = new TextureRegion(tGlassPanel);
 
         tSquareShadow = new Texture(Gdx.files.internal("ui/squareShadow.png"));
@@ -137,7 +151,11 @@ public class AbilityProgressScreen extends MenuScreen {
 
         // Get playerSprite
         playerProp = new PlayerProp(gameScreen);
-        Animation animation = playerProp.getAnimation();
+        animationBody = playerProp.getAnimation();
+        animationFeet = playerProp.getFeetAnimation();
+        animationWings = playerProp.getWingAnimation();
+        animationWeapon = playerProp.getWeaponAnimation();
+
 
         skin = new Skin();
 
@@ -182,7 +200,7 @@ public class AbilityProgressScreen extends MenuScreen {
         textButtonStyle.up = skin.newDrawable("white", Color.DARK_GRAY);
         textButtonStyle.down = skin.newDrawable("white", Color.DARK_GRAY);
         textButtonStyle.over = skin.newDrawable("white", Color.LIGHT_GRAY);
-        textButtonStyle.font = skin.getFont("default");
+        textButtonStyle.font = skin.getFont("abilityFont");
         textButtonStyle.font.setScale(1, 1);
         skin.add("default", textButtonStyle);
 
@@ -191,7 +209,7 @@ public class AbilityProgressScreen extends MenuScreen {
         textButtonStyleBlue.up = skin.newDrawable(new TextureRegionDrawable(rBlueButton));
         textButtonStyleBlue.down = skin.newDrawable(new TextureRegionDrawable(rBlueButtonPressed));
         textButtonStyleBlue.over = skin.newDrawable(new TextureRegionDrawable(rBlueButtonHover));
-        textButtonStyleBlue.font = skin.getFont("default");
+        textButtonStyleBlue.font = skin.getFont("abilityFont");
         skin.add("blueStyle", textButtonStyleBlue);
 
         // GLASSPANEL PLUS TextButtonStyle
@@ -199,7 +217,7 @@ public class AbilityProgressScreen extends MenuScreen {
         textButtonStyleGlassPanelPlus.up = skin.newDrawable(new TextureRegionDrawable(rGlassPanelPlus));
         textButtonStyleGlassPanelPlus.down = skin.newDrawable(new TextureRegionDrawable(rGlassPanelPlusHover));
         textButtonStyleGlassPanelPlus.over = skin.newDrawable(new TextureRegionDrawable(rGlassPanelPlusHover));
-        textButtonStyleGlassPanelPlus.font = skin.getFont("default");
+        textButtonStyleGlassPanelPlus.font = skin.getFont("abilityFont");
         skin.add("glassPanelStyle", textButtonStyleGlassPanelPlus);
 
 
@@ -210,17 +228,36 @@ public class AbilityProgressScreen extends MenuScreen {
         final TextButton bAgilityPlus = new TextButton("", skin, "glassPanelStyle");
 
         // Player table and container
-        final Table playerTable = new Table();
-        playerTable.setFillParent(true);
-        playerTable.add(new Image(new SpriteDrawable(new AnimatedSprite(animation)))).size(256, 256).center().padRight(100);
+        playerGroup = new Group();
 
-        final Container playerContainer = new Container(playerTable);
+        iBody = new Image(new SpriteDrawable(new AnimatedSprite(animationBody)));
+        iFeet = new Image(new SpriteDrawable(new AnimatedSprite(animationFeet)));
+        iWings = new Image(new SpriteDrawable(new AnimatedSprite(animationWings)));
+        iWeapon = new Image(new SpriteDrawable(new AnimatedSprite(animationWeapon)));
 
+        iBody.setSize(256, 256);
+        iBody.setPosition(-150, -50);
+
+        iFeet.setSize(256, 256);
+        iFeet.setPosition(-150, -50);
+
+        iWings.setSize(256, 256);
+        iWings.setPosition(-150, -50);
+
+        iWeapon.setSize(256, 256);
+        iWeapon.setPosition(-150, -50);
+
+        playerGroup.addActor(iBody);
+        playerGroup.addActor(iFeet);
+        playerGroup.addActor(iWings);
+        playerGroup.addActor(iWeapon);
+
+        final Container playerContainer = new Container(playerGroup);
 
         // Ability Strength
         final Image iGlassPanelStrength = new Image(rGlassPanel);
-        iGlassPanelStrength.setSize(300, 50);
-        iGlassPanelStrength.setPosition(-180, 50);
+        iGlassPanelStrength.setSize(320, 50);
+        iGlassPanelStrength.setPosition(-200, 50);
 
         iSquareShadowStrength01 = new Image(rSquareShadow);
         iSquareShadowStrength02 = new Image(rSquareShadow);
@@ -250,8 +287,8 @@ public class AbilityProgressScreen extends MenuScreen {
 
         // Ability Speed
         final Image iGlassPanelSpeed = new Image(rGlassPanel);
-        iGlassPanelSpeed.setSize(300, 50);
-        iGlassPanelSpeed.setPosition(-180, -20);
+        iGlassPanelSpeed.setSize(320, 50);
+        iGlassPanelSpeed.setPosition(-200, -20);
 
         iSquareShadowSpeed01 = new Image(rSquareShadow);
         iSquareShadowSpeed02 = new Image(rSquareShadow);
@@ -281,8 +318,8 @@ public class AbilityProgressScreen extends MenuScreen {
 
         // Ability Agility
         final Image iGlassPanelAgility = new Image(rGlassPanel);
-        iGlassPanelAgility.setSize(300, 50);
-        iGlassPanelAgility.setPosition(-180, -90);
+        iGlassPanelAgility.setSize(320, 50);
+        iGlassPanelAgility.setPosition(-200, -90);
 
         iSquareShadowAgility01 = new Image(rSquareShadow);
         iSquareShadowAgility02 = new Image(rSquareShadow);
@@ -389,14 +426,22 @@ public class AbilityProgressScreen extends MenuScreen {
                 // 1. Check op genoeg orbs
 
                 int strengthLevel = playerProp.getPlayerData().getStrengthLevel();
+                int strengthCost = playerProp.getPlayerData().getAbilityData(PlayerData.AbilityType.STRENGTH).getCost();
 
-                if(strengthLevel != 5) {
+                if(strengthLevel != 5 && strengthCost <= SaveHandler.getSaveData().getTotalOrbs()) {
                     Vector2 coords = new Vector2(iSquareShadowStrength01.getX(), iSquareShadowStrength01.getY());
                     Image iWhite = new Image(rSquareWhite);
                     iWhite.setSize(19, 26);
                     iWhite.setPosition(coords.x + strengthLevel * 24, coords.y);
                     strengthGroup.addActor(iWhite);
+
+                    SaveHandler.getSaveData().setTotalOrbs(SaveHandler.getSaveData().getTotalOrbs() - strengthCost);
+                    SaveHandler.Save(SaveHandler.getSaveData());
+
                     SaveHandler.Save(SaveHandler.upStrength(1));
+
+                    rebuildPlayer();
+                    reshowTotalOrbs();
                 }
             }
         });
@@ -407,14 +452,22 @@ public class AbilityProgressScreen extends MenuScreen {
                 // 1. Check op genoeg orbs
 
                 int speedLevel = playerProp.getPlayerData().getSpeedLevel();
+                int speedCost = playerProp.getPlayerData().getAbilityData(PlayerData.AbilityType.SPEED).getCost();
 
-                if(speedLevel != 5) {
+                if(speedLevel != 5 && speedCost <= SaveHandler.getSaveData().getTotalOrbs()) {
                     Vector2 coords = new Vector2(iSquareShadowSpeed01.getX(), iSquareShadowSpeed01.getY());
                     Image iWhite = new Image(rSquareWhite);
                     iWhite.setSize(19, 26);
                     iWhite.setPosition(coords.x + speedLevel * 24, coords.y);
-                    strengthGroup.addActor(iWhite);
+                    speedGroup.addActor(iWhite);
+
+                    SaveHandler.getSaveData().setTotalOrbs(SaveHandler.getSaveData().getTotalOrbs() - speedCost);
+                    SaveHandler.Save(SaveHandler.getSaveData());
+
                     SaveHandler.Save(SaveHandler.upSpeed(1));
+
+                    rebuildPlayer();
+                    reshowTotalOrbs();
                 }
             }
         });
@@ -425,26 +478,69 @@ public class AbilityProgressScreen extends MenuScreen {
                 // 1. Check op genoeg orbs
 
                 int agilityLevel = playerProp.getPlayerData().getAgilityLevel();
+                int agilityCost = playerProp.getPlayerData().getAbilityData(PlayerData.AbilityType.JUMP).getCost();
 
-                if(agilityLevel != 5) {
+                if(agilityLevel != 5 && agilityCost <= SaveHandler.getSaveData().getTotalOrbs()) {
                     Vector2 coords = new Vector2(iSquareShadowAgility01.getX(), iSquareShadowAgility01.getY());
                     Image iWhite = new Image(rSquareWhite);
                     iWhite.setSize(19, 26);
                     iWhite.setPosition(coords.x + agilityLevel * 24, coords.y);
                     agilityGroup.addActor(iWhite);
+
+                    SaveHandler.getSaveData().setTotalOrbs(SaveHandler.getSaveData().getTotalOrbs() - agilityCost);
+                    SaveHandler.Save(SaveHandler.getSaveData());
+
                     SaveHandler.Save(SaveHandler.upJump(1));
+
+                    rebuildPlayer();
+                    reshowTotalOrbs();
                 }
             }
         });
 
         // TODO: @LARS Negeer TODO'S in AbilityProgressScreen.
 
-        // TODO: Voeg logica toe aan [+] knoppen
-        // TODO: Haal Totaal aantal orbs op en zet ze boven aan de screen.
         // TODO: Zet aantal benodige orbs naast [+] bij elke ability.
         // TODO: Render poppetje opnieuw bij het levelen van een ability.
         // TODO: Geef ras ("string") weer onder poppetje.
-        // TODO: Zet "Strength" "Speed" en "Agility" neer
+
+    }
+
+    private void rebuildPlayer() {
+        playerGroup.removeActor(iBody);
+        playerGroup.removeActor(iWings);
+        playerGroup.removeActor(iFeet);
+        playerGroup.removeActor(iWeapon);
+
+        playerProp = new PlayerProp(gameScreen);
+
+        animationBody = playerProp.getAnimation();
+        animationFeet = playerProp.getFeetAnimation();
+        animationWings = playerProp.getWingAnimation();
+        animationWeapon = playerProp.getWeaponAnimation();
+
+        iBody = new Image(new SpriteDrawable(new AnimatedSprite(animationBody)));
+        iFeet = new Image(new SpriteDrawable(new AnimatedSprite(animationFeet)));
+        iWings = new Image(new SpriteDrawable(new AnimatedSprite(animationWings)));
+        iWeapon = new Image(new SpriteDrawable(new AnimatedSprite(animationWeapon)));
+
+        iBody.setSize(256, 256);
+        iBody.setPosition(-150, -50);
+
+        iFeet.setSize(256, 256);
+        iFeet.setPosition(-150, -50);
+
+        iWings.setSize(256, 256);
+        iWings.setPosition(-150, -50);
+
+        iWeapon.setSize(256, 256);
+        iWeapon.setPosition(-150, -50);
+
+        playerGroup.addActor(iBody);
+        playerGroup.addActor(iFeet);
+        playerGroup.addActor(iWings);
+        playerGroup.addActor(iWeapon);
+
 
     }
 
@@ -504,7 +600,16 @@ public class AbilityProgressScreen extends MenuScreen {
         iOrb.setSize(64, 64);
         stage.addActor(iOrb);
 
-        TextField orbText = new TextField(Integer.toString(totalOrbs), skin);
+        orbText = new TextField(Integer.toString(totalOrbs), skin);
+        orbText.setPosition(495, 395);
+        stage.addActor(orbText);
+    }
+
+    private void reshowTotalOrbs() {
+        orbText.remove();
+
+        int totalOrbs = SaveHandler.getSaveData().getTotalOrbs();
+        orbText = new TextField(Integer.toString(totalOrbs), skin);
         orbText.setPosition(495, 395);
         stage.addActor(orbText);
     }

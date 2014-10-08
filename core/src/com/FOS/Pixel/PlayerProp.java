@@ -180,6 +180,10 @@ public class PlayerProp extends PlayerAnimatorHandler {
 
 
     public Animation getAnimation() { return ((AnimatedBox2DSprite)getBodyFixture().getUserData()).getAnimation(); }
+    public Animation getFeetAnimation() { return ((AnimatedBox2DSprite)feetFixture.getUserData()).getAnimation(); }
+    public Animation getWingAnimation() { return ((AnimatedBox2DSprite)wingFixture.getUserData()).getAnimation(); }
+    public Animation getWeaponAnimation() { return ((AnimatedBox2DSprite)weaponFixture.getUserData()).getAnimation(); }
+
 
     public AnimatedBox2DSprite getAnimatedSprite() { return ((AnimatedBox2DSprite)getBodyFixture().getUserData()); }
 
