@@ -174,6 +174,7 @@ public class PlayerProp extends PlayerAnimatorHandler {
         if(anim == PLAYER_STATE.RUN && anim != state){
             ((AnimatedBox2DSprite)getBodyFixture().getUserData()).getAnimation().setFrameDuration(1/30f);
         }
+
     }
 
 
