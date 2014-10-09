@@ -158,7 +158,7 @@ public class GameScreen extends PixelGameScreen {
         for (ObjectMap.Entry<String,Body> x : bodies){
             if(x.key.startsWith("orb")){
                 //x.value.setUserData(new Box2DSprite(new Texture(Gdx.files.internal("orb.png"))));
-                x.value.setUserData(AnimationUtil.createBox2DAnimation("orbs",AnimationUtil.createTextureRegion("sprites/spriteSheet_collectible.png", 15, 1), Animation.PlayMode.LOOP));
+                x.value.setUserData(AnimationUtil.createBox2DAnimation("orbs",20f,AnimationUtil.createTextureRegion("sprites/spriteSheet_collectible.png", 15, 1), Animation.PlayMode.LOOP));
                 orbCounter++;
             }
         }

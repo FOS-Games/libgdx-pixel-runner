@@ -7,7 +7,7 @@ Level1: {
 	musicpath: Sounds/DiscoconTutti.mp3,
 	goldTime: 60,
 	background: maps/backgrounds/bgSky.png,
-	minSpeed: 5,
+	minSpeed: 7,
 	silverTime: 90,
 	speedIncr: 1
 },
@@ -19,7 +19,7 @@ Level2: {
 	musicpath: Sounds/VideoDungeonBoss.mp3,
 	goldTime: 60,
 	background: maps/backgrounds/bgCave.png,
-	minSpeed: 7,
+	minSpeed: 9,
 	silverTime: 90,
 	speedIncr: 1
 },
@@ -31,7 +31,7 @@ Level3: {
 	musicpath: Sounds/Ouroboros.mp3,
 	goldTime: 60,
 	background: maps/backgrounds/bgCave.png,
-	minSpeed: 1,
+	minSpeed: 11,
 	silverTime: 90,
 	speedIncr: 1
 }
