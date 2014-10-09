@@ -229,6 +229,9 @@ public class Player extends PlayerAnimatorHandler implements ISpeedController{
     public void render(float dt){
 
     }
+    public void dispose(){
+        gameScreen.getWorld().destroyBody(this.body);
+    }
 
     public void update(float dt){
         position = body.getPosition();

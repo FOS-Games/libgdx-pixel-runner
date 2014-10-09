@@ -2,6 +2,8 @@ package com.FOS.Pixel.screens;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Pixmap;
@@ -45,6 +47,9 @@ public class MainMenuScreen extends MenuScreen {
 
     BitmapFont font;
 
+    private AssetManager assetManager;
+    private Music music;
+
     public MainMenuScreen(Game game, GameScreen gameScreen) {
         this.gameScreen = gameScreen;
         this.game = game;
@@ -55,6 +60,13 @@ public class MainMenuScreen extends MenuScreen {
         batch = new SpriteBatch();
         stage = new Stage(new StretchViewport(800, 480));
         Gdx.input.setInputProcessor(stage);
+
+        assetManager = new AssetManager();
+        assetManager.load("Sounds/Pinball Spring (1).mp3", Music.class);
+        assetManager.finishLoading();
+        startMusic();
+
+
 
         tBlueButton = new Texture(Gdx.files.internal("ui/blueButton.png"));
         TextureRegion rBlueButton = new TextureRegion(tBlueButton);
@@ -140,6 +152,18 @@ public class MainMenuScreen extends MenuScreen {
         //table.add(new Image(skin.newDrawable("white", Color.RED))).size(64);
     }
 
+    protected void startMusic() {
+        if (assetManager.isLoaded("Sounds/Pinball Spring (1).mp3")){
+            music = assetManager.get("Sounds/Pinball Spring (1).mp3", Music.class);
+            music.setVolume(0.1f);
+            music.play();
+
+            music.setLooping(true);
+            System.out.println("Music loaded, rock on!");
+        }else{
+            System.out.println("Music not loaded yet!");
+        }
+    }
     @Override
     public void render(float delta) {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -154,6 +178,8 @@ public class MainMenuScreen extends MenuScreen {
 
     @Override
     public void dispose() {
+        music.stop();
+        music.dispose();
         stage.dispose();
         skin.dispose();
         batch.dispose();

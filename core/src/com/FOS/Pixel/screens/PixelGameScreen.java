@@ -39,7 +39,7 @@ public abstract class PixelGameScreen implements Screen {
     protected SpriteBatch spriteBatch;
     protected Player player;
     public LevelData levelData;
-    private AssetManager assetManager;
+
 
     Boolean BOX2DDEBUG = false;
 
@@ -93,9 +93,7 @@ public abstract class PixelGameScreen implements Screen {
         spriteBatch = new SpriteBatch();
         mapRenderer = new OrthogonalTiledMapRenderer(map, parser.getUnitScale());
 
-        assetManager = new AssetManager();
-        assetManager.load("flatwound_-_The_Long_Goodbye.mp3", Music.class);
-        assetManager.finishLoading();
+
 
     }
 
@@ -133,7 +131,7 @@ public abstract class PixelGameScreen implements Screen {
     @Override
     public void dispose() {
 
-        world.destroyBody(player.getBody());
+        //world.destroyBody(player.getBody());
         spriteBatch.dispose();
         world.dispose();
         mapRenderer.dispose();
@@ -159,16 +157,5 @@ public abstract class PixelGameScreen implements Screen {
         return 9.81f;
     }
 
-    protected void startMusic() {
-        if (assetManager.isLoaded("flatwound_-_The_Long_Goodbye.mp3")){
-            Music music = assetManager.get("flatwound_-_The_Long_Goodbye.mp3", Music.class);
-            music.setVolume(0.1f);
-            music.play();
 
-            music.setLooping(true);
-            System.out.println("Music loaded, rock on!");
-        }else{
-            System.out.println("Music not loaded yet!");
-        }
-    }
 }

@@ -4,10 +4,10 @@ Level1: {
 	maxSpeed: 2,
 	tmxpath: maps/01_Grasslands.tmx,
 	bronzeTime: 120,
-	musicpath: soundpath/sound.mp3,
+	musicpath: flatwound_-_The_Long_Goodbye.mp3,
 	goldTime: 60,
 	background: maps/backgrounds/bgSky.png,
-	minSpeed: 1,
+	minSpeed: 5,
 	silverTime: 90,
 	speedIncr: 1
 },

@@ -12,6 +12,8 @@ import com.FOS.Pixel.handlers.JsonHandler;
 import com.FOS.Pixel.handlers.SaveHandler;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.GL20;
@@ -46,7 +48,9 @@ public class GameScreen extends PixelGameScreen {
     public int orbs = 0;
     SpeedController speedController = new SpeedController();
 
-
+    private AssetManager assetManager;
+    private Music music;
+    private String musicpath;
     public Sound coin = Gdx.audio.newSound(Gdx.files.internal("Sounds/coin1.ogg"));
     public Sound crash = Gdx.audio.newSound(Gdx.files.internal("Sounds/crash2.mp3"));
     public Sound death = Gdx.audio.newSound(Gdx.files.internal("Sounds/death.wav"));
@@ -65,6 +69,7 @@ public class GameScreen extends PixelGameScreen {
     public GameScreen(Game game,int level) {
         super(game,level);
         this.level = level;
+        musicpath=levelData.getMusicpath();
     }
 
     @Override
@@ -81,30 +86,27 @@ public class GameScreen extends PixelGameScreen {
 
         world.setContactListener(pixelContactListener);
         orbs = SaveHandler.getSaveData().getTotalOrbs();
-        super.startMusic();
+
         //player.decrSpeed(new Vector2(10,0),10,0.5f);
 
         Timer test = new Timer();
         test.scheduleTask(new Timer.Task() {
             @Override
             public void run() {
-                speedController.adjustSpeed(new Vector2(10, 0),5);
+                speedController.adjustSpeed(new Vector2(6, 0),5);
             }
         },2,2,0);
 
-        test.scheduleTask(new Timer.Task() {
-            @Override
-            public void run() {
-                speedController.adjustSpeed(new Vector2(-5, 0),5);
-            }
-        },15,2,0);
         test.start();
 
 
         camera.position.set(camera.viewportWidth / 2f, camera.viewportHeight / 2f, 0);
         camera.update();
         findFinish();
-
+        assetManager = new AssetManager();
+        assetManager.load(musicpath, Music.class);
+        assetManager.finishLoading();
+        startMusic();
 
     }
 
@@ -323,12 +325,33 @@ public class GameScreen extends PixelGameScreen {
     @Override
     public void dispose() {
         super.dispose();
+        coin.stop();
+        crash.stop();
+        death.stop();
+        jump.stop();
+        pain.stop();
         coin.dispose();
         crash.dispose();
         death.dispose();
         jump.dispose();
         pain.dispose();
+
+        music.stop();
+        music.dispose();
         camera.dispose();
+        //player.dispose();
+    }
+    protected void startMusic() {
+        if (assetManager.isLoaded(musicpath)){
+            music = assetManager.get(musicpath, Music.class);
+            music.setVolume(0.1f);
+            music.play();
+
+            music.setLooping(true);
+            System.out.println("Music loaded, rock on!");
+        }else{
+            System.out.println("Music not loaded yet!");
+        }
     }
 
     /**

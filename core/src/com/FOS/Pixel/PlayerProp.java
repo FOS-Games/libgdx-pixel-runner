@@ -59,7 +59,7 @@ public class PlayerProp extends PlayerAnimatorHandler {
     // GameScreen gameScreen
     public PlayerProp(GameScreen gameScreen) {
         super();
-        this.world = gameScreen.getWorld();
+        this.world = new World(new Vector2(0,9.81f),false);
         this.gameScreen = gameScreen;
 
         playerData = SaveHandler.getSaveData().getPlayerData();
