@@ -292,7 +292,7 @@ public class Player extends PlayerAnimatorHandler implements ISpeedController{
         if(gameScreen.pixelContactListener.playerCanJump() && inputJustPressed()) {
             holdable = true;
             time = System.currentTimeMillis();
-            body.applyLinearImpulse(new Vector2(0, (JUMP_VELOCITY / PixelVars.UNITSCALE)*playerData.getAbilityData(AbilityType.JUMP).getMultiplier()), this.body.getPosition(), true);
+            body.applyLinearImpulse(new Vector2(0, (JUMP_VELOCITY / PixelVars.UNITSCALE)), this.body.getPosition(), true);
         }
 
         // Check if key is released in between
