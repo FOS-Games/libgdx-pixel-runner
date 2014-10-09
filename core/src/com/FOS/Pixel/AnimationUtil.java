@@ -5,6 +5,7 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.utils.OrderedMap;
 import net.dermetfan.gdx.graphics.g2d.AnimatedBox2DSprite;
 import net.dermetfan.gdx.graphics.g2d.AnimatedSprite;
 
@@ -15,6 +16,9 @@ import java.util.ArrayList;
  */
 public class AnimationUtil {
 
+    public static OrderedMap<String,TextureRegion[]> TextureRegions = new OrderedMap<String, TextureRegion[]>();
+    public static OrderedMap<String,AnimatedBox2DSprite> Box2dAnims = new OrderedMap<String, AnimatedBox2DSprite>();
+
     public static Animation createAnimation(TextureRegion[] textureRegions, Animation.PlayMode playMode){
         Animation animation=new Animation(0.125f, textureRegions) ;
         animation.setPlayMode(playMode);
@@ -23,7 +27,7 @@ public class AnimationUtil {
 
     public static Animation createAnimation(float duration,TextureRegion[] textureRegions, Animation.PlayMode playMode){
 
-        Animation animation=new Animation(0.125f, textureRegions) ;
+        Animation animation=new Animation(duration, textureRegions) ;
         animation.setPlayMode(playMode);
         return animation;
     }
@@ -38,98 +42,131 @@ public class AnimationUtil {
         return animatedSprite;
     }
 
-    public static AnimatedBox2DSprite createBox2DAnimation(TextureRegion[] textureRegions, Animation.PlayMode playMode){
-        AnimatedBox2DSprite animatedSprite = new AnimatedBox2DSprite(createAnimatedSprite(textureRegions, playMode));
+    public static AnimatedBox2DSprite createBox2DAnimation(String AnimNaam,TextureRegion[] textureRegions, Animation.PlayMode playMode){
+        AnimatedBox2DSprite animatedSprite;
+        if(Box2dAnims.containsKey(AnimNaam)) {
+            animatedSprite = Box2dAnims.get(AnimNaam);
+        }else{
+            animatedSprite = new AnimatedBox2DSprite(createAnimatedSprite(textureRegions, playMode));
+            Box2dAnims.put(AnimNaam,animatedSprite);
+
+            System.out.println("Create anim: "+AnimNaam);
+        }
+
         return animatedSprite;
     }
 
-    public static AnimatedBox2DSprite createBox2DAnimation(float duration, TextureRegion[] textureRegions, Animation.PlayMode playMode){
-        AnimatedBox2DSprite animatedSprite = new AnimatedBox2DSprite(createAnimatedSprite(duration, textureRegions, playMode));
+    public static AnimatedBox2DSprite createBox2DAnimation(String AnimNaam,float duration, TextureRegion[] textureRegions, Animation.PlayMode playMode){
+        AnimatedBox2DSprite animatedSprite;
+        if(Box2dAnims.containsKey(AnimNaam)) {
+            animatedSprite = Box2dAnims.get(AnimNaam);
+        }else{
+            animatedSprite = new AnimatedBox2DSprite(createAnimatedSprite(duration, textureRegions, playMode));
+            Box2dAnims.put(AnimNaam,animatedSprite);
+
+            System.out.println("Create anim: "+AnimNaam);
+        }
+
         return animatedSprite;
     }
+//
+//    public static TextureRegion[] createTextureRegion(Texture SpriteSheet, int Columns, int Rows){
+//
+//        TextureRegion[][] tmp = TextureRegion.split(SpriteSheet, SpriteSheet.getWidth()/Columns, SpriteSheet.getHeight()/Rows);
+//        TextureRegion[] frames = new TextureRegion[Columns*Rows];
+//        int index=0;
+//        for (int i = 0; i < Rows; i++) {
+//            for (int j = 0; j < Columns; j++) {
+//                frames[index++] = tmp[i][j];
+//            }
+//        }
+//        return  frames;
+//    }
 
-    public static TextureRegion[] createTextureRegion(Texture SpriteSheet, int Columns, int Rows){
-        TextureRegion[][] tmp = TextureRegion.split(SpriteSheet, SpriteSheet.getWidth()/Columns, SpriteSheet.getHeight()/Rows);
-        TextureRegion[] frames = new TextureRegion[Columns*Rows];
-        int index=0;
-        for (int i = 0; i < Rows; i++) {
-            for (int j = 0; j < Columns; j++) {
-                frames[index++] = tmp[i][j];
-            }
-        }
-        return  frames;
-    }
-
-    public static TextureRegion[] createTextureRegion(Texture SpriteSheet, int Columns, int Rows, int startFrame, int endFrame){
-
-
-        TextureRegion[][] tmp = TextureRegion.split(SpriteSheet, SpriteSheet.getWidth()/Columns, SpriteSheet.getHeight()/Rows);
-        TextureRegion[] frames = new TextureRegion[Columns*Rows];
-        int index=0;
-        for (int i = 0; i < Rows; i++) {
-            for (int j = 0; j < Columns; j++) {
-                frames[index++]=tmp[i][j];
-            }
-        }
-
-        return  cutFrames(frames,startFrame,endFrame);
-    }
-
-    public static TextureRegion[] createTextureRegion(FileHandle fileHandle, int Columns, int Rows){
-        Texture SpriteSheet = new Texture(fileHandle);
-        TextureRegion[][] tmp = TextureRegion.split(SpriteSheet, SpriteSheet.getWidth()/Columns, SpriteSheet.getHeight()/Rows);
-        TextureRegion[] frames = new TextureRegion[Columns*Rows];
-        int index=0;
-        for (int i = 0; i < Rows; i++) {
-            for (int j = 0; j < Columns; j++) {
-                frames[index++] = tmp[i][j];
-            }
-        }
-        return  frames;
-    }
-
-    public static TextureRegion[] createTextureRegion(FileHandle fileHandle, int Columns, int Rows, int startFrame, int endFrame){
-
-        Texture SpriteSheet = new Texture(fileHandle);
-        TextureRegion[][] tmp = TextureRegion.split(SpriteSheet, SpriteSheet.getWidth()/Columns, SpriteSheet.getHeight()/Rows);
-        TextureRegion[] frames = new TextureRegion[Columns*Rows];
-        int index=0;
-        for (int i = 0; i < Rows; i++) {
-            for (int j = 0; j < Columns; j++) {
-                frames[index++]=tmp[i][j];
-            }
-        }
-
-        return  cutFrames(frames,startFrame,endFrame);
-    }
+//    public static TextureRegion[] createTextureRegion(Texture SpriteSheet, int Columns, int Rows, int startFrame, int endFrame){
+//
+//
+//        TextureRegion[][] tmp = TextureRegion.split(SpriteSheet, SpriteSheet.getWidth()/Columns, SpriteSheet.getHeight()/Rows);
+//        TextureRegion[] frames = new TextureRegion[Columns*Rows];
+//        int index=0;
+//        for (int i = 0; i < Rows; i++) {
+//            for (int j = 0; j < Columns; j++) {
+//                frames[index++]=tmp[i][j];
+//            }
+//        }
+//
+//        return  cutFrames(frames,startFrame,endFrame);
+//    }
+//
+//    public static TextureRegion[] createTextureRegion(FileHandle fileHandle, int Columns, int Rows){
+//        Texture SpriteSheet = new Texture(fileHandle);
+//        TextureRegion[][] tmp = TextureRegion.split(SpriteSheet, SpriteSheet.getWidth()/Columns, SpriteSheet.getHeight()/Rows);
+//        TextureRegion[] frames = new TextureRegion[Columns*Rows];
+//        int index=0;
+//        for (int i = 0; i < Rows; i++) {
+//            for (int j = 0; j < Columns; j++) {
+//                frames[index++] = tmp[i][j];
+//            }
+//        }
+//        return  frames;
+//    }
+//
+//    public static TextureRegion[] createTextureRegion(FileHandle fileHandle, int Columns, int Rows, int startFrame, int endFrame){
+//
+//        Texture SpriteSheet = new Texture(fileHandle);
+//        TextureRegion[][] tmp = TextureRegion.split(SpriteSheet, SpriteSheet.getWidth()/Columns, SpriteSheet.getHeight()/Rows);
+//        TextureRegion[] frames = new TextureRegion[Columns*Rows];
+//        int index=0;
+//        for (int i = 0; i < Rows; i++) {
+//            for (int j = 0; j < Columns; j++) {
+//                frames[index++]=tmp[i][j];
+//            }
+//        }
+//
+//        return  cutFrames(frames,startFrame,endFrame);
+//    }
     public static TextureRegion[] createTextureRegion(String path, int Columns, int Rows){
-        Texture SpriteSheet = new Texture(Gdx.files.internal(path));
-        TextureRegion[][] tmp = TextureRegion.split(SpriteSheet, SpriteSheet.getWidth()/Columns, SpriteSheet.getHeight()/Rows);
-        TextureRegion[] frames = new TextureRegion[Columns*Rows];
-        int index=0;
-        for (int i = 0; i < Rows; i++) {
-            for (int j = 0; j < Columns; j++) {
-                frames[index++] = tmp[i][j];
+        TextureRegion[] frames;
+        if(TextureRegions.containsKey(path)){
+            frames = TextureRegions.get(path);
+        }else {
+            Texture SpriteSheet = new Texture(Gdx.files.internal(path));
+            TextureRegion[][] tmp = TextureRegion.split(SpriteSheet, SpriteSheet.getWidth() / Columns, SpriteSheet.getHeight() / Rows);
+            frames = new TextureRegion[Columns * Rows];
+            int index = 0;
+            for (int i = 0; i < Rows; i++) {
+                for (int j = 0; j < Columns; j++) {
+                    frames[index++] = tmp[i][j];
+                }
             }
+
+            TextureRegions.put(path,frames);
         }
+
         return  frames;
     }
 
     public static TextureRegion[] createTextureRegion(String path, int Columns, int Rows, int startFrame, int endFrame){
-        Texture SpriteSheet = new Texture(Gdx.files.internal(path));
-        TextureRegion[][] tmp = TextureRegion.split(SpriteSheet, SpriteSheet.getWidth()/Columns, SpriteSheet.getHeight()/Rows);
+        TextureRegion[] frames;
+        if(TextureRegions.containsKey(path)){
+            frames = TextureRegions.get(path);
+        }else {
+            Texture SpriteSheet = new Texture(Gdx.files.internal(path));
+            TextureRegion[][] tmp = TextureRegion.split(SpriteSheet, SpriteSheet.getWidth() / Columns, SpriteSheet.getHeight() / Rows);
 
-        TextureRegion[] frames = new TextureRegion[Columns*Rows];
-        int index=0;
-        for (int i = 0; i < Rows; i++) {
-            for (int j = 0; j < Columns; j++) {
-                frames[index]=tmp[i][j];
-                index++;
+            frames = new TextureRegion[Columns * Rows];
+            int index = 0;
+            for (int i = 0; i < Rows; i++) {
+                for (int j = 0; j < Columns; j++) {
+                    frames[index] = tmp[i][j];
+                    index++;
+                }
             }
+            frames = cutFrames(frames,startFrame,endFrame);
         }
 
 
-        return  cutFrames(frames,startFrame,endFrame);
+        return frames;
     }
 
     private static TextureRegion[] cutFrames(TextureRegion[] fullFrames, int start, int end){

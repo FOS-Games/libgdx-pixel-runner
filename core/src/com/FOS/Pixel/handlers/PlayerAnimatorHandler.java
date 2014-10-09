@@ -106,11 +106,11 @@ public abstract class PlayerAnimatorHandler {
         for(AbilityType type : fixtureOrderedMap.keys()){
             AbilityData abilityData = Data.getAbilityData(type);
             String texturepath =abilityData.getTexturename();
-            Texture texture = new Texture(Gdx.files.internal(texturepath));
-            fixtureOrderedMap.get(type).setUserData(AnimationUtil.createBox2DAnimation(AnimationUtil.createTextureRegion(texture, COLUMNS, ROWS, 0, 3), Animation.PlayMode.LOOP));
+
+            fixtureOrderedMap.get(type).setUserData(AnimationUtil.createBox2DAnimation("run"+type.toString(),AnimationUtil.createTextureRegion(texturepath, COLUMNS, ROWS, 0, 3), Animation.PlayMode.LOOP));
         }
 
-        AnimatedBox2DSprite anim= AnimationUtil.createBox2DAnimation(AnimationUtil.createTextureRegion(Gdx.files.internal(skinTypeStringOrderedMap.get(Data.getSkinType())[Data.getPhase()]),COLUMNS, ROWS,0,3), Animation.PlayMode.LOOP);
+        AnimatedBox2DSprite anim= AnimationUtil.createBox2DAnimation("runBody",AnimationUtil.createTextureRegion(skinTypeStringOrderedMap.get(Data.getSkinType())[Data.getPhase()],COLUMNS, ROWS,0,3), Animation.PlayMode.LOOP);
         bodyFixture.setUserData(anim);
     }
 
@@ -121,11 +121,10 @@ public abstract class PlayerAnimatorHandler {
         for(AbilityType type : fixtureOrderedMap.keys()){
             AbilityData abilityData = Data.getAbilityData(type);
             String texturepath =abilityData.getTexturename();
-            Texture texture = new Texture(Gdx.files.internal(texturepath));
-            fixtureOrderedMap.get(type).setUserData(AnimationUtil.createBox2DAnimation(AnimationUtil.createTextureRegion(texture, COLUMNS, ROWS, 4, 5), Animation.PlayMode.NORMAL));
+            fixtureOrderedMap.get(type).setUserData(AnimationUtil.createBox2DAnimation("jump"+type.toString(),AnimationUtil.createTextureRegion(texturepath, COLUMNS, ROWS, 4, 5), Animation.PlayMode.NORMAL));
         }
 
-        AnimatedBox2DSprite anim= AnimationUtil.createBox2DAnimation(AnimationUtil.createTextureRegion(Gdx.files.internal(skinTypeStringOrderedMap.get(Data.getSkinType())[Data.getPhase()]),COLUMNS, ROWS,4,5), Animation.PlayMode.NORMAL);
+        AnimatedBox2DSprite anim= AnimationUtil.createBox2DAnimation("jumpBody",AnimationUtil.createTextureRegion(skinTypeStringOrderedMap.get(Data.getSkinType())[Data.getPhase()],COLUMNS, ROWS,4,5), Animation.PlayMode.NORMAL);
         bodyFixture.setUserData(anim);
     }
 
@@ -137,10 +136,10 @@ public abstract class PlayerAnimatorHandler {
             AbilityData abilityData = Data.getAbilityData(type);
             String texturepath =abilityData.getTexturename();
             Texture texture = new Texture(Gdx.files.internal(texturepath));
-            fixtureOrderedMap.get(type).setUserData(AnimationUtil.createBox2DAnimation(AnimationUtil.createTextureRegion(texture, COLUMNS, ROWS, 6, 10), Animation.PlayMode.NORMAL));
+            fixtureOrderedMap.get(type).setUserData(AnimationUtil.createBox2DAnimation("jump"+type.toString(),AnimationUtil.createTextureRegion(texturepath, COLUMNS, ROWS, 6, 10), Animation.PlayMode.NORMAL));
         }
 
-        AnimatedBox2DSprite anim= AnimationUtil.createBox2DAnimation(AnimationUtil.createTextureRegion(Gdx.files.internal(skinTypeStringOrderedMap.get(Data.getSkinType())[Data.getPhase()]),COLUMNS, ROWS,6,10), Animation.PlayMode.NORMAL);
+        AnimatedBox2DSprite anim= AnimationUtil.createBox2DAnimation("stumbleBody",AnimationUtil.createTextureRegion(skinTypeStringOrderedMap.get(Data.getSkinType())[Data.getPhase()],COLUMNS, ROWS,6,10), Animation.PlayMode.NORMAL);
 
         bodyFixture.setUserData(anim);
     }

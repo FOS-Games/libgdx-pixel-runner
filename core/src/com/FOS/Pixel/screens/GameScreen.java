@@ -158,7 +158,7 @@ public class GameScreen extends PixelGameScreen {
         for (ObjectMap.Entry<String,Body> x : bodies){
             if(x.key.startsWith("orb")){
                 //x.value.setUserData(new Box2DSprite(new Texture(Gdx.files.internal("orb.png"))));
-                x.value.setUserData(AnimationUtil.createBox2DAnimation(AnimationUtil.createTextureRegion("sprites/spriteSheet_collectible.png", 15, 1), Animation.PlayMode.LOOP));
+                x.value.setUserData(AnimationUtil.createBox2DAnimation("orbs",AnimationUtil.createTextureRegion("sprites/spriteSheet_collectible.png", 15, 1), Animation.PlayMode.LOOP));
                 orbCounter++;
             }
         }
@@ -291,7 +291,7 @@ public class GameScreen extends PixelGameScreen {
 
         Array<Body> bodies = pixelContactListener.getCrates();
         for(Body crate : bodies) {
-            crate.setUserData(AnimationUtil.createBox2DAnimation(0.100f,AnimationUtil.createTextureRegion("sprites/spriteSheet_box.png",4,1), Animation.PlayMode.NORMAL));
+            crate.setUserData(AnimationUtil.createBox2DAnimation("crates",AnimationUtil.createTextureRegion("sprites/spriteSheet_box.png",4,1), Animation.PlayMode.NORMAL));
             playingAnimation.add(crate);
             crash.play();
             speedController.adjustSpeed(new Vector2(-(3/player.getPlayerData().getAbilityData(PlayerData.AbilityType.STRENGTH).getMultiplier()*Gdx.graphics.getDeltaTime()),0),5,0.1f);
