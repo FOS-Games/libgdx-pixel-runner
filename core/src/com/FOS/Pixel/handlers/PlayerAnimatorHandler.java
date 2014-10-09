@@ -144,7 +144,7 @@ public abstract class PlayerAnimatorHandler {
 
         bodyFixture.setUserData(anim);
     }
-    protected abstract PlayerData getPlayerData();
+    public abstract PlayerData getPlayerData();
     protected abstract OrderedMap<AbilityType,Fixture> getFixtures();
     protected abstract Fixture getBodyFixture();
 

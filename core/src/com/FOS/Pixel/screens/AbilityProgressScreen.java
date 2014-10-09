@@ -717,6 +717,7 @@ public class AbilityProgressScreen extends MenuScreen {
         stage.dispose();
         skin.dispose();
         batch.dispose();
+
     }
 
     @Override

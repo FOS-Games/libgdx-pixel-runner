@@ -38,7 +38,7 @@ public class SettingsScreen extends MenuScreen{
 
     BitmapFont font;
 
-    public static Skin skin;
+    Skin skin;
 
     public SettingsScreen(Game game, GameScreen gameScreen) {
         this.gameScreen = gameScreen;
@@ -113,7 +113,10 @@ public class SettingsScreen extends MenuScreen{
             public void changed(ChangeEvent event, Actor actor) {
                 new Dialog("", skin, "dialog"){
                     protected void result (Object object) {
-                        SaveHandler.ResetSave();
+                       if (object.equals(true)) {
+                           SaveHandler.ResetSave();
+                           System.out.println("RESET SAVE");
+                       }
                     }
                 }.text("Are you sure you\nwant to reset your\ncharacter progress?").button("Yes", true).button("No", false).show(stage);
             }
@@ -146,6 +149,7 @@ public class SettingsScreen extends MenuScreen{
         stage.dispose();
         skin.dispose();
         batch.dispose();
+
     }
 
     @Override

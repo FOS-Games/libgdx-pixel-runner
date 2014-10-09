@@ -4,6 +4,7 @@ import com.FOS.Pixel.*;
 import com.FOS.Pixel.AnimationUtil;
 import com.FOS.Pixel.Data.LevelSaveData;
 import com.FOS.Pixel.Data.PixelVars;
+import com.FOS.Pixel.Data.PlayerData;
 import com.FOS.Pixel.Data.SaveData;
 import com.FOS.Pixel.PixelContactListener;
 import com.FOS.Pixel.Player;
@@ -12,6 +13,8 @@ import com.FOS.Pixel.handlers.JsonHandler;
 import com.FOS.Pixel.handlers.SaveHandler;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.GL20;
@@ -46,7 +49,9 @@ public class GameScreen extends PixelGameScreen {
     public int orbs = 0;
     SpeedController speedController = new SpeedController();
 
-
+    private AssetManager assetManager;
+    private Music music;
+    private String musicpath;
     public Sound coin = Gdx.audio.newSound(Gdx.files.internal("Sounds/coin1.ogg"));
     public Sound crash = Gdx.audio.newSound(Gdx.files.internal("Sounds/crash2.mp3"));
     public Sound death = Gdx.audio.newSound(Gdx.files.internal("Sounds/death.wav"));
@@ -59,12 +64,13 @@ public class GameScreen extends PixelGameScreen {
     Texture bgTex;
     Sprite bgSpr;
     Camera fixedCam;
-    Integer level;
+    public Integer level;
     private Vector2 finish;
 
     public GameScreen(Game game,int level) {
         super(game,level);
         this.level = level;
+        musicpath=levelData.getMusicpath();
     }
 
     @Override
@@ -81,30 +87,27 @@ public class GameScreen extends PixelGameScreen {
 
         world.setContactListener(pixelContactListener);
         orbs = SaveHandler.getSaveData().getTotalOrbs();
-        super.startMusic();
+
         //player.decrSpeed(new Vector2(10,0),10,0.5f);
 
         Timer test = new Timer();
         test.scheduleTask(new Timer.Task() {
             @Override
             public void run() {
-                speedController.adjustSpeed(new Vector2(10, 0),5);
+                speedController.adjustSpeed(new Vector2(6*player.getPlayerData().getAbilityData(PlayerData.AbilityType.SPEED).getMultiplier(), 0),5);
             }
         },2,2,0);
 
-        test.scheduleTask(new Timer.Task() {
-            @Override
-            public void run() {
-                speedController.adjustSpeed(new Vector2(-5, 0),5);
-            }
-        },15,2,0);
         test.start();
 
 
         camera.position.set(camera.viewportWidth / 2f, camera.viewportHeight / 2f, 0);
         camera.update();
         findFinish();
-
+        assetManager = new AssetManager();
+        assetManager.load(musicpath, Music.class);
+        assetManager.finishLoading();
+        startMusic();
 
     }
 
@@ -135,7 +138,7 @@ public class GameScreen extends PixelGameScreen {
     private void createBoxes() {
         ObjectMap<String,Body> bodies = parser.getBodies();
         for (ObjectMap.Entry<String,Body> x : bodies){
-            if(x.key.equals("crate")){
+            if(x.key.startsWith("crate")){
                 x.value.setUserData(new Box2DSprite(new Texture(Gdx.files.internal("obstacle.png"))));
                 for(Fixture fix: x.value.getFixtureList()){
                     fix.setSensor(true);
@@ -226,6 +229,8 @@ public class GameScreen extends PixelGameScreen {
         camera.update();
         player.update(delta);
 
+        camera.render(delta);
+
     }
 
     private void Update() {
@@ -287,7 +292,16 @@ public class GameScreen extends PixelGameScreen {
             crate.setUserData(AnimationUtil.createBox2DAnimation(0.100f,AnimationUtil.createTextureRegion("sprites/spriteSheet_box.png",4,1), Animation.PlayMode.NORMAL));
             playingAnimation.add(crate);
             crash.play();
-            speedController.adjustSpeed(new Vector2(-2,0),5,0.1f);
+            speedController.adjustSpeed(new Vector2(-(3/player.getPlayerData().getAbilityData(PlayerData.AbilityType.STRENGTH).getMultiplier()),0),5,0.1f);
+//            final Timer speedup = new Timer();
+//            speedup.scheduleTask(new Timer.Task() {
+//                @Override
+//                public void run() {
+//                    speedController.adjustSpeed(new Vector2(2*player.getPlayerData().getAbilityData(PlayerData.AbilityType.SPEED).getMultiplier(), 0),5);
+//                    speedup.stop();
+//                }
+//
+//            },5,2,0);
             player.setState(Player.PLAYER_STATE.STUMBLE);
         }
 
@@ -296,11 +310,16 @@ public class GameScreen extends PixelGameScreen {
     private void checkAnimFinished(){
         for(Body crate : playingAnimation){
             AnimatedBox2DSprite anim = ((AnimatedBox2DSprite)crate.getUserData());
-            if(anim.isAnimationFinished()){
-                world.destroyBody(crate);
-                playingAnimation.removeValue(crate,true);
-                pain.play();
+            try {
+                if(anim.isAnimationFinished()){
+                    world.destroyBody(crate);
+                    playingAnimation.removeValue(crate,true);
+                    pain.play();
+                }
+            }catch (Exception e){
+
             }
+
         }
     }
 
@@ -321,11 +340,33 @@ public class GameScreen extends PixelGameScreen {
     @Override
     public void dispose() {
         super.dispose();
+        coin.stop();
+        crash.stop();
+        death.stop();
+        jump.stop();
+        pain.stop();
         coin.dispose();
         crash.dispose();
         death.dispose();
         jump.dispose();
         pain.dispose();
+
+        music.stop();
+        music.dispose();
+        camera.dispose();
+        //player.dispose();
+    }
+    protected void startMusic() {
+        if (assetManager.isLoaded(musicpath)){
+            music = assetManager.get(musicpath, Music.class);
+            music.setVolume(0.1f);
+            music.play();
+
+            music.setLooping(true);
+            System.out.println("Music loaded, rock on!");
+        }else{
+            System.out.println("Music not loaded yet!");
+        }
     }
 
     /**

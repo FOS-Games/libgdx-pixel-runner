@@ -15,6 +15,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.OrderedMap;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.badlogic.gdx.utils.Timer;
@@ -39,6 +40,7 @@ public class PlayerProp extends PlayerAnimatorHandler {
     private Vector2 spawnpoint;
 
     private Body body;
+    BodyDef bdef;
     public Body getBody() { return body;}
 
     protected World world;
@@ -57,7 +59,7 @@ public class PlayerProp extends PlayerAnimatorHandler {
     // GameScreen gameScreen
     public PlayerProp(GameScreen gameScreen) {
         super();
-        this.world = gameScreen.getWorld();
+        this.world = new World(new Vector2(0,9.81f),false);
         this.gameScreen = gameScreen;
 
         playerData = SaveHandler.getSaveData().getPlayerData();
@@ -65,7 +67,6 @@ public class PlayerProp extends PlayerAnimatorHandler {
         InitBox2D();
         body.setUserData(this);
 
-        super.InitAnimation();
         state = PLAYER_STATE.RUN;
         anim = PLAYER_STATE.RUN;
         super.InitAnimation();
@@ -99,10 +100,18 @@ public class PlayerProp extends PlayerAnimatorHandler {
 
     private void initPlayer() {
         // Define the players body
-        BodyDef bdef = new BodyDef();
+
+        Array<Body> bodies = new Array<Body>();
+        world.getBodies(bodies);
+        for(Body x : bodies) {
+            world.destroyBody(x);
+        }
+
+        bdef = new BodyDef();
         bdef.fixedRotation = true;
-        //bdef.position.set(spawnpoint);
         bdef.type = BodyDef.BodyType.DynamicBody;
+
+        // TODO : @LARS FIX JAVA EXCEPTION (Zie OneNote).
         body = world.createBody(bdef);
 
         FixtureDef bodyDef = new FixtureDef();
@@ -186,8 +195,6 @@ public class PlayerProp extends PlayerAnimatorHandler {
 
 
     public AnimatedBox2DSprite getAnimatedSprite() { return ((AnimatedBox2DSprite)getBodyFixture().getUserData()); }
-
-
 
 
 }

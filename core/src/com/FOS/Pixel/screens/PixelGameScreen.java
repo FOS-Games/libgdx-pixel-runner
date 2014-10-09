@@ -31,7 +31,7 @@ public abstract class PixelGameScreen implements Screen {
     public Game game;
 
     protected World world;
-    protected Box2DDebugRenderer box2DRenderer;
+    //protected Box2DDebugRenderer box2DRenderer;
     protected OrthogonalTiledMapRenderer mapRenderer;
     protected PlayerCamera camera;
     protected Box2DMapObjectParser parser;
@@ -39,7 +39,7 @@ public abstract class PixelGameScreen implements Screen {
     protected SpriteBatch spriteBatch;
     protected Player player;
     public LevelData levelData;
-    private AssetManager assetManager;
+
 
     Boolean BOX2DDEBUG = false;
 
@@ -71,7 +71,7 @@ public abstract class PixelGameScreen implements Screen {
 
         // Set up the box2d world and contact listener
         world = new World(new Vector2(0, -overrideEarthGravity()), true);
-        box2DRenderer = new Box2DDebugRenderer();
+        //box2DRenderer = new Box2DDebugRenderer();
 
         // NEW
         // Get width and height of application display
@@ -93,9 +93,7 @@ public abstract class PixelGameScreen implements Screen {
         spriteBatch = new SpriteBatch();
         mapRenderer = new OrthogonalTiledMapRenderer(map, parser.getUnitScale());
 
-        assetManager = new AssetManager();
-        assetManager.load("flatwound_-_The_Long_Goodbye.mp3", Music.class);
-        assetManager.finishLoading();
+
 
     }
 
@@ -103,7 +101,7 @@ public abstract class PixelGameScreen implements Screen {
     public void render(float delta) {
         mapRenderer.setView(camera);
         mapRenderer.render();
-        box2DRenderer.render(world, camera.combined);
+        //box2DRenderer.render(world, camera.combined);
 
 
         // render the camera
@@ -133,9 +131,11 @@ public abstract class PixelGameScreen implements Screen {
     @Override
     public void dispose() {
 
+        //world.destroyBody(player.getBody());
         spriteBatch.dispose();
         world.dispose();
         mapRenderer.dispose();
+
     }
 
     @Override
@@ -157,16 +157,5 @@ public abstract class PixelGameScreen implements Screen {
         return 9.81f;
     }
 
-    protected void startMusic() {
-        if (assetManager.isLoaded("flatwound_-_The_Long_Goodbye.mp3")){
-            Music music = assetManager.get("flatwound_-_The_Long_Goodbye.mp3", Music.class);
-            music.setVolume(0.1f);
-            music.play();
 
-            music.setLooping(true);
-            System.out.println("Music loaded, rock on!");
-        }else{
-            System.out.println("Music not loaded yet!");
-        }
-    }
 }

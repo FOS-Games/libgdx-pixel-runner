@@ -40,6 +40,11 @@ public class LevelSelectScreen extends MenuScreen {
     Texture tCaveHover;
     Texture tCaveLocked;
 
+    // Textures 03_Sand
+    Texture tSand;
+    Texture tSandHover;
+    Texture tSandLocked;
+
     // Menu background
     Texture background;
 
@@ -79,6 +84,7 @@ public class LevelSelectScreen extends MenuScreen {
         tBlueButtonPressed = new Texture(Gdx.files.internal("ui/blueButtonPressed.png"));
         TextureRegion rBlueButtonPressed = new TextureRegion(tBlueButtonPressed);
 
+
         // 01_Grasslands thumbnail
         tGrasslands = new Texture(Gdx.files.internal("maps/thumbnails/01_Grasslands.png"));
         TextureRegion rGrasslands = new TextureRegion(tGrasslands);
@@ -89,7 +95,6 @@ public class LevelSelectScreen extends MenuScreen {
         tGrasslandsLocked = new Texture(Gdx.files.internal("maps/thumbnails/01_GrasslandsLocked.png"));
         TextureRegion rGrasslandsLocked = new TextureRegion(tGrasslandsLocked);
 
-
         // 02_Cave thumbnail
         tCave = new Texture(Gdx.files.internal("maps/thumbnails/02_Cave.png"));
         TextureRegion rCave = new TextureRegion(tCave);
@@ -99,6 +104,17 @@ public class LevelSelectScreen extends MenuScreen {
 
         tCaveLocked = new Texture(Gdx.files.internal("maps/thumbnails/02_CaveLocked.png"));
         TextureRegion rCaveLocked = new TextureRegion(tCaveLocked);
+
+        // 03_Sand thumbnail
+        tSand = new Texture(Gdx.files.internal("maps/thumbnails/03_Sand.png"));
+        TextureRegion rSand= new TextureRegion(tSand);
+
+        tSandHover = new Texture(Gdx.files.internal("maps/thumbnails/03_SandHover.png"));
+        TextureRegion rSandHover = new TextureRegion(tSandHover);
+
+        tSandLocked = new Texture(Gdx.files.internal("maps/thumbnails/03_SandHover.png"));
+        TextureRegion rSandLocked = new TextureRegion(tSandLocked);
+
 
 
         skin = new Skin();
@@ -153,11 +169,19 @@ public class LevelSelectScreen extends MenuScreen {
         textButtonStyleCave.font = skin.getFont("customFont");
         skin.add("caveStyle", textButtonStyleCave);
 
+        // SAND TextButtonStyle
+        TextButton.TextButtonStyle textButtonStyleSand = new TextButton.TextButtonStyle();
+        textButtonStyleSand.up = skin.newDrawable(new TextureRegionDrawable(rSand));
+        textButtonStyleSand.down = skin.newDrawable(new TextureRegionDrawable(rSandHover));
+        textButtonStyleSand.over = skin.newDrawable(new TextureRegionDrawable(rSandHover));
+        textButtonStyleSand.font = skin.getFont("customFont");
+        skin.add("sandStyle", textButtonStyleSand);
+
         final TextButton bLevel1 = new TextButton("", skin, "grasslandsStyle");
         final TextButton bLevel2 = new TextButton("", skin, "caveStyle");
-        final TextButton bLevel3 = new TextButton("Start level 3", skin);
-        final TextButton bLevel4 = new TextButton("Start level 4", skin);
-        final TextButton bLevel5 = new TextButton("Start level 5", skin);
+        final TextButton bLevel3 = new TextButton("", skin, "sandStyle");
+        final TextButton bLevel4 = new TextButton("Next\nupdate", skin);
+        final TextButton bLevel5 = new TextButton("Next\nupdate", skin);
 
         final TextButton bBack = new TextButton("Back", skin, "blueStyle");
         final TextButton bAbilities = new TextButton("Abilities", skin, "blueStyle");
@@ -195,6 +219,13 @@ public class LevelSelectScreen extends MenuScreen {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 ((Game) Gdx.app.getApplicationListener()).setScreen(new GameScreen(game, 2));
+            }
+        });
+
+        bLevel3.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new GameScreen(game, 3));
             }
         });
 
