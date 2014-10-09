@@ -92,7 +92,7 @@ public class GameScreen extends PixelGameScreen {
         speedController.registerController(camera);
 
         world.setContactListener(pixelContactListener);
-        orbs = SaveHandler.getSaveData().getTotalOrbs();
+        //orbs = SaveHandler.getSaveData().getTotalOrbs();
 
         //player.decrSpeed(new Vector2(10,0),10,0.5f);
 
