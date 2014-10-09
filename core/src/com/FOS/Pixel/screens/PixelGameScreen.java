@@ -31,7 +31,7 @@ public abstract class PixelGameScreen implements Screen {
     public Game game;
 
     protected World world;
-    protected Box2DDebugRenderer box2DRenderer;
+    //protected Box2DDebugRenderer box2DRenderer;
     protected OrthogonalTiledMapRenderer mapRenderer;
     protected PlayerCamera camera;
     protected Box2DMapObjectParser parser;
@@ -71,7 +71,7 @@ public abstract class PixelGameScreen implements Screen {
 
         // Set up the box2d world and contact listener
         world = new World(new Vector2(0, -overrideEarthGravity()), true);
-        box2DRenderer = new Box2DDebugRenderer();
+        //box2DRenderer = new Box2DDebugRenderer();
 
         // NEW
         // Get width and height of application display
@@ -101,7 +101,7 @@ public abstract class PixelGameScreen implements Screen {
     public void render(float delta) {
         mapRenderer.setView(camera);
         mapRenderer.render();
-        box2DRenderer.render(world, camera.combined);
+        //box2DRenderer.render(world, camera.combined);
 
 
         // render the camera
