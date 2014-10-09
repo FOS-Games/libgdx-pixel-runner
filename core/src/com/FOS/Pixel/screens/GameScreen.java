@@ -59,7 +59,7 @@ public class GameScreen extends PixelGameScreen {
     Texture bgTex;
     Sprite bgSpr;
     Camera fixedCam;
-    Integer level;
+    public Integer level;
     private Vector2 finish;
 
     public GameScreen(Game game,int level) {
@@ -226,6 +226,8 @@ public class GameScreen extends PixelGameScreen {
         camera.update();
         player.update(delta);
 
+        camera.render(delta);
+
     }
 
     private void Update() {
@@ -326,6 +328,7 @@ public class GameScreen extends PixelGameScreen {
         death.dispose();
         jump.dispose();
         pain.dispose();
+        camera.dispose();
     }
 
     /**

@@ -133,9 +133,11 @@ public abstract class PixelGameScreen implements Screen {
     @Override
     public void dispose() {
 
+        world.destroyBody(player.getBody());
         spriteBatch.dispose();
         world.dispose();
         mapRenderer.dispose();
+
     }
 
     @Override
