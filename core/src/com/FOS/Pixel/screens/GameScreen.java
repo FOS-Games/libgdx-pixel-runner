@@ -4,6 +4,7 @@ import com.FOS.Pixel.*;
 import com.FOS.Pixel.AnimationUtil;
 import com.FOS.Pixel.Data.LevelSaveData;
 import com.FOS.Pixel.Data.PixelVars;
+import com.FOS.Pixel.Data.PlayerData;
 import com.FOS.Pixel.Data.SaveData;
 import com.FOS.Pixel.PixelContactListener;
 import com.FOS.Pixel.Player;
@@ -93,7 +94,7 @@ public class GameScreen extends PixelGameScreen {
         test.scheduleTask(new Timer.Task() {
             @Override
             public void run() {
-                speedController.adjustSpeed(new Vector2(6, 0),5);
+                speedController.adjustSpeed(new Vector2(6*player.getPlayerData().getAbilityData(PlayerData.AbilityType.SPEED).getMultiplier(), 0),5);
             }
         },2,2,0);
 
@@ -291,7 +292,16 @@ public class GameScreen extends PixelGameScreen {
             crate.setUserData(AnimationUtil.createBox2DAnimation(0.100f,AnimationUtil.createTextureRegion("sprites/spriteSheet_box.png",4,1), Animation.PlayMode.NORMAL));
             playingAnimation.add(crate);
             crash.play();
-            speedController.adjustSpeed(new Vector2(-2,0),5,0.1f);
+            speedController.adjustSpeed(new Vector2(-(3/player.getPlayerData().getAbilityData(PlayerData.AbilityType.STRENGTH).getMultiplier()),0),5,0.1f);
+//            final Timer speedup = new Timer();
+//            speedup.scheduleTask(new Timer.Task() {
+//                @Override
+//                public void run() {
+//                    speedController.adjustSpeed(new Vector2(2*player.getPlayerData().getAbilityData(PlayerData.AbilityType.SPEED).getMultiplier(), 0),5);
+//                    speedup.stop();
+//                }
+//
+//            },5,2,0);
             player.setState(Player.PLAYER_STATE.STUMBLE);
         }
 
@@ -300,11 +310,16 @@ public class GameScreen extends PixelGameScreen {
     private void checkAnimFinished(){
         for(Body crate : playingAnimation){
             AnimatedBox2DSprite anim = ((AnimatedBox2DSprite)crate.getUserData());
-            if(anim.isAnimationFinished()){
-                world.destroyBody(crate);
-                playingAnimation.removeValue(crate,true);
-                pain.play();
+            try {
+                if(anim.isAnimationFinished()){
+                    world.destroyBody(crate);
+                    playingAnimation.removeValue(crate,true);
+                    pain.play();
+                }
+            }catch (Exception e){
+
             }
+
         }
     }
 

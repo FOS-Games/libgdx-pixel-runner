@@ -83,7 +83,7 @@ public class Player extends PlayerAnimatorHandler implements ISpeedController{
     }
 
     @Override
-    protected PlayerData getPlayerData() {
+    public PlayerData getPlayerData() {
         return SaveHandler.getSaveData().getPlayerData();
     }
 
@@ -260,6 +260,9 @@ public class Player extends PlayerAnimatorHandler implements ISpeedController{
         }
         if(anim == PLAYER_STATE.RUN){
             ((AnimatedBox2DSprite)getBodyFixture().getUserData()).getAnimation().setFrameDuration(1/this.body.getLinearVelocity().x);
+            ((AnimatedBox2DSprite)wingFixture.getUserData()).getAnimation().setFrameDuration(1/this.body.getLinearVelocity().x);
+            ((AnimatedBox2DSprite)feetFixture.getUserData()).getAnimation().setFrameDuration(1/this.body.getLinearVelocity().x);
+            ((AnimatedBox2DSprite)weaponFixture.getUserData()).getAnimation().setFrameDuration(1/this.body.getLinearVelocity().x);
         }
         if(!gameScreen.pixelContactListener.playerCanJump()){
             state=PLAYER_STATE.JUMP;
@@ -318,14 +321,8 @@ public class Player extends PlayerAnimatorHandler implements ISpeedController{
     @Override
     public void adjustSpeed(Vector2 adjustWith, int steps) {
         float xincr;
-        if(adjustWith.x<0) {
-            xincr = (adjustWith.x / (float) steps) / playerData.getAbilityData(AbilityType.STRENGTH).getMultiplier();
-        }else if (adjustWith.x>0) {
-            xincr = (adjustWith.x / (float) steps) / playerData.getAbilityData(AbilityType.STRENGTH).getMultiplier();
-        }
-        else{
-            xincr=0;
-        }
+            xincr = (adjustWith.x / (float) steps);
+
         float yincr= adjustWith.y/(float)steps;
         final Vector2 incrsteps = new Vector2(xincr,yincr);
         Timer timer = new Timer();
@@ -344,7 +341,7 @@ public class Player extends PlayerAnimatorHandler implements ISpeedController{
 
     @Override
     public void adjustSpeed(Vector2 adjustWith, int steps, float seconds) {
-        float xincr= (adjustWith.x/(float)steps)/playerData.getAbilityData(AbilityType.STRENGTH).getMultiplier();
+        float xincr= (adjustWith.x/(float)steps);
         float yincr= adjustWith.y/(float)steps;
         final Vector2 incrsteps = new Vector2(xincr,yincr);
         Timer timer = new Timer();

@@ -48,6 +48,7 @@ public class PlayerCamera extends OrthographicCamera implements ISpeedController
     BitmapFont font;
     Skin skin;
     Dialog dialog;
+    Dialog finishdialog;
 
     float viewportW;
     float viewportH;
@@ -137,6 +138,20 @@ public class PlayerCamera extends OrthographicCamera implements ISpeedController
 
             }
         }.text("You died! :(\nTry again?").button("Yes", true).button("No", false);
+
+        finishdialog = new Dialog("", skin, "dialog"){
+            protected void result (Object object) {
+                if (object.equals(true)) {
+                    ((Game) Gdx.app.getApplicationListener()).setScreen(new LevelSelectScreen(gameScreen.game, gameScreen));
+
+                }
+                else {
+                    ((Game) Gdx.app.getApplicationListener()).setScreen(new LevelSelectScreen(gameScreen.game, gameScreen));
+
+                }
+
+            }
+        }.text("You made it :D \nOrbs Collected: "+ gameScreen.orbs).button("Select new Level", true);
     }
 
     public void dispose() {
@@ -186,7 +201,8 @@ public class PlayerCamera extends OrthographicCamera implements ISpeedController
             gameScreen.saveOrbs();
             gameScreen.death.play();
             gameScreen.isDeath = true;
-
+            this.body.setLinearVelocity(1,0);
+            minVelocity=1;
             dialog.show(stage);
         }
     }
@@ -235,7 +251,16 @@ public class PlayerCamera extends OrthographicCamera implements ISpeedController
     @Override
     public void adjustSpeed(Vector2 adjustWith, int steps) {
         isAdjusting=true;
-        int stepcount = steps+2;
+        float seconds = 1;
+        int stepcount;
+        if(adjustWith.x>0) {
+            stepcount = steps + 1;
+        }else if(adjustWith.x<0) {
+            stepcount = steps + 5;
+            seconds++;
+        }else{
+            stepcount=steps;
+        }
         float xincr= adjustWith.x/(float)stepcount;
 
         float yincr= adjustWith.y/(float)stepcount;
@@ -247,7 +272,7 @@ public class PlayerCamera extends OrthographicCamera implements ISpeedController
                 body.setLinearVelocity(body.getLinearVelocity().add(incrsteps));
                 minVelocity += incrsteps.x;
             }
-        },1,1,stepcount);
+        },seconds,seconds,stepcount);
 
     }
 
@@ -256,7 +281,15 @@ public class PlayerCamera extends OrthographicCamera implements ISpeedController
     @Override
     public void adjustSpeed(Vector2 adjustWith, int steps, float seconds) {
         isAdjusting=true;
-        int stepcount = steps+2;
+        int stepcount;
+        if(adjustWith.x>0) {
+            stepcount = steps + 1;
+        }else if(adjustWith.x<0) {
+            stepcount = steps + 5;
+            seconds++;
+        }else{
+            stepcount=steps;
+        }
         float xincr=adjustWith.x/(float)stepcount;
         float yincr= adjustWith.y/(float)stepcount;
         final Vector2 incrsteps = new Vector2(xincr,yincr);
