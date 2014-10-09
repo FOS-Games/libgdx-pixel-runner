@@ -58,8 +58,7 @@ public class LevelSelectScreen extends MenuScreen {
     BitmapFont font;
 
 
-    public LevelSelectScreen(Game game, GameScreen gameScreen) {
-        this.gameScreen = gameScreen;
+    public LevelSelectScreen(Game game) {
         this.game = game;
     }
 
@@ -232,14 +231,14 @@ public class LevelSelectScreen extends MenuScreen {
         bBack.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                ((Game) Gdx.app.getApplicationListener()).setScreen(new MainMenuScreen(game, gameScreen));
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new MainMenuScreen(game));
             }
         });
 
         bAbilities.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                ((Game) Gdx.app.getApplicationListener()).setScreen(new AbilityProgressScreen(game, gameScreen));
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new AbilityProgressScreen(game));
             }
         });
     }

@@ -132,7 +132,7 @@ public class PlayerCamera extends OrthographicCamera implements ISpeedController
 
                 }
                 else {
-                    ((Game) Gdx.app.getApplicationListener()).setScreen(new LevelSelectScreen(gameScreen.game, gameScreen));
+                    ((Game) Gdx.app.getApplicationListener()).setScreen(new LevelSelectScreen(gameScreen.game));
 
                 }
 
@@ -142,11 +142,11 @@ public class PlayerCamera extends OrthographicCamera implements ISpeedController
         finishdialog = new Dialog("", skin, "dialog"){
             protected void result (Object object) {
                 if (object.equals(true)) {
-                    ((Game) Gdx.app.getApplicationListener()).setScreen(new LevelSelectScreen(gameScreen.game, gameScreen));
+                    ((Game) Gdx.app.getApplicationListener()).setScreen(new LevelSelectScreen(gameScreen.game));
 
                 }
                 else {
-                    ((Game) Gdx.app.getApplicationListener()).setScreen(new LevelSelectScreen(gameScreen.game, gameScreen));
+                    ((Game) Gdx.app.getApplicationListener()).setScreen(new LevelSelectScreen(gameScreen.game));
 
                 }
 

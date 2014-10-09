@@ -34,14 +34,12 @@ public class SettingsScreen extends MenuScreen{
 
     Texture background;
 
-    GameScreen gameScreen;
 
     BitmapFont font;
 
     Skin skin;
 
-    public SettingsScreen(Game game, GameScreen gameScreen) {
-        this.gameScreen = gameScreen;
+    public SettingsScreen(Game game) {
         this.game = game;
     }
 
@@ -125,7 +123,7 @@ public class SettingsScreen extends MenuScreen{
         bBack.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                ((Game) Gdx.app.getApplicationListener()).setScreen(new MainMenuScreen(game, gameScreen));
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new MainMenuScreen(game));
             }
         });
 

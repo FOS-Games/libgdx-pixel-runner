@@ -43,15 +43,13 @@ public class MainMenuScreen extends MenuScreen {
 
     Texture logo;
 
-    GameScreen gameScreen;
 
     BitmapFont font;
 
     private AssetManager assetManager;
     private Music music;
 
-    public MainMenuScreen(Game game, GameScreen gameScreen) {
-        this.gameScreen = gameScreen;
+    public MainMenuScreen(Game game) {
         this.game = game;
     }
 
@@ -131,14 +129,14 @@ public class MainMenuScreen extends MenuScreen {
         bStart.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                ((Game) Gdx.app.getApplicationListener()).setScreen(new LevelSelectScreen(game, gameScreen));
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new LevelSelectScreen(game));
             }
         });
 
         bSettings.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                ((Game) Gdx.app.getApplicationListener()).setScreen(new SettingsScreen(game, gameScreen));
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new SettingsScreen(game));
             }
         });
 

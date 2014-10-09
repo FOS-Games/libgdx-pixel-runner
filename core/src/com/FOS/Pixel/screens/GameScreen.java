@@ -71,16 +71,22 @@ public class GameScreen extends PixelGameScreen {
         super(game,level);
         this.level = level;
         musicpath=levelData.getMusicpath();
-    }
-
-    @Override
-    public void show() {
-
         createBackground();
         createPlayer();
         createCamera();
         createCollectibles();
         createBoxes();
+        findFinish();
+        assetManager = new AssetManager();
+        assetManager.load(musicpath, Music.class);
+        assetManager.finishLoading();
+        startMusic();
+    }
+
+    @Override
+    public void show() {
+
+
 
         speedController.registerController(player);
         speedController.registerController(camera);
@@ -103,11 +109,7 @@ public class GameScreen extends PixelGameScreen {
 
         camera.position.set(camera.viewportWidth / 2f, camera.viewportHeight / 2f, 0);
         camera.update();
-        findFinish();
-        assetManager = new AssetManager();
-        assetManager.load(musicpath, Music.class);
-        assetManager.finishLoading();
-        startMusic();
+
 
     }
 

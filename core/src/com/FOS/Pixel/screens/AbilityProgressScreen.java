@@ -104,8 +104,7 @@ public class AbilityProgressScreen extends MenuScreen {
     TextField orbText2;
     TextField orbText3;
 
-    public AbilityProgressScreen(Game game, GameScreen gameScreen) {
-        this.gameScreen = gameScreen;
+    public AbilityProgressScreen(Game game) {
         this.game = game;
     }
 
@@ -440,7 +439,7 @@ public class AbilityProgressScreen extends MenuScreen {
         bBack.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                ((Game) Gdx.app.getApplicationListener()).setScreen(new LevelSelectScreen(game, gameScreen));
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new LevelSelectScreen(game));
             }
         });
 

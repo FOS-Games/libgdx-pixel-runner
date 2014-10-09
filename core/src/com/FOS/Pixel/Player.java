@@ -259,10 +259,10 @@ public class Player extends PlayerAnimatorHandler implements ISpeedController{
             }
         }
         if(anim == PLAYER_STATE.RUN){
-            ((AnimatedBox2DSprite)getBodyFixture().getUserData()).getAnimation().setFrameDuration((1/this.body.getLinearVelocity().x)*Gdx.graphics.getDeltaTime());
-            ((AnimatedBox2DSprite)wingFixture.getUserData()).getAnimation().setFrameDuration((1/this.body.getLinearVelocity().x)*Gdx.graphics.getDeltaTime());
-            ((AnimatedBox2DSprite)feetFixture.getUserData()).getAnimation().setFrameDuration((1/this.body.getLinearVelocity().x)*Gdx.graphics.getDeltaTime());
-            ((AnimatedBox2DSprite)weaponFixture.getUserData()).getAnimation().setFrameDuration((1/this.body.getLinearVelocity().x)*Gdx.graphics.getDeltaTime());
+            ((AnimatedBox2DSprite)getBodyFixture().getUserData()).getAnimation().setFrameDuration((1/this.body.getLinearVelocity().x));
+            ((AnimatedBox2DSprite)wingFixture.getUserData()).getAnimation().setFrameDuration((1/this.body.getLinearVelocity().x));
+            ((AnimatedBox2DSprite)feetFixture.getUserData()).getAnimation().setFrameDuration((1/this.body.getLinearVelocity().x));
+            ((AnimatedBox2DSprite)weaponFixture.getUserData()).getAnimation().setFrameDuration((1/this.body.getLinearVelocity().x));
         }
         if(!gameScreen.pixelContactListener.playerCanJump()){
             state=PLAYER_STATE.JUMP;
@@ -302,7 +302,7 @@ public class Player extends PlayerAnimatorHandler implements ISpeedController{
 
         // In the jumping activity
         if(holdable && inputPressed() && TimeUtils.timeSinceMillis(time) <= 250) {
-            body.applyLinearImpulse(new Vector2(0, ((JUMP_VELOCITY / 4) / PixelVars.UNITSCALE)*playerData.getAbilityData(AbilityType.JUMP).getMultiplier()*Gdx.graphics.getDeltaTime()), this.body.getPosition(), true);
+            body.applyLinearImpulse(new Vector2(0, ((JUMP_VELOCITY / 4) / PixelVars.UNITSCALE)*playerData.getAbilityData(AbilityType.JUMP).getMultiplier()), this.body.getPosition(), true);
             body.setLinearVelocity(body.getLinearVelocity().x, body.getLinearVelocity().y * 0.85f);
         }
     }
