@@ -138,7 +138,7 @@ public class LevelSelectScreen extends MenuScreen {
         TextButton.TextButtonStyle textButtonStyle = new TextButton.TextButtonStyle();
         textButtonStyle.up = skin.newDrawable("white", Color.DARK_GRAY);
         textButtonStyle.down = skin.newDrawable("white", Color.DARK_GRAY);
-        textButtonStyle.checked = skin.newDrawable("white", Color.BLUE);
+        //textButtonStyle.checked = skin.newDrawable("white", Color.BLUE);
         textButtonStyle.over = skin.newDrawable("white", Color.LIGHT_GRAY);
         textButtonStyle.font = skin.getFont("customFont");
         skin.add("default", textButtonStyle);
@@ -147,7 +147,7 @@ public class LevelSelectScreen extends MenuScreen {
         TextButton.TextButtonStyle textButtonStyleBlue = new TextButton.TextButtonStyle();
         textButtonStyleBlue.up = skin.newDrawable(new TextureRegionDrawable(rBlueButton));
         textButtonStyleBlue.down = skin.newDrawable(new TextureRegionDrawable(rBlueButtonPressed));
-        textButtonStyleBlue.checked = skin.newDrawable(new TextureRegionDrawable(rBlueButtonPressed));
+        //textButtonStyleBlue.checked = skin.newDrawable(new TextureRegionDrawable(rBlueButtonPressed));
         textButtonStyleBlue.over = skin.newDrawable(new TextureRegionDrawable(rBlueButtonHover));
         textButtonStyleBlue.font = skin.getFont("customFont");
         skin.add("blueStyle", textButtonStyleBlue);
