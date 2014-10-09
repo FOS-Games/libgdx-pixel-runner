@@ -94,7 +94,7 @@ public class GameScreen extends PixelGameScreen {
         test.scheduleTask(new Timer.Task() {
             @Override
             public void run() {
-                speedController.adjustSpeed(new Vector2(6*player.getPlayerData().getAbilityData(PlayerData.AbilityType.SPEED).getMultiplier(), 0),5);
+                speedController.adjustSpeed(new Vector2(6*player.getPlayerData().getAbilityData(PlayerData.AbilityType.SPEED).getMultiplier()*Gdx.graphics.getDeltaTime(), 0),5);
             }
         },2,2,0);
 
@@ -292,7 +292,7 @@ public class GameScreen extends PixelGameScreen {
             crate.setUserData(AnimationUtil.createBox2DAnimation(0.100f,AnimationUtil.createTextureRegion("sprites/spriteSheet_box.png",4,1), Animation.PlayMode.NORMAL));
             playingAnimation.add(crate);
             crash.play();
-            speedController.adjustSpeed(new Vector2(-(3/player.getPlayerData().getAbilityData(PlayerData.AbilityType.STRENGTH).getMultiplier()),0),5,0.1f);
+            speedController.adjustSpeed(new Vector2(-(3/player.getPlayerData().getAbilityData(PlayerData.AbilityType.STRENGTH).getMultiplier()*Gdx.graphics.getDeltaTime()),0),5,0.1f);
 //            final Timer speedup = new Timer();
 //            speedup.scheduleTask(new Timer.Task() {
 //                @Override
