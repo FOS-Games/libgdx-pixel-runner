@@ -32,6 +32,8 @@ public class AnimationUtil {
         return animation;
     }
 
+
+
     public static AnimatedSprite createAnimatedSprite(TextureRegion[] textureRegions, Animation.PlayMode playMode){
         AnimatedSprite animatedSprite = new AnimatedSprite(createAnimation(textureRegions, playMode));
         return animatedSprite;

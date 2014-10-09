@@ -48,58 +48,16 @@ public abstract class PlayerAnimatorHandler {
         skinTypeStringOrderedMap.put(PlayerData.SkinType.ORC,new String[]{"sprites/spriteSheet_player.png","sprites/spriteSheet_player.png","sprites/spriteSheet_player.png"});
         skinTypeStringOrderedMap.put(PlayerData.SkinType.ELF,new String[]{"sprites/spriteSheet_player.png","sprites/spriteSheet_player.png","sprites/spriteSheet_player.png"});
 
+        abilitydata.put(AbilityType.JUMP,Data.getAbilityData(AbilityType.JUMP));
+        abilitydata.put(AbilityType.SPEED,Data.getAbilityData(AbilityType.SPEED));
+        abilitydata.put(AbilityType.STRENGTH,Data.getAbilityData(AbilityType.STRENGTH));
     }
 
-//    // int body
-//    //  0 - full body
-//    //  1 - shoes
-//    //  2 - wings
-//    //  3 - weapon
-//
-//    // int level
-//    // level of the ability
-//    protected AnimatedBox2DSprite createAnimation(Texture spriteSheet) {
-//
-//        TextureRegion[][] tmp = TextureRegion.split(spriteSheet, spriteSheet.getWidth()/COLUMNS, spriteSheet.getHeight()/ROWS);
-//        frames = new TextureRegion[4];
-//
-//        int index = 0;
-//
-//        // Running animation only has 4 frames, spritesheet has 6 frames.
-//        // Therefore i < COLUMNS becomes: i < 4.
-//        for (int i = 0; i < ROWS; i++) {
-//            for (int j = 0; j < 4; j++) {
-//                frames[index++] = tmp[i][j];
-//            }
-//        }
-//
-//        // Create the animation
-//        animation = new Animation(0.125f, frames);
-//
-//        // Loop the animation till infinity (and beyond!)
-//        animation.setPlayMode(Animation.PlayMode.LOOP);
-//
-//        // Create a Box2DSprite out of the animation
-//        animatedBox2DSprite = new AnimatedBox2DSprite(new AnimatedSprite(animation));
-//
-//
-//        // Properties of the Box2DSprite
-//        //animatedBox2DSprite.setScale(0.1f);
-//        //animatedBox2DSprite.setAdjustSize(false);
-//        //animatedBox2DSprite.scale(Box2DTiledMapParserTest.UnitScale);
-//        //animatedBox2DSprite.setUseFrameRegionSize(true);
-//
-//
-//        return animatedBox2DSprite;
-//    }
 
     protected void InitAnimation(){
 
         this.Data = getPlayerData();
         System.out.println(Data.toString());
-        abilitydata.put(AbilityType.JUMP,Data.getAbilityData(AbilityType.JUMP));
-        abilitydata.put(AbilityType.SPEED,Data.getAbilityData(AbilityType.SPEED));
-        abilitydata.put(AbilityType.STRENGTH,Data.getAbilityData(AbilityType.STRENGTH));
 
         setRunAnim();
 
@@ -110,8 +68,7 @@ public abstract class PlayerAnimatorHandler {
         Fixture bodyFixture = getBodyFixture();
 
         for(AbilityType type : fixtureOrderedMap.keys()){
-            AbilityData ability = abilitydata.get(type);
-            String texturepath =ability.getTexturename();
+            String texturepath =abilitydata.get(type).getTexturename();
 
             fixtureOrderedMap.get(type).setUserData(AnimationUtil.createBox2DAnimation("run"+type.toString(),AnimationUtil.createTextureRegion(texturepath, COLUMNS, ROWS, 0, 3), Animation.PlayMode.LOOP));
         }
@@ -125,8 +82,7 @@ public abstract class PlayerAnimatorHandler {
         Fixture bodyFixture = getBodyFixture();
 
         for(AbilityType type : fixtureOrderedMap.keys()){
-            AbilityData ability = abilitydata.get(type);
-            String texturepath =ability.getTexturename();
+            String texturepath =abilitydata.get(type).getTexturename();
             fixtureOrderedMap.get(type).setUserData(AnimationUtil.createBox2DAnimation("jump"+type.toString(),AnimationUtil.createTextureRegion(texturepath, COLUMNS, ROWS, 4, 5), Animation.PlayMode.NORMAL));
         }
 
@@ -139,8 +95,7 @@ public abstract class PlayerAnimatorHandler {
         Fixture bodyFixture = getBodyFixture();
 
         for(AbilityType type : fixtureOrderedMap.keys()){
-            AbilityData ability = abilitydata.get(type);
-            String texturepath =ability.getTexturename();
+            String texturepath =abilitydata.get(type).getTexturename();
             fixtureOrderedMap.get(type).setUserData(AnimationUtil.createBox2DAnimation("jump"+type.toString(),AnimationUtil.createTextureRegion(texturepath, COLUMNS, ROWS, 6, 10), Animation.PlayMode.NORMAL));
         }
 
