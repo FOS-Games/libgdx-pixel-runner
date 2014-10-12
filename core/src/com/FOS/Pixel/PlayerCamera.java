@@ -86,13 +86,13 @@ public class PlayerCamera extends OrthographicCamera implements ISpeedController
         stage = new Stage(new StretchViewport(800, 480));
         Gdx.input.setInputProcessor(stage);
 
-        tBlueButton = new Texture(Gdx.files.internal("ui/blueButton.png"));
+        tBlueButton = MainPixel.assetManager.get("ui/blueButton.png",Texture.class);
         TextureRegion rBlueButton = new TextureRegion(tBlueButton);
 
-        tBlueButtonHover = new Texture(Gdx.files.internal("ui/blueButtonHover.png"));
+        tBlueButtonHover =MainPixel.assetManager.get("ui/blueButtonHover.png",Texture.class);
         TextureRegion rBlueButtonHover = new TextureRegion(tBlueButtonHover);
 
-        tBlueButtonPressed = new Texture(Gdx.files.internal("ui/blueButtonPressed.png"));
+        tBlueButtonPressed =MainPixel.assetManager.get("ui/blueButtonPressed.png",Texture.class);
         TextureRegion rBlueButtonPressed = new TextureRegion(tBlueButtonPressed);
 
         skin = new Skin();

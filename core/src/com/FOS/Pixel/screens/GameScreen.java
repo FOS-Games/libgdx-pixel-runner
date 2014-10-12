@@ -1,7 +1,6 @@
 package com.FOS.Pixel.screens;
 
 import com.FOS.Pixel.*;
-import com.FOS.Pixel.AnimationUtil;
 import com.FOS.Pixel.Data.LevelSaveData;
 import com.FOS.Pixel.Data.PixelVars;
 import com.FOS.Pixel.Data.PlayerData;
@@ -52,11 +51,11 @@ public class GameScreen extends PixelGameScreen {
     private AssetManager assetManager;
     private Music music;
     private String musicpath;
-    public Sound coin = Gdx.audio.newSound(Gdx.files.internal("Sounds/coin1.ogg"));
-    public Sound crash = Gdx.audio.newSound(Gdx.files.internal("Sounds/crash2.mp3"));
-    public Sound death = Gdx.audio.newSound(Gdx.files.internal("Sounds/death.wav"));
-    public Sound jump = Gdx.audio.newSound(Gdx.files.internal("Sounds/jump2.ogg"));
-    public Sound pain = Gdx.audio.newSound(Gdx.files.internal("Sounds/pain1.mp3"));
+    public Sound coin = MainPixel.assetManager.get("Sounds/coin1.mp3",Sound.class);
+    public Sound crash = MainPixel.assetManager.get("Sounds/crash2.mp3",Sound.class);
+    public Sound death =MainPixel.assetManager.get("Sounds/death.mp3",Sound.class);
+    public Sound jump = MainPixel.assetManager.get("Sounds/jump2.mp3",Sound.class);
+    public Sound pain = MainPixel.assetManager.get("Sounds/pain1.mp3",Sound.class);
 
     public boolean isDeath=false;
 
@@ -69,6 +68,7 @@ public class GameScreen extends PixelGameScreen {
 
     public GameScreen(Game game,int level) {
         super(game,level);
+        MainPixel.assetManager.loadLevel(level);
         this.level = level;
         musicpath=levelData.getMusicpath();
         createBackground();
@@ -123,8 +123,7 @@ public class GameScreen extends PixelGameScreen {
     }}
 
     private void createBackground() {
-        bgTex = new Texture(Gdx.files.internal(JsonHandler.readLevel(level).getBackground()));
-        bgSpr = new Sprite(bgTex);
+        bgSpr = new Sprite(MainPixel.assetManager.get(JsonHandler.readLevel(level).getBackground(),Texture.class));
 
         // A fixed camera to draw the background (+ GUI!)
         fixedCam = new OrthographicCamera();
@@ -141,7 +140,7 @@ public class GameScreen extends PixelGameScreen {
         ObjectMap<String,Body> bodies = parser.getBodies();
         for (ObjectMap.Entry<String,Body> x : bodies){
             if(x.key.startsWith("crate")){
-                x.value.setUserData(new Box2DSprite(new Texture(Gdx.files.internal("obstacle.png"))));
+                x.value.setUserData(new Box2DSprite(MainPixel.assetManager.get("obstacle.png",Texture.class)));
                 for(Fixture fix: x.value.getFixtureList()){
                     fix.setSensor(true);
                     fix.setUserData("crate");
@@ -157,8 +156,8 @@ public class GameScreen extends PixelGameScreen {
         ObjectMap<String,Body> bodies = parser.getBodies();
         for (ObjectMap.Entry<String,Body> x : bodies){
             if(x.key.startsWith("orb")){
-                //x.value.setUserData(new Box2DSprite(new Texture(Gdx.files.internal("orb.png"))));
-                x.value.setUserData(AnimationUtil.createBox2DAnimation("orbs",20f,AnimationUtil.createTextureRegion("sprites/spriteSheet_collectible.png", 15, 1), Animation.PlayMode.LOOP));
+                //x.value.setUserData(new Box2DSprite(new Texture(MainPixel.assetManager.get("orb.png"))));
+                x.value.setUserData(MainPixel.assetManager.createBox2DAnimation("orbs",20f,MainPixel.assetManager.createTextureRegion("sprites/spriteSheet_collectible.png", 15, 1), Animation.PlayMode.LOOP));
                 orbCounter++;
             }
         }
@@ -243,10 +242,11 @@ public class GameScreen extends PixelGameScreen {
 //
 //        String stringtime = String.format("%02d:%02d:%02d:%d", hour, minute, second, millis);
 //        //System.out.println(stringtime);
-
-        checkCollectedOrbs();
-        breakAnim();
-        checkAnimFinished();
+        if(!world.isLocked()) {
+            checkCollectedOrbs();
+            breakAnim();
+            checkAnimFinished();
+        }
         checkMedalTime(TimeUtils.timeSinceMillis(time));
         checkPlayerFinished();
 
@@ -291,7 +291,7 @@ public class GameScreen extends PixelGameScreen {
 
         Array<Body> bodies = pixelContactListener.getCrates();
         for(Body crate : bodies) {
-            crate.setUserData(AnimationUtil.createBox2DAnimation("crates",AnimationUtil.createTextureRegion("sprites/spriteSheet_box.png",4,1), Animation.PlayMode.NORMAL));
+            crate.setUserData(MainPixel.assetManager.createBox2DAnimation("crates",MainPixel.assetManager.createTextureRegion("sprites/spriteSheet_box.png",4,1), Animation.PlayMode.NORMAL));
             playingAnimation.add(crate);
             crash.play();
             speedController.adjustSpeed(new Vector2(-(3/player.getPlayerData().getAbilityData(PlayerData.AbilityType.STRENGTH).getMultiplier()*Gdx.graphics.getDeltaTime()),0),5,0.1f);
@@ -312,15 +312,13 @@ public class GameScreen extends PixelGameScreen {
     private void checkAnimFinished(){
         for(Body crate : playingAnimation){
             AnimatedBox2DSprite anim = ((AnimatedBox2DSprite)crate.getUserData());
-            try {
+
                 if(anim.isAnimationFinished()){
                     world.destroyBody(crate);
                     playingAnimation.removeValue(crate,true);
                     pain.play();
                 }
-            }catch (Exception e){
 
-            }
 
         }
     }
@@ -356,6 +354,7 @@ public class GameScreen extends PixelGameScreen {
         music.stop();
         music.dispose();
         camera.dispose();
+        MainPixel.assetManager.unloadLevel(level);
         //player.dispose();
     }
     protected void startMusic() {

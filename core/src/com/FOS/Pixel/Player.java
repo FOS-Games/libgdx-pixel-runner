@@ -244,6 +244,7 @@ public class Player extends PlayerAnimatorHandler implements ISpeedController{
         if(anim!=state){
             switch (state){
                 case RUN:
+                   
                     setRunAnim();
                     anim=state;
                     break;
@@ -258,7 +259,7 @@ public class Player extends PlayerAnimatorHandler implements ISpeedController{
                     break;
             }
         }
-        if(anim == PLAYER_STATE.RUN){
+        if(anim == PLAYER_STATE.RUN&&state==PLAYER_STATE.RUN){
             ((AnimatedBox2DSprite)getBodyFixture().getUserData()).getAnimation().setFrameDuration((1/this.body.getLinearVelocity().x));
             ((AnimatedBox2DSprite)wingFixture.getUserData()).getAnimation().setFrameDuration((1/this.body.getLinearVelocity().x));
             ((AnimatedBox2DSprite)feetFixture.getUserData()).getAnimation().setFrameDuration((1/this.body.getLinearVelocity().x));
@@ -272,6 +273,10 @@ public class Player extends PlayerAnimatorHandler implements ISpeedController{
         }
         else if (anim==PLAYER_STATE.STUMBLE && ((AnimatedBox2DSprite)getBodyFixture().getUserData()).isAnimationFinished()){
             state=PLAYER_STATE.RUN;
+            ((AnimatedBox2DSprite)getBodyFixture().getUserData()).stop();
+            ((AnimatedBox2DSprite)wingFixture.getUserData()).stop();
+            ((AnimatedBox2DSprite)feetFixture.getUserData()).stop();
+            ((AnimatedBox2DSprite)weaponFixture.getUserData()).stop();
         }
     }
 

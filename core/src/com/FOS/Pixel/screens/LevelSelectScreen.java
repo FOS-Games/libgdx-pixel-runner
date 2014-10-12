@@ -1,5 +1,6 @@
 package com.FOS.Pixel.screens;
 
+import com.FOS.Pixel.MainPixel;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -59,6 +60,8 @@ public class LevelSelectScreen extends MenuScreen {
 
 
     public LevelSelectScreen(Game game) {
+        super();
+        MainPixel.assetManager.loadThumbnails();
         this.game = game;
     }
 
@@ -70,48 +73,48 @@ public class LevelSelectScreen extends MenuScreen {
         Gdx.input.setInputProcessor(stage);
 
         // Background
-        background = new Texture(Gdx.files.internal("ui/menuBackground.png"));
+        background = MainPixel.assetManager.get("ui/menuBackground.png",Texture.class);
         TextureRegion rBackground = new TextureRegion(background);
 
         // Default blue buttons
-        tBlueButton = new Texture(Gdx.files.internal("ui/blueButton.png"));
+        tBlueButton = MainPixel.assetManager.get("ui/blueButton.png",Texture.class);
         TextureRegion rBlueButton = new TextureRegion(tBlueButton);
 
-        tBlueButtonHover = new Texture(Gdx.files.internal("ui/blueButtonHover.png"));
+        tBlueButtonHover = MainPixel.assetManager.get("ui/blueButtonHover.png",Texture.class);
         TextureRegion rBlueButtonHover = new TextureRegion(tBlueButtonHover);
 
-        tBlueButtonPressed = new Texture(Gdx.files.internal("ui/blueButtonPressed.png"));
+        tBlueButtonPressed = MainPixel.assetManager.get("ui/blueButtonPressed.png",Texture.class);
         TextureRegion rBlueButtonPressed = new TextureRegion(tBlueButtonPressed);
 
 
         // 01_Grasslands thumbnail
-        tGrasslands = new Texture(Gdx.files.internal("maps/thumbnails/01_Grasslands.png"));
+        tGrasslands = MainPixel.assetManager.get("maps/thumbnails/01_Grasslands.png",Texture.class);
         TextureRegion rGrasslands = new TextureRegion(tGrasslands);
 
-        tGrasslandsHover = new Texture(Gdx.files.internal("maps/thumbnails/01_GrasslandsHover.png"));
+        tGrasslandsHover = MainPixel.assetManager.get("maps/thumbnails/01_GrasslandsHover.png",Texture.class);
         TextureRegion rGrasslandsHover = new TextureRegion(tGrasslandsHover);
 
-        tGrasslandsLocked = new Texture(Gdx.files.internal("maps/thumbnails/01_GrasslandsLocked.png"));
+        tGrasslandsLocked = MainPixel.assetManager.get("maps/thumbnails/01_GrasslandsLocked.png",Texture.class);
         TextureRegion rGrasslandsLocked = new TextureRegion(tGrasslandsLocked);
 
         // 02_Cave thumbnail
-        tCave = new Texture(Gdx.files.internal("maps/thumbnails/02_Cave.png"));
+        tCave = MainPixel.assetManager.get("maps/thumbnails/02_Cave.png",Texture.class);
         TextureRegion rCave = new TextureRegion(tCave);
 
-        tCaveHover = new Texture(Gdx.files.internal("maps/thumbnails/02_CaveHover.png"));
+        tCaveHover = MainPixel.assetManager.get("maps/thumbnails/02_CaveHover.png",Texture.class);
         TextureRegion rCaveHover = new TextureRegion(tCaveHover);
 
-        tCaveLocked = new Texture(Gdx.files.internal("maps/thumbnails/02_CaveLocked.png"));
+        tCaveLocked = MainPixel.assetManager.get("maps/thumbnails/02_CaveLocked.png",Texture.class);
         TextureRegion rCaveLocked = new TextureRegion(tCaveLocked);
 
         // 03_Sand thumbnail
-        tSand = new Texture(Gdx.files.internal("maps/thumbnails/03_Sand.png"));
+        tSand = MainPixel.assetManager.get("maps/thumbnails/03_Sand.png",Texture.class);
         TextureRegion rSand= new TextureRegion(tSand);
 
-        tSandHover = new Texture(Gdx.files.internal("maps/thumbnails/03_SandHover.png"));
+        tSandHover = MainPixel.assetManager.get("maps/thumbnails/03_SandHover.png",Texture.class);
         TextureRegion rSandHover = new TextureRegion(tSandHover);
 
-        tSandLocked = new Texture(Gdx.files.internal("maps/thumbnails/03_SandHover.png"));
+        tSandLocked = MainPixel.assetManager.get("maps/thumbnails/03_SandHover.png",Texture.class);
         TextureRegion rSandLocked = new TextureRegion(tSandLocked);
 
 

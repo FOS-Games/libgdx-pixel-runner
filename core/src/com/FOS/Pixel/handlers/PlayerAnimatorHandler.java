@@ -1,10 +1,10 @@
 package com.FOS.Pixel.handlers;
 
 
-import com.FOS.Pixel.AnimationUtil;
 import com.FOS.Pixel.Data.AbilityData;
 import com.FOS.Pixel.Data.PlayerData;
 import com.FOS.Pixel.Data.PlayerData.AbilityType;
+import com.FOS.Pixel.MainPixel;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
@@ -48,9 +48,6 @@ public abstract class PlayerAnimatorHandler {
         skinTypeStringOrderedMap.put(PlayerData.SkinType.ORC,new String[]{"sprites/spriteSheet_player.png","sprites/spriteSheet_player.png","sprites/spriteSheet_player.png"});
         skinTypeStringOrderedMap.put(PlayerData.SkinType.ELF,new String[]{"sprites/spriteSheet_player.png","sprites/spriteSheet_player.png","sprites/spriteSheet_player.png"});
 
-        abilitydata.put(AbilityType.JUMP,Data.getAbilityData(AbilityType.JUMP));
-        abilitydata.put(AbilityType.SPEED,Data.getAbilityData(AbilityType.SPEED));
-        abilitydata.put(AbilityType.STRENGTH,Data.getAbilityData(AbilityType.STRENGTH));
     }
 
 
@@ -59,6 +56,9 @@ public abstract class PlayerAnimatorHandler {
         this.Data = getPlayerData();
         System.out.println(Data.toString());
 
+        abilitydata.put(AbilityType.JUMP,Data.getAbilityData(AbilityType.JUMP));
+        abilitydata.put(AbilityType.SPEED,Data.getAbilityData(AbilityType.SPEED));
+        abilitydata.put(AbilityType.STRENGTH,Data.getAbilityData(AbilityType.STRENGTH));
         setRunAnim();
 
 
@@ -68,12 +68,13 @@ public abstract class PlayerAnimatorHandler {
         Fixture bodyFixture = getBodyFixture();
 
         for(AbilityType type : fixtureOrderedMap.keys()){
+
             String texturepath =abilitydata.get(type).getTexturename();
 
-            fixtureOrderedMap.get(type).setUserData(AnimationUtil.createBox2DAnimation("run"+type.toString(),AnimationUtil.createTextureRegion(texturepath, COLUMNS, ROWS, 0, 3), Animation.PlayMode.LOOP));
+            fixtureOrderedMap.get(type).setUserData(MainPixel.assetManager.getAnimation("run"+type.toString()+Data.getSpeedLevel()));
         }
 
-        AnimatedBox2DSprite anim= AnimationUtil.createBox2DAnimation("runBody",AnimationUtil.createTextureRegion(skinTypeStringOrderedMap.get(Data.getSkinType())[Data.getPhase()], COLUMNS, ROWS, 0, 3), Animation.PlayMode.LOOP);
+        AnimatedBox2DSprite anim= MainPixel.assetManager.getAnimation("runBody");
         bodyFixture.setUserData(anim);
     }
 
@@ -83,10 +84,11 @@ public abstract class PlayerAnimatorHandler {
 
         for(AbilityType type : fixtureOrderedMap.keys()){
             String texturepath =abilitydata.get(type).getTexturename();
-            fixtureOrderedMap.get(type).setUserData(AnimationUtil.createBox2DAnimation("jump"+type.toString(),AnimationUtil.createTextureRegion(texturepath, COLUMNS, ROWS, 4, 5), Animation.PlayMode.NORMAL));
+            fixtureOrderedMap.get(type).setUserData(MainPixel.assetManager.getAnimation("jump"+type.toString()+Data.getSpeedLevel()));
         }
 
-        AnimatedBox2DSprite anim= AnimationUtil.createBox2DAnimation("jumpBody",AnimationUtil.createTextureRegion(skinTypeStringOrderedMap.get(Data.getSkinType())[Data.getPhase()], COLUMNS, ROWS, 4, 5), Animation.PlayMode.NORMAL);
+
+        AnimatedBox2DSprite anim= MainPixel.assetManager.getAnimation("jumpBody");
         bodyFixture.setUserData(anim);
     }
 
@@ -96,12 +98,15 @@ public abstract class PlayerAnimatorHandler {
 
         for(AbilityType type : fixtureOrderedMap.keys()){
             String texturepath =abilitydata.get(type).getTexturename();
-            fixtureOrderedMap.get(type).setUserData(AnimationUtil.createBox2DAnimation("jump"+type.toString(),AnimationUtil.createTextureRegion(texturepath, COLUMNS, ROWS, 6, 10), Animation.PlayMode.NORMAL));
+            AnimatedBox2DSprite animatedBox2DSprite1 = MainPixel.assetManager.getAnimation("stumble"+type.toString()+Data.getSpeedLevel());
+            fixtureOrderedMap.get(type).setUserData(animatedBox2DSprite1);
+            animatedBox2DSprite1.play();
         }
 
-        AnimatedBox2DSprite anim= AnimationUtil.createBox2DAnimation("stumbleBody",AnimationUtil.createTextureRegion(skinTypeStringOrderedMap.get(Data.getSkinType())[Data.getPhase()], COLUMNS, ROWS, 6, 10), Animation.PlayMode.NORMAL);
+        AnimatedBox2DSprite anim= MainPixel.assetManager.getAnimation("stumbleBody");
 
         bodyFixture.setUserData(anim);
+        anim.play();
     }
     public abstract PlayerData getPlayerData();
     protected abstract OrderedMap<AbilityType,Fixture> getFixtures();

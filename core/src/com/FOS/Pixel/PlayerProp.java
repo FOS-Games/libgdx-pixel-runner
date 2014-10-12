@@ -50,17 +50,17 @@ public class PlayerProp extends PlayerAnimatorHandler {
     Fixture wingFixture;
     Fixture weaponFixture;
 
-    GameScreen gameScreen;
+
     PlayerData playerData;
 
     PLAYER_STATE state;
     PLAYER_STATE anim;
 
     // GameScreen gameScreen
-    public PlayerProp(GameScreen gameScreen) {
+    public PlayerProp() {
         super();
-        this.world = new World(new Vector2(0,9.81f),false);
-        this.gameScreen = gameScreen;
+        this.world = new World(new Vector2(0,9.81f),true);
+
 
         playerData = SaveHandler.getSaveData().getPlayerData();
 
