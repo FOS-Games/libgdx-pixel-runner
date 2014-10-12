@@ -262,7 +262,7 @@ public class PlayerCamera extends OrthographicCamera implements ISpeedController
             stepcount = steps + 1;
         }else if(adjustWith.x<0) {
             stepcount = steps +2;
-            seconds++;
+           // seconds++;
         }else{
             stepcount=steps;
         }
@@ -291,7 +291,7 @@ public class PlayerCamera extends OrthographicCamera implements ISpeedController
             stepcount = steps + 1;
         }else if(adjustWith.x<0) {
             stepcount = steps + 2;
-            seconds++;
+           // seconds++;
         }else{
             stepcount=steps;
         }

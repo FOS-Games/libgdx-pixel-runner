@@ -71,7 +71,7 @@ public abstract class PlayerAnimatorHandler {
 
             String texturepath =abilitydata.get(type).getTexturename();
 
-            fixtureOrderedMap.get(type).setUserData(MainPixel.assetManager.getAnimation("run"+type.toString()+Data.getSpeedLevel()));
+            fixtureOrderedMap.get(type).setUserData(MainPixel.assetManager.getAnimation("run"+type.toString()+getTypeLevel(type)));
         }
 
         AnimatedBox2DSprite anim= MainPixel.assetManager.getAnimation("runBody");
@@ -84,12 +84,20 @@ public abstract class PlayerAnimatorHandler {
 
         for(AbilityType type : fixtureOrderedMap.keys()){
             String texturepath =abilitydata.get(type).getTexturename();
-            fixtureOrderedMap.get(type).setUserData(MainPixel.assetManager.getAnimation("jump"+type.toString()+Data.getSpeedLevel()));
+            fixtureOrderedMap.get(type).setUserData(MainPixel.assetManager.getAnimation("jump"+type.toString()+getTypeLevel(type)));
         }
 
 
         AnimatedBox2DSprite anim= MainPixel.assetManager.getAnimation("jumpBody");
         bodyFixture.setUserData(anim);
+    }
+    private int getTypeLevel(AbilityType type){
+        switch (type){
+            case JUMP: return Data.getAgilityLevel();
+            case SPEED: return Data.getSpeedLevel();
+            case STRENGTH: return Data.getStrengthLevel();
+            default: return 0;
+        }
     }
 
     protected void setStumbleAnim(){
@@ -98,7 +106,7 @@ public abstract class PlayerAnimatorHandler {
 
         for(AbilityType type : fixtureOrderedMap.keys()){
             String texturepath =abilitydata.get(type).getTexturename();
-            AnimatedBox2DSprite animatedBox2DSprite1 = MainPixel.assetManager.getAnimation("stumble"+type.toString()+Data.getSpeedLevel());
+            AnimatedBox2DSprite animatedBox2DSprite1 = MainPixel.assetManager.getAnimation("stumble"+type.toString()+getTypeLevel(type));
             fixtureOrderedMap.get(type).setUserData(animatedBox2DSprite1);
             animatedBox2DSprite1.play();
         }
