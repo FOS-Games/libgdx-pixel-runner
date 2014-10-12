@@ -68,7 +68,7 @@ public class SettingsScreen extends MenuScreen{
         Pixmap pixmap = new Pixmap(1, 1, Pixmap.Format.RGBA8888);
         pixmap.setColor(Color.WHITE);
         pixmap.fill();
-        skin.add("white", pixmap);
+        skin.add("white", new Texture(pixmap));
 
         skin.add("default", new BitmapFont());
         // Create ability font
