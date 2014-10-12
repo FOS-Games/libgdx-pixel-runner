@@ -273,10 +273,6 @@ public class Player extends PlayerAnimatorHandler implements ISpeedController{
         }
         else if (anim==PLAYER_STATE.STUMBLE && ((AnimatedBox2DSprite)getBodyFixture().getUserData()).isAnimationFinished()){
             state=PLAYER_STATE.RUN;
-            ((AnimatedBox2DSprite)getBodyFixture().getUserData()).stop();
-            ((AnimatedBox2DSprite)wingFixture.getUserData()).stop();
-            ((AnimatedBox2DSprite)feetFixture.getUserData()).stop();
-            ((AnimatedBox2DSprite)weaponFixture.getUserData()).stop();
         }
     }
 

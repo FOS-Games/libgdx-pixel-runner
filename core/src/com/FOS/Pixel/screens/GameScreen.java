@@ -157,7 +157,7 @@ public class GameScreen extends PixelGameScreen {
         for (ObjectMap.Entry<String,Body> x : bodies){
             if(x.key.startsWith("orb")){
                 //x.value.setUserData(new Box2DSprite(new Texture(MainPixel.assetManager.get("orb.png"))));
-                x.value.setUserData(MainPixel.assetManager.createBox2DAnimation("orbs",20f,MainPixel.assetManager.createTextureRegion("sprites/spriteSheet_collectible.png", 15, 1), Animation.PlayMode.LOOP));
+                x.value.setUserData(MainPixel.assetManager.getAnimation("orbs"));
                 orbCounter++;
             }
         }
@@ -291,10 +291,10 @@ public class GameScreen extends PixelGameScreen {
 
         Array<Body> bodies = pixelContactListener.getCrates();
         for(Body crate : bodies) {
-            crate.setUserData(MainPixel.assetManager.createBox2DAnimation("crates",MainPixel.assetManager.createTextureRegion("sprites/spriteSheet_box.png",4,1), Animation.PlayMode.NORMAL));
+            crate.setUserData(MainPixel.assetManager.getAnimation("crates"));
             playingAnimation.add(crate);
             crash.play();
-            speedController.adjustSpeed(new Vector2(-(3/player.getPlayerData().getAbilityData(PlayerData.AbilityType.STRENGTH).getMultiplier()*Gdx.graphics.getDeltaTime()),0),5,0.1f);
+            speedController.adjustSpeed(new Vector2(-(2/player.getPlayerData().getAbilityData(PlayerData.AbilityType.STRENGTH).getMultiplier()),0),5,0.1f);
 //            final Timer speedup = new Timer();
 //            speedup.scheduleTask(new Timer.Task() {
 //                @Override

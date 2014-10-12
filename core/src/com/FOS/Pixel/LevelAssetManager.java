@@ -126,7 +126,7 @@ public class LevelAssetManager extends AssetManager {
         this.load("obstacle.png", Texture.class);
         this.load("sprites/spriteSheet_box.png",Texture.class);
         finishLoading();
-        createBox2DAnimation("crates",20f,createTextureRegion("sprites/spriteSheet_box.png",4,1), Animation.PlayMode.NORMAL);
+        createBox2DAnimation("crates",createTextureRegion("sprites/spriteSheet_box.png",4,1), Animation.PlayMode.NORMAL);
 
 
     }
@@ -363,7 +363,10 @@ public class LevelAssetManager extends AssetManager {
     }
 
     public AnimatedBox2DSprite getAnimation(String name){
-        return Box2dAnims.get(name);
+        AnimatedBox2DSprite anim = Box2dAnims.get(name);
+        anim.stop();
+        anim.play();
+        return anim;
     }
 
     /**

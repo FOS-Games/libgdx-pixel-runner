@@ -106,7 +106,6 @@ public abstract class PlayerAnimatorHandler {
         AnimatedBox2DSprite anim= MainPixel.assetManager.getAnimation("stumbleBody");
 
         bodyFixture.setUserData(anim);
-        anim.play();
     }
     public abstract PlayerData getPlayerData();
     protected abstract OrderedMap<AbilityType,Fixture> getFixtures();

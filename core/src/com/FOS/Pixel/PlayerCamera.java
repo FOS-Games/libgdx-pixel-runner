@@ -215,13 +215,18 @@ public class PlayerCamera extends OrthographicCamera implements ISpeedController
 //        System.out.println("Player x = "+playerx+", Camera x = "+camerax+" || "+(playerx == camerax));
 
         if(!isAdjusting){
-            if(this.body.getPosition().x<player.getBody().getPosition().x){
-                this.body.setTransform(this.body.getPosition().x+0.01f,this.body.getPosition().y,this.body.getAngle());
-            }else if(this.body.getPosition().x>player.getBody().getPosition().x) {
-                this.body.setTransform(this.body.getPosition().x - 0.01f, this.body.getPosition().y, this.body.getAngle());
-            }else{
+//            if(this.body.getPosition().x<player.getBody().getPosition().x){
+//                System.out.println("impuls plus");
+////                this.body.setTransform(this.body.getPosition().x+0.1f,this.body.getPosition().y,this.body.getAngle());
+//                this.body.applyLinearImpulse(new Vector2(1,0),this.body.getPosition(),true);
+//            }else if(this.body.getPosition().x>player.getBody().getPosition().x) {
+//                System.out.println("impuls min");
+////                this.body.setTransform(this.body.getPosition().x - 0.1f, this.body.getPosition().y, this.body.getAngle());
+//                this.body.applyLinearImpulse(new Vector2(-1,0),this.body.getPosition(),true);
+//
+//            }else{
                 this.body.setTransform(player.getBody().getPosition(),this.body.getAngle());
-            }
+//            }
         }
         if(camerax==playerx && isSearching && isAdjusting){
             minVelocity = player.minVelocity;
@@ -256,7 +261,7 @@ public class PlayerCamera extends OrthographicCamera implements ISpeedController
         if(adjustWith.x>0) {
             stepcount = steps + 1;
         }else if(adjustWith.x<0) {
-            stepcount = steps + 5;
+            stepcount = steps +2;
             seconds++;
         }else{
             stepcount=steps;
@@ -272,7 +277,7 @@ public class PlayerCamera extends OrthographicCamera implements ISpeedController
                 body.setLinearVelocity(body.getLinearVelocity().add(incrsteps));
                 minVelocity += incrsteps.x;
             }
-        },seconds,seconds,stepcount);
+        },seconds,seconds,stepcount+2);
 
     }
 
@@ -285,7 +290,7 @@ public class PlayerCamera extends OrthographicCamera implements ISpeedController
         if(adjustWith.x>0) {
             stepcount = steps + 1;
         }else if(adjustWith.x<0) {
-            stepcount = steps + 5;
+            stepcount = steps + 2;
             seconds++;
         }else{
             stepcount=steps;
@@ -300,6 +305,6 @@ public class PlayerCamera extends OrthographicCamera implements ISpeedController
                 body.setLinearVelocity(body.getLinearVelocity().add(incrsteps));
                 minVelocity += incrsteps.x;
             }
-        },seconds,seconds,stepcount);
+        },seconds,seconds,stepcount+2);
     }
 }
