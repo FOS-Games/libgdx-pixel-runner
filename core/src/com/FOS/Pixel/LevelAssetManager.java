@@ -33,6 +33,13 @@ public class LevelAssetManager extends AssetManager {
         this.load("Sounds/pain1.mp3",Sound.class);
         finishLoading();
     }
+    public void unloadSounds(){
+        this.unload("Sounds/coin1.mp3");
+        this.unload("Sounds/crash2.mp3");
+        this.unload("Sounds/death.mp3");
+        this.unload("Sounds/jump2.mp3");
+        this.unload("Sounds/pain1.mp3");
+    }
 
     public void loadGUIAssets(){
         loadGUIButtons();

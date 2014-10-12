@@ -46,7 +46,7 @@ public class GameScreen extends PixelGameScreen {
     boolean bronze=true;
     private Array<Body> playingAnimation = new Array<Body>();
     public int orbs = 0;
-    SpeedController speedController = new SpeedController();
+    public SpeedController speedController = new SpeedController();
 
     private AssetManager assetManager;
     private Music music;
@@ -255,6 +255,7 @@ public class GameScreen extends PixelGameScreen {
     private void checkPlayerFinished() {
         if(player.getBody().getPosition().x>finish.x){
             System.out.println("!!!!!!!!!!!!!!!!FINISH!!!!!!!!!!!!!");
+            camera.finish();
         }
     }
 
@@ -345,17 +346,12 @@ public class GameScreen extends PixelGameScreen {
         death.stop();
         jump.stop();
         pain.stop();
-        coin.dispose();
-        crash.dispose();
-        death.dispose();
-        jump.dispose();
-        pain.dispose();
 
         music.stop();
         music.dispose();
         camera.dispose();
         MainPixel.assetManager.unloadLevel(level);
-        //player.dispose();
+        MainPixel.assetManager.unloadSounds();
     }
     protected void startMusic() {
         if (assetManager.isLoaded(musicpath)){

@@ -34,6 +34,7 @@ public class PlayerCamera extends OrthographicCamera implements ISpeedController
     private Player player;
     private boolean isSearching = false;
     private boolean isAdjusting = false;
+    private boolean needsBoost = false;
 
     public Vector2 velocity;
     public float minVelocity;
@@ -159,6 +160,11 @@ public class PlayerCamera extends OrthographicCamera implements ISpeedController
         stage.dispose();
     }
 
+    public void finish(){
+        finishdialog.show(stage);
+        player.getBody().setLinearVelocity(0,0);
+        body.setLinearVelocity(0,0);
+    }
     public void render(float delta) {
         stage.act(delta);
         stage.draw();
@@ -235,6 +241,18 @@ public class PlayerCamera extends OrthographicCamera implements ISpeedController
             isSearching=false;
             isAdjusting=false;
         }
+        if(camerax==playerx && !isSearching && !isAdjusting && needsBoost){
+            System.out.println("!!!!!!!!!!!!BOOST!!!!!!!!!!!!!!!!");
+            needsBoost=false;
+            final Timer timer = new Timer();
+            timer.scheduleTask(new Timer.Task() {
+                @Override
+                public void run() {
+                    gameScreen.speedController.adjustSpeed(new Vector2(2,0),3);
+                    timer.stop();
+                }
+            },2);
+        }
 
         boolean outofrange = this.body.getPosition().x > player.getBody().getPosition().x+0.15 || this.body.getPosition().x < player.getBody().getPosition().x-0.15;
         if (outofrange && !isSearching){
@@ -256,13 +274,16 @@ public class PlayerCamera extends OrthographicCamera implements ISpeedController
     @Override
     public void adjustSpeed(Vector2 adjustWith, int steps) {
         isAdjusting=true;
+        if(!needsBoost){
+            needsBoost = true;
+        }
         float seconds = 1;
         int stepcount;
         if(adjustWith.x>0) {
             stepcount = steps + 1;
         }else if(adjustWith.x<0) {
             stepcount = steps +2;
-            seconds+=0.5f;
+            seconds+=0.2f;
         }else{
             stepcount=steps;
         }
@@ -286,12 +307,15 @@ public class PlayerCamera extends OrthographicCamera implements ISpeedController
     @Override
     public void adjustSpeed(Vector2 adjustWith, int steps, float seconds) {
         isAdjusting=true;
+        if(!needsBoost){
+            needsBoost = true;
+        }
         int stepcount;
         if(adjustWith.x>0) {
             stepcount = steps + 1;
         }else if(adjustWith.x<0) {
             stepcount = steps + 2;
-            seconds+=0.5f;
+            seconds+=0.2f;
         }else{
             stepcount=steps;
         }
