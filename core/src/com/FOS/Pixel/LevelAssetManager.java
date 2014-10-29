@@ -381,8 +381,9 @@ public class LevelAssetManager extends AssetManager {
      */
     @Override
     public synchronized void dispose() {
-        super.dispose();
+
         Box2dAnims.clear();
         TextureRegions.clear();
+        super.dispose();
     }
 }

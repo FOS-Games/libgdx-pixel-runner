@@ -314,8 +314,14 @@ public class GameScreen extends PixelGameScreen {
         for(Body crate : playingAnimation){
             AnimatedBox2DSprite anim = ((AnimatedBox2DSprite)crate.getUserData());
 
-                if(anim.isAnimationFinished()){
-                    world.destroyBody(crate);
+                if(anim.isAnimationFinished()&&crate.isActive()){
+
+                    try {
+                        world.destroyBody(crate);
+                    }
+                    catch (Exception e){
+
+                    }
                     playingAnimation.removeValue(crate,true);
                     pain.play();
                 }

@@ -25,7 +25,7 @@ public class MainPixel extends Game {
 
     @Override
     public void dispose() {
-        super.dispose();
         assetManager.dispose();
+        super.dispose();
     }
 }
