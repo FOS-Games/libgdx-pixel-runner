@@ -53,6 +53,7 @@ public class PlayerCamera extends OrthographicCamera implements ISpeedController
 
     float viewportW;
     float viewportH;
+    Game game;
 
 
     public PlayerCamera(GameScreen gameScreen, Vector2 spawn, float viewportWidth, float viewportHeight){
@@ -67,6 +68,7 @@ public class PlayerCamera extends OrthographicCamera implements ISpeedController
         ymax = ymin + 6f;
         createBody();
         createStage();
+        game = gameScreen.game;
     }
 
     private void createBody(){
@@ -87,13 +89,13 @@ public class PlayerCamera extends OrthographicCamera implements ISpeedController
         stage = new Stage(new StretchViewport(800, 480));
         Gdx.input.setInputProcessor(stage);
 
-        tBlueButton = MainPixel.assetManager.get("ui/blueButton.png",Texture.class);
+        tBlueButton = ((MainPixel)game).assetManager.get("ui/blueButton.png",Texture.class);
         TextureRegion rBlueButton = new TextureRegion(tBlueButton);
 
-        tBlueButtonHover =MainPixel.assetManager.get("ui/blueButtonHover.png",Texture.class);
+        tBlueButtonHover =((MainPixel)game).assetManager.get("ui/blueButtonHover.png",Texture.class);
         TextureRegion rBlueButtonHover = new TextureRegion(tBlueButtonHover);
 
-        tBlueButtonPressed =MainPixel.assetManager.get("ui/blueButtonPressed.png",Texture.class);
+        tBlueButtonPressed =((MainPixel)game).assetManager.get("ui/blueButtonPressed.png",Texture.class);
         TextureRegion rBlueButtonPressed = new TextureRegion(tBlueButtonPressed);
 
         skin = new Skin();
@@ -251,7 +253,7 @@ public class PlayerCamera extends OrthographicCamera implements ISpeedController
                     gameScreen.speedController.adjustSpeed(new Vector2(2,0),3);
                     timer.stop();
                 }
-            },2);
+            },2,0,0);
         }
 
         boolean outofrange = this.body.getPosition().x > player.getBody().getPosition().x+0.15 || this.body.getPosition().x < player.getBody().getPosition().x-0.15;
@@ -274,9 +276,7 @@ public class PlayerCamera extends OrthographicCamera implements ISpeedController
     @Override
     public void adjustSpeed(Vector2 adjustWith, int steps) {
         isAdjusting=true;
-        if(!needsBoost){
-            needsBoost = true;
-        }
+
         float seconds = 1;
         int stepcount;
         if(adjustWith.x>0) {
@@ -284,6 +284,9 @@ public class PlayerCamera extends OrthographicCamera implements ISpeedController
         }else if(adjustWith.x<0) {
             stepcount = steps +2;
             seconds+=0.2f;
+            if(!needsBoost){
+                needsBoost = true;
+            }
         }else{
             stepcount=steps;
         }
@@ -307,15 +310,16 @@ public class PlayerCamera extends OrthographicCamera implements ISpeedController
     @Override
     public void adjustSpeed(Vector2 adjustWith, int steps, float seconds) {
         isAdjusting=true;
-        if(!needsBoost){
-            needsBoost = true;
-        }
+
         int stepcount;
         if(adjustWith.x>0) {
             stepcount = steps + 1;
         }else if(adjustWith.x<0) {
             stepcount = steps + 2;
             seconds+=0.2f;
+            if(!needsBoost){
+                needsBoost = true;
+            }
         }else{
             stepcount=steps;
         }

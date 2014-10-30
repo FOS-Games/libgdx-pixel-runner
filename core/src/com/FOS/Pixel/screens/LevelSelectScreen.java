@@ -60,8 +60,8 @@ public class LevelSelectScreen extends MenuScreen {
 
 
     public LevelSelectScreen(Game game) {
-        super();
-        MainPixel.assetManager.loadThumbnails();
+        super(game);
+        ((MainPixel)game).assetManager.loadThumbnails();
         this.game = game;
     }
 
@@ -73,48 +73,48 @@ public class LevelSelectScreen extends MenuScreen {
         Gdx.input.setInputProcessor(stage);
 
         // Background
-        background = MainPixel.assetManager.get("ui/menuBackground.png",Texture.class);
+        background = ((MainPixel)game).assetManager.get("ui/menuBackground.png",Texture.class);
         TextureRegion rBackground = new TextureRegion(background);
 
         // Default blue buttons
-        tBlueButton = MainPixel.assetManager.get("ui/blueButton.png",Texture.class);
+        tBlueButton = ((MainPixel)game).assetManager.get("ui/blueButton.png",Texture.class);
         TextureRegion rBlueButton = new TextureRegion(tBlueButton);
 
-        tBlueButtonHover = MainPixel.assetManager.get("ui/blueButtonHover.png",Texture.class);
+        tBlueButtonHover = ((MainPixel)game).assetManager.get("ui/blueButtonHover.png",Texture.class);
         TextureRegion rBlueButtonHover = new TextureRegion(tBlueButtonHover);
 
-        tBlueButtonPressed = MainPixel.assetManager.get("ui/blueButtonPressed.png",Texture.class);
+        tBlueButtonPressed = ((MainPixel)game).assetManager.get("ui/blueButtonPressed.png",Texture.class);
         TextureRegion rBlueButtonPressed = new TextureRegion(tBlueButtonPressed);
 
 
         // 01_Grasslands thumbnail
-        tGrasslands = MainPixel.assetManager.get("maps/thumbnails/01_Grasslands.png",Texture.class);
+        tGrasslands = ((MainPixel)game).assetManager.get("maps/thumbnails/01_Grasslands.png",Texture.class);
         TextureRegion rGrasslands = new TextureRegion(tGrasslands);
 
-        tGrasslandsHover = MainPixel.assetManager.get("maps/thumbnails/01_GrasslandsHover.png",Texture.class);
+        tGrasslandsHover = ((MainPixel)game).assetManager.get("maps/thumbnails/01_GrasslandsHover.png",Texture.class);
         TextureRegion rGrasslandsHover = new TextureRegion(tGrasslandsHover);
 
-        tGrasslandsLocked = MainPixel.assetManager.get("maps/thumbnails/01_GrasslandsLocked.png",Texture.class);
+        tGrasslandsLocked = ((MainPixel)game).assetManager.get("maps/thumbnails/01_GrasslandsLocked.png",Texture.class);
         TextureRegion rGrasslandsLocked = new TextureRegion(tGrasslandsLocked);
 
         // 02_Cave thumbnail
-        tCave = MainPixel.assetManager.get("maps/thumbnails/02_Cave.png",Texture.class);
+        tCave = ((MainPixel)game).assetManager.get("maps/thumbnails/02_Cave.png",Texture.class);
         TextureRegion rCave = new TextureRegion(tCave);
 
-        tCaveHover = MainPixel.assetManager.get("maps/thumbnails/02_CaveHover.png",Texture.class);
+        tCaveHover = ((MainPixel)game).assetManager.get("maps/thumbnails/02_CaveHover.png",Texture.class);
         TextureRegion rCaveHover = new TextureRegion(tCaveHover);
 
-        tCaveLocked = MainPixel.assetManager.get("maps/thumbnails/02_CaveLocked.png",Texture.class);
+        tCaveLocked = ((MainPixel)game).assetManager.get("maps/thumbnails/02_CaveLocked.png",Texture.class);
         TextureRegion rCaveLocked = new TextureRegion(tCaveLocked);
 
         // 03_Sand thumbnail
-        tSand = MainPixel.assetManager.get("maps/thumbnails/03_Sand.png",Texture.class);
+        tSand = ((MainPixel)game).assetManager.get("maps/thumbnails/03_Sand.png",Texture.class);
         TextureRegion rSand= new TextureRegion(tSand);
 
-        tSandHover = MainPixel.assetManager.get("maps/thumbnails/03_SandHover.png",Texture.class);
+        tSandHover = ((MainPixel)game).assetManager.get("maps/thumbnails/03_SandHover.png",Texture.class);
         TextureRegion rSandHover = new TextureRegion(tSandHover);
 
-        tSandLocked = MainPixel.assetManager.get("maps/thumbnails/03_SandHover.png",Texture.class);
+        tSandLocked = ((MainPixel)game).assetManager.get("maps/thumbnails/03_SandHover.png",Texture.class);
         TextureRegion rSandLocked = new TextureRegion(tSandLocked);
 
 

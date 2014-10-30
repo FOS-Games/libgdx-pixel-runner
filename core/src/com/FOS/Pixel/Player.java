@@ -56,7 +56,7 @@ public class Player extends PlayerAnimatorHandler implements ISpeedController{
     PLAYER_STATE anim;
 
     public Player(GameScreen gameScreen, Vector2 spawn) {
-        super();
+        super(gameScreen.game);
         this.world = gameScreen.getWorld();
         this.spawnpoint = spawn;
         this.gameScreen = gameScreen;

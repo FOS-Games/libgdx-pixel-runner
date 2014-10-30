@@ -51,7 +51,7 @@ public class MainMenuScreen extends MenuScreen {
     private Music music;
 
     public MainMenuScreen(Game game) {
-        super();
+        super(game);
         this.game = game;
     }
 
@@ -68,19 +68,19 @@ public class MainMenuScreen extends MenuScreen {
 
 
 
-        tBlueButton = MainPixel.assetManager.get("ui/blueButton.png",Texture.class);
+        tBlueButton = ((MainPixel)game).assetManager.get("ui/blueButton.png",Texture.class);
         TextureRegion rBlueButton = new TextureRegion(tBlueButton);
 
-        tBlueButtonHover = MainPixel.assetManager.get("ui/blueButtonHover.png",Texture.class);
+        tBlueButtonHover = ((MainPixel)game).assetManager.get("ui/blueButtonHover.png",Texture.class);
         TextureRegion rBlueButtonHover = new TextureRegion(tBlueButtonHover);
 
-        tBlueButtonPressed = MainPixel.assetManager.get("ui/blueButtonPressed.png",Texture.class);
+        tBlueButtonPressed = ((MainPixel)game).assetManager.get("ui/blueButtonPressed.png",Texture.class);
         TextureRegion rBlueButtonPressed = new TextureRegion(tBlueButtonPressed);
 
-        background = MainPixel.assetManager.get("ui/menuBackground.png",Texture.class);
+        background = ((MainPixel)game).assetManager.get("ui/menuBackground.png",Texture.class);
         TextureRegion rBackground = new TextureRegion(background);
 
-        logo = MainPixel.assetManager.get("ui/logoBig.png",Texture.class);
+        logo = ((MainPixel)game).assetManager.get("ui/logoBig.png",Texture.class);
         TextureRegion rLogo = new TextureRegion(logo);
 
         Image iLogo = new Image(new TextureRegionDrawable(rLogo));
@@ -145,7 +145,7 @@ public class MainMenuScreen extends MenuScreen {
         bExit.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                Gdx.app.exit();
+                ((MainPixel)game).stopGame();
             }
         });
 

@@ -5,6 +5,8 @@ import com.FOS.Pixel.Data.AbilityData;
 import com.FOS.Pixel.Data.PlayerData;
 import com.FOS.Pixel.Data.PlayerData.AbilityType;
 import com.FOS.Pixel.MainPixel;
+import com.FOS.Pixel.screens.GameScreen;
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
@@ -39,11 +41,12 @@ public abstract class PlayerAnimatorHandler {
 
     private OrderedMap<PlayerData.SkinType,String[]> skinTypeStringOrderedMap = new OrderedMap<PlayerData.SkinType, String[]>();
     PlayerData Data;
+    Game game;
 
     OrderedMap<AbilityType,AbilityData> abilitydata = new OrderedMap<AbilityType, AbilityData>();
 
-    protected PlayerAnimatorHandler(){
-
+    protected PlayerAnimatorHandler(Game game){
+        this.game=game;
         skinTypeStringOrderedMap.put(PlayerData.SkinType.HUMAN,new String[]{"sprites/spriteSheet_player.png","sprites/spriteSheet_player.png","sprites/spriteSheet_player.png"});
         skinTypeStringOrderedMap.put(PlayerData.SkinType.ORC,new String[]{"sprites/spriteSheet_player.png","sprites/spriteSheet_player.png","sprites/spriteSheet_player.png"});
         skinTypeStringOrderedMap.put(PlayerData.SkinType.ELF,new String[]{"sprites/spriteSheet_player.png","sprites/spriteSheet_player.png","sprites/spriteSheet_player.png"});
@@ -71,10 +74,10 @@ public abstract class PlayerAnimatorHandler {
 
             String texturepath =abilitydata.get(type).getTexturename();
 
-            fixtureOrderedMap.get(type).setUserData(MainPixel.assetManager.getAnimation("run"+type.toString()+getTypeLevel(type)));
+            fixtureOrderedMap.get(type).setUserData(((MainPixel)game).assetManager.getAnimation("run"+type.toString()+getTypeLevel(type)));
         }
 
-        AnimatedBox2DSprite anim= MainPixel.assetManager.getAnimation("runBody");
+        AnimatedBox2DSprite anim= ((MainPixel)game).assetManager.getAnimation("runBody");
         bodyFixture.setUserData(anim);
     }
 
@@ -84,11 +87,11 @@ public abstract class PlayerAnimatorHandler {
 
         for(AbilityType type : fixtureOrderedMap.keys()){
             String texturepath =abilitydata.get(type).getTexturename();
-            fixtureOrderedMap.get(type).setUserData(MainPixel.assetManager.getAnimation("jump"+type.toString()+getTypeLevel(type)));
+            fixtureOrderedMap.get(type).setUserData(((MainPixel)game).assetManager.getAnimation("jump"+type.toString()+getTypeLevel(type)));
         }
 
 
-        AnimatedBox2DSprite anim= MainPixel.assetManager.getAnimation("jumpBody");
+        AnimatedBox2DSprite anim= ((MainPixel)game).assetManager.getAnimation("jumpBody");
         bodyFixture.setUserData(anim);
     }
     private int getTypeLevel(AbilityType type){
@@ -106,12 +109,12 @@ public abstract class PlayerAnimatorHandler {
 
         for(AbilityType type : fixtureOrderedMap.keys()){
             String texturepath =abilitydata.get(type).getTexturename();
-            AnimatedBox2DSprite animatedBox2DSprite1 = MainPixel.assetManager.getAnimation("stumble"+type.toString()+getTypeLevel(type));
+            AnimatedBox2DSprite animatedBox2DSprite1 = ((MainPixel)game).assetManager.getAnimation("stumble"+type.toString()+getTypeLevel(type));
             fixtureOrderedMap.get(type).setUserData(animatedBox2DSprite1);
             animatedBox2DSprite1.play();
         }
 
-        AnimatedBox2DSprite anim= MainPixel.assetManager.getAnimation("stumbleBody");
+        AnimatedBox2DSprite anim= ((MainPixel)game).assetManager.getAnimation("stumbleBody");
 
         bodyFixture.setUserData(anim);
     }

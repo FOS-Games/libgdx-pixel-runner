@@ -51,11 +51,11 @@ public class GameScreen extends PixelGameScreen {
     private AssetManager assetManager;
     private Music music;
     private String musicpath;
-    public Sound coin = MainPixel.assetManager.get("Sounds/coin1.mp3",Sound.class);
-    public Sound crash = MainPixel.assetManager.get("Sounds/crash2.mp3",Sound.class);
-    public Sound death =MainPixel.assetManager.get("Sounds/death.mp3",Sound.class);
-    public Sound jump = MainPixel.assetManager.get("Sounds/jump2.mp3",Sound.class);
-    public Sound pain = MainPixel.assetManager.get("Sounds/pain1.mp3",Sound.class);
+    public Sound coin = ((MainPixel)game).assetManager.get("Sounds/coin1.mp3",Sound.class);
+    public Sound crash = ((MainPixel)game).assetManager.get("Sounds/crash2.mp3",Sound.class);
+    public Sound death =((MainPixel)game).assetManager.get("Sounds/death.mp3",Sound.class);
+    public Sound jump = ((MainPixel)game).assetManager.get("Sounds/jump2.mp3",Sound.class);
+    public Sound pain = ((MainPixel)game).assetManager.get("Sounds/pain1.mp3",Sound.class);
 
     public boolean isDeath=false;
 
@@ -68,7 +68,7 @@ public class GameScreen extends PixelGameScreen {
 
     public GameScreen(Game game,int level) {
         super(game,level);
-        MainPixel.assetManager.loadLevel(level);
+        ((MainPixel)game).assetManager.loadLevel(level);
         this.level = level;
         musicpath=levelData.getMusicpath();
         createBackground();
@@ -123,7 +123,7 @@ public class GameScreen extends PixelGameScreen {
     }}
 
     private void createBackground() {
-        bgSpr = new Sprite(MainPixel.assetManager.get(JsonHandler.readLevel(level).getBackground(),Texture.class));
+        bgSpr = new Sprite(((MainPixel)game).assetManager.get(JsonHandler.readLevel(level).getBackground(),Texture.class));
 
         // A fixed camera to draw the background (+ GUI!)
         fixedCam = new OrthographicCamera();
@@ -140,7 +140,7 @@ public class GameScreen extends PixelGameScreen {
         ObjectMap<String,Body> bodies = parser.getBodies();
         for (ObjectMap.Entry<String,Body> x : bodies){
             if(x.key.startsWith("crate")){
-                x.value.setUserData(new Box2DSprite(MainPixel.assetManager.get("obstacle.png",Texture.class)));
+                x.value.setUserData(new Box2DSprite(((MainPixel)game).assetManager.get("obstacle.png",Texture.class)));
                 for(Fixture fix: x.value.getFixtureList()){
                     fix.setSensor(true);
                     fix.setUserData("crate");
@@ -156,8 +156,8 @@ public class GameScreen extends PixelGameScreen {
         ObjectMap<String,Body> bodies = parser.getBodies();
         for (ObjectMap.Entry<String,Body> x : bodies){
             if(x.key.startsWith("orb")){
-                //x.value.setUserData(new Box2DSprite(new Texture(MainPixel.assetManager.get("orb.png"))));
-                x.value.setUserData(MainPixel.assetManager.getAnimation("orbs"));
+                //x.value.setUserData(new Box2DSprite(new Texture(((MainPixel)game).assetManager.get("orb.png"))));
+                x.value.setUserData(((MainPixel)game).assetManager.getAnimation("orbs"));
                 orbCounter++;
             }
         }
@@ -292,7 +292,7 @@ public class GameScreen extends PixelGameScreen {
 
         Array<Body> bodies = pixelContactListener.getCrates();
         for(Body crate : bodies) {
-            crate.setUserData(MainPixel.assetManager.getAnimation("crates"));
+            crate.setUserData(((MainPixel)game).assetManager.getAnimation("crates"));
             playingAnimation.add(crate);
             crash.play();
             speedController.adjustSpeed(new Vector2(-(2/player.getPlayerData().getAbilityData(PlayerData.AbilityType.STRENGTH).getMultiplier()),0),5,0.1f);
@@ -356,8 +356,8 @@ public class GameScreen extends PixelGameScreen {
         music.stop();
         music.dispose();
         camera.dispose();
-        MainPixel.assetManager.unloadLevel(level);
-        MainPixel.assetManager.unloadSounds();
+        ((MainPixel)game).assetManager.unloadLevel(level);
+        ((MainPixel)game).assetManager.unloadSounds();
     }
     protected void startMusic() {
         if (assetManager.isLoaded(musicpath)){

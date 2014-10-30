@@ -66,8 +66,8 @@ public abstract class PixelGameScreen implements Screen {
     }
 
     public PixelGameScreen(Game game, int level) {
-        MainPixel.assetManager.loadGUIButtons();
-        MainPixel.assetManager.loadSounds();
+        ((MainPixel)game).assetManager.loadGUIButtons();
+        ((MainPixel)game).assetManager.loadSounds();
         this.game = game;
         levelData = JsonHandler.readLevel(level);
 
@@ -134,7 +134,7 @@ public abstract class PixelGameScreen implements Screen {
     public void dispose() {
 
 
-        MainPixel.assetManager.unloadGUIButtons();
+        ((MainPixel)game).assetManager.unloadGUIButtons();
         spriteBatch.dispose();
         world.dispose();
         mapRenderer.dispose();
