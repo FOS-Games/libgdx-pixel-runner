@@ -10,7 +10,14 @@ import com.badlogic.gdx.Gdx;
 public class MainPixel extends Game {
 
     public LevelAssetManager assetManager = new LevelAssetManager();
-	@Override
+
+    public MainPixel() {
+        this.assetManager = new LevelAssetManager();
+    }
+
+    @Override
+
+
     public void create(){
 
         assetManager = new LevelAssetManager();
@@ -30,17 +37,17 @@ public class MainPixel extends Game {
     }
 
 
-    @Override
-    public void resume() {
-        super.resume();
-        assetManager = new LevelAssetManager();
-        SaveHandler.Initialize();
-        assetManager.loadPlayerAnimation();
-        assetManager.loadOrbAnim();
-
-        //setScreen(new GameScreen(this,1));
-        setScreen(new MainMenuScreen(this));
-    }
+//    @Override
+//    public void resume() {
+//        super.resume();
+//        assetManager = new LevelAssetManager();
+//        SaveHandler.Initialize();
+//        assetManager.loadPlayerAnimation();
+//        assetManager.loadOrbAnim();
+//
+//        //setScreen(new GameScreen(this,1));
+//        setScreen(new MainMenuScreen(this));
+//    }
 
     @Override
     public void dispose() {

@@ -59,6 +59,7 @@ public class PlayerCamera extends OrthographicCamera implements ISpeedController
     public PlayerCamera(GameScreen gameScreen, Vector2 spawn, float viewportWidth, float viewportHeight){
         super(viewportWidth, viewportHeight);
         this.gameScreen = gameScreen;
+        game = gameScreen.game;
         this.spawn=spawn;
         this.player = gameScreen.getPlayer();
         this.minVelocity =gameScreen.levelData.getMinSpeed();
@@ -68,7 +69,7 @@ public class PlayerCamera extends OrthographicCamera implements ISpeedController
         ymax = ymin + 6f;
         createBody();
         createStage();
-        game = gameScreen.game;
+
     }
 
     private void createBody(){
@@ -209,8 +210,10 @@ public class PlayerCamera extends OrthographicCamera implements ISpeedController
             gameScreen.saveOrbs();
             gameScreen.death.play();
             gameScreen.isDeath = true;
-            this.body.setLinearVelocity(1,0);
-            minVelocity=1;
+            this.body.setLinearVelocity(0,0);
+            minVelocity=0;
+            player.getBody().setLinearVelocity(0,0);
+            player.minVelocity=0;
             dialog.show(stage);
         }
     }
