@@ -121,29 +121,3 @@ public class JsonHandler {
 
 }
 
-class Abilitylevel {
-    String level;
-    AbilityData abilityData;
-
-    Abilitylevel(String level, AbilityData abilityData) {
-        this.level = level;
-        this.abilityData = abilityData;
-    }
-
-    Abilitylevel() {
-    }
-}
-
-class typeholder {
-    String Type;
-    Abilitylevel[] Level;
-
-    typeholder() {
-    }
-
-    typeholder(String type, Abilitylevel[] level) {
-        Type = type;
-        Level = level;
-    }
-}
-
