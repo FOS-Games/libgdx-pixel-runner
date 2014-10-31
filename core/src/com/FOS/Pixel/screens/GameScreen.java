@@ -356,6 +356,7 @@ public class GameScreen extends PixelGameScreen {
         music.stop();
         music.dispose();
         camera.dispose();
+       
         //player.dispose();
     }
     protected void startMusic() {
