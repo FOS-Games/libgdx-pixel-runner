@@ -182,9 +182,13 @@ public class PlayerProp extends PlayerAnimatorHandler {
     }
 
     private void checkAnim() {
-        if(anim == PLAYER_STATE.RUN && anim != state){
+        if(anim == PLAYER_STATE.RUN&&state==PLAYER_STATE.RUN){
             ((AnimatedBox2DSprite)getBodyFixture().getUserData()).getAnimation().setFrameDuration(1/30f);
+            ((AnimatedBox2DSprite)wingFixture.getUserData()).getAnimation().setFrameDuration(1/30f);
+            ((AnimatedBox2DSprite)feetFixture.getUserData()).getAnimation().setFrameDuration(1/30f);
+            ((AnimatedBox2DSprite)weaponFixture.getUserData()).getAnimation().setFrameDuration(1/30f);
         }
+
 
     }
 

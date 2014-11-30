@@ -12,6 +12,7 @@ import com.badlogic.gdx.utils.OrderedMap;
 import net.dermetfan.gdx.graphics.g2d.AnimatedBox2DSprite;
 import net.dermetfan.gdx.graphics.g2d.AnimatedSprite;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.HashSet;
 
@@ -92,7 +93,6 @@ public class LevelAssetManager extends AssetManager {
     }
 
     public void unloadGUIButtons(){
-        this.unload("ui/blueButton.png");
         this.unload("ui/blueButtonHover.png");
         this.unload("ui/blueButtonPressed.png");
     }
@@ -133,6 +133,7 @@ public class LevelAssetManager extends AssetManager {
         this.load("obstacle.png", Texture.class);
         this.load("sprites/spriteSheet_box.png",Texture.class);
         finishLoading();
+
         createBox2DAnimation("crates",createTextureRegion("sprites/spriteSheet_box.png",4,1), Animation.PlayMode.NORMAL);
 
 
@@ -169,7 +170,8 @@ public class LevelAssetManager extends AssetManager {
     private void unloadCrate(){
         this.unload("obstacle.png");
         this.unload("sprites/spriteSheet_box.png");
-        Box2dAnims.remove("crates");
+        //Box2dAnims.remove("crates");
+
 
 
     }
@@ -349,8 +351,8 @@ public class LevelAssetManager extends AssetManager {
             animatedSprite = new AnimatedBox2DSprite(createAnimatedSprite(textureRegions, playMode));
             Box2dAnims.put(AnimNaam,animatedSprite);
 
-            System.out.println("Create anim: "+AnimNaam);
         }
+
 
         return animatedSprite;
     }
@@ -363,16 +365,20 @@ public class LevelAssetManager extends AssetManager {
             animatedSprite = new AnimatedBox2DSprite(createAnimatedSprite(duration, textureRegions, playMode));
             Box2dAnims.put(AnimNaam,animatedSprite);
 
-            System.out.println("Create anim: "+AnimNaam);
         }
+
 
         return animatedSprite;
     }
 
     public AnimatedBox2DSprite getAnimation(String name){
+//        if(name.equals("crates")&&!Box2dAnims.containsKey(name)){
+//
+//        }
         AnimatedBox2DSprite anim = Box2dAnims.get(name);
         anim.stop();
         anim.play();
+
         return anim;
     }
 

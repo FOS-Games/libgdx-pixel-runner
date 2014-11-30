@@ -66,10 +66,10 @@ public class GameScreen extends PixelGameScreen {
     public Integer level;
     private Vector2 finish;
 
-    public GameScreen(Game game,int level) {
-        super(game,level);
-        ((MainPixel)game).assetManager.loadLevel(level);
-        this.level = level;
+    public GameScreen(Game game,int l_level) {
+        super(game,l_level);
+        ((MainPixel)game).assetManager.loadLevel(l_level);
+        this.level = l_level;
         musicpath=levelData.getMusicpath();
         createBackground();
         createPlayer();

@@ -6,12 +6,11 @@ levelSaveDatas: [
 	{}
 ],
 playerData: {
-	speed: 5,
+	strength: 2,
 	data: [
 		NONE
 	],
-	jump: 5,
 	skinType: HUMAN
 },
-totalOrbs: 4861
+totalOrbs: 90000
 }
