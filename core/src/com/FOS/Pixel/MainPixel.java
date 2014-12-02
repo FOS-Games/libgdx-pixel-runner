@@ -24,6 +24,7 @@ public class MainPixel extends Game {
         SaveHandler.Initialize();
         assetManager.loadPlayerAnimation();
         assetManager.loadOrbAnim();
+        assetManager.loadCrate();
 
         //setScreen(new GameScreen(this,1));
         setScreen(new MainMenuScreen(this));

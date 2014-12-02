@@ -105,14 +105,14 @@ public class LevelAssetManager extends AssetManager {
 
     public void loadAssetsLevel1(){
         this.load("maps/backgrounds/bgSky.png", Texture.class);
-        loadCrate();
+
         loadGUIButtons();
 
         finishLoading();
     }
     public void loadAssetsLevel2(){
         this.load("maps/backgrounds/bgCave.png", Texture.class);
-        loadCrate();
+
         loadGUIButtons();
 
         finishLoading();
@@ -120,7 +120,7 @@ public class LevelAssetManager extends AssetManager {
     }
     public void loadAssetsLevel3(){
         this.load("maps/backgrounds/bgSand.png", Texture.class);
-        loadCrate();
+
         loadGUIButtons();
 
         finishLoading();
@@ -134,7 +134,7 @@ public class LevelAssetManager extends AssetManager {
 
         }
     }
-    private void loadCrate(){
+    public void loadCrate(){
         this.load("obstacle.png", Texture.class);
         this.load("sprites/spriteSheet_box.png",Texture.class);
         finishLoading();
@@ -146,20 +146,20 @@ public class LevelAssetManager extends AssetManager {
 
     public void unloadAssetsLevel1(){
         this.unload("maps/backgrounds/bgSky.png");
-        unloadCrate();
+
         unloadGUIButtons();
 
     }
     public void unloadAssetsLevel2(){
         this.unload("maps/backgrounds/bgCave.png");
-        unloadCrate();
+
         unloadGUIButtons();
 
 
     }
     public void unloadAssetsLevel3(){
         this.unload("maps/backgrounds/bgSand.png");
-        unloadCrate();
+
         unloadGUIButtons();
 
     }
