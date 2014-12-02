@@ -93,8 +93,13 @@ public class LevelAssetManager extends AssetManager {
     }
 
     public void unloadGUIButtons(){
-        this.unload("ui/blueButtonHover.png");
-        this.unload("ui/blueButtonPressed.png");
+        try {
+            this.unload("ui/blueButtonHover.png");
+            this.unload("ui/blueButtonPressed.png");
+        }
+        catch (Exception e){
+
+        }
     }
 
 
@@ -388,6 +393,48 @@ public class LevelAssetManager extends AssetManager {
     @Override
     public synchronized void dispose() {
 
+        try {
+            unloadAssetsLevel1();
+        }
+        catch (Exception e){
+
+        }
+        try {
+            unloadAssetsLevel2();
+        }
+        catch (Exception e){
+
+        }
+        try {
+            unloadAssetsLevel3();
+        }
+        catch (Exception e){
+
+        }
+        try {
+            unloadCrate();
+        }
+        catch (Exception e){
+
+        }
+        try {
+            unloadGUIAssets();
+        }
+        catch (Exception e){
+
+        }
+        try {
+            unloadGUIButtons();
+        }
+        catch (Exception e){
+
+        }
+        try {
+            unloadSounds();
+        }
+        catch (Exception e){
+
+        }
         Box2dAnims.clear();
         TextureRegions.clear();
         super.dispose();
