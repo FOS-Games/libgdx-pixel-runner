@@ -659,7 +659,6 @@ public class AbilityProgressScreen extends MenuScreen {
 
         orbText1 = new TextField(Integer.toString(playerProp.getPlayerData().getAbilityData(PlayerData.AbilityType.STRENGTH).getCost()), skin, "ability");
         orbText1.setPosition(685, 287);
-        orbText.setDisabled(true);
         orbText1.setDisabled(true);
         stage.addActor(orbText1);
 
