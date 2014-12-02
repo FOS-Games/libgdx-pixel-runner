@@ -30,7 +30,7 @@ Level3: {
 	bronzeTime: 120,
 	musicpath: Sounds/Ouroboros.mp3,
 	goldTime: 60,
-	background: maps/backgrounds/bgCave.png,
+	background: maps/backgrounds/bgSand.png,
 	minSpeed: 11,
 	silverTime: 90,
 	speedIncr: 1

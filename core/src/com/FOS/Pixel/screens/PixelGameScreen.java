@@ -2,6 +2,7 @@ package com.FOS.Pixel.screens;
 
 import com.FOS.Pixel.Data.LevelData;
 import com.FOS.Pixel.Data.PixelVars;
+import com.FOS.Pixel.MainPixel;
 import com.FOS.Pixel.PixelContactListener;
 import com.FOS.Pixel.Player;
 import com.FOS.Pixel.PlayerCamera;
@@ -65,7 +66,8 @@ public abstract class PixelGameScreen implements Screen {
     }
 
     public PixelGameScreen(Game game, int level) {
-
+        ((MainPixel)game).assetManager.loadGUIButtons();
+        ((MainPixel)game).assetManager.loadSounds();
         this.game = game;
         levelData = JsonHandler.readLevel(level);
 
@@ -131,7 +133,8 @@ public abstract class PixelGameScreen implements Screen {
     @Override
     public void dispose() {
 
-        //world.destroyBody(player.getBody());
+
+        ((MainPixel)game).assetManager.unloadGUIButtons();
         spriteBatch.dispose();
         world.dispose();
         mapRenderer.dispose();

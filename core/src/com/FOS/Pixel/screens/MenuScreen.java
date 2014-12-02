@@ -1,11 +1,18 @@
 package com.FOS.Pixel.screens;
 
+import com.FOS.Pixel.MainPixel;
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Screen;
 
 /**
  * Created by Stefan on 6-10-2014.
  */
 public abstract class MenuScreen implements Screen {
+    Game game;
+    protected MenuScreen(Game game) {
+        this.game=game;
+        ((MainPixel)game).assetManager.loadGUIAssets();
+    }
 
     @Override
     public String toString() {
@@ -44,7 +51,7 @@ public abstract class MenuScreen implements Screen {
 
     @Override
     public void dispose() {
-
+        ((MainPixel)game).assetManager.unloadGUIAssets();
     }
 
     @Override

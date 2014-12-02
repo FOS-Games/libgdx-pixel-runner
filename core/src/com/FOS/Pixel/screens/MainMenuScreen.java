@@ -1,5 +1,6 @@
 package com.FOS.Pixel.screens;
 
+import com.FOS.Pixel.MainPixel;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
@@ -50,6 +51,7 @@ public class MainMenuScreen extends MenuScreen {
     private Music music;
 
     public MainMenuScreen(Game game) {
+        super(game);
         this.game = game;
     }
 
@@ -66,19 +68,19 @@ public class MainMenuScreen extends MenuScreen {
 
 
 
-        tBlueButton = new Texture(Gdx.files.internal("ui/blueButton.png"));
+        tBlueButton = ((MainPixel)game).assetManager.get("ui/blueButton.png",Texture.class);
         TextureRegion rBlueButton = new TextureRegion(tBlueButton);
 
-        tBlueButtonHover = new Texture(Gdx.files.internal("ui/blueButtonHover.png"));
+        tBlueButtonHover = ((MainPixel)game).assetManager.get("ui/blueButtonHover.png",Texture.class);
         TextureRegion rBlueButtonHover = new TextureRegion(tBlueButtonHover);
 
-        tBlueButtonPressed = new Texture(Gdx.files.internal("ui/blueButtonPressed.png"));
+        tBlueButtonPressed = ((MainPixel)game).assetManager.get("ui/blueButtonPressed.png",Texture.class);
         TextureRegion rBlueButtonPressed = new TextureRegion(tBlueButtonPressed);
 
-        background = new Texture(Gdx.files.internal("ui/menuBackground.png"));
+        background = ((MainPixel)game).assetManager.get("ui/menuBackground.png",Texture.class);
         TextureRegion rBackground = new TextureRegion(background);
 
-        logo = new Texture(Gdx.files.internal("ui/logoBig.png"));
+        logo = ((MainPixel)game).assetManager.get("ui/logoBig.png",Texture.class);
         TextureRegion rLogo = new TextureRegion(logo);
 
         Image iLogo = new Image(new TextureRegionDrawable(rLogo));
@@ -143,7 +145,7 @@ public class MainMenuScreen extends MenuScreen {
         bExit.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                Gdx.app.exit();
+                ((MainPixel)game).stopGame();
             }
         });
 

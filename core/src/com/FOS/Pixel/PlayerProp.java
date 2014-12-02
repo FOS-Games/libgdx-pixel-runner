@@ -10,6 +10,7 @@ import com.FOS.Pixel.Interfaces.ISpeedController;
 import com.FOS.Pixel.handlers.PlayerAnimatorHandler;
 import com.FOS.Pixel.handlers.SaveHandler;
 import com.FOS.Pixel.screens.GameScreen;
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.Animation;
@@ -50,17 +51,17 @@ public class PlayerProp extends PlayerAnimatorHandler {
     Fixture wingFixture;
     Fixture weaponFixture;
 
-    GameScreen gameScreen;
+
     PlayerData playerData;
 
     PLAYER_STATE state;
     PLAYER_STATE anim;
 
     // GameScreen gameScreen
-    public PlayerProp(GameScreen gameScreen) {
-        super();
-        this.world = new World(new Vector2(0,9.81f),false);
-        this.gameScreen = gameScreen;
+    public PlayerProp(Game game) {
+        super(game);
+        this.world = new World(new Vector2(0,9.81f),true);
+
 
         playerData = SaveHandler.getSaveData().getPlayerData();
 
@@ -181,9 +182,13 @@ public class PlayerProp extends PlayerAnimatorHandler {
     }
 
     private void checkAnim() {
-        if(anim == PLAYER_STATE.RUN && anim != state){
+        if(anim == PLAYER_STATE.RUN&&state==PLAYER_STATE.RUN){
             ((AnimatedBox2DSprite)getBodyFixture().getUserData()).getAnimation().setFrameDuration(1/30f);
+            ((AnimatedBox2DSprite)wingFixture.getUserData()).getAnimation().setFrameDuration(1/30f);
+            ((AnimatedBox2DSprite)feetFixture.getUserData()).getAnimation().setFrameDuration(1/30f);
+            ((AnimatedBox2DSprite)weaponFixture.getUserData()).getAnimation().setFrameDuration(1/30f);
         }
+
 
     }
 

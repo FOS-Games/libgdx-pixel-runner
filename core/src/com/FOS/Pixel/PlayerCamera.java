@@ -34,6 +34,7 @@ public class PlayerCamera extends OrthographicCamera implements ISpeedController
     private Player player;
     private boolean isSearching = false;
     private boolean isAdjusting = false;
+    private boolean needsBoost = false;
 
     public Vector2 velocity;
     public float minVelocity;
@@ -52,11 +53,13 @@ public class PlayerCamera extends OrthographicCamera implements ISpeedController
 
     float viewportW;
     float viewportH;
+    Game game;
 
 
     public PlayerCamera(GameScreen gameScreen, Vector2 spawn, float viewportWidth, float viewportHeight){
         super(viewportWidth, viewportHeight);
         this.gameScreen = gameScreen;
+        game = gameScreen.game;
         this.spawn=spawn;
         this.player = gameScreen.getPlayer();
         this.minVelocity =gameScreen.levelData.getMinSpeed();
@@ -66,6 +69,7 @@ public class PlayerCamera extends OrthographicCamera implements ISpeedController
         ymax = ymin + 6f;
         createBody();
         createStage();
+
     }
 
     private void createBody(){
@@ -86,13 +90,13 @@ public class PlayerCamera extends OrthographicCamera implements ISpeedController
         stage = new Stage(new StretchViewport(800, 480));
         Gdx.input.setInputProcessor(stage);
 
-        tBlueButton = new Texture(Gdx.files.internal("ui/blueButton.png"));
+        tBlueButton = ((MainPixel)game).assetManager.get("ui/blueButton.png",Texture.class);
         TextureRegion rBlueButton = new TextureRegion(tBlueButton);
 
-        tBlueButtonHover = new Texture(Gdx.files.internal("ui/blueButtonHover.png"));
+        tBlueButtonHover =((MainPixel)game).assetManager.get("ui/blueButtonHover.png",Texture.class);
         TextureRegion rBlueButtonHover = new TextureRegion(tBlueButtonHover);
 
-        tBlueButtonPressed = new Texture(Gdx.files.internal("ui/blueButtonPressed.png"));
+        tBlueButtonPressed =((MainPixel)game).assetManager.get("ui/blueButtonPressed.png",Texture.class);
         TextureRegion rBlueButtonPressed = new TextureRegion(tBlueButtonPressed);
 
         skin = new Skin();
@@ -159,6 +163,11 @@ public class PlayerCamera extends OrthographicCamera implements ISpeedController
         stage.dispose();
     }
 
+    public void finish(){
+        finishdialog.show(stage);
+        player.getBody().setLinearVelocity(0,0);
+        body.setLinearVelocity(0,0);
+    }
     public void render(float delta) {
         stage.act(delta);
         stage.draw();
@@ -201,8 +210,10 @@ public class PlayerCamera extends OrthographicCamera implements ISpeedController
             gameScreen.saveOrbs();
             gameScreen.death.play();
             gameScreen.isDeath = true;
-            this.body.setLinearVelocity(1,0);
-            minVelocity=1;
+            this.body.setLinearVelocity(0,0);
+            minVelocity=0;
+            player.getBody().setLinearVelocity(0,0);
+            player.minVelocity=0;
             dialog.show(stage);
         }
     }
@@ -215,13 +226,18 @@ public class PlayerCamera extends OrthographicCamera implements ISpeedController
 //        System.out.println("Player x = "+playerx+", Camera x = "+camerax+" || "+(playerx == camerax));
 
         if(!isAdjusting){
-            if(this.body.getPosition().x<player.getBody().getPosition().x){
-                this.body.setTransform(this.body.getPosition().x+0.01f,this.body.getPosition().y,this.body.getAngle());
-            }else if(this.body.getPosition().x>player.getBody().getPosition().x) {
-                this.body.setTransform(this.body.getPosition().x - 0.01f, this.body.getPosition().y, this.body.getAngle());
-            }else{
+//            if(this.body.getPosition().x<player.getBody().getPosition().x){
+//                System.out.println("impuls plus");
+////                this.body.setTransform(this.body.getPosition().x+0.1f,this.body.getPosition().y,this.body.getAngle());
+//                this.body.applyLinearImpulse(new Vector2(1,0),this.body.getPosition(),true);
+//            }else if(this.body.getPosition().x>player.getBody().getPosition().x) {
+//                System.out.println("impuls min");
+////                this.body.setTransform(this.body.getPosition().x - 0.1f, this.body.getPosition().y, this.body.getAngle());
+//                this.body.applyLinearImpulse(new Vector2(-1,0),this.body.getPosition(),true);
+//
+//            }else{
                 this.body.setTransform(player.getBody().getPosition(),this.body.getAngle());
-            }
+//            }
         }
         if(camerax==playerx && isSearching && isAdjusting){
             minVelocity = player.minVelocity;
@@ -229,6 +245,18 @@ public class PlayerCamera extends OrthographicCamera implements ISpeedController
 //            System.out.println("Found");
             isSearching=false;
             isAdjusting=false;
+        }
+        if(camerax==playerx && !isSearching && !isAdjusting && needsBoost){
+            System.out.println("!!!!!!!!!!!!BOOST!!!!!!!!!!!!!!!!");
+            needsBoost=false;
+            final Timer timer = new Timer();
+            timer.scheduleTask(new Timer.Task() {
+                @Override
+                public void run() {
+                    gameScreen.speedController.adjustSpeed(new Vector2(2,0),3);
+                    timer.stop();
+                }
+            },2,0,0);
         }
 
         boolean outofrange = this.body.getPosition().x > player.getBody().getPosition().x+0.15 || this.body.getPosition().x < player.getBody().getPosition().x-0.15;
@@ -251,13 +279,17 @@ public class PlayerCamera extends OrthographicCamera implements ISpeedController
     @Override
     public void adjustSpeed(Vector2 adjustWith, int steps) {
         isAdjusting=true;
+
         float seconds = 1;
         int stepcount;
         if(adjustWith.x>0) {
             stepcount = steps + 1;
         }else if(adjustWith.x<0) {
-            stepcount = steps + 5;
-            seconds++;
+            stepcount = steps +2;
+            seconds+=0.2f;
+            if(!needsBoost){
+                needsBoost = true;
+            }
         }else{
             stepcount=steps;
         }
@@ -272,7 +304,7 @@ public class PlayerCamera extends OrthographicCamera implements ISpeedController
                 body.setLinearVelocity(body.getLinearVelocity().add(incrsteps));
                 minVelocity += incrsteps.x;
             }
-        },seconds,seconds,stepcount);
+        },seconds,seconds,stepcount+2);
 
     }
 
@@ -281,12 +313,16 @@ public class PlayerCamera extends OrthographicCamera implements ISpeedController
     @Override
     public void adjustSpeed(Vector2 adjustWith, int steps, float seconds) {
         isAdjusting=true;
+
         int stepcount;
         if(adjustWith.x>0) {
             stepcount = steps + 1;
         }else if(adjustWith.x<0) {
-            stepcount = steps + 5;
-            seconds++;
+            stepcount = steps + 2;
+            seconds+=0.2f;
+            if(!needsBoost){
+                needsBoost = true;
+            }
         }else{
             stepcount=steps;
         }
@@ -300,6 +336,6 @@ public class PlayerCamera extends OrthographicCamera implements ISpeedController
                 body.setLinearVelocity(body.getLinearVelocity().add(incrsteps));
                 minVelocity += incrsteps.x;
             }
-        },seconds,seconds,stepcount);
+        },seconds,seconds,stepcount+2);
     }
 }

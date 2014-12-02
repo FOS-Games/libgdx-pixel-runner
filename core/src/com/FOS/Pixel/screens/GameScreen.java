@@ -1,7 +1,6 @@
 package com.FOS.Pixel.screens;
 
 import com.FOS.Pixel.*;
-import com.FOS.Pixel.AnimationUtil;
 import com.FOS.Pixel.Data.LevelSaveData;
 import com.FOS.Pixel.Data.PixelVars;
 import com.FOS.Pixel.Data.PlayerData;
@@ -47,16 +46,16 @@ public class GameScreen extends PixelGameScreen {
     boolean bronze=true;
     private Array<Body> playingAnimation = new Array<Body>();
     public int orbs = 0;
-    SpeedController speedController = new SpeedController();
+    public SpeedController speedController = new SpeedController();
 
     private AssetManager assetManager;
     private Music music;
     private String musicpath;
-    public Sound coin = Gdx.audio.newSound(Gdx.files.internal("Sounds/coin1.ogg"));
-    public Sound crash = Gdx.audio.newSound(Gdx.files.internal("Sounds/crash2.mp3"));
-    public Sound death = Gdx.audio.newSound(Gdx.files.internal("Sounds/death.wav"));
-    public Sound jump = Gdx.audio.newSound(Gdx.files.internal("Sounds/jump2.ogg"));
-    public Sound pain = Gdx.audio.newSound(Gdx.files.internal("Sounds/pain1.mp3"));
+    public Sound coin = ((MainPixel)game).assetManager.get("Sounds/coin1.mp3",Sound.class);
+    public Sound crash = ((MainPixel)game).assetManager.get("Sounds/crash2.mp3",Sound.class);
+    public Sound death =((MainPixel)game).assetManager.get("Sounds/death.mp3",Sound.class);
+    public Sound jump = ((MainPixel)game).assetManager.get("Sounds/jump2.mp3",Sound.class);
+    public Sound pain = ((MainPixel)game).assetManager.get("Sounds/pain1.mp3",Sound.class);
 
     public boolean isDeath=false;
 
@@ -67,9 +66,10 @@ public class GameScreen extends PixelGameScreen {
     public Integer level;
     private Vector2 finish;
 
-    public GameScreen(Game game,int level) {
-        super(game,level);
-        this.level = level;
+    public GameScreen(Game game,int l_level) {
+        super(game,l_level);
+        ((MainPixel)game).assetManager.loadLevel(l_level);
+        this.level = l_level;
         musicpath=levelData.getMusicpath();
         createBackground();
         createPlayer();
@@ -123,8 +123,7 @@ public class GameScreen extends PixelGameScreen {
     }}
 
     private void createBackground() {
-        bgTex = new Texture(Gdx.files.internal(JsonHandler.readLevel(level).getBackground()));
-        bgSpr = new Sprite(bgTex);
+        bgSpr = new Sprite(((MainPixel)game).assetManager.get(JsonHandler.readLevel(level).getBackground(),Texture.class));
 
         // A fixed camera to draw the background (+ GUI!)
         fixedCam = new OrthographicCamera();
@@ -141,7 +140,7 @@ public class GameScreen extends PixelGameScreen {
         ObjectMap<String,Body> bodies = parser.getBodies();
         for (ObjectMap.Entry<String,Body> x : bodies){
             if(x.key.startsWith("crate")){
-                x.value.setUserData(new Box2DSprite(new Texture(Gdx.files.internal("obstacle.png"))));
+                x.value.setUserData(new Box2DSprite(((MainPixel)game).assetManager.get("obstacle.png",Texture.class)));
                 for(Fixture fix: x.value.getFixtureList()){
                     fix.setSensor(true);
                     fix.setUserData("crate");
@@ -157,8 +156,8 @@ public class GameScreen extends PixelGameScreen {
         ObjectMap<String,Body> bodies = parser.getBodies();
         for (ObjectMap.Entry<String,Body> x : bodies){
             if(x.key.startsWith("orb")){
-                //x.value.setUserData(new Box2DSprite(new Texture(Gdx.files.internal("orb.png"))));
-                x.value.setUserData(AnimationUtil.createBox2DAnimation("orbs",20f,AnimationUtil.createTextureRegion("sprites/spriteSheet_collectible.png", 15, 1), Animation.PlayMode.LOOP));
+                //x.value.setUserData(new Box2DSprite(new Texture(((MainPixel)game).assetManager.get("orb.png"))));
+                x.value.setUserData(((MainPixel)game).assetManager.getAnimation("orbs"));
                 orbCounter++;
             }
         }
@@ -243,10 +242,11 @@ public class GameScreen extends PixelGameScreen {
 //
 //        String stringtime = String.format("%02d:%02d:%02d:%d", hour, minute, second, millis);
 //        //System.out.println(stringtime);
-
-        checkCollectedOrbs();
-        breakAnim();
-        checkAnimFinished();
+        if(!world.isLocked()) {
+            checkCollectedOrbs();
+            breakAnim();
+            checkAnimFinished();
+        }
         checkMedalTime(TimeUtils.timeSinceMillis(time));
         checkPlayerFinished();
 
@@ -255,6 +255,7 @@ public class GameScreen extends PixelGameScreen {
     private void checkPlayerFinished() {
         if(player.getBody().getPosition().x>finish.x){
             System.out.println("!!!!!!!!!!!!!!!!FINISH!!!!!!!!!!!!!");
+            camera.finish();
         }
     }
 
@@ -291,10 +292,10 @@ public class GameScreen extends PixelGameScreen {
 
         Array<Body> bodies = pixelContactListener.getCrates();
         for(Body crate : bodies) {
-            crate.setUserData(AnimationUtil.createBox2DAnimation("crates",AnimationUtil.createTextureRegion("sprites/spriteSheet_box.png",4,1), Animation.PlayMode.NORMAL));
+            crate.setUserData(((MainPixel)game).assetManager.getAnimation("crates"));
             playingAnimation.add(crate);
             crash.play();
-            speedController.adjustSpeed(new Vector2(-(3/player.getPlayerData().getAbilityData(PlayerData.AbilityType.STRENGTH).getMultiplier()*Gdx.graphics.getDeltaTime()),0),5,0.1f);
+            speedController.adjustSpeed(new Vector2(-(2/player.getPlayerData().getAbilityData(PlayerData.AbilityType.STRENGTH).getMultiplier()),0),5,0.1f);
 //            final Timer speedup = new Timer();
 //            speedup.scheduleTask(new Timer.Task() {
 //                @Override
@@ -312,15 +313,19 @@ public class GameScreen extends PixelGameScreen {
     private void checkAnimFinished(){
         for(Body crate : playingAnimation){
             AnimatedBox2DSprite anim = ((AnimatedBox2DSprite)crate.getUserData());
-            try {
-                if(anim.isAnimationFinished()){
-                    world.destroyBody(crate);
+
+                if(anim.isAnimationFinished()&&crate.isActive()){
+
+                    try {
+                        world.destroyBody(crate);
+                    }
+                    catch (Exception e){
+
+                    }
                     playingAnimation.removeValue(crate,true);
                     pain.play();
                 }
-            }catch (Exception e){
 
-            }
 
         }
     }
@@ -347,17 +352,13 @@ public class GameScreen extends PixelGameScreen {
         death.stop();
         jump.stop();
         pain.stop();
-        coin.dispose();
-        crash.dispose();
-        death.dispose();
-        jump.dispose();
-        pain.dispose();
 
         music.stop();
         music.dispose();
         camera.dispose();
-       
-        //player.dispose();
+
+        ((MainPixel)game).assetManager.unloadLevel(level);
+        ((MainPixel)game).assetManager.unloadSounds();
     }
     protected void startMusic() {
         if (assetManager.isLoaded(musicpath)){

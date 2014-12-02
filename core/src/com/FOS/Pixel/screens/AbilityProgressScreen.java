@@ -1,9 +1,9 @@
 package com.FOS.Pixel.screens;
 
-import com.FOS.Pixel.AnimationUtil;
 import com.FOS.Pixel.Data.AbilityData;
 import com.FOS.Pixel.Data.PlayerData;
 import com.FOS.Pixel.Data.SaveData;
+import com.FOS.Pixel.MainPixel;
 import com.FOS.Pixel.PlayerProp;
 import com.FOS.Pixel.handlers.JsonHandler;
 import com.FOS.Pixel.handlers.SaveHandler;
@@ -57,7 +57,7 @@ public class AbilityProgressScreen extends MenuScreen {
 
     Texture tGlassPanelOrbCost;
 
-    GameScreen gameScreen;
+
 
     PlayerProp playerProp;
 
@@ -105,6 +105,7 @@ public class AbilityProgressScreen extends MenuScreen {
     TextField orbText3;
 
     public AbilityProgressScreen(Game game) {
+        super(game);
         this.game = game;
     }
 
@@ -117,46 +118,46 @@ public class AbilityProgressScreen extends MenuScreen {
 
 
         // Background
-        background = new Texture(Gdx.files.internal("ui/menuBackground.png"));
+        background = ((MainPixel)game).assetManager.get("ui/menuBackground.png",Texture.class);
         TextureRegion rBackground = new TextureRegion(background);
 
 
         // Default blue buttons
-        tBlueButton = new Texture(Gdx.files.internal("ui/blueButton.png"));
+        tBlueButton = ((MainPixel)game).assetManager.get("ui/blueButton.png",Texture.class);
         TextureRegion rBlueButton = new TextureRegion(tBlueButton);
 
-        tBlueButtonHover = new Texture(Gdx.files.internal("ui/blueButtonHover.png"));
+        tBlueButtonHover = ((MainPixel)game).assetManager.get("ui/blueButtonHover.png",Texture.class);
         TextureRegion rBlueButtonHover = new TextureRegion(tBlueButtonHover);
 
-        tBlueButtonPressed = new Texture(Gdx.files.internal("ui/blueButtonPressed.png"));
+        tBlueButtonPressed =  ((MainPixel)game).assetManager.get("ui/blueButtonPressed.png",Texture.class);
         TextureRegion rBlueButtonPressed = new TextureRegion(tBlueButtonPressed);
 
 
         // Ability point UI
-        tGlassPanel = new Texture(Gdx.files.internal("ui/glassPanel320x50.png"));
+        tGlassPanel =  ((MainPixel)game).assetManager.get("ui/glassPanel320x50.png",Texture.class);
         TextureRegion rGlassPanel = new TextureRegion(tGlassPanel);
 
-        tSquareShadow = new Texture(Gdx.files.internal("ui/squareShadow.png"));
+        tSquareShadow =  ((MainPixel)game).assetManager.get("ui/squareShadow.png",Texture.class);
         TextureRegion rSquareShadow = new TextureRegion(tSquareShadow);
 
-        tSquareWhite = new Texture(Gdx.files.internal("ui/squareWhite.png"));
+        tSquareWhite =  ((MainPixel)game).assetManager.get("ui/squareWhite.png",Texture.class);
         rSquareWhite = new TextureRegion(tSquareWhite);
 
-        tGlassPanelPlus = new Texture(Gdx.files.internal("ui/glassPanelPlus.png"));
+        tGlassPanelPlus =  ((MainPixel)game).assetManager.get("ui/glassPanelPlus.png",Texture.class);
         TextureRegion rGlassPanelPlus = new TextureRegion(tGlassPanelPlus);
 
-        tGlassPanelPlusHover = new Texture(Gdx.files.internal("ui/glassPanelPlusHover.png"));
+        tGlassPanelPlusHover =  ((MainPixel)game).assetManager.get("ui/glassPanelPlusHover.png",Texture.class);
         TextureRegion rGlassPanelPlusHover = new TextureRegion(tGlassPanelPlusHover);
 
-        tGlassPanelPlusLocked = new Texture(Gdx.files.internal("ui/glassPanelPlusLocked.png"));
+        tGlassPanelPlusLocked =  ((MainPixel)game).assetManager.get("ui/glassPanelPlusLocked.png",Texture.class);
         TextureRegion rGlassPanelPlusLocked = new TextureRegion(tGlassPanelPlusLocked);
 
-        tGlassPanelOrbCost = new Texture(Gdx.files.internal("ui/glassPanelOrbCost.png"));
+        tGlassPanelOrbCost =  ((MainPixel)game).assetManager.get("ui/glassPanelOrbCost.png",Texture.class);
         TextureRegion rGlassPanelOrbCost = new TextureRegion(tGlassPanelOrbCost);
 
 
         // Get playerSprite
-        playerProp = new PlayerProp(gameScreen);
+        playerProp = new PlayerProp(game);
         animationBody = playerProp.getAnimation();
         animationFeet = playerProp.getFeetAnimation();
         animationWings = playerProp.getWingAnimation();
@@ -536,7 +537,7 @@ public class AbilityProgressScreen extends MenuScreen {
         playerGroup.removeActor(iFeet);
         playerGroup.removeActor(iWeapon);
 
-        playerProp = new PlayerProp(gameScreen);
+        playerProp = new PlayerProp(game);
 
         animationBody = playerProp.getAnimation();
         animationFeet = playerProp.getFeetAnimation();
@@ -618,7 +619,7 @@ public class AbilityProgressScreen extends MenuScreen {
         int totalOrbs = SaveHandler.getSaveData().getTotalOrbs();
         System.out.println(totalOrbs);
 
-        AnimatedSprite orbAnimSprite = AnimationUtil.createAnimatedSprite(AnimationUtil.createTextureRegion("sprites/spriteSheet_collectible.png", 15, 1), Animation.PlayMode.LOOP);
+        AnimatedSprite orbAnimSprite = ((MainPixel)game).assetManager.createAnimatedSprite(((MainPixel)game).assetManager.createTextureRegion("sprites/spriteSheet_collectible.png", 15, 1), Animation.PlayMode.LOOP);
         Image iOrb = new Image(new SpriteDrawable(orbAnimSprite));
         iOrb.setPosition(450, 390);
         iOrb.setSize(64, 64);
@@ -639,7 +640,7 @@ public class AbilityProgressScreen extends MenuScreen {
     }
 
     private void showOrbCosts() {
-        AnimatedSprite orbAnimSprite = AnimationUtil.createAnimatedSprite(AnimationUtil.createTextureRegion("sprites/spriteSheet_collectible.png", 15, 1), Animation.PlayMode.LOOP);
+        AnimatedSprite orbAnimSprite = ((MainPixel)game).assetManager.createAnimatedSprite(((MainPixel)game).assetManager.createTextureRegion("sprites/spriteSheet_collectible.png", 15, 1), Animation.PlayMode.LOOP);
         Image iOrb2 = new Image(new SpriteDrawable(orbAnimSprite));
         iOrb2.setPosition(660, 292);
         iOrb2.setSize(20, 20);
@@ -658,14 +659,18 @@ public class AbilityProgressScreen extends MenuScreen {
 
         orbText1 = new TextField(Integer.toString(playerProp.getPlayerData().getAbilityData(PlayerData.AbilityType.STRENGTH).getCost()), skin, "ability");
         orbText1.setPosition(685, 287);
+        orbText.setDisabled(true);
+        orbText1.setDisabled(true);
         stage.addActor(orbText1);
 
         orbText2 = new TextField(Integer.toString(playerProp.getPlayerData().getAbilityData(PlayerData.AbilityType.SPEED).getCost()), skin, "ability");
         orbText2.setPosition(685, 192);
+        orbText2.setDisabled(true);
         stage.addActor(orbText2);
 
         orbText3 = new TextField(Integer.toString(playerProp.getPlayerData().getAbilityData(PlayerData.AbilityType.JUMP).getCost()), skin, "ability");
         orbText3.setPosition(685, 97);
+        orbText3.setDisabled(true);
         stage.addActor(orbText3);
     }
 
@@ -692,16 +697,19 @@ public class AbilityProgressScreen extends MenuScreen {
         TextField strengthText = new TextField("strength", skin, "ability");
         strengthText.setPosition(410, 315);
         strengthText.setSize(200, 50);
+        strengthText.setDisabled(true);
         stage.addActor(strengthText);
 
         TextField speedText = new TextField("speed", skin, "ability");
         speedText.setPosition(410, 220);
         speedText.setSize(200, 50);
+        speedText.setDisabled(true);
         stage.addActor(speedText);
 
         TextField agilityText = new TextField("agility", skin, "ability");
         agilityText.setPosition(410, 125);
         agilityText.setSize(200, 50);
+        speedText.setDisabled(true);
         stage.addActor(agilityText);
 
     }
