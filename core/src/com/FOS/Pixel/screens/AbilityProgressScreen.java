@@ -627,6 +627,7 @@ public class AbilityProgressScreen extends MenuScreen {
 
         orbText = new TextField(Integer.toString(totalOrbs), skin);
         orbText.setPosition(495, 395);
+        orbText.setDisabled(true);
         stage.addActor(orbText);
     }
 
@@ -636,6 +637,7 @@ public class AbilityProgressScreen extends MenuScreen {
         int totalOrbs = SaveHandler.getSaveData().getTotalOrbs();
         orbText = new TextField(Integer.toString(totalOrbs), skin);
         orbText.setPosition(495, 395);
+        orbText.setDisabled(true);
         stage.addActor(orbText);
     }
 
@@ -708,7 +710,7 @@ public class AbilityProgressScreen extends MenuScreen {
         TextField agilityText = new TextField("agility", skin, "ability");
         agilityText.setPosition(410, 125);
         agilityText.setSize(200, 50);
-        speedText.setDisabled(true);
+        agilityText.setDisabled(true);
         stage.addActor(agilityText);
 
     }
